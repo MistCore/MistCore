@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (115315, 'spell_monk_black_ox_statue');

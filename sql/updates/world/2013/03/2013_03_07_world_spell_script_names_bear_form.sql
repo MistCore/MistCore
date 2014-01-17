@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (5487, 'spell_dru_bear_form');

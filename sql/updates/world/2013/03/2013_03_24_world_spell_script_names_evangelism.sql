@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names (spell_id,ScriptName) VALUES (47540, 'spell_pri_evangelism'), (585, 'spell_pri_evangelism'), (14914, 'spell_pri_evangelism');

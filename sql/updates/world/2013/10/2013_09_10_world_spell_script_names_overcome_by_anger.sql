@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (129356, 'spell_sha_of_anger_overcome_by_anger');

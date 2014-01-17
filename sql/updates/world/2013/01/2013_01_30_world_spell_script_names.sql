@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (111400, 'spell_warl_burning_rush');

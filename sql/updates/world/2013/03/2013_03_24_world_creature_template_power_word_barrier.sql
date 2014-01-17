@@ -1,0 +1,1 @@
+UPDATE creature_template SET ScriptName = 'npc_power_word_barrier' WHERE entry = 33248;

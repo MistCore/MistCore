@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (50371, 'spell_dk_improved_blood_presence');

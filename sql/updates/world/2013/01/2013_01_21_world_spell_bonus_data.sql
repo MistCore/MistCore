@@ -1,0 +1,2 @@
+UPDATE spell_bonus_data SET direct_bonus = 0.215, dot_bonus = -1 WHERE entry = 31661; -- Dragon's Breath
+UPDATE spell_bonus_data SET direct_bonus = 2.2, dot_bonus = 0.36 WHERE entry = 11366; -- Pyroblast

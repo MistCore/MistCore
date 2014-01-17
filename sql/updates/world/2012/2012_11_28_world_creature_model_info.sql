@@ -1,0 +1,1 @@
+INSERT INTO creature_model_info VALUE (37986, 2, 2, 1, 0);

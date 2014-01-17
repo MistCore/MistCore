@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (114014, 0, 0, 0.3, 0, 'Rogue - Shuriken Toss');

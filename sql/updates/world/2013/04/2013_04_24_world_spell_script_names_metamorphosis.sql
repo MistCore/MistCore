@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (103958, 'spell_warl_metamorphosis_cost');

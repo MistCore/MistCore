@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (25912, 'spell_pal_holy_shock_damage');

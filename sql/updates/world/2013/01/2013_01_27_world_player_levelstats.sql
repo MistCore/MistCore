@@ -1,0 +1,15 @@
+UPDATE player_levelstats SET str = 25, agi = 38, sta = 30, inte = 25 WHERE race = 1 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 27, agi = 35, sta = 31, inte = 23 WHERE race = 2 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 29, agi = 34, sta = 31, inte = 25 WHERE race = 3 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 21, agi = 42, sta = 30, inte = 26 WHERE race = 4 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 24, agi = 36, sta = 30, inte = 24 WHERE race = 5 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 30, agi = 34, sta = 31, inte = 22 WHERE race = 6 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 20, agi = 40, sta = 30, inte = 29 WHERE race = 7 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 26, agi = 40, sta = 30, inte = 22 WHERE race = 8 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 22, agi = 40, sta = 30, inte = 29 WHERE race = 9 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 22, agi = 40, sta = 30, inte = 29 WHERE race = 10 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 26, agi = 35, sta = 30, inte = 26 WHERE race = 11 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 28, agi = 40, sta = 30, inte = 22 WHERE race = 22 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 25, agi = 36, sta = 31, inte = 25 WHERE race = 24 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 25, agi = 36, sta = 31, inte = 25 WHERE race = 25 AND class = 3 AND LEVEL = 12;
+UPDATE player_levelstats SET str = 25, agi = 36, sta = 31, inte = 25 WHERE race = 26 AND class = 3 AND LEVEL = 12;

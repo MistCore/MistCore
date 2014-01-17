@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (115464, 0, 0, 0.75, 0, 'Monk - Healing Sphere heal (triggered)');

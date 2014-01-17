@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (108482, 'spell_warl_unbound_will');

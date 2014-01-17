@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (106839, 'spell_dru_skull_bash')

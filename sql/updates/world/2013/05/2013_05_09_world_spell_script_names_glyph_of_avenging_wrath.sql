@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (31884, 'spell_pal_glyph_of_avenging_wrath');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (117368, 'spell_monk_grapple_weapon');

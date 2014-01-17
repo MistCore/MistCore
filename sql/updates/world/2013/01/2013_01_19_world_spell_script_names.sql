@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (42955, 'spell_mage_conjure_refreshment');

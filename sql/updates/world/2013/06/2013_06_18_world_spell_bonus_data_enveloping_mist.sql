@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (132120, 0, 0.7, 0, 0, 'Monk - Enveloping Mist');

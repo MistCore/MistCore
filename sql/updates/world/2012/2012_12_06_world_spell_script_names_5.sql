@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (5782, 'spell_warl_fear');

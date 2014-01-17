@@ -1,0 +1,1 @@
+UPDATE spell_bonus_data SET direct_bonus = 1.22, ap_bonus = 0, comments = 'Paladin - Denounce' WHERE entry = 2812;

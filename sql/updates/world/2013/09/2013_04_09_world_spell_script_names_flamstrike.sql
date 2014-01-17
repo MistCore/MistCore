@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (2120, 'spell_mage_flamestrike');

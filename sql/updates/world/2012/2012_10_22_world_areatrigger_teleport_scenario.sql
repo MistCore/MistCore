@@ -1,0 +1,1 @@
+INSERT INTO areatrigger_teleport VALUES (8397, "Chute de Theramore [Horde]", 1000, -4022.915, -4748.715, 5.219, 0.00);

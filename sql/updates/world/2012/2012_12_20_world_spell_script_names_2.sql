@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (104232, 'spell_warl_rain_of_fire');

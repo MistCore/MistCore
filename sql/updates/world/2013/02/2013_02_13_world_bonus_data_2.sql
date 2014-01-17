@@ -1,0 +1,1 @@
+UPDATE spell_bonus_data SET dot_bonus = 0.47, comments = 'Paladin - Censure' WHERE entry = 31803;

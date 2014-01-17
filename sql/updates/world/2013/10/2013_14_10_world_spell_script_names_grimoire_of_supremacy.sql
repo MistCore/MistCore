@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (108499, 'spell_warl_grimoire_of_supremacy');

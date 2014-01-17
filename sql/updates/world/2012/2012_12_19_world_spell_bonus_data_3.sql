@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (116858, 2.79, -1, -1, -1, 'Warlock - Chaos Bolt');

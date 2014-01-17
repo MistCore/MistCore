@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (23922, 0, 0, 1.2, 0, 'Warrior - Shield Slam');

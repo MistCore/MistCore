@@ -1,0 +1,2 @@
+insert into `spell_script_names` (`spell_id`, `ScriptName`) values('84375','spell_item_holy_thurible');
+INSERT INTO conditions VALUES (17, 0, 84375, 0, 0, 31, 1, 3, 45166, 0, 0, 0, "", "Implicit target for spell 84375");

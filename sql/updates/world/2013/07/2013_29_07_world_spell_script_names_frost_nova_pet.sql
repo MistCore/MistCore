@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (33395, 'spell_mage_pet_frost_nova');

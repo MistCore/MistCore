@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (33745, 'spell_dru_lacerate');

@@ -1,0 +1,1548 @@
+UPDATE battleground_template SET MinPlayersPerTeam=20, MinLvl=91, MaxLvl=91, Weight=0  WHERE id=30;
+
+DELETE FROM `spell_proc_event` WHERE `entry` IN (89003);
+INSERT INTO `spell_proc_event` VALUES (89003, 0x00, 0x04, 0x00000000, 0x40000000, 0x00000000, 0x00000010, 0x00000000, 0, 100, 0);
+
+DELETE FROM `spell_proc_event` WHERE `entry` IN (54939);
+INSERT INTO `spell_proc_event` VALUES (54939, 0x00, 0x0A, 0x00008000, 0x00000000, 0x00000000, 0x00004400, 0x00000000, 0, 100, 0);
+
+DELETE FROM spell_script_names WHERE ScriptName='spell_pri_train_of_thought';
+DELETE FROM spell_script_names WHERE ScriptName='spell_pri_spirit_of_redemption';
+DELETE FROM spell_script_names WHERE ScriptName='spell_warl_demonic_leap_jump';
+
+UPDATE creature_template SET unit_flags=8388608 WHERE entry=1964;
+
+UPDATE spell_bonus_data SET direct_bonus='0.8926' WHERE entry=32379;
+
+UPDATE `creature_template` SET `AIName` = '' WHERE `entry` = 69070; 
+
+REPLACE INTO `spell_linked_spell` (`spell_trigger`, `spell_effect`, `type`, `comment`) VALUES 
+(31224, 81549, 2, 'Rogue - Cloak of Shadows');
+
+UPDATE creature_template SET scriptname='npc_mirror_image' WHERE entry in (31216, 53438);
+UPDATE creature_template SET minlevel=85, maxlevel=85, faction_A=35, faction_H=35, scriptname='npc_mirror_image' WHERE entry in (31216, 53438);
+UPDATE creature_template SET exp=3, mindmg=550, maxdmg=950, attackpower=36, dmg_multiplier=7, unit_class=8, unit_flags=24, unit_flags2=2064, flags_extra=0 WHERE entry in (53438);
+UPDATE creature_template SET dynamicflags=12, spell1=0, spell2=0 WHERE entry in (31216);
+
+REPLACE INTO `spell_proc_event` VALUES (86701, 0, 0, 0, 0, 0, 0, 1027, 0, 100, 0);
+REPLACE INTO `spell_proc_event` VALUES (86703, 0, 0, 0, 0, 0, 0, 1027, 0, 100, 0);
+
+DELETE FROM `spell_proc_event` WHERE `entry` IN (51522, 10400, 33757);
+INSERT INTO `spell_proc_event` (`entry`, `SchoolMask`, `SpellFamilyName`, `SpellFamilyMask0`, `SpellFamilyMask1`, `SpellFamilyMask2`, `procFlags`, `procEx`, `ppmRate`, `CustomChance`, `Cooldown`) VALUES 
+(33757, 0, 0, 0, 0, 0, 0, 1027, 0, 100, 3),
+(10400, 0, 0, 0, 0, 0, 0, 1027, 0, 0, 0),
+(51522, 0, 0, 0, 0, 0, 0, 1027, 0, 0, 0);
+
+DELETE FROM spell_script_names WHERE scriptname='spell_sha_lava_surge';
+
+DELETE FROM `spell_bonus_data` WHERE (`entry`='56641');
+DELETE FROM `spell_bonus_data` WHERE (`entry`='3044');
+
+# FIX
+# Need Core fix/base add_column 7-10
+# UPDATE `quest_template` SET `RewardChoiceItemId7` = 90911, `RewardChoiceItemCount7` = 1 WHERE `Id` = 31809;
+# UPDATE `quest_template` SET `RewardChoiceItemId8` = 90909, `RewardChoiceItemCount8` = 1 WHERE `Id` = 31809;
+# UPDATE `quest_template` SET `RewardChoiceItemId9` = 90907, `RewardChoiceItemCount9` = 1 WHERE `Id` = 31809;
+
+# Fix
+UPDATE `creature` SET `spawnMask` = 2 WHERE `guid` = 1330581;
+UPDATE `gameobject` SET `animprogress` = 100 WHERE `guid` = 66384;
+UPDATE `gameobject_template` SET `data2` = 0, `data14` = 0 WHERE `entry` = 190947;
+DELETE FROM `creature_questrelation` WHERE `quest` = 27922;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 27922;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 27922;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (46872, 27922);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 46872;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 27922;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 27922;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (6144, 27922);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=6144;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (46872, 27922);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=46872;
+DELETE FROM `quest_start_scripts` WHERE `id`=27922;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(27922, 10, 8, 47466, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `Flags` = 136, `StartScript` = 27922 WHERE `Id` = 27922;
+UPDATE `creature_template` SET `unit_flags` = 0 WHERE `entry` = 29152;
+DELETE FROM `creature` WHERE `id`=51665;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(403928, 51665, 0, 1, 1, 0, 0, -9116.82, 416.173, 94.1055, 0.307139, 120, 0, 0, 1226, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=28650;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(403929, 28650, 0, 1, 1, 25591, 0, -8641.18, 1331.08, 5.31558, 4.95674, 300, 0, 0, 1848, 0, 0, 0, 0, 0);
+UPDATE `creature_template_addon` SET auras=NULL WHERE entry IN (42309);
+UPDATE `creature_template` SET `unit_flags` = 768, `dynamicflags` = 0 WHERE `entry` = 237;
+DELETE FROM `creature_template_addon` WHERE (`entry`=237);
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 237;
+DELETE FROM `creature_template_addon` WHERE (`entry`=238);
+UPDATE `creature_template` SET `unit_flags` = 768, `unit_flags2` = 2048, `dynamicflags` = 0 WHERE `entry` = 238;
+UPDATE `creature` SET `spawndist` = 0, `MovementType` = 0 WHERE `guid` = 171546;
+DELETE FROM `creature_template_addon` WHERE (`entry`=582);
+DELETE FROM `creature_template_addon` WHERE (`entry`=42311);
+DELETE FROM `creature_template_addon` WHERE (`entry`=42383);
+UPDATE `creature` SET `spawndist` = 0, `MovementType` = 0 WHERE `guid` = 172484;
+
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `MovementType`) VALUES
+(403930, 65051, 0, 1, 1, -8177.063, 552.6077, 118.1873, 0.6058627, 120, 0, 0), -- 65051 (Area: 0)
+(403931, 65051, 0, 1, 1, -8176.658, 548.5573, 118.1762, 5.998106, 120, 0, 0), -- 65051 (Area: 0)
+(403932, 65051, 0, 1, 1, -8175, 527.3802, 117.4257, 0.2804516, 120, 0, 0), -- 65051 (Area: 0)
+(403933, 61841, 0, 1, 1, -8555.899, 476.2014, 104.742, 3.419646, 120, 0, 0), -- 61841 (Area: 5149)
+(403934, 65648, 0, 1, 1, -9831.592, 886.783, 27.10747, 3.869778, 120, 0, 0), -- 65648 (Area: 916)
+(403935, 65659, 0, 1, 1, -9832.176, 887.6788, 27.24162, 3.869778, 120, 0, 0), -- 65659 (Area: 916)
+(403936, 65660, 0, 1, 1, -9830.886, 886.0555, 27.01361, 3.802093, 120, 0, 0), -- 65660 (Area: 916)
+(403937, 65661, 0, 1, 1, -9830.585, 887.8177, 27.44211, 3.717259, 120, 0, 0); -- 65661 (Area: 916)
+DELETE FROM `creature_template_addon` WHERE (`entry`=8436);
+DELETE FROM `creature_template_addon` WHERE (`entry`=47927);
+UPDATE `creature` SET `spawnMask` = 1 WHERE `guid` = 1343046;
+UPDATE `creature` SET `spawnMask` = 1 WHERE `guid` = 1343047;
+DELETE FROM `creature` WHERE `id`=14628;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(403938, 14628, 0, 1, 1, 14656, 0, -6515.92, -1191.47, 309.338, 2.00713, 300, 0, 0, 3094, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=47393;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(403939, 47393, 0, 1, 1, 35579, 0, -7109.52, -1202.63, 324.382, 3.1765, 300, 0, 0, 4120, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=47267;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(403940, 47267, 0, 1, 1, 35509, 0, -6892.43, -1851.08, 250.767, 3.49066, 300, 0, 0, 2138, 0, 0, 0, 0, 0);
+DELETE FROM `creature_template_addon` WHERE (`entry`=49873);
+DELETE FROM `creature` WHERE `id`=14627;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(403941, 14627, 0, 1, 1, 14655, 0, -6514.44, -1181.33, 309.338, 1.8675, 300, 0, 0, 3312, 0, 0, 0, 0, 0);
+DELETE FROM `creature_template_addon` WHERE (`entry`=47556);
+DELETE FROM `gameobject` WHERE `id`=180435;
+INSERT INTO `gameobject` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`position_x`,`position_y`,`position_z`,`orientation`,`rotation0`,`rotation1`,`rotation2`,`rotation3`,`spawntimesecs`,`animprogress`,`state`) VALUES
+(401983, 180435, 1, 1, 1, -8080.96, 985.235, 48.2963, 0.90757, 0, 0, 0.438371, 0.898794, 300, 100, 1);
+UPDATE `creature` SET `MovementType` = 0 WHERE `guid` = 402669;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31092;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31092;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31092;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64344, 31092);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64344;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31092;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31092;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63758, 31092);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63758;
+UPDATE `quest_template` SET `Flags` = 8 WHERE `Id` = 31092;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7, `unit_flags` = 512 WHERE `entry` = 64485;
+UPDATE `creature` SET `unit_flags` = 0 WHERE `id` = 64485;
+DELETE FROM `item_loot_template` WHERE (`entry`=72201);
+INSERT INTO `item_loot_template` VALUES 
+(72201, 3181, 0, 1, 1, 1, 1),
+(72201, 9355, 0, 1, 1, 1, 1),
+(72201, 43521, 0, 1, 1, 1, 1),
+(72201, 58865, 0, 1, 1, 1, 1),
+(72201, 60491, 0, 1, 1, 1, 4),
+(72201, 67337, 0, 1, 1, 1, 1);
+UPDATE `creature_template_addon` SET auras=NULL WHERE entry IN (64599,65186,63501,62774,62538,62151,63785,63072,63758);
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 63071;
+DELETE FROM `creature_loot_template` WHERE (`entry`=31669);
+UPDATE `creature_template` SET `lootid` = 24083, `skinloot` = 24083 WHERE `entry` = 31669;
+UPDATE `creature_template` SET `skinloot` = 29735 WHERE `entry` = 31678;
+DELETE FROM `creature_loot_template` WHERE (`entry`=30747);
+UPDATE `creature_template` SET `lootid` = 23961, `pickpocketloot` = 23961 WHERE `entry` = 30747;
+DELETE FROM `creature_loot_template` WHERE (`entry`=31666);
+UPDATE `creature_template` SET `lootid` = 23956, `pickpocketloot` = 23956 WHERE `entry` = 31666;
+DELETE FROM `creature_loot_template` WHERE (`entry`=31663);
+UPDATE `creature_template` SET `lootid` = 23960, `pickpocketloot` = 23960 WHERE `entry` = 31663;
+DELETE FROM `creature_loot_template` WHERE (`entry`=31658);
+UPDATE `creature_template` SET `lootid` = 24069, `pickpocketloot` = 24069 WHERE `entry` = 31658;
+DELETE FROM `creature_loot_template` WHERE (`entry`=31660);
+UPDATE `creature_template` SET `lootid` = 24071, `pickpocketloot` = 24071 WHERE `entry` = 31660;
+DELETE FROM `creature_loot_template` WHERE (`entry`=31665);
+UPDATE `creature_template` SET `lootid` = 28410 WHERE `entry` = 31665;
+UPDATE `creature_template` SET `KillCredit2` = 63204, `faction_A` = 7, `faction_H` = 7, `unit_flags` = 32768 WHERE `entry` = 62232;
+UPDATE `creature_template` SET `KillCredit2` = 63204, `faction_A` = 7, `faction_H` = 7, `unit_flags` = 32768 WHERE `entry` = 63328;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31021;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31021;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31021;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (62232, 31021);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 62232;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31021;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31021;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (62232, 31021);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=62232;
+UPDATE `quest_template` SET `RequiredNpcOrGoCount1` = 1 WHERE `Id` = 31021;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31603;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31603;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31603;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64599, 31603);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64599;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31603;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31603;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64599, 31603);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64599;
+UPDATE `quest_template` SET `SpecialFlags` = 1 WHERE `Id` = 31603;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31782;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31782;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31782;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (65395, 31782);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 65395;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31782;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31782;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (62519, 31782);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=62519;
+DELETE FROM `quest_start_scripts` WHERE `id`=31782;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(31782, 10, 8, 65772, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `Flags` = 8, `StartScript` = 31782 WHERE `Id` = 31782;
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `unit_flags` = 32768, `flags_extra` = 2 WHERE `entry` = 63783;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31237;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31237;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31237;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (63785, 31237);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 63785;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31237;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31237;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63785, 31237);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63785;
+UPDATE `quest_template` SET `Flags` = 4096, `RequiredNpcOrGoCount1` = 1 WHERE `Id` = 31237;
+UPDATE `gameobject_template` SET `data14` = 0 WHERE `entry` = 213314;
+UPDATE `quest_template` SET `SourceItemId` = 0, `SourceItemCount` = 0 WHERE `Id` = 8324;
+UPDATE `quest_template` SET `SourceItemId` = 0, `SourceItemCount` = 0 WHERE `Id` = 8323;
+UPDATE `quest_template` SET `SourceItemId` = 0, `SourceItemCount` = 0 WHERE `Id` = 8318;
+UPDATE `quest_template` SET `SourceItemId` = 0, `SourceItemCount` = 0 WHERE `Id` = 8319;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31439;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31439;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31439;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64815, 31439);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64815;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31439;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31439;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64569, 31439);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64569;
+DELETE FROM `quest_start_scripts` WHERE `id`=31439;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(31439, 10, 8, 64645, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `StartScript` = 31439 WHERE `Id` = 31439;
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14 WHERE `entry` = 34485;
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 65354;
+DELETE FROM `creature_template_addon` WHERE (`entry`=65354);
+DELETE FROM `creature_template_addon` WHERE (`entry`=65999);
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 29469;
+UPDATE `creature_template` SET `dynamicflags` = 0 WHERE `entry` = 29469;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7, `mindmg` = 10000, `maxdmg` = 20000, `attackpower` = 100 WHERE `entry` = 59491;
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 57402;
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 58705;
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 57401;
+UPDATE `creature_template` SET `flags_extra` = 2 WHERE `entry` = 38210;
+UPDATE `creature_template` SET `flags_extra` = 130 WHERE `entry` = 35010;
+DELETE FROM `creature` WHERE `id`=30399;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(403942, 30399, 571, 1, 1, 0, 0, 8703.28, -715.643, 934.948, 2.3484, 300, 0, 0, 13481, 0, 0, 0, 0, 0);
+UPDATE `gameobject_template` SET `flags` = 2 WHERE `entry` = 214388;
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 55201;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 55201;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7, `unit_flags2` = 2048 WHERE `entry` = 55490;
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `unit_flags2` = 2048 WHERE `entry` = 55193;
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14 WHERE `entry` = 61557;
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14 WHERE `entry` = 61562;
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 63694;
+DELETE FROM `creature_template_addon` WHERE (`entry`=63694);
+UPDATE `creature_template` SET `KillCredit2` = 65328 WHERE `entry` = 65478;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7, `unit_flags2` = 2048 WHERE `entry` = 46717;
+DELETE FROM `creature_template_addon` WHERE (`entry`=46717);
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `unit_flags` = 32768, `flags_extra` = 2 WHERE `entry` IN (63706,63708,63711,63713,63714);
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 64461;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 64460;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 64459;
+DELETE FROM `creature` WHERE `id`=48559;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(403943, 48559, 0, 1, 1, 36185, 0, -8069.18, -1015.2, 132.261, 1.48353, 300, 0, 0, 4906, 0, 0, 0, 0, 0);
+UPDATE `creature_template` SET `KillCredit2` = 28523 WHERE `entry` = 28519;
+DELETE FROM `creature_questrelation` WHERE `quest` = 28161;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 28161;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 28161;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (40028, 28161);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 40028;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (47745, 28161);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 47745;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 28161;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 28161;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (40028, 28161);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=40028;
+UPDATE `quest_template` SET `Flags` = 8 WHERE `Id` = 28161;
+UPDATE `creature_template` SET `KillCredit2` = 30296 WHERE `entry` = 29978;
+UPDATE `creature_template` SET `KillCredit2` = 30297 WHERE `entry` = 29984;
+DELETE FROM `creature_questrelation` WHERE `quest` = 26760;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 26760;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 26760;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (43730, 26760);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 43730;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 26760;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 26760;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (43730, 26760);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=43730;
+DELETE FROM `quest_start_scripts` WHERE `id`=26760;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(26760, 15, 8, 43969, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `StartScript` = 26760 WHERE `Id` = 26760;
+UPDATE quest_template SET RewardCurrencyId2=738, RewardCurrencyCount2=2 WHERE id=30065;
+UPDATE `creature_template` SET `KillCredit2` = 28631, `minlevel` = 1, `maxlevel` = 1, `faction_A` = 14, `faction_H` = 14, `unit_flags` = 32768, `flags_extra` = 2 WHERE `entry` = 28739;
+DELETE FROM `creature_questrelation` WHERE `quest` = 12669;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 12669;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 12669;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (28518, 12669);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 28518;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 12669;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 12669;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (28518, 12669);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=28518;
+UPDATE `quest_template` SET `RequiredSpellCast2` = 0 WHERE `Id` = 12669;
+UPDATE `creature_template` SET `questItem2` = 39670 WHERE `entry` = 28750;
+DELETE FROM `creature_loot_template` WHERE (`entry`=28750) AND (`item`=39670);
+INSERT INTO `creature_loot_template` (`entry`, `item`, `ChanceOrQuestChance`, `lootmode`, `groupid`, `mincountOrRef`, `maxcount`) VALUES (28750, 39670, -100, 1, 0, 1, 1);
+UPDATE `creature_template` SET `KillCredit2` = 28740 WHERE `entry` = 28750;
+DELETE FROM `creature_questrelation` WHERE `quest` = 12673;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 12673;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 12673;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (28503, 12673);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 28503;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 12673;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 12673;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (28503, 12673);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=28503;
+UPDATE `quest_template` SET `RequiredItemId2` = 39670, `RequiredItemCount2` = 7 WHERE `Id` = 12673;
+DELETE FROM `gameobject_loot_template` WHERE (`entry`=42824) AND (`item`=85664);
+INSERT INTO `gameobject_loot_template` (`entry`, `item`, `ChanceOrQuestChance`, `lootmode`, `groupid`, `mincountOrRef`, `maxcount`) VALUES (42824, 85664, -100, 1, 0, 1, 1);
+UPDATE `gameobject_template` SET `flags` = 4, `data2` = 0, `data3` = 0, `data14` = 0 WHERE `entry` = 213319;
+UPDATE `creature_template` SET `minlevel` = 10, `maxlevel` = 10, `faction_A` = 7, `faction_H` = 7, `type` = 7, `lootid` = 63740, `questItem1` = 85664 WHERE `entry` = 63740;
+DELETE FROM `creature_loot_template` WHERE (`entry`=63740) AND (`item`=85664);
+INSERT INTO `creature_loot_template` (`entry`, `item`, `ChanceOrQuestChance`, `lootmode`, `groupid`, `mincountOrRef`, `maxcount`) VALUES (63740, 85664, -100, 1, 0, 1, 1);
+DELETE FROM `creature_questrelation` WHERE `quest` = 12557;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 12557;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 12557;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (28205, 12557);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 28205;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 12557;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 12557;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (28205, 12557);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=28205;
+UPDATE `quest_template` SET `RequiredNpcOrGo1` = 0, `RequiredNpcOrGo2` = 0, `RequiredNpcOrGo3` = 0, `RequiredNpcOrGo4` = 0, `RequiredNpcOrGoCount1` = 0, `RequiredNpcOrGoCount2` = 0, `RequiredNpcOrGoCount3` = 0, `RequiredNpcOrGoCount4` = 0, `RequiredItemId1` = 38346, `RequiredItemId2` = 38340, `RequiredItemId3` = 38339, `RequiredItemId4` = 38386, `RequiredItemCount1` = 1, `RequiredItemCount2` = 1, `RequiredItemCount3` = 1, `RequiredItemCount4` = 1 WHERE `Id` = 12557;
+UPDATE `gameobject_template` SET `flags` = 4, `questItem1` = 38346, `data0` = 43, `data2` = 0 WHERE `entry` = 190462;
+UPDATE `gameobject_template` SET `flags` = 4, `questItem1` = 38340, `data0` = 43, `data2` = 0 WHERE `entry` = 190459;
+UPDATE `gameobject_template` SET `flags` = 4, `questItem1` = 38339, `data0` = 43, `data2` = 0 WHERE `entry` = 190473;
+UPDATE `gameobject_template` SET `flags` = 4, `questItem1` = 38386, `data0` = 43, `data2` = 0 WHERE `entry` = 190478;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 28041;
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14 WHERE `entry` = 66423;
+UPDATE `creature_template_addon` SET auras=NULL WHERE entry IN (823,951,1642,49874,50039);
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `entry` = 49874;
+
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `MovementType`) VALUES
+(403944, 63783, 870, 1, 1, 342.7393, 2493.63, 218.8655, 4.608974, 120, 0, 0), -- 63783 (Area: 6306)
+(403945, 65999, 870, 1, 1, 2632.525, -758.7483, 316.4115, 1.068557, 120, 0, 0), -- 65999 (Area: 6345)
+(403946, 59491, 870, 1, 1, -16.45141, 619.6306, 150.7468, 5.793425, 120, 5, 1), -- 59491 (Area: 5980) (possible waypoints or random movement)
+(403947, 59491, 870, 1, 1, -12.60601, 618.5858, 149.8111, 5.77509, 120, 5, 1), -- 59491 (Area: 5980) (possible waypoints or random movement)
+(403948, 59491, 870, 1, 1, 8.973957, 607.6649, 153.3528, 6.068312, 120, 5, 1), -- 59491 (Area: 5980) (possible waypoints or random movement)
+(403949, 59491, 870, 1, 1, -49.47301, 649.9844, 154.9579, 1.217435, 120, 5, 1), -- 59491 (Area: 5980) (possible waypoints or random movement)
+(403950, 59491, 870, 1, 1, -17.43048, 656.329, 150.2789, 0.9394135, 120, 0, 0), -- 59491 (Area: 5980)
+(403951, 59491, 870, 1, 1, 86.64076, 615.2757, 152.4578, 0.8524739, 120, 0, 0), -- 59491 (Area: 5984)
+(403952, 59491, 870, 1, 1, 124.283, 649.6964, 149.4266, 5.436415, 120, 0, 0), -- 59491 (Area: 5984)
+(403953, 59491, 870, 1, 1, 48.42595, 619.5393, 155.8409, 0.5497721, 120, 0, 0), -- 59491 (Area: 5984)
+(403954, 59491, 870, 1, 1, -21.11505, 682.3606, 151.7996, 4.015024, 120, 5, 1), -- 59491 (Area: 5980) (possible waypoints or random movement)
+(403955, 59491, 870, 1, 1, -116.3838, 708.3807, 155.2019, 4.43201, 120, 0, 0), -- 59491 (Area: 5980)
+(403956, 59491, 870, 1, 1, -55.32676, 718.4746, 157.2726, 1.742144, 120, 0, 0), -- 59491 (Area: 5980)
+(403957, 59491, 870, 1, 1, 85.87778, 613.5, 152.9643, 4.333924, 120, 0, 0), -- 59491 (Area: 5984)
+(403958, 59491, 870, 1, 1, 121.9358, 647.6187, 149.3404, 0.006278931, 120, 0, 0), -- 59491 (Area: 5984)
+(403959, 59491, 870, 1, 1, 89.3017, 654.587, 152.6641, 0.6232983, 120, 0, 0), -- 59491 (Area: 5984)
+(403960, 59491, 870, 1, 1, 149.0603, 676.5076, 153.4163, 2.284085, 120, 5, 1), -- 59491 (Area: 5984) (possible waypoints or random movement)
+(403961, 59491, 870, 1, 1, 145.9428, 702.4733, 152.8572, 4.448905, 120, 0, 0), -- 59491 (Area: 5984)
+(403962, 59491, 870, 1, 1, 134.7822, 734.3955, 149.12, 2.908831, 120, 5, 1), -- 59491 (Area: 5992) (possible waypoints or random movement)
+(403963, 59491, 870, 1, 1, 90.38775, 748.7278, 150.8645, 0.08848196, 120, 0, 0), -- 59491 (Area: 5992)
+(403964, 59491, 870, 1, 1, 114.6639, 718.0374, 150.7285, 0.4482907, 120, 0, 0), -- 59491 (Area: 5992)
+(403965, 59491, 870, 1, 1, 99.15617, 731.0969, 151.3691, 3.532625, 120, 5, 1), -- 59491 (Area: 5992) (possible waypoints or random movement)
+(403966, 59491, 870, 1, 1, 101.8727, 730.6207, 151.2659, 3.530076, 120, 5, 1), -- 59491 (Area: 5992) (possible waypoints or random movement)
+(403967, 59491, 870, 1, 1, 60.76924, 703.6578, 152.1457, 5.365411, 120, 0, 0), -- 59491 (Area: 5992)
+(403968, 59491, 870, 1, 1, -216.1898, 713.7661, 152.2255, 4.97727, 120, 0, 0), -- 59491 (Area: 0)
+(403969, 57401, 870, 1, 1, 200.1684, 945.7778, 174.7852, 2.9147, 120, 0, 0), -- 57401 (Area: 5992)
+(403970, 57402, 870, 1, 1, -257.6129, 599.5018, 167.6311, 1.361973, 120, 0, 0), -- 57402 (Area: 6039)
+(403971, 58705, 870, 1, 1, 310.283, 1041.28, 145.7379, 6.195919, 120, 0, 0), -- 58705 (Area: 6096)
+(403972, 55201, 870, 1, 1, -105.2552, -2239.691, 32.71885, 4.677482, 120, 0, 0), -- 55201 (Area: 0)
+(403973, 55201, 870, 1, 1, -88.67361, -2256.189, 29.56485, 4.677482, 120, 0, 0), -- 55201 (Area: 0)
+(403974, 55201, 870, 1, 1, -129.8351, -2253.894, 34.33714, 5.480334, 120, 0, 0), -- 55201 (Area: 0)
+(403975, 55201, 870, 1, 1, -145.3403, -2265.813, 34.28831, 5.707227, 120, 0, 0), -- 55201 (Area: 0)
+(403976, 55201, 870, 1, 1, -177.5781, -2325.13, 35.20754, 3.438299, 120, 0, 0), -- 55201 (Area: 5872)
+(403977, 55201, 870, 1, 1, -120.8472, -2308.882, 29.30125, 1.58825, 120, 0, 0), -- 55201 (Area: 5872)
+(403978, 55201, 870, 1, 1, -71.45139, -2284.021, 32.63876, 3.438299, 120, 0, 0), -- 55201 (Area: 5872)
+(403979, 55201, 870, 1, 1, -115.8021, -2331.422, 31.96556, 1.919862, 120, 0, 0), -- 55201 (Area: 5872)
+(403980, 55201, 870, 1, 1, -73.50694, -2310.095, 32.40665, 3.455752, 120, 0, 0), -- 55201 (Area: 5872)
+(403981, 55201, 870, 1, 1, -59.96701, -2325.083, 34.35349, 4.747295, 120, 0, 0), -- 55201 (Area: 5872)
+(403982, 55201, 870, 1, 1, -106.6493, -2346.017, 35.69326, 0.2617994, 120, 0, 0), -- 55201 (Area: 5872)
+(403983, 55201, 870, 1, 1, -98.84722, -2388.601, 34.10218, 1.343904, 120, 0, 0), -- 55201 (Area: 5872)
+(403984, 55490, 870, 1, 1, -73.42535, -2267.123, 28.60422, 3.420845, 120, 0, 0), -- 55490 (Area: 0)
+(403985, 55490, 870, 1, 1, -115.974, -2282.465, 29.28682, 4.34587, 120, 0, 0), -- 55490 (Area: 0)
+(403986, 55490, 870, 1, 1, -132.4566, -2284.373, 29.29043, 5.8294, 120, 0, 0), -- 55490 (Area: 0)
+(403987, 55490, 870, 1, 1, -154.3524, -2328.58, 33.95568, 1.117011, 120, 0, 0), -- 55490 (Area: 5872)
+(403988, 55490, 870, 1, 1, -73.33854, -2326.005, 34.26974, 5.846853, 120, 0, 0), -- 55490 (Area: 5872)
+(403989, 55490, 870, 1, 1, -41.9809, -2368.57, 34.21812, 3.333579, 120, 0, 0), -- 55490 (Area: 5872)
+(403990, 55490, 870, 1, 1, -34.08854, -2361.896, 33.53196, 3.438299, 120, 0, 0), -- 55490 (Area: 5872)
+(403991, 55490, 870, 1, 1, -83.1684, -2400.507, 34.0335, 1.64061, 120, 0, 0), -- 55490 (Area: 5872)
+(403992, 55193, 870, 1, 1, -104.6736, -2245.307, 32.71885, 3.689202, 120, 0, 0), -- 55193 (Area: 0)
+(403993, 55193, 870, 1, 1, -154.9549, -2242.163, 37.85749, 0.6173234, 120, 0, 0), -- 55193 (Area: 0)
+(403994, 55193, 870, 1, 1, -150.9045, -2241.115, 37.70499, 3.188513, 120, 0, 0), -- 55193 (Area: 0)
+(403995, 55193, 870, 1, 1, -134.9201, -2261.658, 33.22161, 0.6397009, 120, 0, 0), -- 55193 (Area: 0)
+(403996, 55193, 870, 1, 1, -131.7431, -2258.766, 33.64772, 4.376641, 120, 0, 0), -- 55193 (Area: 0)
+(403997, 55193, 870, 1, 1, -148.849, -2266.84, 34.50192, 6.185033, 120, 0, 0), -- 55193 (Area: 0)
+(403998, 55193, 870, 1, 1, -123.2882, -2287.113, 29.29395, 0.3440724, 120, 0, 0), -- 55193 (Area: 0)
+(403999, 55193, 870, 1, 1, -119.9115, -2284.945, 29.3055, 4.376641, 120, 0, 0), -- 55193 (Area: 0)
+(404000, 55193, 870, 1, 1, -122.2834, -2263.417, 31.80252, 0.1479054, 120, 5, 1), -- 55193 (Area: 5872) (possible waypoints or random movement)
+(404001, 55193, 870, 1, 1, -150.2958, -2315.62, 32.06073, 0.2127213, 120, 0, 0), -- 55193 (Area: 5872)
+(404002, 55193, 870, 1, 1, -128.6528, -2302.833, 29.29126, 0.7860863, 120, 0, 0), -- 55193 (Area: 5872)
+(404003, 55193, 870, 1, 1, -80.89931, -2296.198, 32.56371, 5.616849, 120, 0, 0), -- 55193 (Area: 5872)
+(404004, 55193, 870, 1, 1, -23.36049, -2293.118, 29.72898, 5.224991, 120, 5, 1), -- 55193 (Area: 5872) (possible waypoints or random movement)
+(404005, 55193, 870, 1, 1, -93.65623, -2343.495, 33.07316, 2.107381, 120, 5, 1), -- 55193 (Area: 5872) (possible waypoints or random movement)
+(404006, 55193, 870, 1, 1, -70.67709, -2354.146, 28.07405, 3.612832, 120, 0, 0), -- 55193 (Area: 5872)
+(404007, 55193, 870, 1, 1, -69.17188, -2362.398, 28.07405, 0.5585054, 120, 0, 0), -- 55193 (Area: 5872)
+(404008, 55193, 870, 1, 1, -76.94965, -2372.2, 28.07405, 1.884956, 120, 0, 0), -- 55193 (Area: 5872)
+(404009, 55193, 870, 1, 1, -73.38889, -2299.497, 35.35862, 1.955095, 120, 5, 1), -- 55193 (Area: 5872) (possible waypoints or random movement)
+(404010, 55193, 870, 1, 1, -7.756945, -2364.38, 27.52206, 4.65511, 120, 0, 0), -- 55193 (Area: 5872)
+(404011, 55193, 870, 1, 1, -86.65104, -2399.589, 34.33631, 6.129538, 120, 0, 0), -- 55193 (Area: 5872)
+(404012, 55193, 870, 1, 1, -113.099, -2388.951, 31.74312, 3.540177, 120, 0, 0), -- 55193 (Area: 5872)
+(404013, 55193, 870, 1, 1, -63.00347, -2410.668, 33.04178, 4.390774, 120, 0, 0), -- 55193 (Area: 5872)
+(404014, 61562, 870, 1, 1, -65.61488, -2202.295, 40.64973, 3.465533, 120, 5, 1), -- 61562 (Area: 0) (possible waypoints or random movement)
+(404015, 61562, 870, 1, 1, -55.48886, -2221.898, 36.31105, 1.667234, 120, 5, 1), -- 61562 (Area: 0) (possible waypoints or random movement)
+(404016, 61562, 870, 1, 1, -111.0278, -2247.207, 32.82669, 0.2866318, 120, 0, 0), -- 61562 (Area: 0)
+(404017, 61562, 870, 1, 1, -73.72222, -2264.146, 27.99893, 4.67455, 120, 0, 0), -- 61562 (Area: 0)
+(404018, 61562, 870, 1, 1, -156.9271, -2327.62, 33.748, 6.264506, 120, 0, 0), -- 61562 (Area: 5872)
+(404019, 61562, 870, 1, 1, -114.7435, -2318.9, 31.53884, 3.457181, 120, 0, 0), -- 61562 (Area: 5872)
+(404020, 61562, 870, 1, 1, -113.035, -2317.792, 31.11931, 3.519797, 120, 0, 0), -- 61562 (Area: 5872)
+(404021, 61562, 870, 1, 1, -112.875, -2296.889, 29.29045, 3.064325, 120, 0, 0), -- 61562 (Area: 5872)
+(404022, 61562, 870, 1, 1, -71.8125, -2313.464, 32.50388, 2.440243, 120, 0, 0), -- 61562 (Area: 5872)
+(404023, 61562, 870, 1, 1, -62.94445, -2326.717, 34.26736, 3.791486, 120, 0, 0), -- 61562 (Area: 5872)
+(404024, 61562, 870, 1, 1, -95.19727, -2334.123, 32.86572, 2.706381, 120, 0, 0), -- 61562 (Area: 5872)
+(404025, 61562, 870, 1, 1, -82.37821, -2343.698, 33.49072, 3.414281, 120, 0, 0), -- 61562 (Area: 5872)
+(404026, 61562, 870, 1, 1, -50.53302, -2349.933, 33.50877, 3.963894, 120, 0, 0), -- 61562 (Area: 5872)
+(404027, 61562, 870, 1, 1, -49.22294, -2351.653, 33.52148, 1.396421, 120, 0, 0), -- 61562 (Area: 5872)
+(404028, 61562, 870, 1, 1, 15.18924, -2351.564, 15.40838, 0.05130473, 120, 0, 0), -- 61562 (Area: 5872)
+(404029, 61562, 870, 1, 1, -9.682292, -2368.271, 28.59201, 1.339942, 120, 0, 0), -- 61562 (Area: 5872)
+(404030, 61562, 870, 1, 1, -46.90999, -2363.754, 33.77369, 2.156613, 120, 0, 0), -- 61562 (Area: 5872)
+(404031, 61562, 870, 1, 1, -88.12847, -2413.467, 32.93693, 4.639256, 120, 0, 0), -- 61562 (Area: 5872)
+(404032, 61562, 870, 1, 1, -131.1464, -2436.931, 22.02514, 3.40749, 120, 0, 0), -- 61562 (Area: 5872)
+(404033, 61510, 870, 1, 1, 2075.649, 4728.048, 153.2245, 4.789339, 120, 0, 0), -- 61510 (Area: 6213)
+(404034, 61510, 870, 1, 1, 2366.066, 4828.905, 164.2493, 2.73836, 120, 0, 0), -- 61510 (Area: 6213)
+(404035, 66423, 870, 1, 1, -657.0945, -1541.601, 3.933063, 3.613083, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404036, 66423, 870, 1, 1, -656.4109, -1551.769, 5.424231, 5.184784, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404037, 66423, 870, 1, 1, -657.5159, -1534.809, 2.663732, 3.667278, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404038, 66423, 870, 1, 1, -711.8959, -1621.54, 20.18839, 4.659125, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404039, 66423, 870, 1, 1, -636.1796, -1605.281, 14.29186, 0.6483365, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404040, 66423, 870, 1, 1, -710.4296, -1625.203, 19.69949, 2.114901, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404041, 66423, 870, 1, 1, -611.737, -1629.411, 14.94974, 2.830347, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404042, 66423, 870, 1, 1, -614.629, -1642.029, 15.44666, 3.153311, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404043, 66423, 870, 1, 1, -585.7502, -1628.775, 12.3231, 1.335742, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404044, 66423, 870, 1, 1, -619.0377, -1665.046, 12.12624, 0.798667, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404045, 66423, 870, 1, 1, -628.1376, -1666.784, 13.64819, 1.692243, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404046, 66423, 870, 1, 1, -594.4824, -1673.868, 12.28662, 5.0755, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404047, 66423, 870, 1, 1, -589.0637, -1685.293, 10.10491, 3.621804, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404048, 66423, 870, 1, 1, -639.1626, -1672.805, 13.66133, 2.815703, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404049, 66423, 870, 1, 1, -642.2047, -1673.687, 13.64937, 2.273718, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404050, 66423, 870, 1, 1, -574.5307, -1690.412, 10.11517, 5.58015, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404051, 66423, 870, 1, 1, -611.4722, -1699.437, 12.47201, 1.607889, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404052, 66423, 870, 1, 1, -679.6712, -1651.173, 19.06963, 1.55322, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404053, 66423, 870, 1, 1, -679.1764, -1650.48, 19.07141, 1.490577, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404054, 66423, 870, 1, 1, -625.005, -1712.746, 13.03782, 1.913557, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404055, 66423, 870, 1, 1, -676.0409, -1694.571, 16.55825, 0.1128094, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404056, 66423, 870, 1, 1, -676.8693, -1690.759, 16.25883, 0.07603979, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404057, 66423, 870, 1, 1, -731.8293, -1659.001, 13.33539, 5.425889, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404058, 66423, 870, 1, 1, -715.1891, -1671.077, 15.79055, 6.084641, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404059, 66423, 870, 1, 1, -728.2392, -1668.961, 14.92906, 6.114507, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404060, 66423, 870, 1, 1, -694.7719, -1763.223, 1.925381, 0.9584336, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404061, 66423, 870, 1, 1, -695.9252, -1757.18, 3.052633, 5.012794, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404062, 66423, 870, 1, 1, -737.0058, -1722.118, 27.13127, 2.210066, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404063, 66423, 870, 1, 1, -733.6128, -1729.386, 27.79473, 5.376792, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404064, 66423, 870, 1, 1, -725.8558, -1731.59, 27.79966, 3.256842, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404065, 66423, 870, 1, 1, -765.1035, -1641.146, 10.09382, 0.7552449, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404066, 66423, 870, 1, 1, -765.5596, -1647.192, 10.49323, 3.440699, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404067, 66423, 870, 1, 1, -768.8028, -1674.202, 6.649263, 5.622485, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404068, 66423, 870, 1, 1, -770.7465, -1673.967, 6.304838, 4.265101, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404069, 66423, 870, 1, 1, -772.2467, -1673.929, 6.120512, 2.725676, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404070, 66423, 870, 1, 1, -781.5086, -1698.885, 10.69058, 0.7992094, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404071, 66423, 870, 1, 1, -778.4601, -1702.711, 10.53484, 0.1387852, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404072, 66423, 870, 1, 1, -815.4773, -1619.213, 1.712112, 5.443957, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404073, 66423, 870, 1, 1, -807.8925, -1623.79, 2.25679, 6.009018, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404074, 66423, 870, 1, 1, -803.2499, -1676.945, 7.038853, 1.123705, 120, 5, 1), -- 66423 (Area: 5853) (possible waypoints or random movement)
+(404075, 66424, 870, 1, 1, -682.3691, -1549.7, 4.17646, 1.125993, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404076, 66424, 870, 1, 1, -658.6024, -1533.58, 2.360998, 1.417759, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404077, 66424, 870, 1, 1, -715.2762, -1629.41, 19.13371, 4.587666, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404078, 66424, 870, 1, 1, -623.0138, -1641.602, 15.73475, 4.890892, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404079, 66424, 870, 1, 1, -592.4009, -1677.055, 11.83469, 2.794114, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404080, 66424, 870, 1, 1, -627.7798, -1672.853, 12.93847, 2.974813, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404081, 66424, 870, 1, 1, -679.007, -1654.516, 18.09858, 6.044064, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404082, 66424, 870, 1, 1, -610.386, -1707.003, 11.91341, 3.353229, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404083, 66424, 870, 1, 1, -673.4681, -1694.09, 16.50883, 6.280693, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404084, 66424, 870, 1, 1, -701.8947, -1710.681, 18.72644, 0.04099265, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404085, 66424, 870, 1, 1, -686.5996, -1728.337, 12.85487, 4.433284, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404086, 66424, 870, 1, 1, -730.5682, -1737.115, 27.89738, 4.342747, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404087, 66424, 870, 1, 1, -760.692, -1645.754, 9.886297, 3.814763, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404088, 66424, 870, 1, 1, -780.0245, -1703.896, 10.64313, 6.124998, 120, 5, 1), -- 66424 (Area: 5853) (possible waypoints or random movement)
+(404089, 66424, 870, 1, 1, -812.3303, -1620.755, 1.839554, 3.00795, 120, 5, 1); -- 66424 (Area: 5853) (possible waypoints or random movement)
+
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `mindmg` = 10000, `maxdmg` = 20000, `attackpower` = 100 WHERE `entry` = 66423;
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `mindmg` = 10000, `maxdmg` = 20000, `attackpower` = 100 WHERE `entry` = 66424;
+DELETE FROM `creature_questrelation` WHERE `quest` = 30794;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 30794;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 30794;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (60694, 30794);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 60694;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 30794;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 30794;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (60785, 30794);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=60785;
+DELETE FROM `quest_start_scripts` WHERE `id`=30794;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(30794, 10, 8, 60720, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `Flags` = 8, `StartScript` = 30794 WHERE `Id` = 30794;
+UPDATE `creature_template` SET `flags_extra` = 2 WHERE `entry` = 38210;
+
+INSERT IGNORE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `data0`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `data16`, `data17`, `data18`, `data19`, `data20`, `data21`, `data22`, `data23`, `data24`, `data25`, `data26`, `data27`, `data28`, `data29`, `data30`, `data31`, `size`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `unkInt32`, `WDBVerified`) VALUES
+(210087, 3, 11524, 'Defender''s Arrow', '', '', '', 1690, 40882, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19676, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 77452, 0, 0, 0, 0, 0, 0, 16357); -- 210087
+UPDATE `gameobject_template` SET `flags` = 4, `data1` = 210087, `data3` = 0, `data14` = 0 WHERE `entry` = 210087;
+INSERT IGNORE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `data0`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `data16`, `data17`, `data18`, `data19`, `data20`, `data21`, `data22`, `data23`, `data24`, `data25`, `data26`, `data27`, `data28`, `data29`, `data30`, `data31`, `size`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `unkInt32`, `WDBVerified`) VALUES
+(213250, 10, 11972, 'Resonating Beacon', '', '', '', 0, 0, 0, 3000, 0, 0, 0, 0, 0, 0, 124718, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 18127, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 16357); -- 213250
+UPDATE `gameobject_template` SET `data0` = 93 WHERE `entry` = 213250;
+INSERT IGNORE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `data0`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `data16`, `data17`, `data18`, `data19`, `data20`, `data21`, `data22`, `data23`, `data24`, `data25`, `data26`, `data27`, `data28`, `data29`, `data30`, `data31`, `size`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `unkInt32`, `WDBVerified`) VALUES
+(209595, 3, 226, 'Hozen Skull', '', '', '', 43, 40415, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 74033, 0, 0, 0, 0, 0, 0, 16357); -- 209595
+UPDATE `gameobject_template` SET `flags` = 4, `data1` = 209595, `data3` = 0, `data14` = 0 WHERE `entry` = 209595;
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`) VALUES
+(401984, 209595, 870, 1, 1, -104.0677, -2242.396, 32.63552, 5.305802, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 0)
+(401985, 209595, 870, 1, 1, -93.64931, -2243.606, 32.63552, 2.652894, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 0)
+(401986, 209595, 870, 1, 1, -78.46007, -2259.118, 28.49298, 4.642576, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 0)
+(401987, 209586, 870, 1, 1, -73.50521, -2267.161, 28.52294, 0.4363316, 0, 0, 0, 1, 120, 255, 1), -- 209586 (Area: 0)
+(401988, 209595, 870, 1, 1, -137.6823, -2260.502, 33.29979, 5.585054, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 0)
+(401989, 209595, 870, 1, 1, -139.5017, -2266.321, 33.06914, 3.839725, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 0)
+(401990, 209595, 870, 1, 1, -134.4844, -2253.517, 33.91892, 5.323256, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 0)
+(401991, 209595, 870, 1, 1, -112.6892, -2283.969, 29.70444, 4.642576, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 0)
+(401992, 209595, 870, 1, 1, -130.2396, -2278.783, 29.20705, 1.815142, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 0)
+(401993, 209595, 870, 1, 1, -203.099, -2314.766, 35.59456, 0, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(401994, 209595, 870, 1, 1, -122.974, -2292.976, 29.35099, 1.692969, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(401995, 209595, 870, 1, 1, -72.91146, -2302.285, 35.20375, 0.4537851, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(401996, 209595, 870, 1, 1, -71.40104, -2292.785, 32.45661, 2.234018, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(401997, 209595, 870, 1, 1, -70.26041, -2293.142, 32.95108, 6.126106, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(401998, 209595, 870, 1, 1, -76.12674, -2305.144, 32.42095, 2.757613, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(401999, 209586, 870, 1, 1, -73.34549, -2325.986, 34.18641, 2.740162, 0, 0, 0, 1, 120, 255, 1), -- 209586 (Area: 5872)
+(402000, 209586, 870, 1, 1, -59.87674, -2325.142, 34.25786, 1.553341, 0, 0, 0, 1, 120, 255, 1), -- 209586 (Area: 5872)
+(402001, 209595, 870, 1, 1, -40.56945, -2323.281, 35.64272, 4.642576, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402002, 209595, 870, 1, 1, -41.84896, -2333.538, 33.78511, 4.293513, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402003, 209595, 870, 1, 1, -40.79514, -2337.207, 34.12925, 2.862335, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402004, 209595, 870, 1, 1, -109.033, -2346.432, 35.83072, 4.642576, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402005, 209595, 870, 1, 1, -69.61806, -2353.632, 27.99071, 4.729844, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402006, 209595, 870, 1, 1, -66.54166, -2354.866, 27.99071, 0, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402007, 209595, 870, 1, 1, -131.4115, -2345.49, 34.68291, 1.06465, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402008, 209595, 870, 1, 1, -79.50521, -2362.79, 27.99071, 3.159062, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402009, 209595, 870, 1, 1, -66.67535, -2363.615, 28.7238, 0, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402010, 209595, 870, 1, 1, -34.44445, -2363.71, 33.69696, 3.560473, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402011, 209595, 870, 1, 1, -49.375, -2376.686, 33.80314, 3.263772, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402012, 209595, 870, 1, 1, -54.99826, -2329.905, 34.4504, 4.380776, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402013, 209595, 870, 1, 1, -51.05729, -2400.146, 38.01304, 1.53589, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402014, 209595, 870, 1, 1, -52.33681, -2401.411, 35.28765, 3.595379, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402015, 209595, 870, 1, 1, -48.22222, -2396.399, 38.04297, 4.031712, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402016, 209595, 870, 1, 1, -52.33507, -2389.875, 35.27507, 1.117009, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402017, 209595, 870, 1, 1, -61.27431, -2392.385, 35.08838, 4.642576, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402018, 209595, 870, 1, 1, -56.17708, -2394.816, 38.20871, 2.809975, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402019, 209595, 870, 1, 1, -81.94791, -2371.698, 27.99071, 0, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402020, 209595, 870, 1, 1, -89.71181, -2375.188, 33.61958, 3.752462, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402021, 209595, 870, 1, 1, -72.60938, -2401.668, 33.79033, 0.8901166, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402022, 209595, 870, 1, 1, -203.5521, -2336.55, 35.51815, 0, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402023, 209595, 870, 1, 1, -214.684, -2338.378, 35.59203, 2.059488, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402024, 209595, 870, 1, 1, -70.45834, -2282.318, 32.45929, 2.984498, 0, 0, 0, 1, 120, 255, 1), -- 209595 (Area: 5872)
+(402025, 213250, 870, 1, 1, -357.2986, 3561.729, 39.85472, 2.480867, 0, 0, 0, 1, 120, 255, 1), -- 213250 (Area: 6447)
+(402026, 210087, 870, 1, 1, 1276.017, -2426.224, 146.9328, 0.1524703, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402027, 210085, 870, 1, 1, 1307.74, -2434.106, 143.5998, 4.223697, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402028, 210087, 870, 1, 1, 1280.502, -2448.844, 143.587, 0.004076409, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402029, 210087, 870, 1, 1, 1292.5, -2463.79, 143.5998, 0.03920683, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402030, 210087, 870, 1, 1, 1262.528, -2439.266, 143.5998, 6.238038, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402031, 210085, 870, 1, 1, 1322.967, -2464.688, 143.5998, 6.126106, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402032, 210086, 870, 1, 1, 1285.019, -2397.905, 139.7121, 5.148723, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402033, 210086, 870, 1, 1, 1310.345, -2390.861, 140.829, 5.148723, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402034, 210087, 870, 1, 1, 1268.524, -2468.146, 143.5998, 6.243263, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402035, 210085, 870, 1, 1, 1248.656, -2432.422, 143.5998, 5.148723, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402036, 210087, 870, 1, 1, 1297.861, -2481.668, 143.5998, 0.06211159, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402037, 210087, 870, 1, 1, 1281.882, -2386.309, 140.3028, 6.173884, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402038, 210087, 870, 1, 1, 1280.524, -2480.807, 143.575, 0.04316737, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402039, 210086, 870, 1, 1, 1273.257, -2382.858, 140.2286, 4.380776, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402040, 210087, 870, 1, 1, 1263.099, -2385.229, 140.9689, 6.109844, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402041, 210085, 870, 1, 1, 1246.234, -2398.214, 140.1991, 4.01426, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402042, 210085, 870, 1, 1, 1257.12, -2382.408, 139.9987, 5.148723, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402043, 210086, 870, 1, 1, 1242.658, -2470.274, 143.9872, 0.2617982, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402044, 210086, 870, 1, 1, 1298.396, -2504.274, 143.5998, 5.515242, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402045, 210087, 870, 1, 1, 1306.648, -2505.67, 144.2414, 2.845978, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402046, 210087, 870, 1, 1, 1270.415, -2501.981, 143.5998, 2.23276, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402047, 210087, 870, 1, 1, 1284.134, -2509.036, 143.5998, 0.2202032, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402048, 210085, 870, 1, 1, 1233.948, -2386.79, 139.711, 5.148723, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402049, 210086, 870, 1, 1, 1254.802, -2501.773, 143.5998, 0.3316107, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402050, 210086, 870, 1, 1, 1218.856, -2394.533, 140.1911, 5.148723, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402051, 210085, 870, 1, 1, 1273.599, -2518.212, 143.5998, 0.087266, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402052, 210085, 870, 1, 1, 1197.858, -2425.32, 140.8579, 0, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402053, 210087, 870, 1, 1, 1209.208, -2474.752, 143.671, 0.5390413, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402054, 210087, 870, 1, 1, 1184.773, -2421.165, 143.1091, 0.1512616, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402055, 210085, 870, 1, 1, 1189.363, -2445.821, 136.5417, 0, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402056, 210087, 870, 1, 1, 1188.778, -2457.55, 136.5108, 0.3099753, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402057, 210087, 870, 1, 1, 1183.488, -2403.894, 140.0117, 6.121397, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402058, 210087, 870, 1, 1, 1197.144, -2486.469, 138.2684, 6.220126, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402059, 210087, 870, 1, 1, 1140.865, -2417.786, 140.7258, 0.2369876, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402060, 210087, 870, 1, 1, 1193.417, -2510.32, 138.5589, 6.282712, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402061, 210087, 870, 1, 1, 1160.755, -2426.361, 136.5108, 0.2241494, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402062, 210087, 870, 1, 1, 1176.62, -2501.799, 136.5108, 0.1435366, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402063, 210087, 870, 1, 1, 1169.345, -2447.347, 136.5108, 6.271911, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402064, 210086, 870, 1, 1, 1157.465, -2486.07, 136.5108, 0, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402065, 210086, 870, 1, 1, 1188.63, -2495.009, 136.5108, 5.375615, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402066, 210085, 870, 1, 1, 1210.54, -2523.615, 140.0997, 0, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402067, 210085, 870, 1, 1, 1197.21, -2342.809, 141.3103, 0.8726639, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402068, 210086, 870, 1, 1, 1180.438, -2352.026, 141.4956, 0.3316107, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402069, 210086, 870, 1, 1, 1210.326, -2342.62, 140.3622, 3.752462, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402070, 210087, 870, 1, 1, 1137.729, -2444.479, 136.5108, 6.230155, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402071, 210087, 870, 1, 1, 1121.53, -2437.752, 141.5001, 6.118762, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402072, 210085, 870, 1, 1, 1135.335, -2456.26, 136.5109, 0.01745246, 0, 0, 0, 1, 120, 255, 1), -- 210085 (Area: 5974)
+(402073, 210087, 870, 1, 1, 1132.108, -2358.712, 140.4093, 0.06529064, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402074, 210087, 870, 1, 1, 1154.236, -2334.41, 142.1619, 0.1509525, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402075, 210087, 870, 1, 1, 1177.148, -2329.405, 140.4384, 6.163585, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402076, 210087, 870, 1, 1, 1208.809, -2332.347, 140.9907, 0.04095662, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402077, 210087, 870, 1, 1, 1179.231, -2518.307, 137.9568, 0.2544027, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402078, 210086, 870, 1, 1, 1206.137, -2329.123, 140.7155, 5.148723, 0, 0, 0, 1, 120, 255, 1), -- 210086 (Area: 5974)
+(402079, 210087, 870, 1, 1, 1030.53, -2400.149, 168.5977, 6.088294, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402080, 210087, 870, 1, 1, 1008.309, -2389.521, 168.9134, 6.205669, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402081, 210087, 870, 1, 1, 991.0087, -2409.415, 168.5977, 6.251624, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402082, 210087, 870, 1, 1, 979.6788, -2387.472, 168.5977, 0.1362129, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402083, 210087, 870, 1, 1, 951.1771, -2387.168, 168.5977, 0.0005856654, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402084, 210087, 870, 1, 1, 977.7795, -2342.524, 157.0923, 6.202209, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402085, 210087, 870, 1, 1, 1163.403, -2556.01, 149.0475, 0.0002729, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402086, 210087, 870, 1, 1, 1183.295, -2556.37, 148.7636, 3.289896, 0, 0, 0, 1, 120, 255, 1), -- 210087 (Area: 5974)
+(402087, 210087, 870, 1, 1, 1208.901, -2553.431, 148.6541, 6.246444, 0, 0, 0, 1, 120, 255, 1); -- 210087 (Area: 5974)
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `unit_flags` = 0 WHERE `entry` = 50159;
+UPDATE `quest_template` SET `Method` = 2 WHERE `Id` = 31535;
+
+
+# Rar_NPC
+update `creature` set spawntimesecs=7200 where id in (1720,2447,3872,4425,4842,5797,5798,5799,5800,5827,5912,5916,5931,5934,6228,6488,6489,6490,6646,7057,8923,9217,9218,9219,9596,9718,9736,10082,10119,10201,10263,10376,10393,10509,10558,10809,11467,12237,14506,16179,16180,5789,5790,5793,5794,5795,5796,8206,9417,10080,10081,10203,10239,11676,13977,14016,14018,14019,14346,16181,17075,22625,22631,22636,22637,22642,10810,18699,25323,25406,25410,25411,25412,25413,26791,28280,28282,31974,31998,32054,32111,32120,37293,37317,37375,37432,37443,50009,50056,50061,50063,50089,50091,59369,60491,62346,65631) and spawntimesecs<7200;
+update `creature` set spawntimesecs=28800 where id in (61,79,99,100,462,471,472,503,506,507,519,520,521,534,572,573,574,584,596,599,616,763,771,947,1037,1063,1106,1112,1119,1130,1132,1137,1140,1260,1398,1399,1424,1425,1531,1533,1552,1837,1838,1839,1841,1843,1844,1847,1848,1851,1885,1910,1911,1920,1936,1944,1948,2090,2108,2162,2172,2175,2184,2186,2191,2192,2258,2283,2452,2453,2476,2541,2598,2600,2601,2602,2603,2604,2605,2606,2609,2744,2749,2751,2752,2753,2754,2779,2850,2931,3058,3068,3253,3270,3295,3398,3470,3535,3581,3652,3672,3735,3736,3773,3792,4015,4030,4066,4132,4339,4380,5343,5345,5346,5347,5349,5350,5352,5354,5356,5399,5400,5785,5786,5787,5807,5808,5809,5822,5823,5824,5826,5828,5829,5830,5831,5832,5834,5835,5836,5837,5838,5841,5842,5847,5848,5849,5851,5859,5863,5864,5865,5915,5930,5932,5933,5935,5937,6118,6581,6582,6583,6584,6585,6647,6648,6649,6650,6651,6652,7015,7016,7017,7104,7137,7846,7895,8199,8200,8201,8202,8203,8204,8205,8207,8208,8210,8211,8212,8213,8214,8215,8216,8217,8218,8219,8277,8278,8279,8280,8281,8282,8283,8296,8297,8298,8299,8300,8301,8302,8303,8304,8503,8660,8924,8976,8978,8979,8981,9602,9604,10077,10078,10196,10197,10198,10199,10200,10202,10356,10357,10358,10359,10559,10639,10640,10641,10642,10643,10644,10647,10741,10817,10821,10823,10824,10825,10826,10827,10828,11383,11447,11497,11498,11688,12037,12431,12432,12433,12902,13896,14221,14222,14223,14224,14225,14226,14227,14228,14229,14230,14231,14232,14233,14234,14235,14236,14237,14266,14267,14268,14269,14270,14271,14272,14273,14275,14276,14277,14278,14279,14280,14281,14339,14340,14342,14343,14344,14345,14424,14425,14426,14427,14428,14429,14430,14431,14432,14433,14445,14446,14447,14448,14471,14472,14473,14474,14475,14476,14477,14478,14479,14487,14488,14490,14491,14492,16379,16380,16854,16855,17144,18677,18678,18680,18681,18682,18683,18685,18686,18690,18693,18694,18696,18698,20932,21724,22060,22062,62,1849,5348,5367,5928,10236,10237,10238,10818,10819,10820,11580,14341,14697,16184,18241,18679,18684,18689,18692,18695,18697,1850,3718,32517,31086,32357,32358,32361,32377,32386,32398,32400,32409,32417,32422,32429,32435,32438,32447,32471,32475,32481,32485,32487,32491,32495,32500,32501,32630,33776,35189,38453,39019,39183,39185,39186,43488,43613,43720,44224,44225,44226,44227,44714,44722,44750,44759,44761,44767,45257,45258,45260,45262,45369,45380,45384,45398,45399,45401,45402,45404,45739,45740,45771,45785,45801,45811,46981,46992,47003,47008,47009,47010,47012,47015,47023,47386,47387,49822,49913,50005,50050,50051,50052,50053,50057,50058,50059,50060,50062,50064,50065,50085,50086,50138,50154,50159,50327,50328,50329,50330,50331,50332,50333,50334,50335,50336,50337,50338,50339,50340,50341,50342,50343,50344,50345,50346,50347,50348,50349,50350,50351,50352,50353,50354,50355,50356,50357,50358,50359,50361,50362,50363,50364,50370,50388,50724,50725,50726,50727,50728,50730,50731,50733,50734,50735,50736,50737,50738,50739,50741,50742,50743,50744,50745,50746,50747,50748,50749,50750,50752,50759,50763,50764,50765,50766,50768,50769,50770,50772,50775,50776,50777,50778,50779,50780,50782,50783,50784,50785,50786,50787,50788,50789,50790,50791,50792,50797,50803,50804,50805,50806,50807,50808,50809,50810,50811,50812,50813,50814,50815,50816,50817,50818,50819,50820,50821,50822,50823,50825,50828,50829,50830,50831,50832,50833,50836,50837,50838,50839,50840,50842,50844,50845,50846,50847,50849,50853,50855,50856,50858,50860,50861,50863,50864,50865,50867,50868,50870,50871,50872,50874,50875,50876,50877,50879,50882,50883,50884,50886,50887,50889,50890,50891,50892,50895,50897,50899,50900,50901,50903,50905,50906,50908,50909,50911,50912,50914,50915,50916,50917,50918,50919,50920,50921,50922,50925,50926,50927,50928,50929,50930,50931,50932,50933,50935,50936,50937,50938,50940,50941,50942,50943,50945,50946,50947,50948,50949,50950,50952,50953,50954,50955,50956,50957,50959,50961,50963,50964,50965,50967,50968,50969,50972,50976,50979,50981,50985,50986,50990,50992,50993,50995,50997,50999,51000,51001,51002,51004,51007,51008,51010,51012,51014,51015,51016,51017,51018,51019,51020,51021,51022,51024,51025,51026,51027,51028,51029,51030,51031,51032,51037,51040,51042,51043,51044,51045,51046,51048,51049,51050,51051,51052,51053,51054,51055,51056,51057,51058,51059,51061,51062,51063,51064,51066,51067,51069,51071,51072,51074,51076,51077,51078,51079,51267,51401,51402,51403,51404,51658,51661,51662,51663,52146,54318,54319,54320,54321,54322,54323,54324,54338,54533,56079,56080,56081,59071,64403) and spawntimesecs<28800;
+
+# Minerals/Herbs
+UPDATE gameobject SET spawntimesecs=600, phaseMask=65535 WHERE id IN (1610,1617,1618,1619,1620,1621,1667,1731,1732,2055,2653,3724,3725,3726,3727,3729,3730,3763,3764,103711,103713,181166,1622,1623,1624,1628,1735,2040,2041,2042,2043,2044,2045,2046,2047,2054,19903,73940,206085);
+UPDATE gameobject SET spawntimesecs=900, phaseMask=65535 WHERE id IN (123310,142140,150079,176645,324,1733,1734,2866,73941,123309,123848,142141,142142,142143,142144,142145,150080,150081,150082,165658,175404,176583,176584,176586,176587,176588,176636,176637);
+UPDATE gameobject SET spawntimesecs=1200, phaseMask=65535 WHERE id IN (176638,176639,176640,176641,176642,176643,177388,180164,180165,180166,180167,180168,180215,181270,181271,181275,181276,181277,181278,181279,176589,181280,181281,181555,181556,181557,181569,181570,183043,183044,183045, 183046,185877,185881,189973,189979,189980,189981,190169,190170,190171,190172,202749,202748,202747,202736,202739);
+UPDATE gameobject SET spawntimesecs=1800, phaseMask=65535 WHERE id IN (190173,190175,191019,191133,191303,189978,202750,202752,202751,202737,202738,202741,202740);
+UPDATE gameobject SET spawntimesecs=2400, phaseMask=65535 WHERE id IN (209355,215410,209354,209349,215405,209353,215408,214510,215412,215403,215411,209350,215406,209351,215407,209311,215413,209312,215415,209328,209329,209330,209313,215418);
+
+# NPC_ADDON_FIX
+INSERT IGNORE INTO `creature_template_addon`
+SELECT
+`creature_template`.`difficulty_entry_1`,
+`creature_template_addon`.`path_id`,
+`creature_template_addon`.`mount`,
+`creature_template_addon`.`bytes1`,
+`creature_template_addon`.`bytes2`,
+`creature_template_addon`.`emote`,
+`creature_template_addon`.`auras`
+FROM
+`creature_template`, `creature_template_addon`
+WHERE
+`creature_template_addon`.`entry`=`creature_template`.`entry`
+AND `creature_template`.`difficulty_entry_1`>0;
+INSERT IGNORE INTO `creature_template_addon`
+SELECT
+`creature_template`.`difficulty_entry_2`,
+`creature_template_addon`.`path_id`,
+`creature_template_addon`.`mount`,
+`creature_template_addon`.`bytes1`,
+`creature_template_addon`.`bytes2`,
+`creature_template_addon`.`emote`,
+`creature_template_addon`.`auras`
+FROM
+`creature_template`, `creature_template_addon`
+WHERE
+`creature_template_addon`.`entry`=`creature_template`.`entry`
+AND `creature_template`.`difficulty_entry_2`>0;
+INSERT IGNORE INTO `creature_template_addon`
+SELECT
+`creature_template`.`difficulty_entry_3`,
+`creature_template_addon`.`path_id`,
+`creature_template_addon`.`mount`,
+`creature_template_addon`.`bytes1`,
+`creature_template_addon`.`bytes2`,
+`creature_template_addon`.`emote`,
+`creature_template_addon`.`auras`
+FROM
+`creature_template`, `creature_template_addon`
+WHERE
+`creature_template_addon`.`entry`=`creature_template`.`entry`
+AND `creature_template`.`difficulty_entry_3`>0;
+
+# NPC_FIX
+UPDATE
+`creature_template`, `creature_template` AS `copy`
+SET
+`copy`.`RegenHealth`=`creature_template`.`RegenHealth`,
+`copy`.`unit_class`=`creature_template`.`unit_class`,
+`copy`.`unit_flags`=`creature_template`.`unit_flags`,
+`copy`.`unit_flags2`=`creature_template`.`unit_flags2`,
+`copy`.`type_flags2`=`creature_template`.`type_flags2`,
+`copy`.`HoverHeight`=`creature_template`.`HoverHeight`,
+`copy`.`Mana_mod_extra`=`creature_template`.`Mana_mod_extra`,
+`copy`.`exp_unk`=`creature_template`.`exp_unk`,
+`copy`.`npcflag`=`creature_template`.`npcflag`,
+`copy`.`dynamicflags`=`creature_template`.`dynamicflags`,
+`copy`.`faction_A`=`creature_template`.`faction_A`,
+`copy`.`faction_H`=`creature_template`.`faction_H`,
+`copy`.`speed_run`=`creature_template`.`speed_run`,
+`copy`.`speed_walk`=`creature_template`.`speed_walk`,
+`copy`.`scale`=`creature_template`.`scale`,
+`copy`.`dmgschool`=`creature_template`.`dmgschool`,
+`copy`.`mingold`=`creature_template`.`mingold`,
+`copy`.`maxgold`=`creature_template`.`maxgold`,
+`copy`.`VehicleId`=`creature_template`.`VehicleId`,
+`copy`.`mechanic_immune_mask`=`creature_template`.`mechanic_immune_mask`
+WHERE
+`copy`.`entry`=`creature_template`.`difficulty_entry_1`;
+UPDATE
+`creature_template`, `creature_template` AS `copy`
+SET
+`copy`.`RegenHealth`=`creature_template`.`RegenHealth`,
+`copy`.`unit_class`=`creature_template`.`unit_class`,
+`copy`.`unit_flags`=`creature_template`.`unit_flags`,
+`copy`.`unit_flags2`=`creature_template`.`unit_flags2`,
+`copy`.`type_flags2`=`creature_template`.`type_flags2`,
+`copy`.`HoverHeight`=`creature_template`.`HoverHeight`,
+`copy`.`Mana_mod_extra`=`creature_template`.`Mana_mod_extra`,
+`copy`.`exp_unk`=`creature_template`.`exp_unk`,
+`copy`.`npcflag`=`creature_template`.`npcflag`,
+`copy`.`dynamicflags`=`creature_template`.`dynamicflags`,
+`copy`.`faction_A`=`creature_template`.`faction_A`,
+`copy`.`faction_H`=`creature_template`.`faction_H`,
+`copy`.`speed_run`=`creature_template`.`speed_run`,
+`copy`.`speed_walk`=`creature_template`.`speed_walk`,
+`copy`.`scale`=`creature_template`.`scale`,
+`copy`.`dmgschool`=`creature_template`.`dmgschool`,
+`copy`.`mingold`=`creature_template`.`mingold`,
+`copy`.`maxgold`=`creature_template`.`maxgold`,
+`copy`.`VehicleId`=`creature_template`.`VehicleId`,
+`copy`.`mechanic_immune_mask`=`creature_template`.`mechanic_immune_mask`
+WHERE
+`copy`.`entry`=`creature_template`.`difficulty_entry_2`;
+UPDATE
+`creature_template`, `creature_template` AS `copy`
+SET
+`copy`.`RegenHealth`=`creature_template`.`RegenHealth`,
+`copy`.`unit_class`=`creature_template`.`unit_class`,
+`copy`.`unit_flags`=`creature_template`.`unit_flags`,
+`copy`.`unit_flags2`=`creature_template`.`unit_flags2`,
+`copy`.`type_flags2`=`creature_template`.`type_flags2`,
+`copy`.`HoverHeight`=`creature_template`.`HoverHeight`,
+`copy`.`Mana_mod_extra`=`creature_template`.`Mana_mod_extra`,
+`copy`.`exp_unk`=`creature_template`.`exp_unk`,
+`copy`.`npcflag`=`creature_template`.`npcflag`,
+`copy`.`dynamicflags`=`creature_template`.`dynamicflags`,
+`copy`.`faction_A`=`creature_template`.`faction_A`,
+`copy`.`faction_H`=`creature_template`.`faction_H`,
+`copy`.`speed_run`=`creature_template`.`speed_run`,
+`copy`.`speed_walk`=`creature_template`.`speed_walk`,
+`copy`.`scale`=`creature_template`.`scale`,
+`copy`.`dmgschool`=`creature_template`.`dmgschool`,
+`copy`.`mingold`=`creature_template`.`mingold`,
+`copy`.`maxgold`=`creature_template`.`maxgold`,
+`copy`.`VehicleId`=`creature_template`.`VehicleId`,
+`copy`.`mechanic_immune_mask`=`creature_template`.`mechanic_immune_mask`
+WHERE
+`copy`.`entry`=`creature_template`.`difficulty_entry_3`;
+
+# Final_FIX
+UPDATE `creature` SET equipment_id=0 WHERE equipment_id=1;
+UPDATE quest_template SET SpecialFlags=SpecialFlags|1 WHERE Flags=Flags|4096;
+UPDATE quest_template SET SpecialFlags=SpecialFlags|1 WHERE Flags=Flags|32768;
+DELETE FROM `creature_addon` WHERE `guid` NOT IN (SELECT `guid` FROM `creature`);
+DELETE FROM `linked_respawn` WHERE `guid` NOT IN (SELECT `guid` FROM `creature`);
+DELETE FROM `linked_respawn` WHERE `linkedGuid` NOT IN (SELECT `guid` FROM `creature`);
+# DELETE FROM `game_event_gameobject` WHERE `guid` NOT IN (SELECT `guid` FROM `gameobject`);
+# DELETE FROM `game_event_creature` WHERE `guid` NOT IN (SELECT `guid` FROM `creature`);
+UPDATE creature_template SET unit_flags=unit_flags&~2048 WHERE unit_flags&2048=2048;
+UPDATE creature_template SET unit_flags=unit_flags&~524288 WHERE unit_flags&524288=524288;
+UPDATE `creature` SET `spawndist` = 5 WHERE `spawndist` = 0 AND `MovementType`=1;
+UPDATE `creature` SET `spawndist`=0 WHERE `MovementType`=0;
+UPDATE `creature` SET `spawntimesecs` = 300 WHERE `spawntimesecs` = 25;
+UPDATE `gameobject` SET `spawntimesecs` = 300 WHERE `spawntimesecs` = 25;
+UPDATE `creature_template` SET `scale` = 1 WHERE `scale` = 0;
+# update gameobject_template, gameobject set gameobject.animprogress = 100 where gameobject_template.entry = gameobject.id and gameobject_template.type = 0;
+# update gameobject_template, gameobject set gameobject.animprogress = 100 where gameobject_template.entry = gameobject.id and gameobject_template.type = 3;
+# update gameobject_template, gameobject set gameobject.animprogress = 100 where gameobject_template.entry = gameobject.id and gameobject_template.type = 10;
+# update gameobject_template, gameobject set gameobject.animprogress = 100 where gameobject_template.entry = gameobject.id and gameobject_template.type = 25;
+UPDATE `gameobject` SET `state`=1 WHERE `state`=0 AND `id` IN (SELECT entry FROM `gameobject_template` WHERE `type`=3);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` IN (SELECT `id` FROM `creature_questrelation`);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` IN (SELECT `id` FROM `creature_involvedrelation`);
+UPDATE `gameobject` SET `state` = 0 WHERE `id` IN (SELECT `entry` FROM `gameobject_template` WHERE `type` = 0 AND `data0` = 1);
+UPDATE `gameobject_template` SET `flags`=`flags`&~4 WHERE `type` IN (2,19,17);
+# DELETE FROM `gameobject_scripts` WHERE `id` NOT IN (SELECT `guid` FROM `gameobject`);
+# DELETE FROM `gameobject_scripts` WHERE `command` in (11, 12) and `datalong` NOT IN (SELECT `guid` FROM `gameobject`);
+DELETE FROM `creature_onkill_reputation` WHERE `creature_id` NOT IN (SELECT `entry` FROM `creature_template`);
+UPDATE `creature_template` SET npcflag = npcflag|1 WHERE `gossip_menu_id` > 0;
+UPDATE `creature_template`, `smart_scripts` SET `creature_template`.`ainame`='SmartAI' WHERE `creature_template`.`entry`=`smart_scripts`.`entryorguid` AND `smart_scripts`.`Source_Type`=0;
+UPDATE `gameobject_template`, `smart_scripts` SET `gameobject_template`.`ainame`='SmartGameObjectAI' WHERE `gameobject_template`.`entry`=`smart_scripts`.`entryorguid` AND `smart_scripts`.`Source_Type`=1;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `AIName` = 'EventAI' AND `ScriptName` = 'generic_creature';
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `AIName` = 'SmartAI' AND `ScriptName` = 'generic_creature';
+
+# FIX
+# Need Core fix/base add_column 7-10
+# UPDATE `quest_template` SET `RewardChoiceItemId7` = 90911, `RewardChoiceItemCount7` = 1 WHERE `Id` = 31809;
+# UPDATE `quest_template` SET `RewardChoiceItemId8` = 90909, `RewardChoiceItemCount8` = 1 WHERE `Id` = 31809;
+# UPDATE `quest_template` SET `RewardChoiceItemId9` = 90907, `RewardChoiceItemCount9` = 1 WHERE `Id` = 31809;
+
+# Fix
+DELETE FROM `creature` WHERE `id`=36334;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404090, 36334, 1, 1, 1, 29670, 0, 4838.26, -6444.98, 19.7808, 4.95674, 300, 0, 0, 5804, 19394, 0, 0, 0, 0);
+UPDATE `creature_template` SET `dmg_multiplier` = 1 WHERE `entry` = 63470;
+UPDATE `creature_template` SET `minlevel` = 84, `maxlevel` = 84, `mindmg` = 5000, `maxdmg` = 10000, `attackpower` = 50 WHERE `entry` = 63376;
+UPDATE `creature_template` SET `attackpower` = 120 WHERE `entry` = 63944;
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `mindmg` = 5000, `maxdmg` = 10000, `attackpower` = 95, `dmg_multiplier` = 2, `unit_flags2` = 2048 WHERE `entry` = 62680;
+DELETE FROM `creature` WHERE `id`=25307;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404091, 25307, 571, 1, 1, 0, 0, 2299.58, 5236.22, 11.4287, 2.77916, 300, 0, 0, 8326, 0, 0, 0, 0, 0);
+DELETE FROM `creature_questrelation` WHERE `quest` = 30070;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 30070;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 30070;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (54616, 30070);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 54616;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 30070;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 30070;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (54617, 30070);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=54617;
+UPDATE `quest_template` SET `RewardChoiceItemId1` = 90345, `RewardChoiceItemId2` = 90339, `RewardChoiceItemId3` = 90342, `RewardChoiceItemId4` = 90343, `RewardChoiceItemId5` = 90340, `RewardChoiceItemId6` = 90346, `RewardChoiceItemCount1` = 1, `RewardChoiceItemCount2` = 1, `RewardChoiceItemCount3` = 1, `RewardChoiceItemCount4` = 1, `RewardChoiceItemCount5` = 1, `RewardChoiceItemCount6` = 1 WHERE `Id` = 30070;
+DELETE FROM `creature_questrelation` WHERE `quest` = 29774;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 29774;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 29774;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (55477, 29774);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 55477;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 29774;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 29774;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (55477, 29774);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=55477;
+UPDATE `quest_template` SET `RequiredNpcOrGo1` = 0, `RequiredNpcOrGo2` = 0, `RequiredNpcOrGoCount1` = 0, `RequiredNpcOrGoCount2` = 0 WHERE `Id` = 29774;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31129;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31129;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31129;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (62779, 31129);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 62779;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31129;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31129;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (62779, 31129);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=62779;
+DELETE FROM `quest_start_scripts` WHERE `id`=31129;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(31129, 10, 8, 62957, 0, '0', 0, 0, 0, 0),
+(31129, 20, 8, 62958, 0, '0', 0, 0, 0, 0),
+(31129, 30, 8, 62959, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `StartScript` = 31129 WHERE `Id` = 31129;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31185;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31185;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31185;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (63317, 31185);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 63317;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31185;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31185;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63317, 31185);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63317;
+DELETE FROM `quest_start_scripts` WHERE `id`=31185;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(31185, 30, 8, 63879, 0, '0', 0, 0, 0, 0),
+(31185, 20, 8, 63880, 0, '0', 0, 0, 0, 0),
+(31185, 10, 8, 63881, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `StartScript` = 31185 WHERE `Id` = 31185;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31189;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31189;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31189;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (63349, 31189);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 63349;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31189;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31189;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63349, 31189);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63349;
+DELETE FROM `quest_start_scripts` WHERE `id`=31189;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(31189, 20, 8, 64270, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `StartScript` = 31189 WHERE `Id` = 31189;
+UPDATE `gameobject_template` SET `data0` = 0, `data1` = 0, `data3` = 0 WHERE `entry` = 212181;
+DELETE FROM `creature_questrelation` WHERE `quest` = 29743;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 29743;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 29743;
+INSERT INTO `gameobject_questrelation` (`id`, `quest`) VALUES (212181, 29743);
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 29743;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 29743;
+INSERT INTO `gameobject_involvedrelation` (`id`, `quest`) VALUES (212181, 29743);
+UPDATE `quest_template` SET `Flags` = 8 WHERE `Id` = 29743;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 28136;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 28142;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 28148;
+UPDATE `creature_template` SET `KillCredit2` = 28289 WHERE `entry` = 28274;
+UPDATE `creature_template` SET `KillCredit2` = 28415 WHERE `entry` = 28413;
+
+INSERT IGNORE INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `data0`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `data16`, `data17`, `data18`, `data19`, `data20`, `data21`, `data22`, `data23`, `data24`, `data25`, `data26`, `data27`, `data28`, `data29`, `data30`, `data31`, `size`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `unkInt32`, `WDBVerified`) VALUES
+(213454, 3, 5743, 'Soggy''s Footlocker', '', '', '', 1691, 42850, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 85886, 0, 0, 0, 0, 0, 0, 16357); -- 213454
+UPDATE `gameobject_template` SET `flags` = 4, `data0` = 43, `data1` = 213454, `data3` = 0 WHERE `entry` = 213454;
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`) VALUES
+(402088, 213454, 870, 1, 1, -1390.436, 3745.942, -48.20388, 3.71015, 0, 0, 0, 1, 120, 255, 1); -- 213454 (Area: 6401)
+
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `MovementType`) VALUES
+(404092, 62680, 870, 1, 1, 1061.397, 3740.556, 249.2732, 5.567998, 120, 0, 0), -- 62680 (Area: 6329)
+(404093, 62680, 870, 1, 1, 1060.739, 3739.51, 249.3264, 3.933295, 120, 0, 0), -- 62680 (Area: 6329)
+(404094, 62680, 870, 1, 1, 1064.871, 3741.754, 249.0286, 0.0161599, 120, 0, 0), -- 62680 (Area: 6329)
+(404095, 62680, 870, 1, 1, 1062.578, 3734.919, 249.156, 5.583993, 120, 0, 0), -- 62680 (Area: 6329)
+(404096, 62680, 870, 1, 1, 1060.512, 3738.391, 249.3537, 6.224232, 120, 0, 0), -- 62680 (Area: 6329)
+(404097, 62680, 870, 1, 1, 1061.022, 3736.368, 249.4318, 0.5263179, 120, 0, 0), -- 62680 (Area: 6329)
+(404098, 62680, 870, 1, 1, 1060.564, 3737.761, 249.4597, 0.1159388, 120, 0, 0), -- 62680 (Area: 6329)
+(404099, 62680, 870, 1, 1, 1031.361, 3794.479, 259.9894, 4.942451, 120, 5, 1), -- 62680 (Area: 6329) (possible waypoints or random movement)
+(404100, 62680, 870, 1, 1, 1010.354, 3803.859, 275.9635, 5.320493, 120, 5, 1), -- 62680 (Area: 6329) (possible waypoints or random movement)
+(404101, 62680, 870, 1, 1, 999.0628, 3735.015, 260.3629, 5.972245, 120, 5, 1), -- 62680 (Area: 6329) (possible waypoints or random movement)
+(404102, 62680, 870, 1, 1, 1043.095, 3790.618, 257.164, 5.113465, 120, 5, 1), -- 62680 (Area: 6329) (possible waypoints or random movement)
+(404103, 62680, 870, 1, 1, 1016.859, 3776.351, 261.8475, 5.167589, 120, 0, 0), -- 62680 (Area: 6329)
+(404104, 62680, 870, 1, 1, 1007.944, 3762.889, 261.7428, 5.497787, 120, 0, 0), -- 62680 (Area: 6329)
+(404105, 62680, 870, 1, 1, 1043.093, 3822.827, 259.145, 4.965188, 120, 0, 0), -- 62680 (Area: 6329)
+(404106, 62680, 870, 1, 1, 1021.747, 3695.939, 255.6343, 1.249563, 120, 5, 1), -- 62680 (Area: 6329) (possible waypoints or random movement)
+(404107, 62680, 870, 1, 1, 995.8885, 3689.28, 260.2932, 0.9462134, 120, 5, 1), -- 62680 (Area: 6329) (possible waypoints or random movement)
+(404108, 62680, 870, 1, 1, 997.1948, 3686.76, 259.5554, 0.7741052, 120, 5, 1), -- 62680 (Area: 6329) (possible waypoints or random movement)
+(404109, 62680, 870, 1, 1, 1032.253, 3789.426, 259.4063, 4.845579, 120, 5, 1), -- 62680 (Area: 6329) (possible waypoints or random movement)
+(404110, 62680, 870, 1, 1, 1016.782, 3795.393, 267.7488, 5.388502, 120, 0, 0); -- 62680 (Area: 6329)
+
+DELETE FROM `creature_questrelation` WHERE `quest` = 31252;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31252;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31252;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (59573, 31252);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 59573;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31252;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31252;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63754, 31252);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63754;
+UPDATE `quest_template` SET `RequiredRaces` = 2098253 WHERE `Id` = 31252;
+DELETE FROM `creature` WHERE `id`=59645;
+INSERT INTO `creature` (`guid`,`id`,`map`,`zoneId`,`areaId`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`,`isActive`) VALUES
+(1040468, 59645, 870, 5841, 6098, 1, 1, 0, 0, 1930.84, 1079.76, 494.006, 5.82845, 300, 7.786, 0, 1, 0, 1, 0, 32768, 4, 0);
+INSERT IGNORE INTO `npc_vendor` VALUES ('64053', '0', '79249', '0', '0', '0', '1');
+DELETE FROM `creature_questrelation` WHERE `quest` = 30631;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 30631;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 30631;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (58468, 30631);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 58468;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 30631;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 30631;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (58468, 30631);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=58468;
+UPDATE `quest_template` SET `RequiredRaces` = 2098253 WHERE `Id` = 30631;
+UPDATE `creature_template` SET `type_flags` = 0 WHERE `entry` = 63996;
+UPDATE `creature_template` SET `type_flags` = 0 WHERE `entry` = 59908;
+UPDATE `creature_template` SET `KillCredit2` = 33005, `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 29327;
+UPDATE `creature_template` SET `KillCredit2` = 33006, `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 29319;
+UPDATE `creature_template` SET `npcflag` = 3 WHERE `entry` = 64259;
+DELETE FROM `smart_scripts` WHERE (`entryorguid`=64270 AND `source_type`=0);
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
+(64259, 0, 0, 0, 64, 0, 100, 0, 0, 0, 0, 0, 33, 64270, 0, 0, 0, 0, 0, 18, 10, 0, 0, 0, 0, 0, 0, "");
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 64259;
+DELETE FROM `smart_scripts` WHERE (`entryorguid`=62666 AND `source_type`=0);
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
+(62666, 0, 0, 0, 64, 0, 100, 0, 0, 0, 0, 0, 33, 62957, 0, 0, 0, 0, 0, 18, 10, 0, 0, 0, 0, 0, 0, "");
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 62666;
+DELETE FROM `smart_scripts` WHERE (`entryorguid`=62667 AND `source_type`=0);
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
+(62667, 0, 0, 0, 64, 0, 100, 0, 0, 0, 0, 0, 33, 62958, 0, 0, 0, 0, 0, 18, 10, 0, 0, 0, 0, 0, 0, "");
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 62667;
+DELETE FROM `smart_scripts` WHERE (`entryorguid`=62845 AND `source_type`=0);
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES 
+(62845, 0, 0, 0, 64, 0, 100, 0, 0, 0, 0, 0, 33, 62959, 0, 0, 0, 0, 0, 18, 10, 0, 0, 0, 0, 0, 0, "");
+UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` = 62845;
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 61745;
+DELETE FROM `creature_template_addon` WHERE (`entry`=61745);
+UPDATE `creature` SET `spawndist` = 0, `MovementType` = 0 WHERE `guid` = 31076;
+DELETE FROM `creature_template_addon` WHERE (`entry`=51440);
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `mindmg` = 10000, `maxdmg` = 20000, `attackpower` = 105 WHERE `entry` = 64937;
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 56752;
+DELETE FROM `creature_template_addon` WHERE (`entry`=56752);
+DELETE FROM `creature` WHERE `guid` IN (403328,403319,403375,403381,403323,403339,403342,403336,403355,403405,403404,403406);
+DELETE FROM `creature_template_addon` WHERE (`entry`=30671);
+UPDATE `creature` SET `phaseMask` = 65535 WHERE `guid` = 115292;
+UPDATE `creature_template` SET `questItem1` = 38637 WHERE `entry` = 28494;
+DELETE FROM `creature_loot_template` WHERE (`entry`=28494) AND (`item`=38637);
+INSERT INTO `creature_loot_template` (`entry`, `item`, `ChanceOrQuestChance`, `lootmode`, `groupid`, `mincountOrRef`, `maxcount`) VALUES (28494, 38637, -100, 1, 0, 1, 1);
+UPDATE `creature_template` SET `questItem1` = 38639 WHERE `entry` = 28495;
+DELETE FROM `creature_loot_template` WHERE (`entry`=28495) AND (`item`=38639);
+INSERT INTO `creature_loot_template` (`entry`, `item`, `ChanceOrQuestChance`, `lootmode`, `groupid`, `mincountOrRef`, `maxcount`) VALUES (28495, 38639, -100, 1, 0, 1, 1);
+DELETE FROM `creature` WHERE `id`=55737;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404111, 55737, 604, 3, 1, 27222, 0, 1857.06, 834.01, 176.765, 1.22173, 7200, 0, 0, 9103, 8313, 0, 0, 0, 0),
+(404112, 55737, 604, 3, 1, 27222, 0, 1947.67, 820.8, 135.365, 4.69494, 7200, 0, 0, 9103, 8313, 0, 0, 0, 0);
+DELETE FROM `creature_questrelation` WHERE `quest` = 24442;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 24442;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 24442;
+UPDATE `item_template` SET `startquest`=24442 WHERE `entry` = 49676;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 24442;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 24442;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (33817, 24442);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=33817;
+DELETE FROM `creature` WHERE `id`=26879;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404113, 26879, 571, 1, 1, 0, 0, 2272.26, 5172.25, 11.0951, 2.11075, 600, 0, 0, 77490, 8908, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=35131;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404114, 35131, 571, 1, 1, 0, 0, 2265.17, 5174.58, 11.2267, 1.62221, 600, 0, 0, 11677, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=35133;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404115, 35133, 571, 1, 1, 0, 0, 2260.48, 5180.26, 11.3139, 1.3002, 600, 0, 0, 11677, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=29617;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404116, 29617, 571, 1, 1, 23031, 0, 2250.98, 5179.56, 11.9534, 2.70526, 300, 0, 0, 116235, 0, 0, 0, 0, 0),
+(404117, 29617, 571, 1, 1, 23031, 0, 2260.11, 5212.01, 11.4446, -1.13446, 300, 0, 0, 116235, 0, 0, 0, 0, 0),
+(404118, 29617, 571, 1, 1, 23031, 0, 2232.7, 5318.66, 10.756, -1.15192, 300, 0, 0, 116235, 0, 0, 0, 0, 0),
+(404119, 29617, 571, 1, 1, 23031, 0, 2149.45, 5323.6, 45.9114, -2.72271, 300, 0, 0, 116235, 0, 0, 0, 0, 0),
+(404120, 29617, 571, 1, 1, 23031, 0, 2247.14, 5263.34, 11.9305, 3.00195, 300, 0, 0, 116235, 0, 0, 0, 0, 0),
+(404121, 29617, 571, 1, 1, 23031, 0, 2190.58, 5329.64, 21.7227, -2.80998, 300, 0, 0, 116235, 0, 0, 0, 0, 0),
+(404122, 29617, 571, 1, 1, 23031, 0, 2136.45, 5350.42, 21.7257, -2.21657, 300, 0, 0, 116235, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=24357;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404123, 24357, 571, 1, 1, 0, 0, 2266.66, 5212.09, 11.3488, 3.02495, 600, 0, 0, 5914, 0, 0, 0, 0, 0);
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `MovementType`) VALUES
+(404124, 64937, 870, 1, 1, 660.5, 849.4427, 449.094, 3.363298, 120, 0, 0); -- 64937 (Area: 0)
+DELETE FROM `creature` WHERE `id`=27010;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404125, 27010, 571, 1, 1, 0, 0, 2263.4, 5204.31, 11.7856, 2.93699, 600, 0, 0, 8982, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25259;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404126, 25259, 571, 1, 1, 23031, 0, 2278.92, 5206.61, 12.4943, 1.14903, 300, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25258;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404127, 25258, 571, 1, 1, 23031, 0, 2280.35, 5206.05, 12.4944, 1.20008, 300, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25261;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404128, 25261, 571, 1, 1, 23031, 0, 2282.08, 5205.28, 12.4947, 0.893778, 300, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25248;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404129, 25248, 571, 1, 1, 0, 0, 2317.06, 5193.97, 12.4973, 1.22953, 600, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25826;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404130, 25826, 571, 1, 1, 0, 0, 2311.06, 5195.62, 23.4758, 0.0396476, 600, 0, 0, 4278, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25251;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404131, 25251, 571, 1, 1, 0, 0, 2270.56, 5185.15, 20.2916, 6.24508, 600, 0, 0, 3941, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25260;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404132, 25260, 571, 1, 1, 23031, 0, 2283.08, 5181.37, 11.523, 3.78736, 300, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25281;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404133, 25281, 571, 1, 1, 0, 0, 2341.43, 5200.41, 7.63146, 4.33656, 900, 0, 0, 4050, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25282;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404134, 25282, 571, 1, 1, 0, 0, 2345.64, 5199.64, 7.60183, 4.33656, 900, 0, 0, 3240, 3155, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26992;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404135, 26992, 571, 1, 1, 0, 0, 2345.87, 5237.91, 7.63407, 5.79219, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=32564;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404136, 32564, 571, 1, 1, 28058, 0, 2347.13, 5242.91, 7.78226, 0.750492, 600, 0, 0, 9610, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=27011;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404137, 27011, 571, 1, 1, 0, 0, 2359.17, 5237.71, 7.72228, 3.04772, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26999;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404138, 26999, 571, 1, 1, 0, 0, 2356.86, 5258.39, 7.81637, 4.05381, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25239;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404139, 25239, 571, 1, 1, 0, 0, 2352.38, 5268.77, 7.57682, 2.78147, 600, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25240;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404140, 25240, 571, 1, 1, 0, 0, 2348.59, 5277.16, 7.63285, 2.78653, 600, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26988;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404141, 26988, 571, 1, 1, 0, 0, 2338.38, 5275.2, 7.82044, 5.35207, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25235;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404142, 25235, 571, 1, 1, 0, 0, 2336.01, 5266.13, 7.63794, 3.64139, 600, 0, 0, 3941, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25238;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404143, 25238, 571, 1, 1, 0, 0, 2338.72, 5263.48, 7.63539, 4.16603, 600, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25241;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404144, 25241, 571, 1, 1, 0, 0, 2341.04, 5259.84, 7.63654, 4.06245, 600, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25222;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404145, 25222, 571, 1, 1, 0, 0, 2301.26, 5240.13, 11.34, 2.71243, 900, 0, 0, 8326, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25220;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404146, 25220, 571, 1, 1, 0, 0, 2118.59, 5322.77, 25.2276, 1.16538, 600, 0, 0, 6986, 0, 0, 0, 0, 0),
+(404147, 25220, 571, 1, 1, 24819, 0, 2108.32, 5291.34, 25.2347, 4.28028, 600, 0, 0, 6986, 0, 0, 0, 0, 0),
+(404148, 25220, 571, 1, 1, 24819, 0, 2254.1, 5196.36, 11.5518, 1.09956, 300, 0, 0, 6986, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25299;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404149, 25299, 571, 1, 1, 0, 0, 2238.37, 5240.08, 21.5046, 4.43551, 600, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25234;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404150, 25234, 571, 1, 1, 0, 0, 2241.78, 5277.84, 11.6164, 2.61654, 600, 0, 0, 3834, 0, 0, 0, 0, 0),
+(404151, 25234, 571, 1, 1, 0, 0, 2257.64, 5282.06, 12.0814, 1.25466, 600, 0, 0, 3834, 0, 0, 0, 0, 0),
+(404152, 25234, 571, 1, 1, 0, 0, 2256.23, 5275.52, 39.1024, 5.79265, 600, 0, 0, 3834, 0, 0, 0, 0, 0),
+(404153, 25234, 571, 1, 1, 0, 0, 2248.49, 5255.41, 35.9644, 5.70233, 600, 0, 0, 3834, 0, 0, 0, 0, 0),
+(404154, 25234, 571, 1, 1, 0, 0, 2207.71, 5273.59, 10.7987, 5.81228, 600, 0, 0, 3834, 0, 0, 0, 0, 0),
+(404155, 25234, 571, 1, 1, 0, 0, 2210.14, 5228.7, 11.406, 5.94015, 600, 0, 0, 3834, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25285;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404156, 25285, 571, 1, 1, 0, 0, 2112.72, 5308.66, 34.0176, 3.47949, 600, 0, 0, 4278, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25816;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404157, 25816, 571, 1, 1, 0, 0, 2223.04, 5324.56, 10.5526, 4.86713, 600, 0, 0, 12489, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26989;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404158, 26989, 571, 1, 1, 0, 0, 2148.33, 5232.79, 19.4453, 1.15237, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26993;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404159, 26993, 571, 1, 1, 0, 0, 2144.61, 5233.72, 19.4453, 0.646577, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26990;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404160, 26990, 571, 1, 1, 0, 0, 2147.95, 5251.22, 19.536, 3.73633, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26995;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404161, 26995, 571, 1, 1, 0, 0, 2141.51, 5252.32, 19.468, 4.95841, 600, 0, 0, 9291, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26994;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404162, 26994, 571, 1, 1, 0, 0, 2136.47, 5237.42, 19.4464, 0.956024, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26987;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404163, 26987, 571, 1, 1, 0, 0, 2132.47, 5238.52, 19.4464, 0.739254, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=27000;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404164, 27000, 571, 1, 1, 0, 0, 2136.51, 5253.44, 19.4466, 4.24213, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26998;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404165, 26998, 571, 1, 1, 0, 0, 2132.75, 5254.28, 19.4466, 4.14396, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26991;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404166, 26991, 571, 1, 1, 0, 0, 2121.92, 5242.07, 19.4466, 0.996868, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=27012;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404167, 27012, 571, 1, 1, 0, 0, 2119.35, 5244.52, 19.4466, 0.7047, 600, 0, 0, 6326, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=27001;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404168, 27001, 571, 1, 1, 0, 0, 2117.16, 5260.71, 19.4466, 4.56022, 600, 0, 0, 7181, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=26997;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404169, 26997, 571, 1, 1, 0, 0, 2121.49, 5259.34, 19.4519, 3.76513, 600, 0, 0, 9291, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=27364;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404170, 27364, 571, 1, 1, 0, 0, 2092.47, 5312.13, 19.4495, 1.31886, 600, 5, 0, 198, 0, 1, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=27385;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404171, 27385, 571, 1, 1, 0, 0, 2089.62, 5310.61, 19.4497, 6.01482, 600, 0, 0, 8982, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25306;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404172, 25306, 571, 1, 1, 0, 0, 2176.6, 5196.52, 49.9797, 2.2466, 600, 0, 0, 7984, 0, 0, 0, 0, 0),
+(404173, 25306, 571, 1, 1, 0, 0, 2237.19, 5367.85, 1.95856, 1.8437, 600, 0, 0, 7984, 0, 0, 0, 0, 0),
+(404174, 25306, 571, 1, 1, 0, 0, 2334.4, 5307.62, 50.6338, 5.64418, 600, 0, 0, 7984, 0, 0, 0, 0, 0),
+(404175, 25306, 571, 1, 1, 0, 0, 2257.32, 5361.61, 2.00698, 0.538686, 300, 0, 0, 7984, 0, 0, 0, 0, 0),
+(404176, 25306, 571, 1, 1, 0, 0, 2201.57, 5329.74, 21.5338, 0.699901, 600, 0, 0, 7984, 0, 0, 0, 0, 0),
+(404177, 25306, 571, 1, 1, 0, 0, 2292.31, 5303.23, 11.3677, 1.30246, 600, 0, 0, 7984, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25300;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404178, 25300, 571, 1, 1, 0, 0, 2118.84, 5306.63, 32.7721, 2.70665, 900, 0, 0, 4278, 0, 0, 0, 0, 0),
+(404179, 25300, 571, 1, 1, 0, 0, 2115.66, 5305.34, 32.7721, 2.87001, 900, 0, 0, 4278, 0, 0, 0, 0, 0),
+(404180, 25300, 571, 1, 1, 0, 0, 2118.27, 5304.6, 32.7721, 2.8166, 900, 0, 0, 4278, 0, 0, 0, 0, 0),
+(404181, 25300, 571, 1, 1, 0, 0, 2116.52, 5307.71, 32.7718, 2.70665, 900, 0, 0, 4278, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25301;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404182, 25301, 571, 1, 1, 0, 0, 2106.3, 5300.76, 34.0049, 0.812743, 600, 0, 0, 9610, 3309, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25250;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404183, 25250, 571, 1, 1, 0, 0, 2106.2, 5303.13, 34.0048, 0.754618, 600, 0, 0, 10635, 0, 0, 0, 0, 0);
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `mindmg` = 10000, `maxdmg` = 20000, `attackpower` = 105, `dmg_multiplier` = 2 WHERE `entry` = 64323;
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `MovementType`) VALUES
+(404184, 64323, 870, 1, 1, 602.6875, 1300.031, 211.507, 5.33243, 600, 0, 0); -- 64323 (Area: 6065)
+DELETE FROM `creature` WHERE `id`=54660;
+DELETE FROM `creature` WHERE `id`=34078;
+DELETE FROM `creature` WHERE `id`=26549;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404185, 26549, 571, 1, 1, 0, 0, 2235.86, 5129.83, 5.34433, 1.40154, 1200, 0, 0, 3524, 0, 0, 0, 0, 0);
+DELETE FROM `creature` WHERE `id`=25827;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404186, 25827, 571, 1, 1, 0, 0, 2253.96, 5163.53, 1.28218, 5.88767, 1200, 0, 0, 7984, 0, 2, 0, 0, 0);
+DELETE FROM `creature_questrelation` WHERE `quest` = 25752;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 25752;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 25752;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (40643, 25752);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 40643;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 25752;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 25752;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (40643, 25752);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=40643;
+DELETE FROM `quest_start_scripts` WHERE `id`=25752;
+INSERT INTO `quest_start_scripts` (`id`, `delay`, `command`, `datalong`, `datalong2`, `dataint`, `x`, `y`, `z`, `o`) VALUES 
+(25752, 20, 8, 40639, 0, '0', 0, 0, 0, 0);
+UPDATE `quest_template` SET `StartScript` = 25752 WHERE `Id` = 25752;
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7, `mindmg` = 10000, `maxdmg` = 20000, `attackpower` = 105, `lootid` = 64004 WHERE `entry` = 64004;
+DELETE FROM `creature_loot_template` WHERE (`entry`=64004) AND (`item`=85973);
+INSERT INTO `creature_loot_template` (`entry`, `item`, `ChanceOrQuestChance`, `lootmode`, `groupid`, `mincountOrRef`, `maxcount`) VALUES (64004, 85973, 100, 1, 0, 1, 1);
+DELETE FROM `creature` WHERE `id`=35474;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404187, 35474, 571, 1, 1, 24991, 0, 8519.39, 800.398, 623.589, 1.5708, 300, 0, 0, 378000, 79880, 0, 0, 0, 0),
+(404188, 35474, 571, 1, 1, 25452, 0, 8591.38, 766.119, 625.978, 4.46458, 300, 0, 0, 378000, 79880, 2, 0, 0, 0),
+(404189, 35474, 571, 1, 1, 25452, 0, 8450.48, 696.492, 605.741, 5.79123, 300, 0, 0, 378000, 79880, 2, 0, 0, 0),
+(404190, 35474, 571, 1, 1, 24991, 0, 8478.48, 687.413, 606.229, 6.1872, 300, 0, 0, 378000, 79880, 2, 0, 0, 0),
+(404191, 35474, 571, 1, 1, 25452, 0, 8451.32, 696.047, 605.726, 5.80095, 300, 0, 0, 378000, 79880, 2, 0, 0, 0),
+(404192, 35474, 571, 1, 1, 25452, 0, 8495.31, 688.542, 608.221, 0.204074, 300, 0, 0, 378000, 79880, 2, 0, 0, 0),
+(404193, 35474, 571, 1, 1, 24991, 0, 8451.3, 696.058, 605.726, 5.80068, 300, 0, 0, 378000, 79880, 2, 0, 0, 0),
+(404194, 35474, 571, 1, 1, 24991, 0, 8479.68, 687.31, 606.315, 6.20944, 300, 0, 0, 378000, 79880, 2, 0, 0, 0),
+(404195, 35474, 571, 1, 1, 25452, 0, 8450.62, 696.418, 605.739, 5.79283, 300, 0, 0, 378000, 79880, 2, 0, 0, 0),
+(404196, 35474, 571, 1, 1, 24991, 0, 8429.27, 711.414, 606.346, 5.55562, 300, 0, 0, 378000, 79880, 2, 0, 0, 0);
+UPDATE `creature_template` SET `KillCredit1` = 62562, `KillCredit2` = 62534, `faction_A` = 14, `faction_H` = 14, `mindmg` = 15000, `maxdmg` = 20000, `attackpower` = 125 WHERE `entry` = 62307;
+UPDATE `creature_template` SET `minlevel` = 92, `maxlevel` = 92, `faction_A` = 7, `faction_H` = 7, `mindmg` = 20000, `maxdmg` = 25000, `attackpower` = 125 WHERE `entry` = 66900;
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `MovementType`) VALUES
+(404197, 62307, 870, 1, 1, 2344.135, 5011.312, 65.41019, 4.596178, 120, 0, 0), -- 62307 (Area: 6213)
+(404198, 66900, 870, 1, 1, 2353.252, 4943.929, 87.08492, 4.011165, 600, 0, 0); -- 66900 (Area: 6213)
+UPDATE `creature_template` SET `faction_A` = 7, `faction_H` = 7, `unit_flags2` = 2048 WHERE `entry` = 62277;
+UPDATE `creature` SET `unit_flags` = 33280 WHERE `id` = 62277;
+DELETE FROM `creature_template_addon` WHERE (`entry`=62277);
+UPDATE `creature_template` SET `flags_extra` = 130 WHERE `entry` = 64297;
+DELETE FROM `creature` WHERE `id`=32716;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404199, 32716, 571, 1, 65535, 0, 0, 5745.07, 663.151, 644.248, 0.860011, 600, 5, 0, 10635, 100, 1, 0, 0, 0);
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `unit_flags` = 0 WHERE `entry` = 50159;
+UPDATE `gameobject_template` SET `data2` = 213307 WHERE `entry` = 213307;
+UPDATE `gameobject_template` SET `data2` = 213308 WHERE `entry` = 213308;
+UPDATE `gameobject_template` SET `data2` = 213310 WHERE `entry` = 213310;
+UPDATE `gameobject_template` SET `data2` = 213311 WHERE `entry` = 213311;
+UPDATE `creature_template` SET `exp` = 0, `Health_mod` = 1 WHERE `entry` = 56009;
+INSERT IGNORE INTO `event_scripts` VALUES ('213307', '1', '8', '63702', '0', '0', '0', '0', '0', '0');
+INSERT IGNORE INTO `event_scripts` VALUES ('213308', '1', '8', '63703', '0', '0', '0', '0', '0', '0');
+INSERT IGNORE INTO `event_scripts` VALUES ('213310', '1', '8', '63704', '0', '0', '0', '0', '0', '0');
+INSERT IGNORE INTO `event_scripts` VALUES ('213311', '1', '8', '63705', '0', '0', '0', '0', '0', '0');
+DELETE FROM `gameobject_template` WHERE (`entry`=213305);
+INSERT INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `data0`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `data16`, `data17`, `data18`, `data19`, `data20`, `data21`, `data22`, `data23`, `AIName`, `ScriptName`, `WDBVerified`) VALUES (213305, 10, 11724, 'Sra\'thik Idol', '', 'Placing', '', 0, 0, 4, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 124369, 0, 0, 0, 35196, 0, 0, 0, 0, 0, 0, 0, 17314, 1, '', '', 16048);
+REPLACE INTO `gameobject` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`) VALUES
+(402089, 213305, 870, 1, 1, 2805.391, 6147.941, 75.55967, 4.787217, 0, 0, 0, 1, 120, 255, 1); -- 213305 (Area: 6314)
+UPDATE `gameobject_template` SET `data2` = 213304 WHERE `entry` = 213304;
+UPDATE `gameobject_template` SET `data2` = 213305 WHERE `entry` = 213305;
+UPDATE `gameobject_template` SET `data2` = 213306 WHERE `entry` = 213306;
+UPDATE `gameobject_template` SET `data2` = 213309 WHERE `entry` = 213309;
+INSERT IGNORE INTO `event_scripts` VALUES ('213304', '1', '8', '63698', '0', '0', '0', '0', '0', '0');
+INSERT IGNORE INTO `event_scripts` VALUES ('213305', '1', '8', '63699', '0', '0', '0', '0', '0', '0');
+INSERT IGNORE INTO `event_scripts` VALUES ('213306', '1', '8', '63700', '0', '0', '0', '0', '0', '0');
+INSERT IGNORE INTO `event_scripts` VALUES ('213309', '1', '8', '63701', '0', '0', '0', '0', '0', '0');
+UPDATE `creature_template` SET `faction_A` = 14, `faction_H` = 14, `unit_flags` = 512, `flags_extra` = 2 WHERE `entry` = 63708;
+UPDATE `creature_template` SET `unit_flags` = 33280 WHERE `entry` = 63706;
+UPDATE `creature_template` SET `minlevel` = 1, `maxlevel` = 1, `unit_flags` = 33280 WHERE `entry` = 63708;
+UPDATE `creature_template` SET `minlevel` = 1, `maxlevel` = 1, `faction_A` = 14, `faction_H` = 14, `unit_flags` = 33280, `flags_extra` = 2 WHERE `entry` = 63711;
+UPDATE `creature_template` SET `KillCredit2` = 63711 WHERE `entry` = 63708;
+UPDATE `creature_template` SET `minlevel` = 1, `maxlevel` = 1, `faction_A` = 14, `faction_H` = 14, `unit_flags` = 33280, `flags_extra` = 2 WHERE `entry` = 63713;
+DELETE FROM `creature_loot_template` WHERE (`entry`=37923) AND (`item`=49945);
+INSERT INTO `creature_loot_template` (`entry`, `item`, `ChanceOrQuestChance`, `lootmode`, `groupid`, `mincountOrRef`, `maxcount`) VALUES (37923, 49945, -100, 1, 0, 1, 1);
+UPDATE `creature_template` SET `unit_flags2` = 2048 WHERE `entry` = 61539;
+DELETE FROM `creature_template_addon` WHERE (`entry`=61539);
+REPLACE INTO `creature` (`guid`, `id`, `map`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `MovementType`) VALUES
+(404200, 61539, 870, 1, 1, 2040.181, 4559.711, 133.959, 0.8360882, 120, 0, 0), -- 61539 (Area: 6213)
+(404201, 61539, 870, 1, 1, 2186.818, 4813.335, 179.3787, 2.246958, 120, 0, 0); -- 61539 (Area: 6213)
+INSERT IGNORE INTO `gameobject` (`guid`,`id`,`map`,`zoneId`,`areaId`,`spawnMask`,`phaseMask`,`position_x`,`position_y`,`position_z`,`orientation`,`rotation0`,`rotation1`,`rotation2`,`rotation3`,`spawntimesecs`,`animprogress`,`state`,`isActive`) VALUES
+(402090, 301528, 870, 5841, 6121, 1, 1, 2773.09, 926.641, 566.369, 3.99681, 0, 0, 0, 1, 300, 255, 1, 0);
+INSERT IGNORE INTO `gameobject` (`guid`,`id`,`map`,`zoneId`,`areaId`,`spawnMask`,`phaseMask`,`position_x`,`position_y`,`position_z`,`orientation`,`rotation0`,`rotation1`,`rotation2`,`rotation3`,`spawntimesecs`,`animprogress`,`state`,`isActive`) VALUES
+(402091, 301528, 870, 5841, 6121, 1, 1, 2759.33, 875.295, 558.063, 4.57276, 0, 0, 0, 1, 300, 255, 1, 0);
+DELETE FROM `gameobject_template` WHERE (`entry`=301528);
+INSERT INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `faction`, `flags`, `size`, `questItem1`, `questItem2`, `questItem3`, `questItem4`, `questItem5`, `questItem6`, `data0`, `data1`, `data2`, `data3`, `data4`, `data5`, `data6`, `data7`, `data8`, `data9`, `data10`, `data11`, `data12`, `data13`, `data14`, `data15`, `data16`, `data17`, `data18`, `data19`, `data20`, `data21`, `data22`, `data23`, `AIName`, `ScriptName`, `WDBVerified`) VALUES (301528, 8, 299, 'Yongol Oil', '', '', '', 0, 0, 1, 0, 0, 0, 0, 0, 0, 1764, 20, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 1);
+DELETE FROM `creature_template_addon` WHERE (`entry`=33421);
+UPDATE `creature_template` SET `KillCredit2` = 34138, `faction_A` = 7, `faction_H` = 7 WHERE `entry` = 34167;
+DELETE FROM `creature` WHERE `id`=34167;
+INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`,`npcflag`,`unit_flags`,`dynamicflags`) VALUES
+(404202, 34167, 1, 1, 1, 28982, 0, 2641.63, -3289.36, 136.996, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404203, 34167, 1, 1, 1, 28982, 0, 2539.24, -3257.91, 129.875, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404204, 34167, 1, 1, 1, 28982, 0, 2638.16, -3343.14, 126.912, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404205, 34167, 1, 1, 1, 28982, 0, 2575, -3289.35, 131.398, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404206, 34167, 1, 1, 1, 28982, 0, 2481.98, -3267.46, 118.749, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404207, 34167, 1, 1, 1, 28982, 0, 2456.15, -3299.87, 112.093, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404208, 34167, 1, 1, 1, 28982, 0, 2369.72, -3230.75, 109.028, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404209, 34167, 1, 1, 1, 28982, 0, 2429.16, -3121.58, 125.411, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404210, 34167, 1, 1, 1, 28982, 0, 2374.34, -3161.09, 118.363, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404211, 34167, 1, 1, 1, 28982, 0, 2311.3, -3127.08, 122.211, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404212, 34167, 1, 1, 1, 28982, 0, 2300.63, -3071.33, 122.94, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0),
+(404213, 34167, 1, 1, 1, 28982, 0, 2283.5, -3221.06, 111.671, 0, 300, 0, 0, 699, 0, 0, 0, 0, 0);
+UPDATE `creature_template` SET `minlevel` = 1, `maxlevel` = 1, `faction_A` = 14, `faction_H` = 14, `unit_flags` = 33280, `flags_extra` = 2 WHERE `entry` = 63714;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31535;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31535;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31535;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64395, 31535);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64395;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31535;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31535;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64395, 31535);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64395;
+UPDATE `quest_template` SET `Method` = 2 WHERE `Id` = 31535;
+DELETE FROM `gameobject` WHERE `id`=194612;
+INSERT INTO `gameobject` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`position_x`,`position_y`,`position_z`,`orientation`,`rotation0`,`rotation1`,`rotation2`,`rotation3`,`spawntimesecs`,`animprogress`,`state`) VALUES
+(402092, 194612, 1, 1, 1, 2907.04, -2777.71, 213.628, 0, 0, 0, 0, 1, 300, 255, 1),
+(402093, 194612, 1, 1, 1, 2950.34, -2774.45, 219.675, 0, 0, 0, 0, 1, 300, 255, 1),
+(402094, 194612, 1, 1, 1, 2937.22, -2809.41, 213.062, 0, 0, 0, 0, 1, 300, 255, 1),
+(402095, 194612, 1, 1, 1, 2952.52, -2817.65, 213.064, 0, 0, 0, 0, 1, 300, 255, 1),
+(402096, 194612, 1, 1, 1, 2861.03, -2888.64, 204.255, 0, 0, 0, 0, 1, 300, 255, 1),
+(402097, 194612, 1, 1, 1, 2947.67, -2831.08, 213.583, 0, 0, 0, 0, 1, 300, 255, 1),
+(402098, 194612, 1, 1, 1, 2852.97, -2826.84, 200.121, 0, 0, 0, 0, 1, 300, 255, 1),
+(402099, 194612, 1, 1, 1, 2776.62, -3011.99, 154.165, 0, 0, 0, 0, 1, 300, 255, 1),
+(402100, 194612, 1, 1, 1, 2729.7, -2979.86, 141.134, 0, 0, 0, 0, 1, 300, 255, 1),
+(402101, 194612, 1, 1, 1, 2928.31, -2841.92, 213.524, 0, 0, 0, 0, 1, 300, 255, 1),
+(402102, 194612, 1, 1, 1, 2896.68, -2828.13, 208.82, 0, 0, 0, 0, 1, 300, 255, 1),
+(402103, 194612, 1, 1, 1, 2906.06, -2900.59, 200.121, 0, 0, 0, 0, 1, 300, 255, 1),
+(402104, 194612, 1, 1, 1, 2906.12, -2900.56, 200.119, 0, 0, 0, 0, 1, 300, 255, 1),
+(402105, 194612, 1, 1, 1, 2885.29, -2856.79, 204.18, 0, 0, 0, 0, 1, 300, 255, 1),
+(402106, 194612, 1, 1, 1, 2760.15, -2916.75, 146.765, 0, 0, 0, 0, 1, 300, 255, 1),
+(402107, 194612, 1, 1, 1, 2739.5, -3077.67, 157.817, 0, 0, 0, 0, 1, 300, 255, 1),
+(402108, 194612, 1, 1, 1, 2803.95, -3006, 157.477, 0, 0, 0, 0, 1, 300, 255, 1),
+(402109, 194612, 1, 1, 1, 2701.5, -2963.55, 140.799, 0, 0, 0, 0, 1, 300, 255, 1),
+(402110, 194612, 1, 1, 1, 2814.32, -2984.49, 156.083, 0, 0, 0, 0, 1, 300, 255, 1),
+(402111, 194612, 1, 1, 1, 2770.35, -2970.1, 145.768, 0, 0, 0, 0, 1, 300, 255, 1),
+(402112, 194612, 1, 1, 1, 2742.65, -3039.04, 151.949, 0, 0, 0, 0, 1, 300, 255, 1),
+(402113, 194612, 1, 1, 1, 2717.42, -2921.97, 141.214, 0, 0, 0, 0, 1, 300, 255, 1),
+(402114, 194612, 1, 1, 1, 2746.82, -2883.19, 158.436, 0, 0, 0, 0, 1, 300, 255, 1),
+(402115, 194612, 1, 1, 1, 2759.63, -2948.58, 143.421, 0, 0, 0, 0, 1, 300, 255, 1),
+(402116, 194612, 1, 1, 1, 2790.86, -2948.75, 149.419, 0, 0, 0, 0, 1, 300, 255, 1);
+UPDATE `gameobject_template` SET `flags` = 0 WHERE `entry` = 194612;
+UPDATE `creature_template` SET `npcflag` = 2 WHERE `entry` = 64337;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31337;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31337;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31337;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64337, 31337);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64337;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31337;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31337;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64337, 31337);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64337;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31820;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31820;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31820;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64337, 31820);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64337;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31820;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31820;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64337, 31820);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64337;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31332;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31332;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31332;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64337, 31332);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64337;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31332;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31332;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64337, 31332);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64337;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31333;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31333;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31333;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64337, 31333);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64337;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31333;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31333;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64337, 31333);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64337;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31334;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31334;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31334;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64337, 31334);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64337;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31334;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31334;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64337, 31334);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64337;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31335;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31335;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31335;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64337, 31335);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64337;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31335;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31335;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64337, 31335);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64337;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31336;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31336;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31336;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (64337, 31336);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 64337;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31336;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31336;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (64337, 31336);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=64337;
+UPDATE `creature_template` SET `dmg_multiplier` = 1 WHERE `entry` = 65131;
+UPDATE `creature_template` SET `dmg_multiplier` = 1 WHERE `entry` = 65132;
+UPDATE `gameobject_template` SET `flags` = 4, `data0` = 43, `data2` = 0, `data3` = 0, `data8` = 0 WHERE `entry` = 212877;
+DELETE FROM `creature_questrelation` WHERE `quest` = 31119;
+DELETE FROM `gameobject_questrelation` WHERE `quest` = 31119;
+UPDATE `item_template` SET `StartQuest`=0 WHERE `StartQuest` = 31119;
+INSERT INTO `creature_questrelation` (`id`, `quest`) VALUES (63009, 31119);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` = 63009;
+DELETE FROM `creature_involvedrelation` WHERE `quest` = 31119;
+DELETE FROM `gameobject_involvedrelation` WHERE `quest` = 31119;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63009, 31119);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63009;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63195, 31119);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63195;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63196, 31119);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63196;
+INSERT INTO `creature_involvedrelation` (`id`, `quest`) VALUES (63197, 31119);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry`=63197;
+UPDATE `quest_template` SET `RequiredNpcOrGoCount1` = 10 WHERE `Id` = 31119;
+UPDATE `gameobject_template` SET `flags` = 0, `data0` = 93, `data2` = 206579 WHERE `entry` = 206579;
+INSERT IGNORE INTO `event_scripts` VALUES ('206579', '1', '8', '47466', '0', '0', '0', '0', '0', '0');
+DELETE FROM `quest_start_scripts` WHERE `id`=27922;
+UPDATE `quest_template` SET `StartScript` = 0 WHERE `Id` = 27922;
+UPDATE `creature_template` SET `unit_flags` = 768 WHERE `entry` = 33760;
+UPDATE `gameobject_template` SET `flags` = 0 WHERE `entry` = 185169;
+UPDATE `item_template` SET `flagsCustom` = 1 WHERE `entry` = 39878;
+UPDATE `item_template` SET `flagsCustom` = 1 WHERE `entry` = 44717;
+
+
+# Rar_NPC
+update `creature` set spawntimesecs=7200 where id in (1720,2447,3872,4425,4842,5797,5798,5799,5800,5827,5912,5916,5931,5934,6228,6488,6489,6490,6646,7057,8923,9217,9218,9219,9596,9718,9736,10082,10119,10201,10263,10376,10393,10509,10558,10809,11467,12237,14506,16179,16180,5789,5790,5793,5794,5795,5796,8206,9417,10080,10081,10203,10239,11676,13977,14016,14018,14019,14346,16181,17075,22625,22631,22636,22637,22642,10810,18699,25323,25406,25410,25411,25412,25413,26791,28280,28282,31974,31998,32054,32111,32120,37293,37317,37375,37432,37443,50009,50056,50061,50063,50089,50091,59369,60491,62346,65631) and spawntimesecs<7200;
+update `creature` set spawntimesecs=28800 where id in (61,79,99,100,462,471,472,503,506,507,519,520,521,534,572,573,574,584,596,599,616,763,771,947,1037,1063,1106,1112,1119,1130,1132,1137,1140,1260,1398,1399,1424,1425,1531,1533,1552,1837,1838,1839,1841,1843,1844,1847,1848,1851,1885,1910,1911,1920,1936,1944,1948,2090,2108,2162,2172,2175,2184,2186,2191,2192,2258,2283,2452,2453,2476,2541,2598,2600,2601,2602,2603,2604,2605,2606,2609,2744,2749,2751,2752,2753,2754,2779,2850,2931,3058,3068,3253,3270,3295,3398,3470,3535,3581,3652,3672,3735,3736,3773,3792,4015,4030,4066,4132,4339,4380,5343,5345,5346,5347,5349,5350,5352,5354,5356,5399,5400,5785,5786,5787,5807,5808,5809,5822,5823,5824,5826,5828,5829,5830,5831,5832,5834,5835,5836,5837,5838,5841,5842,5847,5848,5849,5851,5859,5863,5864,5865,5915,5930,5932,5933,5935,5937,6118,6581,6582,6583,6584,6585,6647,6648,6649,6650,6651,6652,7015,7016,7017,7104,7137,7846,7895,8199,8200,8201,8202,8203,8204,8205,8207,8208,8210,8211,8212,8213,8214,8215,8216,8217,8218,8219,8277,8278,8279,8280,8281,8282,8283,8296,8297,8298,8299,8300,8301,8302,8303,8304,8503,8660,8924,8976,8978,8979,8981,9602,9604,10077,10078,10196,10197,10198,10199,10200,10202,10356,10357,10358,10359,10559,10639,10640,10641,10642,10643,10644,10647,10741,10817,10821,10823,10824,10825,10826,10827,10828,11383,11447,11497,11498,11688,12037,12431,12432,12433,12902,13896,14221,14222,14223,14224,14225,14226,14227,14228,14229,14230,14231,14232,14233,14234,14235,14236,14237,14266,14267,14268,14269,14270,14271,14272,14273,14275,14276,14277,14278,14279,14280,14281,14339,14340,14342,14343,14344,14345,14424,14425,14426,14427,14428,14429,14430,14431,14432,14433,14445,14446,14447,14448,14471,14472,14473,14474,14475,14476,14477,14478,14479,14487,14488,14490,14491,14492,16379,16380,16854,16855,17144,18677,18678,18680,18681,18682,18683,18685,18686,18690,18693,18694,18696,18698,20932,21724,22060,22062,62,1849,5348,5367,5928,10236,10237,10238,10818,10819,10820,11580,14341,14697,16184,18241,18679,18684,18689,18692,18695,18697,1850,3718,32517,31086,32357,32358,32361,32377,32386,32398,32400,32409,32417,32422,32429,32435,32438,32447,32471,32475,32481,32485,32487,32491,32495,32500,32501,32630,33776,35189,38453,39019,39183,39185,39186,43488,43613,43720,44224,44225,44226,44227,44714,44722,44750,44759,44761,44767,45257,45258,45260,45262,45369,45380,45384,45398,45399,45401,45402,45404,45739,45740,45771,45785,45801,45811,46981,46992,47003,47008,47009,47010,47012,47015,47023,47386,47387,49822,49913,50005,50050,50051,50052,50053,50057,50058,50059,50060,50062,50064,50065,50085,50086,50138,50154,50159,50327,50328,50329,50330,50331,50332,50333,50334,50335,50336,50337,50338,50339,50340,50341,50342,50343,50344,50345,50346,50347,50348,50349,50350,50351,50352,50353,50354,50355,50356,50357,50358,50359,50361,50362,50363,50364,50370,50388,50724,50725,50726,50727,50728,50730,50731,50733,50734,50735,50736,50737,50738,50739,50741,50742,50743,50744,50745,50746,50747,50748,50749,50750,50752,50759,50763,50764,50765,50766,50768,50769,50770,50772,50775,50776,50777,50778,50779,50780,50782,50783,50784,50785,50786,50787,50788,50789,50790,50791,50792,50797,50803,50804,50805,50806,50807,50808,50809,50810,50811,50812,50813,50814,50815,50816,50817,50818,50819,50820,50821,50822,50823,50825,50828,50829,50830,50831,50832,50833,50836,50837,50838,50839,50840,50842,50844,50845,50846,50847,50849,50853,50855,50856,50858,50860,50861,50863,50864,50865,50867,50868,50870,50871,50872,50874,50875,50876,50877,50879,50882,50883,50884,50886,50887,50889,50890,50891,50892,50895,50897,50899,50900,50901,50903,50905,50906,50908,50909,50911,50912,50914,50915,50916,50917,50918,50919,50920,50921,50922,50925,50926,50927,50928,50929,50930,50931,50932,50933,50935,50936,50937,50938,50940,50941,50942,50943,50945,50946,50947,50948,50949,50950,50952,50953,50954,50955,50956,50957,50959,50961,50963,50964,50965,50967,50968,50969,50972,50976,50979,50981,50985,50986,50990,50992,50993,50995,50997,50999,51000,51001,51002,51004,51007,51008,51010,51012,51014,51015,51016,51017,51018,51019,51020,51021,51022,51024,51025,51026,51027,51028,51029,51030,51031,51032,51037,51040,51042,51043,51044,51045,51046,51048,51049,51050,51051,51052,51053,51054,51055,51056,51057,51058,51059,51061,51062,51063,51064,51066,51067,51069,51071,51072,51074,51076,51077,51078,51079,51267,51401,51402,51403,51404,51658,51661,51662,51663,52146,54318,54319,54320,54321,54322,54323,54324,54338,54533,56079,56080,56081,59071,64403) and spawntimesecs<28800;
+
+# Minerals/Herbs
+UPDATE gameobject SET spawntimesecs=600, phaseMask=65535 WHERE id IN (1610,1617,1618,1619,1620,1621,1667,1731,1732,2055,2653,3724,3725,3726,3727,3729,3730,3763,3764,103711,103713,181166,1622,1623,1624,1628,1735,2040,2041,2042,2043,2044,2045,2046,2047,2054,19903,73940,206085);
+UPDATE gameobject SET spawntimesecs=900, phaseMask=65535 WHERE id IN (123310,142140,150079,176645,324,1733,1734,2866,73941,123309,123848,142141,142142,142143,142144,142145,150080,150081,150082,165658,175404,176583,176584,176586,176587,176588,176636,176637);
+UPDATE gameobject SET spawntimesecs=1200, phaseMask=65535 WHERE id IN (176638,176639,176640,176641,176642,176643,177388,180164,180165,180166,180167,180168,180215,181270,181271,181275,181276,181277,181278,181279,176589,181280,181281,181555,181556,181557,181569,181570,183043,183044,183045, 183046,185877,185881,189973,189979,189980,189981,190169,190170,190171,190172,202749,202748,202747,202736,202739);
+UPDATE gameobject SET spawntimesecs=1800, phaseMask=65535 WHERE id IN (190173,190175,191019,191133,191303,189978,202750,202752,202751,202737,202738,202741,202740);
+UPDATE gameobject SET spawntimesecs=2400, phaseMask=65535 WHERE id IN (209355,215410,209354,209349,215405,209353,215408,214510,215412,215403,215411,209350,215406,209351,215407,209311,215413,209312,215415,209328,209329,209330,209313,215418);
+
+# NPC_ADDON_FIX
+INSERT IGNORE INTO `creature_template_addon`
+SELECT
+`creature_template`.`difficulty_entry_1`,
+`creature_template_addon`.`path_id`,
+`creature_template_addon`.`mount`,
+`creature_template_addon`.`bytes1`,
+`creature_template_addon`.`bytes2`,
+`creature_template_addon`.`emote`,
+`creature_template_addon`.`auras`
+FROM
+`creature_template`, `creature_template_addon`
+WHERE
+`creature_template_addon`.`entry`=`creature_template`.`entry`
+AND `creature_template`.`difficulty_entry_1`>0;
+INSERT IGNORE INTO `creature_template_addon`
+SELECT
+`creature_template`.`difficulty_entry_2`,
+`creature_template_addon`.`path_id`,
+`creature_template_addon`.`mount`,
+`creature_template_addon`.`bytes1`,
+`creature_template_addon`.`bytes2`,
+`creature_template_addon`.`emote`,
+`creature_template_addon`.`auras`
+FROM
+`creature_template`, `creature_template_addon`
+WHERE
+`creature_template_addon`.`entry`=`creature_template`.`entry`
+AND `creature_template`.`difficulty_entry_2`>0;
+INSERT IGNORE INTO `creature_template_addon`
+SELECT
+`creature_template`.`difficulty_entry_3`,
+`creature_template_addon`.`path_id`,
+`creature_template_addon`.`mount`,
+`creature_template_addon`.`bytes1`,
+`creature_template_addon`.`bytes2`,
+`creature_template_addon`.`emote`,
+`creature_template_addon`.`auras`
+FROM
+`creature_template`, `creature_template_addon`
+WHERE
+`creature_template_addon`.`entry`=`creature_template`.`entry`
+AND `creature_template`.`difficulty_entry_3`>0;
+
+# NPC_FIX
+UPDATE
+`creature_template`, `creature_template` AS `copy`
+SET
+`copy`.`RegenHealth`=`creature_template`.`RegenHealth`,
+`copy`.`unit_class`=`creature_template`.`unit_class`,
+`copy`.`unit_flags`=`creature_template`.`unit_flags`,
+`copy`.`unit_flags2`=`creature_template`.`unit_flags2`,
+`copy`.`type_flags2`=`creature_template`.`type_flags2`,
+`copy`.`HoverHeight`=`creature_template`.`HoverHeight`,
+`copy`.`Mana_mod_extra`=`creature_template`.`Mana_mod_extra`,
+`copy`.`exp_unk`=`creature_template`.`exp_unk`,
+`copy`.`npcflag`=`creature_template`.`npcflag`,
+`copy`.`dynamicflags`=`creature_template`.`dynamicflags`,
+`copy`.`faction_A`=`creature_template`.`faction_A`,
+`copy`.`faction_H`=`creature_template`.`faction_H`,
+`copy`.`speed_run`=`creature_template`.`speed_run`,
+`copy`.`speed_walk`=`creature_template`.`speed_walk`,
+`copy`.`scale`=`creature_template`.`scale`,
+`copy`.`dmgschool`=`creature_template`.`dmgschool`,
+`copy`.`mingold`=`creature_template`.`mingold`,
+`copy`.`maxgold`=`creature_template`.`maxgold`,
+`copy`.`VehicleId`=`creature_template`.`VehicleId`,
+`copy`.`mechanic_immune_mask`=`creature_template`.`mechanic_immune_mask`
+WHERE
+`copy`.`entry`=`creature_template`.`difficulty_entry_1`;
+UPDATE
+`creature_template`, `creature_template` AS `copy`
+SET
+`copy`.`RegenHealth`=`creature_template`.`RegenHealth`,
+`copy`.`unit_class`=`creature_template`.`unit_class`,
+`copy`.`unit_flags`=`creature_template`.`unit_flags`,
+`copy`.`unit_flags2`=`creature_template`.`unit_flags2`,
+`copy`.`type_flags2`=`creature_template`.`type_flags2`,
+`copy`.`HoverHeight`=`creature_template`.`HoverHeight`,
+`copy`.`Mana_mod_extra`=`creature_template`.`Mana_mod_extra`,
+`copy`.`exp_unk`=`creature_template`.`exp_unk`,
+`copy`.`npcflag`=`creature_template`.`npcflag`,
+`copy`.`dynamicflags`=`creature_template`.`dynamicflags`,
+`copy`.`faction_A`=`creature_template`.`faction_A`,
+`copy`.`faction_H`=`creature_template`.`faction_H`,
+`copy`.`speed_run`=`creature_template`.`speed_run`,
+`copy`.`speed_walk`=`creature_template`.`speed_walk`,
+`copy`.`scale`=`creature_template`.`scale`,
+`copy`.`dmgschool`=`creature_template`.`dmgschool`,
+`copy`.`mingold`=`creature_template`.`mingold`,
+`copy`.`maxgold`=`creature_template`.`maxgold`,
+`copy`.`VehicleId`=`creature_template`.`VehicleId`,
+`copy`.`mechanic_immune_mask`=`creature_template`.`mechanic_immune_mask`
+WHERE
+`copy`.`entry`=`creature_template`.`difficulty_entry_2`;
+UPDATE
+`creature_template`, `creature_template` AS `copy`
+SET
+`copy`.`RegenHealth`=`creature_template`.`RegenHealth`,
+`copy`.`unit_class`=`creature_template`.`unit_class`,
+`copy`.`unit_flags`=`creature_template`.`unit_flags`,
+`copy`.`unit_flags2`=`creature_template`.`unit_flags2`,
+`copy`.`type_flags2`=`creature_template`.`type_flags2`,
+`copy`.`HoverHeight`=`creature_template`.`HoverHeight`,
+`copy`.`Mana_mod_extra`=`creature_template`.`Mana_mod_extra`,
+`copy`.`exp_unk`=`creature_template`.`exp_unk`,
+`copy`.`npcflag`=`creature_template`.`npcflag`,
+`copy`.`dynamicflags`=`creature_template`.`dynamicflags`,
+`copy`.`faction_A`=`creature_template`.`faction_A`,
+`copy`.`faction_H`=`creature_template`.`faction_H`,
+`copy`.`speed_run`=`creature_template`.`speed_run`,
+`copy`.`speed_walk`=`creature_template`.`speed_walk`,
+`copy`.`scale`=`creature_template`.`scale`,
+`copy`.`dmgschool`=`creature_template`.`dmgschool`,
+`copy`.`mingold`=`creature_template`.`mingold`,
+`copy`.`maxgold`=`creature_template`.`maxgold`,
+`copy`.`VehicleId`=`creature_template`.`VehicleId`,
+`copy`.`mechanic_immune_mask`=`creature_template`.`mechanic_immune_mask`
+WHERE
+`copy`.`entry`=`creature_template`.`difficulty_entry_3`;
+
+# Final_FIX
+UPDATE `creature` SET equipment_id=0 WHERE equipment_id=1;
+UPDATE quest_template SET SpecialFlags=SpecialFlags|1 WHERE Flags=Flags|4096;
+UPDATE quest_template SET SpecialFlags=SpecialFlags|1 WHERE Flags=Flags|32768;
+DELETE FROM `creature_addon` WHERE `guid` NOT IN (SELECT `guid` FROM `creature`);
+DELETE FROM `linked_respawn` WHERE `guid` NOT IN (SELECT `guid` FROM `creature`);
+DELETE FROM `linked_respawn` WHERE `linkedGuid` NOT IN (SELECT `guid` FROM `creature`);
+# DELETE FROM `game_event_gameobject` WHERE `guid` NOT IN (SELECT `guid` FROM `gameobject`);
+# DELETE FROM `game_event_creature` WHERE `guid` NOT IN (SELECT `guid` FROM `creature`);
+UPDATE creature_template SET unit_flags=unit_flags&~2048 WHERE unit_flags&2048=2048;
+UPDATE creature_template SET unit_flags=unit_flags&~524288 WHERE unit_flags&524288=524288;
+UPDATE `creature` SET `spawndist` = 5 WHERE `spawndist` = 0 AND `MovementType`=1;
+UPDATE `creature` SET `spawndist`=0 WHERE `MovementType`=0;
+UPDATE `creature` SET `spawntimesecs` = 300 WHERE `spawntimesecs` = 25;
+UPDATE `gameobject` SET `spawntimesecs` = 300 WHERE `spawntimesecs` = 25;
+UPDATE `creature_template` SET `scale` = 1 WHERE `scale` = 0;
+# update gameobject_template, gameobject set gameobject.animprogress = 100 where gameobject_template.entry = gameobject.id and gameobject_template.type = 0;
+# update gameobject_template, gameobject set gameobject.animprogress = 100 where gameobject_template.entry = gameobject.id and gameobject_template.type = 3;
+# update gameobject_template, gameobject set gameobject.animprogress = 100 where gameobject_template.entry = gameobject.id and gameobject_template.type = 10;
+# update gameobject_template, gameobject set gameobject.animprogress = 100 where gameobject_template.entry = gameobject.id and gameobject_template.type = 25;
+UPDATE `gameobject` SET `state`=1 WHERE `state`=0 AND `id` IN (SELECT entry FROM `gameobject_template` WHERE `type`=3);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` IN (SELECT `id` FROM `creature_questrelation`);
+UPDATE `creature_template` SET `npcflag`=`npcflag`|2 WHERE `entry` IN (SELECT `id` FROM `creature_involvedrelation`);
+UPDATE `gameobject` SET `state` = 0 WHERE `id` IN (SELECT `entry` FROM `gameobject_template` WHERE `type` = 0 AND `data0` = 1);
+UPDATE `gameobject_template` SET `flags`=`flags`&~4 WHERE `type` IN (2,19,17);
+# DELETE FROM `gameobject_scripts` WHERE `id` NOT IN (SELECT `guid` FROM `gameobject`);
+# DELETE FROM `gameobject_scripts` WHERE `command` in (11, 12) and `datalong` NOT IN (SELECT `guid` FROM `gameobject`);
+DELETE FROM `creature_onkill_reputation` WHERE `creature_id` NOT IN (SELECT `entry` FROM `creature_template`);
+UPDATE `creature_template` SET npcflag = npcflag|1 WHERE `gossip_menu_id` > 0;
+UPDATE `creature_template`, `smart_scripts` SET `creature_template`.`ainame`='SmartAI' WHERE `creature_template`.`entry`=`smart_scripts`.`entryorguid` AND `smart_scripts`.`Source_Type`=0;
+UPDATE `gameobject_template`, `smart_scripts` SET `gameobject_template`.`ainame`='SmartGameObjectAI' WHERE `gameobject_template`.`entry`=`smart_scripts`.`entryorguid` AND `smart_scripts`.`Source_Type`=1;
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `AIName` = 'EventAI' AND `ScriptName` = 'generic_creature';
+UPDATE `creature_template` SET `ScriptName` = '' WHERE `AIName` = 'SmartAI' AND `ScriptName` = 'generic_creature';

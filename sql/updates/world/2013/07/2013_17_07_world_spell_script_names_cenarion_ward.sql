@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (102351, 'spell_dru_cenarion_ward');

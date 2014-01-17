@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (114867, 0, 0, 1, 0, 'Death Knight - Soul Reaper (triggered)');

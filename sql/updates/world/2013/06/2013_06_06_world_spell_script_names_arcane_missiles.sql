@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (5143, 'spell_mage_arcane_missile');

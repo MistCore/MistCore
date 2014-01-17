@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (30823, 'spell_sha_glyph_of_shamanistic_rage');

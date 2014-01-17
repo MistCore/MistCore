@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (119072, 0.91, 0, 0, 0, 'Paladin - Holy Wrath');

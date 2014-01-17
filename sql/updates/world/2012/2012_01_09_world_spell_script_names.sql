@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (114157, 'spell_pal_execution_sentence');

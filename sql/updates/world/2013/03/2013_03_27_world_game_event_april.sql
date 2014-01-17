@@ -1,0 +1,1 @@
+insert into `game_event` (`eventEntry`, `start_time`, `end_time`, `occurence`, `length`, `holiday`, `description`, `world_event`) values('100','2013-04-01 00:00:01','2013-04-02 00:00:00','1440','1440','0','First April','0');

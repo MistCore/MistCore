@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (108843, 'spell_mage_blazing_speed');

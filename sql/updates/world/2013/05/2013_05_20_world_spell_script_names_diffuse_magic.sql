@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (122783, 'spell_monk_diffuse_magic');

@@ -1,0 +1,2 @@
+UPDATE spell_bonus_data SET ap_bonus = 0, ap_dot_bonus = 0.23 WHERE entry = 124081; -- Zen Sphere heal
+UPDATE spell_bonus_data SET direct_bonus = 0, dot_bonus = 0, ap_bonus = 0.037, ap_dot_bonus = 0 WHERE entry = 124098; -- Zen Sphere damage

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (55694, 'spell_warr_frenzied_regeneration');

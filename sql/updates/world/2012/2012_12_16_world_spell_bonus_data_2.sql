@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (83381, -1, -1, 1.218, -1, 'Hunter - Kill Command');

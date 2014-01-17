@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (51723, -1, -1, 0.14, -1, 'Rogue - Fan of Knives');

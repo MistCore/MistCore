@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (81262, 'spell_dru_swiftmend');

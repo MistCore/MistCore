@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (46584, 'spell_dk_raise_dead');

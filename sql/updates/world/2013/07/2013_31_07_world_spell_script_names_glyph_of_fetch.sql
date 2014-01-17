@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (126746, 'spell_hun_glyph_of_fetch');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (101976, 'spell_warl_soul_harverst');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE ('19750', 'spell_pal_selfless_healer');

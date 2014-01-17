@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (18960, 'spell_dru_teleport_moonglade');

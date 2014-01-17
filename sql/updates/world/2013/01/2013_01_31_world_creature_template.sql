@@ -1,0 +1,1 @@
+UPDATE creature_template SET ScriptName = 'npc_frozen_orb' WHERE entry = 45322;

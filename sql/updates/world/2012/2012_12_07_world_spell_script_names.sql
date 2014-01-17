@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (108968, 'spell_pri_void_shift');

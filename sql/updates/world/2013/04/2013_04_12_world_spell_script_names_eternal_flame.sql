@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (114163, 'spell_pal_eternal_flame');

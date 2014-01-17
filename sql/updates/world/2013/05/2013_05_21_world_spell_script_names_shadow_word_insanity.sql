@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (129249, 'spell_pri_power_word_insanity');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (1535, 'spell_sha_fire_nova');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (53385, 'spell_pal_glyph_of_divine_storm');

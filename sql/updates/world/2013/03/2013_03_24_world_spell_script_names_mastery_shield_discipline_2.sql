@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (114214, 'spell_mastery_shield_discipline');

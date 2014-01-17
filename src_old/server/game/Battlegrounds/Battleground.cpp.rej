@@ -1,0 +1,14 @@
+--- src/server/game/Battlegrounds/Battleground.cpp
++++ src/server/game/Battlegrounds/Battleground.cpp
+@@ -471,8 +466,10 @@
+     // ***           BATTLEGROUND STARTING SYSTEM            ***
+     // *********************************************************
+     ModifyStartDelayTime(diff);
++    ModifyCountdownTimer(diff);
+ 
+-    if (!isArena())
++    // I know it's a too big but it's the value sent in packet, I get it from retail sniff.
++    // I think it's link to the countdown when bgs start
+     SetRemainingTime(300000);
+ 
+     if (m_ResetStatTimer > 5000)
