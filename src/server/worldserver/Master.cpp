@@ -367,6 +367,7 @@ const char* dumpTables[32] =
     "pet_spell_cooldown"
 };
 
+/*
 const char* ipTransfert[4] =
 {
     "37.187.68.78",      // Rassharom
@@ -446,6 +447,7 @@ public:
                     	continue;
                     }
 
+					// Was commented..
                     /*std::string result = "";
                     if(PlayerDumpWriter().GetDump(perso_guid, result))
                     {
@@ -474,6 +476,9 @@ public:
                             CharacterDatabase.PExecute("UPDATE characters SET deleteInfos_Name=name, deleteInfos_Account=account, deleteDate='" UI64FMTD "', name='', account=0 WHERE guid=%u", uint64(time(NULL)), perso_guid);
                         }
                     }*/
+
+					/*
+
                 }
                 while(toDump->NextRow());
             }
@@ -527,7 +532,7 @@ public:
                     	LoginDatabase.PQuery("UPDATE transferts SET error = %u, nb_attempt = nb_attempt + 1 WHERE id = %u", dump, transaction);
                     	continue;
                     }
-
+					*/
 
                     /*FILE *fout = fopen("temp.dump", "w");
                     if(!fout)
@@ -568,12 +573,13 @@ public:
                         default:
                             break;
                     }*/
+					/*
                 }
                 while (toLoad->NextRow());
             }
         }
     }
-};
+};*/
 
 Master::Master()
 {
@@ -598,6 +604,8 @@ int Master::Run()
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "/ /_/ / /_/ / /_/ /  __/ /___/ /_/ / /  /  __/");
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "\\____/\\__,_/\\__,_/\\___/\\____/\\____/_/   \\___/");
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "http://www.pandashan.com\n");
+	sLog->outInfo(LOG_FILTER_WORLDSERVER, "\n");
+	sLog->outInfo(LOG_FILTER_WORLDSERVER, "Public JadeCore\n");
 
     /// worldserver PID file creation
     std::string pidfile = ConfigMgr::GetStringDefault("PidFile", "");
@@ -657,7 +665,8 @@ int Master::Run()
     ACE_Based::Thread gmLogToDB_thread(new GmLogToDBRunnable);
     ACE_Based::Thread gmChatLogToDB_thread(new GmChatLogToDBRunnable);
     ACE_Based::Thread arenaLogToDB_thread(new ArenaLogToDBRunnable);
-    ACE_Based::Thread CharactersTransfertRunnable_thread(new CharactersTransfertRunnable);
+// Commented because of not using this right now. Will only generate errors.
+//    ACE_Based::Thread CharactersTransfertRunnable_thread(new CharactersTransfertRunnable);
 
     ///- Handle affinity for multiple processors and process priority on Windows
     #ifdef _WIN32
