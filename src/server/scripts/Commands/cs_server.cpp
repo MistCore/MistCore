@@ -120,7 +120,7 @@ public:
         handler->PSendSysMessage("Server delay: %u ms", updateTime);
 
         // Bypass player/VIP
-        if (handler->GetSession()->GetSecurity() > 1)
+        if (handler->GetSession() && handler->GetSession()->GetSecurity() > 1)
         {
             handler->PSendSysMessage("Map diff : %u ms", sWorld->GetRecordDiff(RECORD_DIFF_MAP));
             handler->PSendSysMessage("Battleground diff : %u ms", sWorld->GetRecordDiff(RECORD_DIFF_BATTLEGROUND));
