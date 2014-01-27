@@ -7,6 +7,11 @@
 *.so
 *.dylib
 
+# Compressed Archives
+*.zip
+*.rar
+*.7z
+
 # Compiled Static libraries
 *.lai
 *.la

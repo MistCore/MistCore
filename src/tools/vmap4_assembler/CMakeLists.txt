@@ -31,6 +31,8 @@ endif()
 target_link_libraries(vmap4assembler
   collision
   g3dlib
+  shared
+  ${ACE_LIBRARY}
   ${ZLIB_LIBRARIES}
 )
 
