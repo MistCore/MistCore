@@ -1645,8 +1645,9 @@ class spell_hun_rapid_fire : public SpellScriptLoader
                         if (AuraApplication* aura = _player->GetAuraApplication(HUNTER_SPELL_RAPID_FIRE))
                         {
                             AuraPtr rapidFire = aura->GetBase();
-
-                            rapidFire->GetEffect(1)->ChangeAmount(3200);
+                            
+                            if(rapidFire && rapidFire->GetEffect(1))
+                                rapidFire->GetEffect(1)->ChangeAmount(3200);
                         }
                     }
                     else
@@ -1654,8 +1655,9 @@ class spell_hun_rapid_fire : public SpellScriptLoader
                         if (AuraApplication* aura = _player->GetAuraApplication(HUNTER_SPELL_RAPID_FIRE))
                         {
                             AuraPtr rapidFire = aura->GetBase();
-
-                            rapidFire->GetEffect(1)->ChangeAmount(0);
+                            
+                            if(rapidFire && rapidFire->GetEffect(1))
+                                rapidFire->GetEffect(1)->ChangeAmount(0);
                         }
                     }
                 }
