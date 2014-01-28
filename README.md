@@ -1,19 +1,20 @@
-TrinityCore-MOP-5.0.5
+MistCore
 =====================
 
+Subjected to change
+{
 TrinityCore MOP 5.0.5 leak - PandaWOW / Pandashan
 
 SQL / dbc, maps, vmaps not included, file too big for GitHub
 
 People are selling this source for a lot of money, i'm giving it out for free.
 
-
 https://github.com/Kittnz/TrinityCore-MOP-5.0.5
 
 Database:
 
 https://www.dropbox.com/s/9beutzesui17xt7/Database.rar
-
+}
 
 # ![logo](http://www.trinitycore.org/f/public/style_images/1_trinitycore.png) TrinityCore
 
