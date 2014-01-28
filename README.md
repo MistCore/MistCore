@@ -1,5 +1,4 @@
 # MistCore
-=====================
 
 MistCore is (for the moment) the JadeCore leaked sourcecode that was made public or sold by a couple of people.
 Since this is a 'Mists of Pandaria' Core, we would like to continue this project.
@@ -26,6 +25,7 @@ World: Use the worldpanda.sql found in the link above.
 
 ## Dbc, maps, & vmaps
 You can use these extractors to generate dbc, maps & vmaps.
+
 https://github.com/MistCore/MistCore/releases/tag/Extractors
 
 
@@ -73,7 +73,9 @@ Read file [COPYING](COPYING)
 ## Authors &amp; Contributors
 
 TinityCore [THANKS](THANKS)
+
 Pandashan
+
 MistCore [THANKS_MIST](THANKS_MIST)
 
 
