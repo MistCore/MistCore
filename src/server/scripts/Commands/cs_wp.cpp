@@ -1157,7 +1157,7 @@ public:
         
         WorldDatabase.PExecute("INSERT INTO script_waypoint VALUES (%u, %u, %f, %f, %f, %u, '');", entry, oldMax + 1, player->GetPositionX(), player->GetPositionY(), player->GetPositionZ(), waitTime);
 
-        handler->PSendSysMessage("Point of entry% u% u added to the coordinated% f% f% f with a wait time of% u",
+        handler->PSendSysMessage("Point %u of entry u% u added to the coordinated %f f% f% with a wait time of u%",
 
                                   entry, oldMax + 1, player->GetPositionX(), player->GetPositionY(), player->GetPositionZ(), waitTime);
         return true;
