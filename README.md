@@ -1,37 +1,30 @@
-TrinityCore-MOP-5.0.5
-=====================
+# MistCore
 
-TrinityCore MOP 5.0.5 leak - PandaWOW / Pandashan
+MistCore is (for the moment) the JadeCore leaked sourcecode that was made public or sold by a couple of people.
+Since this is a 'Mists of Pandaria' Core, we would like to continue this project.
+We will try to fix what is broken, remove what is not needed, add new functions, and try to get it up to date with the current TrinityCore.
+There is still a lot to be fixed in this source, and we need all the help we can get.
 
-SQL / dbc, maps, vmaps not included, file too big for GitHub
+If you feel interested by this project and you would like to help, we would appriciate it.
+You can report bugs or add fixed or new systems in the 'Issues' list or the 'Pull Requests' list.
+## IRC
+Feel free to join us at irc.rizon.net - #mist
 
-People are selling this source for a lot of money, i'm giving it out for free.
-
-https://github.com/Kittnz/TrinityCore-MOP-5.0.5
-
-Database:
+## Database
+For the moment we do not have a decent database. For the moment we will stick with the leaked worldpanda database that was leaked with JadeCore.
+In time we will add, remove and translate the database into a good working database.
 
 https://www.dropbox.com/s/9beutzesui17xt7/Database.rar
 
-# ![logo](http://www.trinitycore.org/f/public/style_images/1_trinitycore.png) TrinityCore
+Notes:
+Auth: Use sql\base\auth_database.sql
+Characters: Use sql\base\characters_database.sql
+World: Use the worldpanda.sql found in the link above.
 
+## Dbc, maps, & vmaps
+You can use these extractors to generate dbc, maps & vmaps.
 
-## Introduction
-
-TrinityCore is a *MMORPG* Framework based mostly in C++.
-
-It is derived from *MaNGOS*, the *Massive Network Game Object Server*, and is
-based on the code of that project with extensive changes over time to optimize,
-improve and cleanup the codebase at the same time as improving the in-game
-mechanics and functionality.
-
-It is completely open source; community involvement is highly encouraged.
-
-If you wish to contribute ideas or code please visit our site linked below or
-make pull requests to our [Github repository](https://github.com/TrinityCore/TrinityCore).
-
-For further information on the TrinityCore project, please visit our project
-website at [TrinityCore.org](http://www.trinitycore.org).
+https://github.com/MistCore/MistCore/releases/tag/Extractors
 
 
 ## Requirements
@@ -56,7 +49,7 @@ Detailed installation guides are available in the wiki for
 
 ## Reporting issues
 
-Issues can be reported via the [Github issue tracker](https://github.com/TrinityCore/TrinityCore/issues?labels=Branch-3.3.5a).
+Issues can be reported via the [Github issue tracker](https://github.com/MistCore/MistCore/issues?state=open).
 
 Please take the time to review existing issues before submitting your own to
 prevent duplicates.
@@ -65,12 +58,8 @@ In addition, thoroughly read through the [issue tracker guide](http://www.trinit
 your report contains the required information. Incorrect or poorly formed
 reports are wasteful and are subject to deletion.
 
-
-## Submitting fixes
-
-Fixes are submitted as pull requests via Github. For more information on how to
-properly submit a pull request, read the [how-to: maintain a remote fork](http://www.trinitycore.org/f/topic/6037-howto-maintain-a-remote-fork-for-pull-requests-tortoisegit/).
-
+Notes:
+We will use this as reference for now.
 
 ## Copyright
 
@@ -81,15 +70,21 @@ Read file [COPYING](COPYING)
 
 ## Authors &amp; Contributors
 
-Read file [THANKS](THANKS)
+TinityCore [THANKS](THANKS)
+
+Pandashan
+
+MistCore [THANKS_MIST](THANKS_MIST)
 
 
 ## Links
 
-[Site](http://www.trinitycore.org)
+MistCore website coming soon..
 
-[Wiki](http://trinitycore.info)
+[TrinityCore Site](http://www.trinitycore.org)
 
-[Documentation](http://www.trinitycore.net) (powered by Doxygen)
+[TrinityCore Wiki](http://trinitycore.info)
 
-[Forums](http://www.trinitycore.org/f/)
+[TrinityCore Documentation](http://www.trinitycore.net) (powered by Doxygen)
+
+[TrinityCore Forums](http://www.trinitycore.org/f/)
