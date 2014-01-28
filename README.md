@@ -17,8 +17,11 @@ In time we will add, remove and translate the database into a good working datab
 https://www.dropbox.com/s/9beutzesui17xt7/Database.rar
 
 Notes:
+
 Auth: Use sql\base\auth_database.sql
+
 Characters: Use sql\base\characters_database.sql
+
 World: Use the worldpanda.sql found in the link above.
 
 ## Dbc, maps, & vmaps
