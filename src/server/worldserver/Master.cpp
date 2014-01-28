@@ -330,6 +330,7 @@ public:
     }
 };
 
+/*
 const char* dumpTables[32] =
 {
     "characters",
@@ -365,7 +366,7 @@ const char* dumpTables[32] =
     "pet_aura_effect",
     "pet_spell",
     "pet_spell_cooldown"
-};
+};*/
 
 /*
 const char* ipTransfert[4] =
@@ -598,13 +599,13 @@ int Master::Run()
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "%s (worldserver-daemon)", _FULLVERSION);
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "<Ctrl-C> to stop.\n");
 
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, "       __          __     ______              ");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, "      / /___ _____/ /__  / ____/___  ________ ");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, " __  / / __ `/ __  / _ \\/ /   / __ \\/ ___/ _ \\");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, "/ /_/ / /_/ / /_/ /  __/ /___/ /_/ / /  /  __/");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, "\\____/\\__,_/\\__,_/\\___/\\____/\\____/_/   \\___/");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, "Public JadeCore");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, "https://github.com/TC-JC-MOP/TrinityCore-MOP-5.0.5\n");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, "  __  __  _       _     ____    5.0.5.16135    ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " |  \/  |(_) ___ | |_  / ___| ___   _ __  ___  ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " | |\/| || |/ __|| __|| |    / _ \ | '__|/ _ \ ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " | |  | || |\__ \| |_ | |___| (_) || |  |  __/ ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " |_|  |_||_||___/ \__| \____|\___/ |_|   \___| ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " MistCore 2014 (c) Open-sourced Game Emulation ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, "         <http://www.mistcore.org/>            ");
 
     /// worldserver PID file creation
     std::string pidfile = ConfigMgr::GetStringDefault("PidFile", "");
@@ -664,6 +665,7 @@ int Master::Run()
     ACE_Based::Thread gmLogToDB_thread(new GmLogToDBRunnable);
     ACE_Based::Thread gmChatLogToDB_thread(new GmChatLogToDBRunnable);
     ACE_Based::Thread arenaLogToDB_thread(new ArenaLogToDBRunnable);
+
 // Commented because of not using this right now. Will only generate errors.
 //    ACE_Based::Thread CharactersTransfertRunnable_thread(new CharactersTransfertRunnable);
 
