@@ -34,7 +34,7 @@ Log::Log() : worker(NULL)
     SetRealmID(0);
     m_logsTimestamp = "_" + GetTimestampStr();
     LoadFromConfig();
-    MistCoreLog = fopen("pandashan.log", "a");
+    MistCoreLog = fopen("MistCore.log", "a");
 }
 
 Log::~Log()
