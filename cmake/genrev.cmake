@@ -1,3 +1,5 @@
+# Copyright (C) 2014 MistCore <http://www.mistcore.org/>
+# Copyright (C) 2013-2014 Pandashan <http://www.pandashan.com/>
 # Copyright (C) 2008-2012 Trinity <http://www.trinitycore.org/>
 #
 # This file is free software; as a special exception the author gives
