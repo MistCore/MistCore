@@ -1,3 +1,0 @@
-<componentinfo format="1">
-    <component name="wow-ruru" version="12340" />
-</componentinfo>
