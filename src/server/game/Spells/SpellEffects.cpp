@@ -1021,7 +1021,7 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
                     uint32 maxTargets = std::min<uint32>(3, attackers.size());
                     for (uint32 i = 0; i < maxTargets; ++i)
                     {
-                        Unit* attacker = JadeCore::Containers::SelectRandomContainerElement(attackers);
+                        Unit* attacker = MistCore::Containers::SelectRandomContainerElement(attackers);
                         AddUnitTarget(attacker, 1 << 1);
                         attackers.erase(attacker);
                     }
@@ -1214,8 +1214,8 @@ void Spell::EffectDummy(SpellEffIndex effIndex)
         case 120165:// Conflagrate
         {
             UnitList friends;
-            JadeCore::AnyFriendlyUnitInObjectRangeCheck u_check(m_caster, m_caster, 5.0f);
-            JadeCore::UnitListSearcher<JadeCore::AnyFriendlyUnitInObjectRangeCheck> searcher(m_caster, friends, u_check);
+            MistCore::AnyFriendlyUnitInObjectRangeCheck u_check(m_caster, m_caster, 5.0f);
+            MistCore::UnitListSearcher<MistCore::AnyFriendlyUnitInObjectRangeCheck> searcher(m_caster, friends, u_check);
             m_caster->VisitNearbyObject(5.0f, searcher);
 
             for (auto unit : friends)
@@ -2584,7 +2584,7 @@ void Spell::EffectEnergize(SpellEffIndex effIndex)
         if (!avalibleElixirs.empty())
         {
             // cast random elixir on target
-            m_caster->CastSpell(unitTarget, JadeCore::Containers::SelectRandomContainerElement(avalibleElixirs), true, m_CastItem);
+            m_caster->CastSpell(unitTarget, MistCore::Containers::SelectRandomContainerElement(avalibleElixirs), true, m_CastItem);
         }
     }
 }
@@ -7299,7 +7299,7 @@ void Spell::EffectCreateAreatrigger(SpellEffIndex effIndex)
 
                 if (!angelicFeatherList.empty())
                 {
-                    angelicFeatherList.sort(JadeCore::AreaTriggerDurationPctOrderPred());
+                    angelicFeatherList.sort(MistCore::AreaTriggerDurationPctOrderPred());
 
                     for (auto itr : angelicFeatherList)
                     {
@@ -7323,7 +7323,7 @@ void Spell::EffectCreateAreatrigger(SpellEffIndex effIndex)
 
                 if (!healingSphereList.empty())
                 {
-                    healingSphereList.sort(JadeCore::AreaTriggerDurationPctOrderPred());
+                    healingSphereList.sort(MistCore::AreaTriggerDurationPctOrderPred());
 
                     for (auto itr : healingSphereList)
                     {
@@ -7347,7 +7347,7 @@ void Spell::EffectCreateAreatrigger(SpellEffIndex effIndex)
 
                 if (!runeOfPowerList.empty())
                 {
-                    runeOfPowerList.sort(JadeCore::AreaTriggerDurationPctOrderPred());
+                    runeOfPowerList.sort(MistCore::AreaTriggerDurationPctOrderPred());
 
                     for (auto itr : runeOfPowerList)
                     {

@@ -180,7 +180,7 @@ public:
                 if (unit && unit->isAlive())
                     targets.push_back(unit);
             }
-            targets.sort(JadeCore::ObjectDistanceOrderPred(me));
+            targets.sort(MistCore::ObjectDistanceOrderPred(me));
             Unit* target = targets.front();
             if (target && me->IsWithinDistInMap(target, me->GetAttackDistance(target)))
             {

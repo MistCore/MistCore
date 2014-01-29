@@ -28,7 +28,7 @@
 #include "CellImpl.h"
 #include "SpellInfo.h"
 
-using namespace JadeCore;
+using namespace MistCore;
 
 void VisibleNotifier::SendToSelf()
 {

@@ -202,7 +202,7 @@ public:
             {
                 case TYPE_ACTIVATE_ANIMATED_STAFF:
                 {
-                    if (Creature* creature = instance->GetCreature(JadeCore::Containers::SelectRandomContainerElement(animated_staffs)))
+                    if (Creature* creature = instance->GetCreature(MistCore::Containers::SelectRandomContainerElement(animated_staffs)))
                         if (creature->GetAI())
                             creature->GetAI()->DoAction(0); //ACTION_ACTIVATE
                     break;

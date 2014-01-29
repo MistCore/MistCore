@@ -36,7 +36,7 @@
 class Player;
 //class Map;
 
-namespace JadeCore
+namespace MistCore
 {
     struct VisibleNotifier
     {

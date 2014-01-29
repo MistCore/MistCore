@@ -1946,8 +1946,8 @@ class npc_ebon_gargoyle : public CreatureScript
 
                 // Find victim of Summon Gargoyle spell
                 std::list<Unit*> targets;
-                JadeCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 30);
-                JadeCore::UnitListSearcher<JadeCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(me, targets, u_check);
+                MistCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 30);
+                MistCore::UnitListSearcher<MistCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(me, targets, u_check);
                 me->VisitNearbyObject(30, searcher);
                 for (std::list<Unit*>::const_iterator iter = targets.begin(); iter != targets.end(); ++iter)
                     if ((*iter)->GetAura(49206, owner->GetGUID()))
@@ -4067,8 +4067,8 @@ class npc_ring_of_frost : public CreatureScript
             {
                 // Find all the enemies
                 std::list<Unit*> targets;
-                JadeCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 5.0f);
-                JadeCore::UnitListSearcher<JadeCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(me, targets, u_check);
+                MistCore::AnyUnfriendlyUnitInObjectRangeCheck u_check(me, me, 5.0f);
+                MistCore::UnitListSearcher<MistCore::AnyUnfriendlyUnitInObjectRangeCheck> searcher(me, targets, u_check);
                 me->VisitNearbyObject(5.0f, searcher);
                 for (std::list<Unit*>::const_iterator iter = targets.begin(); iter != targets.end(); ++iter)
                     if (!(*iter)->isTotem())

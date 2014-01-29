@@ -374,7 +374,7 @@ public:
             if (playerList.empty())
                 return NULL;
 
-            JadeCore::Containers::RandomResizeList(playerList, 1);
+            MistCore::Containers::RandomResizeList(playerList, 1);
 
             return *playerList.begin();
         }

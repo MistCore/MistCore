@@ -29,7 +29,7 @@
 #include "Dynamic/TypeList.h"
 #include <map>
 
-namespace JadeCore
+namespace MistCore
 {
     /* ContainerMapList Helpers */
     // count functions

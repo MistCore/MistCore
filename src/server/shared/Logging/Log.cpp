@@ -34,16 +34,16 @@ Log::Log() : worker(NULL)
     SetRealmID(0);
     m_logsTimestamp = "_" + GetTimestampStr();
     LoadFromConfig();
-    pandashanLog = fopen("pandashan.log", "a");
+    MistCoreLog = fopen("pandashan.log", "a");
 }
 
 Log::~Log()
 {
     Close();
 
-    fclose(pandashanLog);
-    delete pandashanLog;
-    pandashanLog = NULL;
+    fclose(MistCoreLog);
+    delete MistCoreLog;
+    MistCoreLog = NULL;
 }
 
 uint8 Log::NextAppenderId()
@@ -564,7 +564,7 @@ void Log::outArena(const char * str, ...)
     ArenaLogQueue.add(log);
 }
 
-void Log::OutPandashan(const char* str, ...)
+void Log::OutMistCore(const char* str, ...)
 {
     if (!str)
         return;
@@ -577,6 +577,6 @@ void Log::OutPandashan(const char* str, ...)
     va_end(ap);
 
     std::string date = GetTimestampStr();
-    fprintf(pandashanLog, "[%s] Pandashan LOG : %s\n", date.c_str(), result);
-    fflush(pandashanLog);
+    fprintf(MistCoreLog, "[%s] Mistcore LOG : %s\n", date.c_str(), result);
+    fflush(MistCoreLog);
 }

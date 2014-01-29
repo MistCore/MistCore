@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by JadeCore.rc
+// Used by MistCore.rc
 //
 
 // Next default values for new objects

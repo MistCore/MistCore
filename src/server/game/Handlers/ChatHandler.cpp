@@ -668,7 +668,7 @@ void WorldSession::HandleEmoteOpcode(WorldPacket & recvData)
     GetPlayer()->HandleEmoteCommand(emote);
 }
 
-namespace JadeCore
+namespace MistCore
 {
     class EmoteChatBuilder
     {
@@ -698,7 +698,7 @@ namespace JadeCore
             uint32        i_emote_num;
             Unit const*   i_target;
     };
-}                                                           // namespace JadeCore
+}                                                           // namespace MistCore
 
 void WorldSession::HandleTextEmoteOpcode(WorldPacket & recvData)
 {
@@ -744,15 +744,15 @@ void WorldSession::HandleTextEmoteOpcode(WorldPacket & recvData)
 
     Unit* unit = ObjectAccessor::GetUnit(*_player, guid);
 
-    CellCoord p = JadeCore::ComputeCellCoord(GetPlayer()->GetPositionX(), GetPlayer()->GetPositionY());
+    CellCoord p = MistCore::ComputeCellCoord(GetPlayer()->GetPositionX(), GetPlayer()->GetPositionY());
 
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::EmoteChatBuilder emote_builder(*GetPlayer(), text_emote, emoteNum, unit);
-    JadeCore::LocalizedPacketDo<JadeCore::EmoteChatBuilder > emote_do(emote_builder);
-    JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::EmoteChatBuilder > > emote_worker(GetPlayer(), sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE), emote_do);
-    TypeContainerVisitor<JadeCore::PlayerDistWorker<JadeCore::LocalizedPacketDo<JadeCore::EmoteChatBuilder> >, WorldTypeMapContainer> message(emote_worker);
+    MistCore::EmoteChatBuilder emote_builder(*GetPlayer(), text_emote, emoteNum, unit);
+    MistCore::LocalizedPacketDo<MistCore::EmoteChatBuilder > emote_do(emote_builder);
+    MistCore::PlayerDistWorker<MistCore::LocalizedPacketDo<MistCore::EmoteChatBuilder > > emote_worker(GetPlayer(), sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE), emote_do);
+    TypeContainerVisitor<MistCore::PlayerDistWorker<MistCore::LocalizedPacketDo<MistCore::EmoteChatBuilder> >, WorldTypeMapContainer> message(emote_worker);
     cell.Visit(p, message, *GetPlayer()->GetMap(), *GetPlayer(), sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE));
 
     GetPlayer()->UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_DO_EMOTE, text_emote, 0, unit);

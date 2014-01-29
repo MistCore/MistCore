@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008-20XX JadeCore <http://www.pandashan.com>
+ * Copyright (C) 2008-20XX MistCore <http://www.pandashan.com>
  * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2006-2009 ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
  *

@@ -166,14 +166,14 @@ class boss_nalorakk : public CreatureScript
                 me->GetPosition(x, y, z);
 
                 {
-                    CellCoord pair(JadeCore::ComputeCellCoord(x, y));
+                    CellCoord pair(MistCore::ComputeCellCoord(x, y));
                     Cell cell(pair);
                     cell.SetNoCreate();
 
-                    JadeCore::AllFriendlyCreaturesInGrid check(me);
-                    JadeCore::CreatureListSearcher<JadeCore::AllFriendlyCreaturesInGrid> searcher(me, templist, check);
+                    MistCore::AllFriendlyCreaturesInGrid check(me);
+                    MistCore::CreatureListSearcher<MistCore::AllFriendlyCreaturesInGrid> searcher(me, templist, check);
 
-                    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AllFriendlyCreaturesInGrid>, GridTypeMapContainer> cSearcher(searcher);
+                    TypeContainerVisitor<MistCore::CreatureListSearcher<MistCore::AllFriendlyCreaturesInGrid>, GridTypeMapContainer> cSearcher(searcher);
 
                     cell.Visit(pair, cSearcher, *(me->GetMap()), *me, me->GetGridActivationRange());
                 }

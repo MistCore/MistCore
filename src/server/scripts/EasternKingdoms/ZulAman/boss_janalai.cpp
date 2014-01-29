@@ -236,14 +236,14 @@ class boss_janalai : public CreatureScript
                 me->GetPosition(x, y, z);
 
                 {
-                    CellCoord pair(JadeCore::ComputeCellCoord(x, y));
+                    CellCoord pair(MistCore::ComputeCellCoord(x, y));
                     Cell cell(pair);
                     cell.SetNoCreate();
 
-                    JadeCore::AllCreaturesOfEntryInRange check(me, MOB_EGG, 100);
-                    JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
+                    MistCore::AllCreaturesOfEntryInRange check(me, MOB_EGG, 100);
+                    MistCore::CreatureListSearcher<MistCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
 
-                    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+                    TypeContainerVisitor<MistCore::CreatureListSearcher<MistCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
 
                     cell.Visit(pair, cSearcher, *me->GetMap(), *me, me->GetGridActivationRange());
                 }
@@ -269,14 +269,14 @@ class boss_janalai : public CreatureScript
                 me->GetPosition(x, y, z);
 
                 {
-                    CellCoord pair(JadeCore::ComputeCellCoord(x, y));
+                    CellCoord pair(MistCore::ComputeCellCoord(x, y));
                     Cell cell(pair);
                     cell.SetNoCreate();
 
-                    JadeCore::AllCreaturesOfEntryInRange check(me, MOB_FIRE_BOMB, 100);
-                    JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
+                    MistCore::AllCreaturesOfEntryInRange check(me, MOB_FIRE_BOMB, 100);
+                    MistCore::CreatureListSearcher<MistCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
 
-                    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+                    TypeContainerVisitor<MistCore::CreatureListSearcher<MistCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
 
                     cell.Visit(pair, cSearcher, *me->GetMap(), *me, me->GetGridActivationRange());
                 }
@@ -522,14 +522,14 @@ class mob_janalai_hatcher : public CreatureScript
                 me->GetPosition(x, y, z);
 
                 {
-                    CellCoord pair(JadeCore::ComputeCellCoord(x, y));
+                    CellCoord pair(MistCore::ComputeCellCoord(x, y));
                     Cell cell(pair);
                     cell.SetNoCreate();
 
-                    JadeCore::AllCreaturesOfEntryInRange check(me, 23817, 50);
-                    JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
+                    MistCore::AllCreaturesOfEntryInRange check(me, 23817, 50);
+                    MistCore::CreatureListSearcher<MistCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
 
-                    TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+                    TypeContainerVisitor<MistCore::CreatureListSearcher<MistCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
 
                     cell.Visit(pair, cSearcher, *(me->GetMap()), *me, me->GetGridActivationRange());
                 }

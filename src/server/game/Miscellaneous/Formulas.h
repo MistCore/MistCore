@@ -23,7 +23,7 @@
 #include "SharedDefines.h"
 #include "ScriptMgr.h"
 
-namespace JadeCore
+namespace MistCore
 {
     namespace Honor
     {

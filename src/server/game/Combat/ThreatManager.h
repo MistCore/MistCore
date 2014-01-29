@@ -257,7 +257,7 @@ class ThreatManager
 
 //=================================================
 
-namespace JadeCore
+namespace MistCore
 {
     // Binary predicate for sorting HostileReferences based on threat value
     class ThreatOrderPred

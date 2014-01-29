@@ -438,7 +438,7 @@ class boss_professor_putricide : public CreatureScript
 
                             if (list.size() > 4)
                             {
-                                list.sort(JadeCore::ObjectDistanceOrderPred(rotface));
+                                list.sort(MistCore::ObjectDistanceOrderPred(rotface));
                                 do
                                 {
                                     list.pop_back();
@@ -1204,7 +1204,7 @@ class spell_putricide_eat_ooze : public SpellScriptLoader
                 if (targets.empty())
                     return;
 
-                targets.sort(JadeCore::ObjectDistanceOrderPred(GetCaster()));
+                targets.sort(MistCore::ObjectDistanceOrderPred(GetCaster()));
                 WorldObject* target = targets.front();
                 targets.clear();
                 targets.push_back(target);

@@ -358,7 +358,7 @@ class spell_warr_staggering_shout : public SpellScriptLoader
 
             void RemoveInvalidTargets(std::list<WorldObject*>& targets)
             {
-                targets.remove_if(JadeCore::UnitAuraTypeCheck(false, SPELL_AURA_MOD_DECREASE_SPEED));
+                targets.remove_if(MistCore::UnitAuraTypeCheck(false, SPELL_AURA_MOD_DECREASE_SPEED));
             }
 
             void Register()

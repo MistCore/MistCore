@@ -483,7 +483,7 @@ void SmartAI::EnterEvadeMode()
         me->GetMotionMaster()->MoveTargetedHome();
 
     // Ouput is useless, it's generic bug related to SmartAI system
-    //sLog->OutPandashan("SmartAI::EnterEvadeMode Entry %u" , me->GetEntry());
+    //sLog->OutMistCore("SmartAI::EnterEvadeMode Entry %u" , me->GetEntry());
 
     Reset();
 }

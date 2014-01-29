@@ -463,7 +463,7 @@ public:
             }
             if (targets.empty())
                 return; // No targets added for some reason. No point continuing.
-            targets.sort(JadeCore::ObjectDistanceOrderPred(me)); // Sort players by distance.
+            targets.sort(MistCore::ObjectDistanceOrderPred(me)); // Sort players by distance.
             targets.resize(1); // Only need closest target.
             Unit* target = targets.front(); // Get the first target.
             if (target)

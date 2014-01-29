@@ -52,7 +52,7 @@ struct Position;
 class Battleground;
 class MapInstanced;
 class InstanceMap;
-namespace JadeCore { struct ObjectUpdater; }
+namespace MistCore { struct ObjectUpdater; }
 
 struct ScriptAction
 {
@@ -260,7 +260,7 @@ class Map : public GridRefManager<NGridType>
         template<class T> bool AddToMap(T *);
         template<class T> void RemoveFromMap(T *, bool);
 
-        void VisitNearbyCellsOf(WorldObject* obj, TypeContainerVisitor<JadeCore::ObjectUpdater, GridTypeMapContainer> &gridVisitor, TypeContainerVisitor<JadeCore::ObjectUpdater, WorldTypeMapContainer> &worldVisitor);
+        void VisitNearbyCellsOf(WorldObject* obj, TypeContainerVisitor<MistCore::ObjectUpdater, GridTypeMapContainer> &gridVisitor, TypeContainerVisitor<MistCore::ObjectUpdater, WorldTypeMapContainer> &worldVisitor);
         virtual void Update(const uint32);
 
         float GetVisibilityRange() const { return m_VisibleDistance; }
@@ -274,13 +274,13 @@ class Map : public GridRefManager<NGridType>
 
         bool IsRemovalGrid(float x, float y) const
         {
-            GridCoord p = JadeCore::ComputeGridCoord(x, y);
+            GridCoord p = MistCore::ComputeGridCoord(x, y);
             return !getNGrid(p.x_coord, p.y_coord) || getNGrid(p.x_coord, p.y_coord)->GetGridState() == GRID_STATE_REMOVAL;
         }
 
         bool IsGridLoaded(float x, float y) const
         {
-            return IsGridLoaded(JadeCore::ComputeGridCoord(x, y));
+            return IsGridLoaded(MistCore::ComputeGridCoord(x, y));
         }
 
         bool GetUnloadLock(const GridCoord &p) const { return getNGrid(p.x_coord, p.y_coord)->getUnloadLock(); }
@@ -682,7 +682,7 @@ inline void Map::Visit(Cell const& cell, TypeContainerVisitor<T, CONTAINER>& vis
 template<class NOTIFIER>
 inline void Map::VisitAll(float const& x, float const& y, float radius, NOTIFIER& notifier, bool loadGrids)
 {
-    CellCoord p(JadeCore::ComputeCellCoord(x, y));
+    CellCoord p(MistCore::ComputeCellCoord(x, y));
     Cell cell(p);
     if (!loadGrids)
         cell.SetNoCreate();
@@ -697,7 +697,7 @@ inline void Map::VisitAll(float const& x, float const& y, float radius, NOTIFIER
 template<class NOTIFIER>
 inline void Map::VisitFirstFound(const float &x, const float &y, float radius, NOTIFIER &notifier, bool loadGrids)
 {
-    CellCoord p(JadeCore::ComputeCellCoord(x, y));
+    CellCoord p(MistCore::ComputeCellCoord(x, y));
     Cell cell(p);
     if (!loadGrids)
         cell.SetNoCreate();
@@ -714,7 +714,7 @@ inline void Map::VisitFirstFound(const float &x, const float &y, float radius, N
 template<class NOTIFIER>
 inline void Map::VisitWorld(const float &x, const float &y, float radius, NOTIFIER &notifier, bool loadGrids)
 {
-    CellCoord p(JadeCore::ComputeCellCoord(x, y));
+    CellCoord p(MistCore::ComputeCellCoord(x, y));
     Cell cell(p);
     if (!loadGrids)
         cell.SetNoCreate();
@@ -726,7 +726,7 @@ inline void Map::VisitWorld(const float &x, const float &y, float radius, NOTIFI
 template<class NOTIFIER>
 inline void Map::VisitGrid(const float &x, const float &y, float radius, NOTIFIER &notifier, bool loadGrids)
 {
-    CellCoord p(JadeCore::ComputeCellCoord(x, y));
+    CellCoord p(MistCore::ComputeCellCoord(x, y));
     Cell cell(p);
     if (!loadGrids)
         cell.SetNoCreate();

@@ -1430,8 +1430,8 @@ class spell_q11010_q11102_q11023_choose_loc : public SpellScriptLoader
                 Unit* caster = GetCaster();
                 // Check for player that is in 65 y range
                 std::list<Player*> PlayerList;
-                JadeCore::AnyPlayerInObjectRangeCheck checker(caster, 765.0f);
-                JadeCore::PlayerListSearcher<JadeCore::AnyPlayerInObjectRangeCheck> searcher(caster, PlayerList, checker);
+                MistCore::AnyPlayerInObjectRangeCheck checker(caster, 765.0f);
+                MistCore::PlayerListSearcher<MistCore::AnyPlayerInObjectRangeCheck> searcher(caster, PlayerList, checker);
                 caster->VisitNearbyWorldObject(65.0f, searcher);
                 for (std::list<Player*>::const_iterator itr = PlayerList.begin(); itr != PlayerList.end(); ++itr)
                     // Check if found player target is on fly mount or using flying form

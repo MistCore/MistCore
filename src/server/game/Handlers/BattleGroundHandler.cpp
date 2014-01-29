@@ -425,7 +425,7 @@ void WorldSession::HandleBattleFieldPortOpcode(WorldPacket &recvData)
 
     if (queueSlot > PLAYER_MAX_BATTLEGROUND_QUEUES)
     {
-    	sLog->OutPandashan("HandleBattleFieldPortOpcode queueSlot %u", queueSlot);
+    	sLog->OutMistCore("HandleBattleFieldPortOpcode queueSlot %u", queueSlot);
     	return;
     }
 
@@ -438,7 +438,7 @@ void WorldSession::HandleBattleFieldPortOpcode(WorldPacket &recvData)
 
     if (bgQueueTypeId > MAX_BATTLEGROUND_QUEUE_TYPES)
     {
-    	sLog->OutPandashan("HandleBattleFieldPortOpcode bgQueueTypeId %u", bgQueueTypeId);
+    	sLog->OutMistCore("HandleBattleFieldPortOpcode bgQueueTypeId %u", bgQueueTypeId);
     	return;
     }
 

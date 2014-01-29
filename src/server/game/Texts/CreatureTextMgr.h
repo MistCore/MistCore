@@ -242,7 +242,7 @@ void CreatureTextMgr::SendChatPacket(WorldObject* source, Builder const& builder
     }
 
     float dist = GetRangeForChatType(msgType);
-    JadeCore::PlayerDistWorker<CreatureTextLocalizer<Builder> > worker(source, dist, localizer);
+    MistCore::PlayerDistWorker<CreatureTextLocalizer<Builder> > worker(source, dist, localizer);
     source->VisitNearbyWorldObject(dist, worker);
 }
 

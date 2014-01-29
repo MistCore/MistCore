@@ -955,16 +955,16 @@ void hyjalAI::JustDied(Unit* /*killer*/)
 
 void hyjalAI::HideNearPos(float x, float y)
 {
-    CellCoord pair(JadeCore::ComputeCellCoord(x, y));
+    CellCoord pair(MistCore::ComputeCellCoord(x, y));
     Cell cell(pair);
     cell.SetNoCreate();
 
     // First get all creatures.
     std::list<Creature*> creatures;
-    JadeCore::AllFriendlyCreaturesInGrid creature_check(me);
-    JadeCore::CreatureListSearcher<JadeCore::AllFriendlyCreaturesInGrid> creature_searcher(me, creatures, creature_check);
+    MistCore::AllFriendlyCreaturesInGrid creature_check(me);
+    MistCore::CreatureListSearcher<MistCore::AllFriendlyCreaturesInGrid> creature_searcher(me, creatures, creature_check);
 
-    TypeContainerVisitor <JadeCore::CreatureListSearcher<JadeCore::AllFriendlyCreaturesInGrid>, GridTypeMapContainer> creature_visitor(creature_searcher);
+    TypeContainerVisitor <MistCore::CreatureListSearcher<MistCore::AllFriendlyCreaturesInGrid>, GridTypeMapContainer> creature_visitor(creature_searcher);
     cell.Visit(pair, creature_visitor, *(me->GetMap()), *me, me->GetGridActivationRange());
 
     if (!creatures.empty())
@@ -979,13 +979,13 @@ void hyjalAI::HideNearPos(float x, float y)
 
 void hyjalAI::RespawnNearPos(float x, float y)
 {
-    CellCoord p(JadeCore::ComputeCellCoord(x, y));
+    CellCoord p(MistCore::ComputeCellCoord(x, y));
     Cell cell(p);
     cell.SetNoCreate();
 
-    JadeCore::RespawnDo u_do;
-    JadeCore::WorldObjectWorker<JadeCore::RespawnDo> worker(me, u_do);
-    TypeContainerVisitor<JadeCore::WorldObjectWorker<JadeCore::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
+    MistCore::RespawnDo u_do;
+    MistCore::WorldObjectWorker<MistCore::RespawnDo> worker(me, u_do);
+    TypeContainerVisitor<MistCore::WorldObjectWorker<MistCore::RespawnDo>, GridTypeMapContainer > obj_worker(worker);
     cell.Visit(p, obj_worker, *me->GetMap(), *me, me->GetGridActivationRange());
 }
 
@@ -1010,16 +1010,16 @@ void hyjalAI::WaypointReached(uint32 waypointId)
         }
         //do some talking
         //all alive guards walk near here
-        CellCoord pair(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+        CellCoord pair(MistCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
         Cell cell(pair);
         cell.SetNoCreate();
 
         // First get all creatures.
         std::list<Creature*> creatures;
-        JadeCore::AllFriendlyCreaturesInGrid creature_check(me);
-        JadeCore::CreatureListSearcher<JadeCore::AllFriendlyCreaturesInGrid> creature_searcher(me, creatures, creature_check);
+        MistCore::AllFriendlyCreaturesInGrid creature_check(me);
+        MistCore::CreatureListSearcher<MistCore::AllFriendlyCreaturesInGrid> creature_searcher(me, creatures, creature_check);
         TypeContainerVisitor
-            <JadeCore::CreatureListSearcher<JadeCore::AllFriendlyCreaturesInGrid>,
+            <MistCore::CreatureListSearcher<MistCore::AllFriendlyCreaturesInGrid>,
             GridTypeMapContainer> creature_visitor(creature_searcher);
 
         cell.Visit(pair, creature_visitor, *(me->GetMap()), *me, me->GetGridActivationRange());
@@ -1051,15 +1051,15 @@ void hyjalAI::DoOverrun(uint32 faction, const uint32 diff)
     {
         if (TeleportTimer <= diff)
         {
-            CellCoord pair(JadeCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
+            CellCoord pair(MistCore::ComputeCellCoord(me->GetPositionX(), me->GetPositionY()));
             Cell cell(pair);
             cell.SetNoCreate();
 
             std::list<Creature*> creatures;
-            JadeCore::AllFriendlyCreaturesInGrid creature_check(me);
-            JadeCore::CreatureListSearcher<JadeCore::AllFriendlyCreaturesInGrid> creature_searcher(me, creatures, creature_check);
+            MistCore::AllFriendlyCreaturesInGrid creature_check(me);
+            MistCore::CreatureListSearcher<MistCore::AllFriendlyCreaturesInGrid> creature_searcher(me, creatures, creature_check);
             TypeContainerVisitor
-                <JadeCore::CreatureListSearcher<JadeCore::AllFriendlyCreaturesInGrid>,
+                <MistCore::CreatureListSearcher<MistCore::AllFriendlyCreaturesInGrid>,
                 GridTypeMapContainer> creature_visitor(creature_searcher);
 
             cell.Visit(pair, creature_visitor, *(me->GetMap()), *me, me->GetGridActivationRange());

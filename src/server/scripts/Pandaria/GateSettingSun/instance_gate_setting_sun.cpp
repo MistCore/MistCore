@@ -337,8 +337,8 @@ public:
                 case NPC_RIMOK:                 return rimokGuid;
                 case NPC_RAIGONN:               return raigonnGuid;
                 case NPC_WEAK_SPOT:             return raigonWeakGuid;
-                case DATA_RANDOM_BOMBARDER:     return JadeCore::Containers::SelectRandomContainerElement(bombarderGuids);
-                case DATA_RANDOM_BOMB_STALKER:  return JadeCore::Containers::SelectRandomContainerElement(bombStalkerGuids);
+                case DATA_RANDOM_BOMBARDER:     return MistCore::Containers::SelectRandomContainerElement(bombarderGuids);
+                case DATA_RANDOM_BOMB_STALKER:  return MistCore::Containers::SelectRandomContainerElement(bombStalkerGuids);
             }
 
             return 0;

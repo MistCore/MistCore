@@ -692,7 +692,7 @@ class Spell
 #endif
 };
 
-namespace JadeCore
+namespace MistCore
 {
     struct WorldObjectSpellTargetCheck
     {

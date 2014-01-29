@@ -307,7 +307,7 @@ class Item : public Object
             {
                 if (uint32(m_text.c_str()[i]) == 0xA0)
                 {
-                    sLog->OutPandashan("Item::SetText: Incorrect characters %s, m_text set to NULL", m_text.c_str());
+                    sLog->OutMistCore("Item::SetText: Incorrect characters %s, m_text set to NULL", m_text.c_str());
                     m_text = "";
                     return;
                 }

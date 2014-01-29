@@ -45,7 +45,7 @@ bool stopEvent = false;                                     // Setting it to tru
 LoginDatabaseWorkerPool LoginDatabase;                      // Accessor to the auth server database
 
 // Handle authserver's termination signals
-class AuthServerSignalHandler : public JadeCore::SignalHandler
+class AuthServerSignalHandler : public MistCore::SignalHandler
 {
 public:
     virtual void HandleSignal(int SigNum)

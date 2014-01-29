@@ -58,7 +58,7 @@ class ResultSet
         MYSQL_FIELD* _fields;
 };
 
-typedef JadeCore::AutoPtr<ResultSet, ACE_Thread_Mutex> QueryResult;
+typedef MistCore::AutoPtr<ResultSet, ACE_Thread_Mutex> QueryResult;
 
 class PreparedResultSet
 {
@@ -103,7 +103,7 @@ class PreparedResultSet
 
 };
 
-typedef JadeCore::AutoPtr<PreparedResultSet, ACE_Thread_Mutex> PreparedQueryResult;
+typedef MistCore::AutoPtr<PreparedResultSet, ACE_Thread_Mutex> PreparedQueryResult;
 
 #endif
 

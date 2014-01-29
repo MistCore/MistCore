@@ -2304,7 +2304,7 @@ void World::SendGlobalGMMessage(WorldPacket* packet, WorldSession* self, uint32 
     }
 }
 
-namespace JadeCore
+namespace MistCore
 {
     class WorldWorldTextBuilder
     {
@@ -2359,7 +2359,7 @@ namespace JadeCore
             int32 i_textId;
             va_list* i_args;
     };
-}                                                           // namespace JadeCore
+}                                                           // namespace MistCore
 
 /// Send a System Message to all players (except self if mentioned)
 void World::SendWorldText(int32 string_id, ...)
@@ -2367,8 +2367,8 @@ void World::SendWorldText(int32 string_id, ...)
     va_list ap;
     va_start(ap, string_id);
 
-    JadeCore::WorldWorldTextBuilder wt_builder(string_id, &ap);
-    JadeCore::LocalizedPacketListDo<JadeCore::WorldWorldTextBuilder> wt_do(wt_builder);
+    MistCore::WorldWorldTextBuilder wt_builder(string_id, &ap);
+    MistCore::LocalizedPacketListDo<MistCore::WorldWorldTextBuilder> wt_do(wt_builder);
     for (SessionMap::const_iterator itr = m_sessions.begin(); itr != m_sessions.end(); ++itr)
     {
         if (!itr->second || !itr->second->GetPlayer() || !itr->second->GetPlayer()->IsInWorld())
@@ -2386,8 +2386,8 @@ void World::SendGMText(int32 string_id, ...)
     va_list ap;
     va_start(ap, string_id);
 
-    JadeCore::WorldWorldTextBuilder wt_builder(string_id, &ap);
-    JadeCore::LocalizedPacketListDo<JadeCore::WorldWorldTextBuilder> wt_do(wt_builder);
+    MistCore::WorldWorldTextBuilder wt_builder(string_id, &ap);
+    MistCore::LocalizedPacketListDo<MistCore::WorldWorldTextBuilder> wt_do(wt_builder);
     for (SessionMap::iterator itr = m_sessions.begin(); itr != m_sessions.end(); ++itr)
     {
         if (!itr->second || !itr->second->GetPlayer() || !itr->second->GetPlayer()->IsInWorld())
@@ -2854,7 +2854,7 @@ void World::SendAutoBroadcast()
 
     std::string msg;
 
-    msg = JadeCore::Containers::SelectRandomContainerElement(m_Autobroadcasts);
+    msg = MistCore::Containers::SelectRandomContainerElement(m_Autobroadcasts);
 
     uint32 abcenter = sWorld->getIntConfig(CONFIG_AUTOBROADCAST_CENTER);
 
@@ -3068,7 +3068,7 @@ void World::ResetCurrencyWeekCap()
     m_NextCurrencyReset = time_t(m_NextCurrencyReset + DAY * getIntConfig(CONFIG_CURRENCY_RESET_INTERVAL));
     sWorld->setWorldState(WS_CURRENCY_RESET_TIME, uint64(m_NextCurrencyReset));
 
-    sLog->OutPandashan("World::ResetCurrencyWeekCap()");
+    sLog->OutMistCore("World::ResetCurrencyWeekCap()");
 }
 
 void World::LoadDBAllowedSecurityLevel()

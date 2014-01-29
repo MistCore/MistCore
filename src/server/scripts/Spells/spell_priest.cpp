@@ -271,7 +271,7 @@ class spell_pri_psyfiend_hit_me_driver : public SpellScriptLoader
                         return;
 
                     if (psyfiendList.size() > 1)
-                        JadeCore::Containers::RandomResizeList(psyfiendList, 1);
+                        MistCore::Containers::RandomResizeList(psyfiendList, 1);
 
                     for (auto itr : psyfiendList)
                         if (itr->AI())
@@ -1300,7 +1300,7 @@ class spell_pri_atonement : public SpellScriptLoader
 
                             if (groupList.size() > 1)
                             {
-                                groupList.sort(JadeCore::HealthPctOrderPred());
+                                groupList.sort(MistCore::HealthPctOrderPred());
                                 groupList.resize(1);
                             }
 
@@ -1753,7 +1753,7 @@ class spell_pri_cascade_second : public SpellScriptLoader
                             return;
 
                         // Each bound hit twice more targets up to 8 for the same bound
-                        JadeCore::Containers::RandomResizeList(targetList, (affectedUnits * 2));
+                        MistCore::Containers::RandomResizeList(targetList, (affectedUnits * 2));
 
                         for (auto itr : targetList)
                         {

@@ -156,8 +156,8 @@ bool FleeingMovementGenerator<T>::_getPoint(T &owner, float &x, float &y, float 
             temp_y += distance/5 * sin(angle);
             float _temp_x = temp_x;
             float _temp_y = temp_y;
-            JadeCore::NormalizeMapCoord(_temp_x);
-            JadeCore::NormalizeMapCoord(_temp_y);
+            MistCore::NormalizeMapCoord(_temp_x);
+            MistCore::NormalizeMapCoord(_temp_y);
             float _temp_z = _map->GetHeight(temp_x, temp_y, z, true);
             if (fabs(_temp_z - temp_z) > 2.0f)
             {
@@ -174,8 +174,8 @@ bool FleeingMovementGenerator<T>::_getPoint(T &owner, float &x, float &y, float 
         if (!goodCoordinates)
             continue;
 
-        JadeCore::NormalizeMapCoord(temp_x);
-        JadeCore::NormalizeMapCoord(temp_y);
+        MistCore::NormalizeMapCoord(temp_x);
+        MistCore::NormalizeMapCoord(temp_y);
         if (owner.IsWithinLOS(temp_x, temp_y, z))
         {
             bool is_water_now = _map->IsInWater(x,y,z);

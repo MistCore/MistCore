@@ -501,7 +501,7 @@ public:
 
             if (!checkPassed)
             {
-                Player * pPassenger = JadeCore::Containers::SelectRandomContainerElement(pSet);
+                Player * pPassenger = MistCore::Containers::SelectRandomContainerElement(pSet);
 
                 if (!pPassenger)
                     if (me->isInCombat())

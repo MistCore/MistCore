@@ -489,13 +489,13 @@ public:
             float x, y, z;
             me->GetPosition(x, y, z);
 
-            CellCoord pair(JadeCore::ComputeCellCoord(x, y));
+            CellCoord pair(MistCore::ComputeCellCoord(x, y));
             Cell cell(pair);
             cell.SetNoCreate();
 
-            JadeCore::AllCreaturesOfEntryInRange check(me, entry, 100);
-            JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
-            TypeContainerVisitor<JadeCore::CreatureListSearcher<JadeCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
+            MistCore::AllCreaturesOfEntryInRange check(me, entry, 100);
+            MistCore::CreatureListSearcher<MistCore::AllCreaturesOfEntryInRange> searcher(me, templist, check);
+            TypeContainerVisitor<MistCore::CreatureListSearcher<MistCore::AllCreaturesOfEntryInRange>, GridTypeMapContainer> cSearcher(searcher);
             cell.Visit(pair, cSearcher, *(me->GetMap()), *me, me->GetGridActivationRange());
 
             for (std::list<Creature*>::const_iterator i = templist.begin(); i != templist.end(); ++i)

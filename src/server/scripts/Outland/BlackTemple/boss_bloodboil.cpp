@@ -159,7 +159,7 @@ public:
             }
 
             //Sort the list of players
-            targets.sort(JadeCore::ObjectDistanceOrderPred(me, false));
+            targets.sort(MistCore::ObjectDistanceOrderPred(me, false));
             //Resize so we only get top 5
             targets.resize(5);
 

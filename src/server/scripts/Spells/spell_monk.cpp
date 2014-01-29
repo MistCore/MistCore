@@ -124,7 +124,7 @@ class spell_monk_fists_of_fury_stun : public SpellScriptLoader
 
             void RemoveInvalidTargets(std::list<WorldObject*>& targets)
             {
-                targets.remove_if(JadeCore::UnitAuraCheck(true, GetSpellInfo()->Id));
+                targets.remove_if(MistCore::UnitAuraCheck(true, GetSpellInfo()->Id));
             }
 
             void Register()
@@ -159,8 +159,8 @@ class spell_monk_expel_harm : public SpellScriptLoader
                     std::list<Unit*> targetList;
                     float radius = 10.0f;
 
-                    JadeCore::NearestAttackableUnitInObjectRangeCheck u_check(_player, _player, radius);
-                    JadeCore::UnitListSearcher<JadeCore::NearestAttackableUnitInObjectRangeCheck> searcher(_player, targetList, u_check);
+                    MistCore::NearestAttackableUnitInObjectRangeCheck u_check(_player, _player, radius);
+                    MistCore::UnitListSearcher<MistCore::NearestAttackableUnitInObjectRangeCheck> searcher(_player, targetList, u_check);
                     _player->VisitNearbyObject(radius, searcher);
 
                     for (auto itr : targetList)
@@ -257,15 +257,15 @@ class spell_monk_chi_wave_bolt : public SpellScriptLoader
                         else
                             return;
 
-                        CellCoord p(JadeCore::ComputeCellCoord(target->GetPositionX(), target->GetPositionY()));
+                        CellCoord p(MistCore::ComputeCellCoord(target->GetPositionX(), target->GetPositionY()));
                         Cell cell(p);
                         cell.SetNoCreate();
 
-                        JadeCore::AnyUnitInObjectRangeCheck u_check(_player, 20.0f);
-                        JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck> searcher(_player, targetList, u_check);
+                        MistCore::AnyUnitInObjectRangeCheck u_check(_player, 20.0f);
+                        MistCore::UnitListSearcher<MistCore::AnyUnitInObjectRangeCheck> searcher(_player, targetList, u_check);
 
-                        TypeContainerVisitor<JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck>, WorldTypeMapContainer> world_unit_searcher(searcher);
-                        TypeContainerVisitor<JadeCore::UnitListSearcher<JadeCore::AnyUnitInObjectRangeCheck>, GridTypeMapContainer>  grid_unit_searcher(searcher);
+                        TypeContainerVisitor<MistCore::UnitListSearcher<MistCore::AnyUnitInObjectRangeCheck>, WorldTypeMapContainer> world_unit_searcher(searcher);
+                        TypeContainerVisitor<MistCore::UnitListSearcher<MistCore::AnyUnitInObjectRangeCheck>, GridTypeMapContainer>  grid_unit_searcher(searcher);
 
                         cell.Visit(p, world_unit_searcher, *_player->GetMap(), *_player, 20.0f);
                         cell.Visit(p, grid_unit_searcher, *_player->GetMap(), *_player, 20.0f);
@@ -308,7 +308,7 @@ class spell_monk_chi_wave_bolt : public SpellScriptLoader
                                 if (alliesList.empty())
                                     return;
 
-                                alliesList.sort(JadeCore::HealthPctOrderPred());
+                                alliesList.sort(MistCore::HealthPctOrderPred());
 
                                 target->CastSpell(alliesList.front(), SPELL_MONK_CHI_WAVE_HEALING_BOLT, true, NULL, NULLAURA_EFFECT, _player->GetGUID());
                             }
@@ -878,7 +878,7 @@ class spell_monk_black_ox_statue : public SpellScriptLoader
                                         targets.push_back(itr);
                                     }
 
-                                    JadeCore::Containers::RandomResizeList(targets, 1);
+                                    MistCore::Containers::RandomResizeList(targets, 1);
 
                                     for (auto itr : targets)
                                         statue->CastSpell(itr, SPELL_MONK_GUARD, true);
@@ -1325,7 +1325,7 @@ class spell_monk_spinning_fire_blossom : public SpellScriptLoader
 
                     if (!targetList.empty())
                     {
-                        JadeCore::Containers::RandomResizeList(targetList, 1);
+                        MistCore::Containers::RandomResizeList(targetList, 1);
 
                         for (auto itr : targetList)
                             _player->CastSpell(itr, SPELL_MONK_SPINNING_FIRE_BLOSSOM_DAMAGE, true);
@@ -1388,7 +1388,7 @@ class spell_monk_thunder_focus_tea : public SpellScriptLoader
 
             void FilterTargets(std::list<WorldObject*>& unitList)
             {
-                unitList.remove_if(JadeCore::UnitAuraCheck(false, SPELL_MONK_RENEWING_MIST_HOT, GetCaster()->GetGUID()));
+                unitList.remove_if(MistCore::UnitAuraCheck(false, SPELL_MONK_RENEWING_MIST_HOT, GetCaster()->GetGUID()));
             }
 
             void HandleOnHit()
@@ -1730,7 +1730,7 @@ class spell_monk_renewing_mist : public SpellScriptLoader
 
                     if (playerList.size() > 1)
                     {
-                        playerList.sort(JadeCore::HealthPctOrderPred());
+                        playerList.sort(MistCore::HealthPctOrderPred());
                         playerList.resize(1);
                     }
 
@@ -2555,7 +2555,7 @@ class spell_monk_soothing_mist : public SpellScriptLoader
                         if (playerList.size() > 1)
                         {
                             playerList.remove(target);
-                            playerList.sort(JadeCore::HealthPctOrderPred());
+                            playerList.sort(MistCore::HealthPctOrderPred());
                             playerList.resize(1);
                         }
 

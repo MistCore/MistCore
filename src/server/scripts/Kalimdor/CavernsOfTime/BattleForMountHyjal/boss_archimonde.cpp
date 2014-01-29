@@ -380,7 +380,7 @@ public:
             if (targets.empty())
                 return false;
 
-            targets.sort(JadeCore::ObjectDistanceOrderPred(me));
+            targets.sort(MistCore::ObjectDistanceOrderPred(me));
             Unit* target = targets.front();
             if (target)
             {

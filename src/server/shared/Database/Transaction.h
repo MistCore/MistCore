@@ -48,7 +48,7 @@ class Transaction
         bool _cleanedUp;
 
 };
-typedef JadeCore::AutoPtr<Transaction, ACE_Thread_Mutex> SQLTransaction;
+typedef MistCore::AutoPtr<Transaction, ACE_Thread_Mutex> SQLTransaction;
 
 /*! Low level class*/
 class TransactionTask : public SQLOperation

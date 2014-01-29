@@ -21,7 +21,7 @@
 
 #include <ace/Event_Handler.h>
 
-namespace JadeCore
+namespace MistCore
 {
 
 /// Handle termination signals
