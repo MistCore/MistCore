@@ -82,7 +82,14 @@ MistCore [THANKS](THANKS_MIST)
 
 ## Links
 
-MistCore website coming soon..
+MistCore
+
+
+[MistCore Forums](http://www.mistcore.org/)
+
+
+
+TrinityCore:
 
 [TrinityCore Site](http://www.trinitycore.org)
 
