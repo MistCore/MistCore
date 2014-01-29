@@ -77,7 +77,7 @@ TinityCore [THANKS](THANKS)
 
 Pandashan
 
-MistCore [THANKS_MIST](THANKS_MIST)
+MistCore [THANKS](THANKS_MIST)
 
 
 ## Links
