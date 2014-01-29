@@ -65,7 +65,7 @@ enum LoginResult
     LOGIN_LOCKED_ENFORCED                        = 0x10,
 };
 
-#define JADECORE_ACCEPTED_CLIENT_BUILD        {16135, 16057, 16048, 16030, 15595, 12340, 0}  // accept one Cataclysm and one Wrath of the Lich King build
+#define ACCEPTED_CLIENT_BUILD        {16135, 16057, 16048, 16030, 15595, 12340, 0}  // accept one Cataclysm and one Wrath of the Lich King build
 
 
 namespace AuthHelper

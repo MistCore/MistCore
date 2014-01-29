@@ -21,7 +21,7 @@ namespace AuthHelper
 {
     bool IsAcceptedClientBuild(int build)
     {
-        static int accepted_versions[] = JADECORE_ACCEPTED_CLIENT_BUILD;
+        static int accepted_versions[] = ACCEPTED_CLIENT_BUILD;
 
         for (int i = 0; accepted_versions[i]; ++i)
             if (build == accepted_versions[i])
