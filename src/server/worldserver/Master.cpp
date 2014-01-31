@@ -598,14 +598,14 @@ int Master::Run()
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "%s (worldserver-daemon)", _FULLVERSION);
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "<Ctrl-C> to stop.\n");
 
- 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     #                 #####                        ");
- 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " ##   ## #  ####  ##### #     #  ####  #####  ######  ");
- 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " # # # # # #        #   #       #    # #    # #       ");
- 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #  #  # #  ####    #   #       #    # #    # #####   ");
- 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # #      #   #   #       #    # #####  #       ");
- 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # # #    #   #   #     # #    # #   #  #       ");
- 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # #  ####    #    #####   ####  #    # ######  ");
-	sLog->outInfo(LOG_FILTER_WORLDSERVER, "     MistCore 2014 (c) Open-sourced Game Emulation    ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     #                 #####                        ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " ##   ## #  ####  ##### #     #  ####  #####  ######  ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " # # # # # #        #   #       #    # #    # #       ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " #  #  # #  ####    #   #       #    # #    # #####   ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # #      #   #   #       #    # #####  #       ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # # #    #   #   #     # #    # #   #  #       ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # #  ####    #    #####   ####  #    # ######  ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, "     MistCore 2014 (c) Open-sourced Game Emulation    ");
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "             <http://www.mistcore.org/>               ");
 
     /// worldserver PID file creation
