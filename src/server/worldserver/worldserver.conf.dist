@@ -18,6 +18,7 @@
 #    GAME MASTER SETTINGS
 #    VISIBILITY AND DISTANCES
 #    SERVER RATES
+#    STATS LIMITS
 #    AUTO BROADCAST
 #    BATTLEGROUND CONFIG
 #    BATTLEFIELD CONFIG
@@ -402,7 +403,7 @@ PersistentCharacterCleanFlags = 0
 #       Actualy Orgrimmar & Stormwind
 #
 
-ZoneSkipUpdate.count = 0
+ZoneSkipUpdate.count = 1
 
 #
 ###################################################################################################
@@ -2094,6 +2095,28 @@ Die.Command.Mode = 1
 ###################################################################################################
 
 ###################################################################################################
+# STATS LIMITS
+#
+#    Stats.Limits.Enable
+#        Description: Enable or disable stats system
+#        Default:     0 - Disabled
+
+Stats.Limits.Enable = 0
+
+#
+#    Stats.Limit.[STAT]
+#        Description: Set percentage limit for dodge, parry, block and crit rating
+#        Default:     95.0 (95%)
+
+Stats.Limits.Dodge = 95.0
+Stats.Limits.Parry = 95.0
+Stats.Limits.Block = 95.0
+Stats.Limits.Crit  = 95.0
+
+#
+###################################################################################################
+
+###################################################################################################
 # AUTO BROADCAST
 #
 #    AutoBroadcast.On
@@ -2853,10 +2876,10 @@ Guild.SaveInterval = 15
 #
 #    Guild.MaxLevel
 #        Description: Defines max level a guild can reach
-#        Default:     25
+#        Default:     30 (Mists of Pandaria)
 #
 
-Guild.MaxLevel = 25
+Guild.MaxLevel = 30
 
 #
 #    Guild.UndeletableLevel
@@ -3041,23 +3064,6 @@ DisableRestart = 1
 #        Default:     4 - (04:00 AM)
 
 Server.Auto.RestartHour = 4
-
-#
-#    Stats.Limits.Enable
-#        Description: Enable or disable stats system
-#        Default:     0 - Disabled
-
-Stats.Limits.Enable = 0
-
-#
-#    Stats.Limit.[STAT]
-#        Description: Set percentage limit for dodge, parry, block and crit rating
-#        Default:     95.0 (95%)
-
-Stats.Limits.Dodge = 95.0
-Stats.Limits.Parry = 95.0
-Stats.Limits.Block = 95.0
-Stats.Limits.Crit = 95.0
 
 #
 ###################################################################################################
