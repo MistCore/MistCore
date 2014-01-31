@@ -486,9 +486,9 @@ bool WorldSession::Update(uint32 diff, PacketFilter& updater)
     sessionDiff = getMSTime() - sessionDiff;
     if (sessionDiff > 50)
     {
-        sLog->OutMistCore("Session of account [%u] take more than 50 ms to execute (%u ms)", GetAccountId(), sessionDiff);
+        sLog->outInfo(LOG_FILTER_PLAYER, "Session of account [%u] take more than 50 ms to execute (%u ms)", GetAccountId(), sessionDiff);
         for (auto itr : pktHandle)
-            sLog->OutMistCore("-----> %u %s (%u ms)", itr.second.nbPkt, GetOpcodeNameForLogging((Opcodes)itr.first).c_str(), itr.second.totalTime);
+            sLog->outInfo(LOG_FILTER_PLAYER, "Session of account -----> %u %s (%u ms)", itr.second.nbPkt, GetOpcodeNameForLogging((Opcodes)itr.first).c_str(), itr.second.totalTime);
     }
 
     return true;

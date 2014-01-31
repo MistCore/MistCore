@@ -2697,7 +2697,7 @@ TempSummon* WorldObject::SummonCreature(uint32 entry, const Position &pos, TempS
     {
         m_summonCounter++;
         if (m_summonCounter > 20 && isType(TYPEMASK_PLAYER))
-            sLog->OutMistCore("Player %u spam summon of creature %u [counter %u]", GetGUIDLow(), entry, m_summonCounter);
+            sLog->outError(LOG_FILTER_PLAYER, "Player %u spam summon of creature %u [counter %u]", GetGUIDLow(), entry, m_summonCounter);
     }
 
     if (Map* map = FindMap())

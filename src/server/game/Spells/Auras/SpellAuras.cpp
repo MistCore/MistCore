@@ -2294,7 +2294,7 @@ bool Aura::CallScriptCheckAreaTargetHandlers(Unit* target)
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 
     return true;
 }
@@ -2314,7 +2314,7 @@ void Aura::CallScriptDispel(DispelInfo* dispelInfo)
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptAfterDispel(DispelInfo* dispelInfo)
@@ -2331,7 +2331,7 @@ void Aura::CallScriptAfterDispel(DispelInfo* dispelInfo)
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 bool Aura::CallScriptEffectApplyHandlers(constAuraEffectPtr aurEff, AuraApplication const* aurApp, AuraEffectHandleModes mode)
@@ -2355,7 +2355,7 @@ bool Aura::CallScriptEffectApplyHandlers(constAuraEffectPtr aurEff, AuraApplicat
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 
     return preventDefault;
 }
@@ -2380,7 +2380,7 @@ bool Aura::CallScriptEffectRemoveHandlers(constAuraEffectPtr aurEff, AuraApplica
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 
     return preventDefault;
 }
@@ -2402,7 +2402,7 @@ void Aura::CallScriptAfterEffectApplyHandlers(constAuraEffectPtr aurEff, AuraApp
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptAfterEffectRemoveHandlers(constAuraEffectPtr aurEff, AuraApplication const* aurApp, AuraEffectHandleModes mode)
@@ -2422,7 +2422,7 @@ void Aura::CallScriptAfterEffectRemoveHandlers(constAuraEffectPtr aurEff, AuraAp
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 bool Aura::CallScriptEffectPeriodicHandlers(constAuraEffectPtr aurEff, AuraApplication const* aurApp)
@@ -2445,7 +2445,7 @@ bool Aura::CallScriptEffectPeriodicHandlers(constAuraEffectPtr aurEff, AuraAppli
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 
     return preventDefault;
 }
@@ -2464,7 +2464,7 @@ void Aura::CallScriptAuraUpdateHandlers(uint32 diff)
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectUpdateHandlers(uint32 diff, AuraEffectPtr aurEff)
@@ -2484,7 +2484,7 @@ void Aura::CallScriptEffectUpdateHandlers(uint32 diff, AuraEffectPtr aurEff)
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectUpdatePeriodicHandlers(AuraEffectPtr aurEff)
@@ -2504,7 +2504,7 @@ void Aura::CallScriptEffectUpdatePeriodicHandlers(AuraEffectPtr aurEff)
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectCalcAmountHandlers(constAuraEffectPtr aurEff, int32 & amount, bool & canBeRecalculated)
@@ -2525,7 +2525,7 @@ void Aura::CallScriptEffectCalcAmountHandlers(constAuraEffectPtr aurEff, int32 &
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectCalcPeriodicHandlers(constAuraEffectPtr aurEff, bool & isPeriodic, int32 & amplitude)
@@ -2545,7 +2545,7 @@ void Aura::CallScriptEffectCalcPeriodicHandlers(constAuraEffectPtr aurEff, bool 
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectCalcSpellModHandlers(constAuraEffectPtr aurEff, SpellModifier* & spellMod)
@@ -2565,7 +2565,7 @@ void Aura::CallScriptEffectCalcSpellModHandlers(constAuraEffectPtr aurEff, Spell
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectAbsorbHandlers(AuraEffectPtr aurEff, AuraApplication const* aurApp, DamageInfo & dmgInfo, uint32 & absorbAmount, bool& defaultPrevented)
@@ -2587,7 +2587,7 @@ void Aura::CallScriptEffectAbsorbHandlers(AuraEffectPtr aurEff, AuraApplication 
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectAfterAbsorbHandlers(AuraEffectPtr aurEff, AuraApplication const* aurApp, DamageInfo & dmgInfo, uint32 & absorbAmount)
@@ -2608,7 +2608,7 @@ void Aura::CallScriptEffectAfterAbsorbHandlers(AuraEffectPtr aurEff, AuraApplica
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectManaShieldHandlers(AuraEffectPtr aurEff, AuraApplication const* aurApp, DamageInfo & dmgInfo, uint32 & absorbAmount, bool & /*defaultPrevented*/)
@@ -2628,7 +2628,7 @@ void Aura::CallScriptEffectManaShieldHandlers(AuraEffectPtr aurEff, AuraApplicat
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptEffectAfterManaShieldHandlers(AuraEffectPtr aurEff, AuraApplication const* aurApp, DamageInfo & dmgInfo, uint32 & absorbAmount)
@@ -2649,7 +2649,7 @@ void Aura::CallScriptEffectAfterManaShieldHandlers(AuraEffectPtr aurEff, AuraApp
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::SetScriptData(uint32 type, uint32 data)
@@ -2679,7 +2679,7 @@ bool Aura::CallScriptCheckProcHandlers(AuraApplication const* aurApp, ProcEventI
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
     return true;
 }
 
@@ -2701,7 +2701,7 @@ bool Aura::CallScriptPrepareProcHandlers(AuraApplication const* aurApp, ProcEven
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 
     return prepare;
 }
@@ -2720,7 +2720,7 @@ void Aura::CallScriptProcHandlers(AuraApplication const* aurApp, ProcEventInfo& 
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 void Aura::CallScriptAfterProcHandlers(AuraApplication const* aurApp, ProcEventInfo& eventInfo)
@@ -2737,7 +2737,7 @@ void Aura::CallScriptAfterProcHandlers(AuraApplication const* aurApp, ProcEventI
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 bool Aura::CallScriptEffectProcHandlers(constAuraEffectPtr aurEff, AuraApplication const* aurApp, ProcEventInfo& eventInfo)
@@ -2760,7 +2760,7 @@ bool Aura::CallScriptEffectProcHandlers(constAuraEffectPtr aurEff, AuraApplicati
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 
     return preventDefault;
 }
@@ -2782,7 +2782,7 @@ void Aura::CallScriptAfterEffectProcHandlers(constAuraEffectPtr aurEff, AuraAppl
 
     scriptExecuteTime = getMSTime() - scriptExecuteTime;
     if (scriptExecuteTime > 10)
-        sLog->OutMistCore("AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
+        sLog->outWarn(LOG_FILTER_SPELLS_AURAS, "AuraScript [%u] take more than 10 ms to execute (%u ms)", GetId(), scriptExecuteTime);
 }
 
 UnitAura::UnitAura(SpellInfo const* spellproto, uint32 effMask, WorldObject* owner, Unit* caster, SpellPowerEntry const* spellPowerData, int32 *baseAmount, Item* castItem, uint64 casterGUID)

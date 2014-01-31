@@ -34,16 +34,11 @@ Log::Log() : worker(NULL)
     SetRealmID(0);
     m_logsTimestamp = "_" + GetTimestampStr();
     LoadFromConfig();
-    MistCoreLog = fopen("MistCore.log", "a");
 }
 
 Log::~Log()
 {
     Close();
-
-    fclose(MistCoreLog);
-    delete MistCoreLog;
-    MistCoreLog = NULL;
 }
 
 uint8 Log::NextAppenderId()
@@ -562,21 +557,4 @@ void Log::outArena(const char * str, ...)
     log->str = query;
 
     ArenaLogQueue.add(log);
-}
-
-void Log::OutMistCore(const char* str, ...)
-{
-    if (!str)
-        return;
-
-    char result[MAX_QUERY_LEN];
-    va_list ap;
-
-    va_start(ap, str);
-    vsnprintf(result, MAX_QUERY_LEN, str, ap);
-    va_end(ap);
-
-    std::string date = GetTimestampStr();
-    fprintf(MistCoreLog, "[%s] Mistcore LOG : %s\n", date.c_str(), result);
-    fflush(MistCoreLog);
 }

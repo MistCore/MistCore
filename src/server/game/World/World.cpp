@@ -3072,7 +3072,7 @@ void World::ResetCurrencyWeekCap()
     m_NextCurrencyReset = time_t(m_NextCurrencyReset + DAY * getIntConfig(CONFIG_CURRENCY_RESET_INTERVAL));
     sWorld->setWorldState(WS_CURRENCY_RESET_TIME, uint64(m_NextCurrencyReset));
 
-    sLog->OutMistCore("World::ResetCurrencyWeekCap()");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, "World::ResetCurrencyWeekCap()");
 }
 
 void World::LoadDBAllowedSecurityLevel()
