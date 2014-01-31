@@ -58,7 +58,7 @@ enum WarriorSpells
     WARRIOR_SPELL_DRAGON_ROAR_KNOCK_BACK        = 118895,
     WARRIOR_SPELL_MEAT_CLEAVER_PROC             = 85739,
     WARRIOR_SPELL_PHYSICAL_VULNERABILITY        = 81326,
-    WARRIOR_SPELL_STORM_BOLT_STUN               = 132169,
+    WARRIOR_SPELL_STORM_BOLT_STUN               = 145585, // old wrong spell - 132169
     WARRIOR_SPELL_SHIELD_BLOCK_TRIGGERED        = 132404,
     WARRIOR_SPELL_GLYPH_OF_HINDERING_STRIKES    = 58366,
     WARRIOR_SPELL_SLUGGISH                      = 129923,
@@ -236,12 +236,15 @@ class spell_warr_storm_bolt : public SpellScriptLoader
             {
                 if (Player* _player = GetCaster()->ToPlayer())
                 {
-                    if (Unit* unitTarget = GetHitUnit())
+                    SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(WARRIOR_SPELL_STORM_BOLT_STUN);
+                    if (spellInfo)
                     {
-                        if (unitTarget->IsImmunedToSpellEffect(sSpellMgr->GetSpellInfo(WARRIOR_SPELL_STORM_BOLT_STUN), 0))
-                            SetHitDamage(GetHitDamage() * 4);
-
-                        _player->CastSpell(unitTarget, WARRIOR_SPELL_STORM_BOLT_STUN, true);
+                        if (Unit* unitTarget = GetHitUnit())
+                        {
+                            if (unitTarget->IsImmunedToSpellEffect(spellInfo, 0))
+                                SetHitDamage(GetHitDamage() * 4);
+                            _player->CastSpell(unitTarget, WARRIOR_SPELL_STORM_BOLT_STUN, true);
+                        }
                     }
                 }
             }
