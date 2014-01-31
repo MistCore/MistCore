@@ -1323,6 +1323,10 @@ void World::LoadConfigSettings(bool reload)
     m_int_configs[CONFIG_ANTISPAM_MAIL_TIMER] = ConfigMgr::GetIntDefault("Antispam.Mail.Timer", 3600) * IN_MILLISECONDS;
     m_int_configs[CONFIG_ANTISPAM_MAIL_COUNT] = ConfigMgr::GetIntDefault("Antispam.Mail.Count", 10);
 
+    // Vendor sell item anti spam
+    m_bool_configs[CONFIG_ANTISPAM_VENDOR_ENABLE] = ConfigMgr::GetBoolDefault("Antispam.Vendor.Enable", false);
+    m_int_configs[CONFIG_ANTISPAM_VENDOR_DELAY] = ConfigMgr::GetIntDefault("Antispam.Vendor.Delay", 5);
+
     if (reload)
         sScriptMgr->OnConfigLoad(reload);
 }

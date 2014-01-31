@@ -3050,6 +3050,21 @@ Antispam.Mail.Timer = 3600
 Antispam.Mail.Count = 12
 
 #
+#     Antispam.Vendor.Enable
+#        Description: Enable or disable vendor item sell anti spam system
+#        Default:     0 - (Disabled)
+#                     1 - (Enabled)
+
+Antispam.Vendor.Enable = 1
+
+#
+#     Antispam.Vendor.Delay
+#        Description: Number of seconds to wait until next item sell
+#        Default:     5
+
+Antispam.Vendor.Delay = 5
+
+#
 #     DisableRestart
 #        Description: Disable server restart.
 #        Default:     0 - (Disabled, server restarted every day)

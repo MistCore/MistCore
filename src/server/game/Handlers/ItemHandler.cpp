@@ -17,6 +17,7 @@
  */
 
 #include "Common.h"
+#include "World.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
 #include "Opcodes.h"
@@ -489,11 +490,14 @@ void WorldSession::HandleSellItemOpcode(WorldPacket & recvData)
 {
     sLog->outDebug(LOG_FILTER_NETWORKIO, "WORLD: Received CMSG_SELL_ITEM");
 
-    time_t now = time(NULL);
-    if (now - timeLastSellItemOpcode < 5)
-        return;
-    else
-       timeLastSellItemOpcode = now;
+    if(sWorld->getBoolConfig(CONFIG_ANTISPAM_VENDOR_ENABLE))
+    {
+        time_t now = time(NULL);
+        if (now - timeLastSellItemOpcode < sWorld->getIntConfig(CONFIG_ANTISPAM_VENDOR_DELAY))
+            return;
+        else
+            timeLastSellItemOpcode = now;
+    }
 
     uint64 vendorguid = 0;
     uint64 itemguid = 0;
