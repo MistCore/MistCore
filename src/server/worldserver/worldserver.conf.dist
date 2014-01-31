@@ -2876,10 +2876,10 @@ Guild.SaveInterval = 15
 #
 #    Guild.MaxLevel
 #        Description: Defines max level a guild can reach
-#        Default:     30 (Mists of Pandaria)
+#        Default:     25
 #
 
-Guild.MaxLevel = 30
+Guild.MaxLevel = 25
 
 #
 #    Guild.UndeletableLevel
