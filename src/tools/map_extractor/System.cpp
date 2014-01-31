@@ -78,11 +78,9 @@ float CONF_flat_liquid_delta_limit = 0.001f; // If max - min less this value - l
 uint32 CONF_TargetBuild = 16135;              // 5.0.5 16135
 
 // List MPQ for extract maps from
-char const* CONF_mpq_list[]=
+char const* CONF_mpq_list[] =
 {
     "world.MPQ",
-    //"art.MPQ",
-    //"world2.MPQ",
     "expansion1.MPQ",
     "expansion2.MPQ",
     "expansion3.MPQ",
@@ -90,10 +88,24 @@ char const* CONF_mpq_list[]=
     "misc.MPQ"  //LiquiType.dbc
 };
 
-uint32 const Builds[] = {13164, 13205, 13287, 13329, 13596, 13623, 13914, 14007, 14333, 14480, 14545, 15005, 15050, 15211, 15354, 15595, 16016, 16048, 16057, 16135, 0};
-#define LAST_DBC_IN_DATA_BUILD 13623    // after this build mpqs with dbc are back to locale folder
+char const* CONF_mpq_dbc_list[] =
+{
+    "misc.MPQ"
+};
 
-char* const Locales[] = {"enGB", "enUS", "deDE", "esES", "frFR", "koKR", "zhCN", "zhTW", "enCN", "enTW", "esMX", "ruRU"};
+uint32 const Builds[] = {16016, 16048, 16057, 16135, 0};
+#define NEW_BASE_SET_BUILD  16016
+
+char* const Locales[] =
+{
+    "enGB", "enUS",
+    "deDE", "esES",
+    "frFR", "koKR",
+    "zhCN", "zhTW",
+    "enCN", "enTW",
+    "esMX", "ruRU"
+};
+
 TCHAR* const LocalesT[] =
 {
     _T("enGB"), _T("enUS"),
@@ -101,7 +113,7 @@ TCHAR* const LocalesT[] =
     _T("frFR"), _T("koKR"),
     _T("zhCN"), _T("zhTW"),
     _T("enCN"), _T("enTW"),
-    _T("esMX"), _T("ruRU"),
+    _T("esMX"), _T("ruRU")
 };
 
 #define LOCALES_COUNT 12
@@ -303,31 +315,48 @@ void ReadAreaTableDBC()
 
 void ReadLiquidTypeTableDBC()
 {
-    printf("Read LiquidType.dbc file...");
-    HANDLE dbcFile;
-    if (!SFileOpenFileEx(LocaleMpq, "DBFilesClient\\LiquidType.dbc", SFILE_OPEN_PATCHED_FILE, &dbcFile))
+    HANDLE localeFile;
+    char localMPQ[512];
+
+    sprintf(localMPQ, "%s/Data/misc.MPQ", input_path);
+    if (FileExists(localMPQ)==false)
+    {   // Use misc.mpq
+        printf(localMPQ, "%s/Data/%s/locale-%s.MPQ", input_path);
+    }
+
+    if (!SFileOpenArchive(localMPQ, 0, MPQ_OPEN_READ_ONLY, &localeFile))
     {
-        printf("Fatal error: Cannot find LiquidType.dbc in archive!\n");
         exit(1);
     }
 
+    printf("Read LiquidType.dbc file...");
+	
+    HANDLE dbcFile;
+    if (!SFileOpenFileEx(localeFile, "DBFilesClient\\LiquidType.dbc", SFILE_OPEN_PATCHED_FILE, &dbcFile))
+    {
+        if (!SFileOpenFileEx(localeFile, "DBFilesClient\\LiquidType.dbc", SFILE_OPEN_PATCHED_FILE, &dbcFile))
+        {
+            printf("Fatal error: Cannot find LiquidType.dbc in archive!\n");
+            exit(1);
+        }
+    }
+
     DBCFile dbc(dbcFile);
-    if(!dbc.open())
+    if (!dbc.open())
     {
         printf("Fatal error: Invalid LiquidType.dbc file format!\n");
         exit(1);
     }
 
-    size_t liqTypeCount = dbc.getRecordCount();
-    size_t liqTypeMaxId = dbc.getMaxId();
-    LiqType = new uint16[liqTypeMaxId + 1];
-    memset(LiqType, 0xff, (liqTypeMaxId + 1) * sizeof(uint16));
+    size_t LiqType_count = dbc.getRecordCount();
+    size_t LiqType_maxid = dbc.getMaxId();
+    LiqType = new uint16[LiqType_maxid + 1];
+    memset(LiqType, 0xff, (LiqType_maxid + 1) * sizeof(uint16));
 
-    for(uint32 x = 0; x < liqTypeCount; ++x)
+    for (uint32 x = 0; x < LiqType_count; ++x)
         LiqType[dbc.getRecord(x).getUInt(0)] = dbc.getRecord(x).getUInt(3);
 
-    SFileCloseFile(dbcFile);
-    printf("Done! (%u LiqTypes loaded)\n", liqTypeCount);
+    printf("Done! (%lu LiqTypes loaded)\n", LiqType_count);
 }
 
 //
@@ -1116,17 +1145,15 @@ bool LoadLocaleMPQFile(int locale)
     char const* prefix = NULL;
     for (int i = 0; Builds[i] && Builds[i] <= CONF_TargetBuild; ++i)
     {
+        // Do not attempt to read older MPQ patch archives past this build, they were merged with base
+        // and trying to read them together with new base will not end well
+        if (CONF_TargetBuild >= NEW_BASE_SET_BUILD && Builds[i] < NEW_BASE_SET_BUILD)
+           continue;
+
         memset(buff, 0, sizeof(buff));
-        if (Builds[i] > LAST_DBC_IN_DATA_BUILD)
-        {
-            prefix = "";
-            _stprintf(buff, _T("%s/Data/%s/wow-update-%s-%u.MPQ"), input_path, LocalesT[locale], LocalesT[locale], Builds[i]);
-        }
-        else
-        {
-            prefix = Locales[locale];
-            _stprintf(buff, _T("%s/Data/wow-update-%u.MPQ"), input_path, Builds[i]);
-        }
+        prefix = "";
+        _stprintf(buff, _T("%s/Data/%s/wow-update-%s-%u.MPQ"), input_path, LocalesT[locale], LocalesT[locale], Builds[i]);
+
 
         if (!SFileOpenPatchArchive(LocaleMpq, buff, prefix, 0))
         {
@@ -1134,9 +1161,49 @@ bool LoadLocaleMPQFile(int locale)
                 _tprintf(_T("Cannot open patch archive %s\n"), buff);
             continue;
         }
+        else
+            _tprintf(_T("Loaded %s\n"), buff);
     }
-    _stprintf(buff, _T("%s/Data/misc.MPQ"), input_path);
-    SFileOpenPatchArchive(LocaleMpq, buff, "", 0);
+
+    for (int i = 0; i < sizeof(CONF_mpq_dbc_list) / sizeof(char*); i++)
+    {
+        memset(buff, 0, sizeof(buff));
+        prefix = "";
+        _stprintf(buff, _T("%s/Data/%s"), input_path, CONF_mpq_dbc_list[i]);
+
+
+        if (!SFileOpenPatchArchive(LocaleMpq, buff, prefix, 0))
+        {
+            if (GetLastError() != ERROR_FILE_NOT_FOUND)
+                _tprintf(_T("Cannot open patch archive %s\n"), buff);
+            continue;
+        }
+        else
+            _tprintf(_T("Loaded %s\n"), buff);
+    }
+
+
+    for (int i = 0; Builds[i] && Builds[i] <= CONF_TargetBuild; ++i)
+    {
+        // Do not attempt to read older MPQ patch archives past this build, they were merged with base
+        // and trying to read them together with new base will not end well
+        if (CONF_TargetBuild >= NEW_BASE_SET_BUILD && Builds[i] < NEW_BASE_SET_BUILD)
+           continue;
+
+        memset(buff, 0, sizeof(buff));
+        prefix = "";
+        _stprintf(buff, _T("%s/Data/wow-update-base-%u.MPQ"), input_path, Builds[i]);
+
+
+        if (!SFileOpenPatchArchive(LocaleMpq, buff, prefix, 0))
+        {
+            if (GetLastError() != ERROR_FILE_NOT_FOUND)
+                _tprintf(_T("Cannot open patch archive %s\n"), buff);
+            continue;
+        }
+        else
+            _tprintf(_T("Loaded %s\n"), buff);
+    }
 
     return true;
 }
@@ -1144,7 +1211,9 @@ bool LoadLocaleMPQFile(int locale)
 void LoadCommonMPQFiles(uint32 build)
 {
     TCHAR filename[512];
+	
     _stprintf(filename, _T("%s/Data/world.MPQ"), input_path);
+	_tprintf(_T("Loading common MPQ files\n"));
     if (!SFileOpenArchive(filename, 0, MPQ_OPEN_READ_ONLY, &WorldMpq))
     {
         if (GetLastError() != ERROR_PATH_NOT_FOUND)
@@ -1155,9 +1224,6 @@ void LoadCommonMPQFiles(uint32 build)
     int count = sizeof(CONF_mpq_list) / sizeof(char*);
     for (int i = 1; i < count; ++i)
     {
-        if (build < 15211 && !strcmp("world2.MPQ", CONF_mpq_list[i]))   // 4.3.2 and higher MPQ
-            continue;
-
         _stprintf(filename, _T("%s/Data/%s"), input_path, CONF_mpq_list[i]);
         if (!SFileOpenPatchArchive(WorldMpq, filename, "", 0))
         {
@@ -1174,19 +1240,15 @@ void LoadCommonMPQFiles(uint32 build)
     char const* prefix = NULL;
     for (int i = 0; Builds[i] && Builds[i] <= CONF_TargetBuild; ++i)
     {
-        memset(filename, 0, sizeof(filename));
-        if (Builds[i] > LAST_DBC_IN_DATA_BUILD)
-        {
-            prefix = "";
-            _stprintf(filename, _T("%s/Data/wow-update-base-%u.MPQ"), input_path, Builds[i]);
-        }
-        else
-        {
-            prefix = "base";
-            _stprintf(filename, _T("%s/Data/wow-update-%u.MPQ"), input_path, Builds[i]);
-        }
+        // Do not attempt to read older MPQ patch archives past this build, they were merged with base
+        // and trying to read them together with new base will not end well
+        if (CONF_TargetBuild >= NEW_BASE_SET_BUILD && Builds[i] < NEW_BASE_SET_BUILD)
+            continue;
 
-        if (!SFileOpenPatchArchive(WorldMpq, filename, prefix, 0))
+        memset(filename, 0, sizeof(filename));
+        _stprintf(filename, _T("%s/Data/wow-update-base-%u.MPQ"), input_path, Builds[i]);
+ 
+        if (!SFileOpenPatchArchive(WorldMpq, filename, "base", 0))
         {
             if (GetLastError() != ERROR_PATH_NOT_FOUND)
                 _tprintf(_T("Cannot open patch archive %s\n"), filename);
