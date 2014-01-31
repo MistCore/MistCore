@@ -47,10 +47,6 @@
 #include "RealmList.h"
 
 #include "BigNumber.h"
-
-// For now..
-#pragma warning(disable:4129)
-
 #ifdef _WIN32
 #include "ServiceWin32.h"
 extern int m_ServiceStatus;
@@ -602,13 +598,15 @@ int Master::Run()
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "%s (worldserver-daemon)", _FULLVERSION);
     sLog->outInfo(LOG_FILTER_WORLDSERVER, "<Ctrl-C> to stop.\n");
 
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, "  __  __  _       _     ____    5.0.5.16135    ");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, " |  \/  |(_) ___ | |_  / ___| ___   _ __  ___  ");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, " | |\/| || |/ __|| __|| |    / _ \ | '__|/ _ \ ");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, " | |  | || |\__ \| |_ | |___| (_) || |  |  __/ ");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, " |_|  |_||_||___/ \__| \____|\___/ |_|   \___| ");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, " MistCore 2014 (c) Open-sourced Game Emulation ");
-    sLog->outInfo(LOG_FILTER_WORLDSERVER, "         <http://www.mistcore.org/>            ");
+ 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     #                 #####                        ");
+ 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " ##   ## #  ####  ##### #     #  ####  #####  ######  ");
+ 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " # # # # # #        #   #       #    # #    # #       ");
+ 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #  #  # #  ####    #   #       #    # #    # #####   ");
+ 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # #      #   #   #       #    # #####  #       ");
+ 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # # #    #   #   #     # #    # #   #  #       ");
+ 	sLog->outInfo(LOG_FILTER_WORLDSERVER, " #     # #  ####    #    #####   ####  #    # ######  ");
+	sLog->outInfo(LOG_FILTER_WORLDSERVER, "     MistCore 2014 (c) Open-sourced Game Emulation    ");
+    sLog->outInfo(LOG_FILTER_WORLDSERVER, "             <http://www.mistcore.org/>               ");
 
     /// worldserver PID file creation
     std::string pidfile = ConfigMgr::GetStringDefault("PidFile", "");
