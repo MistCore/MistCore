@@ -1,8 +1,9 @@
 /*
 Pandaria
 World boss
-Antoine Vallee for Pandashan Servers
+Antoine Vallee
 
+MistCore (www.mistcore.org)
 */
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
@@ -109,6 +110,8 @@ class boss_sha_of_anger : public CreatureScript
 
                 for (auto itr : playerList)
                     itr->RemoveAura(SPELL_DOMINATE_MIND);
+
+                UpdateDistanceVisibility();
             }
 
             void KilledUnit(Unit* u)
@@ -262,7 +265,32 @@ class boss_sha_of_anger : public CreatureScript
 
                 DoMeleeAttackIfReady();
             }
-        };
+            void UpdateDistanceVisibility()
+            {
+            Map *map = me->GetMap();
+
+            if(map)
+            {
+                Map::PlayerList const &pList = map->GetPlayers();
+                for(Map::PlayerList::const_iterator i = pList.begin() ; i != pList.end() ; ++i)
+                {
+                    Player *player = i->getSource();
+
+                    bool rangeOfUpdate = player->GetExactDist2d(me->GetPositionX(),me->GetPositionY()) < 2000;
+
+                    if(player)
+                    {
+                        if(rangeOfUpdate)
+                        {
+                            player->UpdateVisibilityOf(me);
+                            player->UpdateVisibilityForPlayer();
+
+                        }
+                    }
+                }
+            }
+        }
+    };
 };
 
 class mob_sha_of_anger_bunny : public CreatureScript
