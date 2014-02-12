@@ -1,0 +1,1 @@
+UPDATE spell_bonus_data SET direct_bonus = 1.11, dot_bonus = 0.2184 WHERE entry = 14914;

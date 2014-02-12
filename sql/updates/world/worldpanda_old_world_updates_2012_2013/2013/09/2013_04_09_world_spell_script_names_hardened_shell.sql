@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (129787, 'spell_gen_hardened_shell');

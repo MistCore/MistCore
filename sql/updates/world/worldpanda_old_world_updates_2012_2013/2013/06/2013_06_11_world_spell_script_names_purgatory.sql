@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (114556, 'spell_dk_purgatory_absorb');

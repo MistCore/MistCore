@@ -1,0 +1,10 @@
+UPDATE spell_bonus_data SET direct_bonus = 0.739 WHERE entry = 403;
+UPDATE spell_bonus_data SET direct_bonus = 0.581 WHERE entry = 8042;
+UPDATE spell_bonus_data SET direct_bonus = 1.135 WHERE entry = 8004;
+UPDATE spell_bonus_data SET direct_bonus = 0.449, dot_bonus = 1.680 WHERE entry = 8050;
+UPDATE spell_bonus_data SET direct_bonus = 0.110 WHERE entry = 3606;
+UPDATE spell_bonus_data SET direct_bonus = 0.510 WHERE entry = 8056;
+UPDATE spell_bonus_data SET direct_bonus = 0.518 WHERE entry = 421;
+UPDATE spell_bonus_data SET direct_bonus = 0.3954 WHERE entry = 52042;
+INSERT INTO spell_bonus_data VALUE (51945, -1, 0.332, -1, -1, 'Shaman - Earthliving');
+UPDATE spell_bonus_data SET direct_bonus = 0.573 WHERE entry = 1064;

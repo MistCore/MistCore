@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (114635, 'spell_warl_ember_tap');

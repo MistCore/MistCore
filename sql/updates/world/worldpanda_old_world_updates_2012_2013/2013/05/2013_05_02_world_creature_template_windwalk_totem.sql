@@ -1,0 +1,1 @@
+UPDATE creature_template SET ScriptName = 'npc_windwalk_totem' WHERE entry = 59717;

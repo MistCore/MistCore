@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (115750, 'spell_pal_blinding_light');

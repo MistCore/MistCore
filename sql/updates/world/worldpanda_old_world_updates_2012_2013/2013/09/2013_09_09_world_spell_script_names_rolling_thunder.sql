@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (114074, 'spell_sha_rolling_thunder');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUES (115175, 'spell_monk_soothing_mist');

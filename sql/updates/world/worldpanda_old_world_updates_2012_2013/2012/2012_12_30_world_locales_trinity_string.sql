@@ -1,0 +1,1 @@
+ALTER TABLE `505_world`.`trinity_string` ADD COLUMN `content_loc9` TEXT NULL AFTER `content_loc8`, ADD COLUMN `content_loc10` TEXT NULL AFTER `content_loc9`, CHANGE `content_loc8` `content_loc8` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL ; 

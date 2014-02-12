@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (108285, 'spell_sha_call_of_the_elements');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (119048, 'spell_warl_kil_jaedens_cunning');

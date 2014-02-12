@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (81700, 'spell_pri_archangel');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (102560, 'spell_dru_incarnation_chosen_of_elune');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (107570, 'spell_warr_storm_bolt');

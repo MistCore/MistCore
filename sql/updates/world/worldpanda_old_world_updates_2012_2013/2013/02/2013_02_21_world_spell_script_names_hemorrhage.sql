@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (16511, 'spell_rog_hemorrhage');

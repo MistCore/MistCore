@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (19615, 'spell_hun_frenzy');

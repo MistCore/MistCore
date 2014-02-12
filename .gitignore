@@ -1,13 +1,18 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+build*/
+.directory
+.mailmap
+*.orig
+*.rej
+*~
+.hg/
+*.kdev*
+.DS_Store
+CMakeLists.txt.user
+*.bak
+*.patch
+*.diff
+*.REMOTE.*
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*

@@ -1,0 +1,1 @@
+ALTER TABLE `505_world`.`locales_points_of_interest` ADD COLUMN `icon_name_loc9` TEXT NULL AFTER `icon_name_loc8`, ADD COLUMN `icon_name_loc10` TEXT NULL AFTER `icon_name_loc9`, CHANGE `icon_name_loc8` `icon_name_loc8` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL ;

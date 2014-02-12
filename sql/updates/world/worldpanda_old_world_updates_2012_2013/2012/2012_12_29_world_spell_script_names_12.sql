@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (127663, 'spell_dru_astral_communion');

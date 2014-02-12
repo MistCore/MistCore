@@ -1,0 +1,1 @@
+insert into `spell_script_names` (`spell_id`, `ScriptName`) values('78838','spell_item_enohar_explosive_arrows');

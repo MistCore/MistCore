@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (124041, 0, 0, 0.3517, 0, 'Monk - Gift of the Serpent heal (triggered');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (2645, 'spell_sha_glyph_of_lakestrider');

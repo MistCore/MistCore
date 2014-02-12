@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (125893, 'spell_monk_glyph_of_zen_flight');

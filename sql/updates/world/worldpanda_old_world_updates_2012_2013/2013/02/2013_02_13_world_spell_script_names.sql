@@ -1,0 +1,1 @@
+UPDATE spell_script_names SET spell_id = 107270 WHERE ScriptName = 'spell_monk_teachings_of_the_monastery';

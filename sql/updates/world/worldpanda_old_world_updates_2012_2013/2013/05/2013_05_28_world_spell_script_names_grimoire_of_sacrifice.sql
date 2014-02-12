@@ -1,0 +1,1 @@
+INSERT INTO `spell_script_names` (`spell_id`, `ScriptName`) VALUES(108503, 'spell_warl_grimoire_of_sacrifice');

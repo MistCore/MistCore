@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (8647, 'spell_rog_glyph_of_expose_armor');

@@ -1,0 +1,1 @@
+UPDATE spell_bonus_data SET direct_bonus = 1.61, ap_bonus = -1 WHERE entry = 24275; -- Hammer of Wrath

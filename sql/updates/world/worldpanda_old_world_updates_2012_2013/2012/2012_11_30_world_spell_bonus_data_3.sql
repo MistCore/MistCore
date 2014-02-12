@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUE (131786, 0.164, -1, -1, -1, 'Shaman - Fire Nova');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (107566, 'spell_warr_staggering_shout');

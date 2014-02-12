@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (102793, 'spell_dru_ursols_vortex');

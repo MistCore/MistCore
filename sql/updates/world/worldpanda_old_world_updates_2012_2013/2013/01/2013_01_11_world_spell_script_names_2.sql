@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (18499, 'spell_warr_berzerker_rage');

@@ -1,0 +1,1 @@
+DELETE FROM spell_proc_event WHERE entry = 20164; -- Seal of Justice

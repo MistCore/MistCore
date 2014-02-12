@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (100780, 'spell_mastery_combo_breaker');

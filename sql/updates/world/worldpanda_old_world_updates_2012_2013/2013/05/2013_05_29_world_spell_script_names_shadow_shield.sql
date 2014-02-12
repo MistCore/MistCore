@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (103130, 'spell_warl_shield_of_shadow');

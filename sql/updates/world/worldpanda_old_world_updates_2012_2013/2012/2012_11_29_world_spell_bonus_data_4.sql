@@ -1,0 +1,1 @@
+UPDATE spell_bonus_data SET direct_bonus = 0.388, comments = 'Shaman - Lightning Shield' WHERE entry = 26364;

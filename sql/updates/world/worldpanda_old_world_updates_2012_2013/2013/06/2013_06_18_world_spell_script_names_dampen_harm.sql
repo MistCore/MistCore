@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (122278, 'spell_monk_dampen_harm');

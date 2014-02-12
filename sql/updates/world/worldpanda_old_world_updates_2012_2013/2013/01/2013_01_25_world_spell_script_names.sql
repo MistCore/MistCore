@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (102051, 'spell_mage_frostjaw');2

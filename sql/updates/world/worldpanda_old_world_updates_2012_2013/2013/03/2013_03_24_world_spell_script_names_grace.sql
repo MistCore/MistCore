@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (2050, 'spell_pri_grace');

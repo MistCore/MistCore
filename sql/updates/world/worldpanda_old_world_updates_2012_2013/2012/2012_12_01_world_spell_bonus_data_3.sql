@@ -1,0 +1,1 @@
+INSERT INTO spell_bonus_data VALUES (77472, 1.377, -1, -1, -1, 'Shaman - Greater Healing Wave');

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (121093, 'spell_gen_gift_of_the_naaru');

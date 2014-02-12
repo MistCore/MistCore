@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (116680, 'spell_monk_item_s12_4p_mistweaver');

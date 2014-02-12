@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (73325, 'spell_pri_leap_of_faith');

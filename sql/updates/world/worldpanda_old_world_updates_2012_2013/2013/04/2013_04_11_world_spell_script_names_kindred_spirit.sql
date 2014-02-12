@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (56315, 'spell_hun_kindred_spirits');

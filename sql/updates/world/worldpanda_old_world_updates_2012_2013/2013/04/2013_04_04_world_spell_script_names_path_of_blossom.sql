@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (124336, 'spell_monk_path_of_blossom');

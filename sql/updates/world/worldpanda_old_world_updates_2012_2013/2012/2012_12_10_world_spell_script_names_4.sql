@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (115994, 'spell_dk_unholy_blight');

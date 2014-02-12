@@ -1,0 +1,1 @@
+ALTER TABLE `505_world`.`locales_creature_text` ADD COLUMN `text_loc9` TEXT NULL AFTER `text_loc8`, ADD COLUMN `text_loc10` TEXT NULL AFTER `text_loc9`, CHANGE `text_loc8` `text_loc8` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL ; 

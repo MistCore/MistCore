@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (123040, 'spell_pri_shadowfiend');

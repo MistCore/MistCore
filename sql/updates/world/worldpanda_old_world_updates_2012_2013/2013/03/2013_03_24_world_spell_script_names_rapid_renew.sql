@@ -1,0 +1,1 @@
+UPDATE spell_script_names SET spell_id = 139 WHERE ScriptName = 'spell_priest_renew';

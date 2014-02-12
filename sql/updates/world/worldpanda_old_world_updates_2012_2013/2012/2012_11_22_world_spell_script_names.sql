@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUES (116095, 'spell_monk_disable');

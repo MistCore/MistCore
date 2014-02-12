@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (1022, 'spell_pal_hand_of_protection');

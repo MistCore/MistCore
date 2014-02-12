@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (5217, 'spell_dru_tigers_fury');

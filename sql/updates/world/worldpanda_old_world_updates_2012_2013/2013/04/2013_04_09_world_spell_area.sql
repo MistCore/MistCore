@@ -1,0 +1,1 @@
+ALTER TABLE `spell_area` DROP COLUMN `quest_start_active`, ADD COLUMN `quest_start_status` INT(11) UNSIGNED DEFAULT '64' NOT NULL AFTER `autocast`, ADD COLUMN `quest_end_status` INT(11) UNSIGNED DEFAULT '11' NOT NULL AFTER `quest_start_status`; 

@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (45438, 'spell_mage_glyph_of_ice_block');

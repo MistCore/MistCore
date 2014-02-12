@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (31224, 'spell_rog_cloak_of_shadows');

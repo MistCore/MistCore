@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (108359, 'spell_warl_dark_regeneration');

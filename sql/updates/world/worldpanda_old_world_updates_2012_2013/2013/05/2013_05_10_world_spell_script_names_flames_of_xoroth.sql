@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (120451, 'spell_warl_flames_of_xoroth');

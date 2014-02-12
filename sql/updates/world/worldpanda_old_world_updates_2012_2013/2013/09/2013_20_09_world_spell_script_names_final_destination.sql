@@ -1,0 +1,1 @@
+INSERT INTO spell_script_names VALUE (118469, 'spell_final_destination');
