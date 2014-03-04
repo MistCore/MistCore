@@ -55,15 +55,17 @@ void WorldSession::HandleClientCastFlags(WorldPacket& recvPacket, uint8 castFlag
         recvPacket >> hasMovementData;
         if (hasMovementData)
         {
+			/*recvPacket.SetOpcode(recvPacket.read<uint8>());
+            HandleMovementOpcodes(recvPacket);*/
             recvPacket.rfinish();
             // movement packet for caster of the spell
-            /*recvPacket.read_skip<uint32>(); // MSG_MOVE_STOP - hardcoded in client
+            recvPacket.read_skip<uint32>(); // MSG_MOVE_STOP - hardcoded in client
             uint64 guid;
             recvPacket.readPackGUID(guid);
 
             MovementInfo movementInfo;
             movementInfo.guid = guid;
-            ReadMovementInfo(recvPacket, &movementInfo);*/
+            ReadMovementInfo(recvPacket, &movementInfo);
         }
         return;
     }

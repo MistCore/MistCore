@@ -1182,10 +1182,14 @@ bool Player::Create(uint32 guidlow, CharacterCreateInfo* createInfo)
 
     // base stats and related field values
     InitStatsForLevel();
+
     InitTaxiNodesForLevel();
+
     InitGlyphsForLevel();
     InitTalentForLevel();
-    InitSpellForLevel();
+
+//    InitSpellForLevel();
+
     InitPrimaryProfessions();                               // to max set before any spell added
 
     // apply original stats mods before spell loading or item equipment that call before equip _RemoveStatsMods()
@@ -3668,6 +3672,9 @@ void Player::GiveLevel(uint8 level)
     data << uint32(0);
     data << uint32(0);
     data << uint32(0);
+    data << uint32(0);
+    data << uint32(0);
+
     // end for
     for (uint8 i = STAT_STRENGTH; i < MAX_STATS; ++i)       // Stats loop (0-4)
         data << uint32(int32(info.stats[i]) - GetCreateStat(Stats(i)));
@@ -3692,7 +3699,7 @@ void Player::GiveLevel(uint8 level)
 
     InitTalentForLevel();
     InitSpellForLevel();
-    InitTaxiNodesForLevel();
+//    InitTaxiNodesForLevel();
     InitGlyphsForLevel();
 
     UpdateAllStats();
@@ -5406,7 +5413,9 @@ void Player::ResetSpec()
     RemoveAllSymbiosisAuras();
     RemoveSpecializationSpells();
     SetSpecializationId(GetActiveSpec(), 0);
-    InitSpellForLevel();
+
+//    InitSpellForLevel();
+
     UpdateMasteryPercentage();
     SendTalentsInfoData(false);
 
@@ -18940,7 +18949,7 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder, PreparedQueryResult
 
     // after spell and quest load
     InitTalentForLevel();
-    InitSpellForLevel();
+//    InitSpellForLevel();
     learnDefaultSpells();
 
     // must be before inventory (some items required reputation check)
