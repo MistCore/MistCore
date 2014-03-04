@@ -10,6 +10,9 @@ You can report bugs or add fixed or new systems in the 'Issues' list or the 'Pul
 ## IRC
 Feel free to join us at irc.rizon.net - #mist
 
+#Remind
+MistCore is an educational project and it's opensource with GPL.
+
 ## Database
 For the moment we do not have a decent database. For the moment we will stick with the leaked worldpanda database that was leaked with JadeCore.
 In time we will add, remove and translate the database into a good working database.
