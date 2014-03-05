@@ -11,18 +11,7 @@ You can report bugs or add fixed or new systems in the 'Issues' list or the 'Pul
 Feel free to join us at irc.rizon.net - #mist
 
 ## Database
-For the moment we do not have a decent database. For the moment we will stick with the leaked worldpanda database that was leaked with JadeCore.
-In time we will add, remove and translate the database into a good working database.
-
-https://www.dropbox.com/s/9beutzesui17xt7/Database.rar
-
-Notes:
-
-Auth: Use sql\base\auth_database.sql
-
-Characters: Use sql\base\characters_database.sql
-
-World: Use the worldpanda.sql found in the link above.
+https://github.com/MistCore/MC-Database
 
 ## Dbc, maps, & vmaps
 You can use these extractors to generate dbc, maps & vmaps.
