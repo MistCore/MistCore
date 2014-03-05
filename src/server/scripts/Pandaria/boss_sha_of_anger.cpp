@@ -265,32 +265,32 @@ class boss_sha_of_anger : public CreatureScript
 
                 DoMeleeAttackIfReady();
             }
+
             void UpdateDistanceVisibility()
             {
-            Map *map = me->GetMap();
+                Map *map = me->GetMap();
 
-            if(map)
-            {
-                Map::PlayerList const &pList = map->GetPlayers();
-                for(Map::PlayerList::const_iterator i = pList.begin() ; i != pList.end() ; ++i)
+                if(map)
                 {
-                    Player *player = i->getSource();
-
-                    bool rangeOfUpdate = player->GetExactDist2d(me->GetPositionX(),me->GetPositionY()) < 2000;
-
-                    if(player)
+                    Map::PlayerList const &pList = map->GetPlayers();
+                    for(Map::PlayerList::const_iterator i = pList.begin() ; i != pList.end() ; ++i)
                     {
-                        if(rangeOfUpdate)
-                        {
-                            player->UpdateVisibilityOf(me);
-                            player->UpdateVisibilityForPlayer();
+                        Player *player = i->getSource();
 
+                        bool rangeOfUpdate = player->GetExactDist2d(me->GetPositionX(),me->GetPositionY()) < 2000;
+
+                        if(player)
+                        {
+                            if(rangeOfUpdate)
+                            {
+                                player->UpdateVisibilityOf(me);
+                                player->UpdateVisibilityForPlayer();
+                            }
                         }
                     }
                 }
             }
-        }
-    };
+        };
 };
 
 class mob_sha_of_anger_bunny : public CreatureScript
