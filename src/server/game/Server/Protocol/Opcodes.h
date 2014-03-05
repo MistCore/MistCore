@@ -1337,7 +1337,7 @@ enum Opcodes
     SMSG_UPDATE_ITEM_ENCHANTMENTS                     = 0x98E,  // 5.0.5 16048
     SMSG_UPDATE_LAST_INSTANCE                         = 0xDDC,  // 5.0.5 16048
     SMSG_UPDATE_OBJECT                                = 0x8F7,  // 5.0.5 16048
-    SMSG_UPDATE_SERVER_PLAYER_POSITION                = 0,      // 0x74A3  in 4.3.4 @todo find me 
+    SMSG_UPDATE_SERVER_PLAYER_POSITION                = 0xE1B,  // 0x74A3  in 4.3.4 @todo find me 
     SMSG_UPDATE_TALENT_DATA                           = 0xCEC,  // 5.0.5 16048
     SMSG_UPDATE_WORLD_STATE                           = 0x847,	// 5.0.5 16048
     SMSG_USERLIST_ADD                                 = 0x95A,  // 5.0.5 16048
