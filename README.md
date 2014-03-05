@@ -10,6 +10,9 @@ You can report bugs or add fixed or new systems in the 'Issues' list or the 'Pul
 ## IRC
 Feel free to join us at irc.rizon.net - #mist
 
+#Remind
+MistCore is an educational project and it's opensource with GNU GPL.
+
 ## Database
 https://github.com/MistCore/MC-Database
 

@@ -2832,22 +2832,24 @@ public:
 
         void SpellHit(Unit* caster, const SpellInfo* spell)
         {
-            Creature* horse = me->FindNearestCreature(NPC_CROWLEY_HORSE, 100, true);
-            if (spell->Id == SPELL_THROW_TORCH)
+            if(Creature* horse = me->FindNearestCreature(NPC_CROWLEY_HORSE, 100, true))
             {
-                Burning = true;
-
-                if(me->getVictim()->GetTypeId() == TYPEID_PLAYER)//We should ONLY switch our victim if we currently have the player targeted
+                if (spell->Id == SPELL_THROW_TORCH)
                 {
-                    me->getThreatManager().resetAllAggro();//We need to aggro on crowley's horse, not the player
-                    horse->AddThreat(me, 1.0f);
-                    me->AddThreat(horse, 1.0f);
-                    me->AI()->AttackStart(horse);
-                }
+                    Burning = true;
 
-                if (caster->GetTypeId() == TYPEID_PLAYER && caster->ToPlayer()->GetQuestStatus(QUEST_SACRIFICES) == QUEST_STATUS_INCOMPLETE)
-                {
-                    caster->ToPlayer()->KilledMonsterCredit(NPC_BLOODFANG_STALKER_CREDIT, 0);
+                    if(me->getVictim()->GetTypeId() == TYPEID_PLAYER)//We should ONLY switch our victim if we currently have the player targeted
+                    {
+                        me->getThreatManager().resetAllAggro();//We need to aggro on crowley's horse, not the player
+                        horse->AddThreat(me, 1.0f);
+                        me->AddThreat(horse, 1.0f);
+                        me->AI()->AttackStart(horse);
+                    }
+
+                    if (caster->GetTypeId() == TYPEID_PLAYER && caster->ToPlayer()->GetQuestStatus(QUEST_SACRIFICES) == QUEST_STATUS_INCOMPLETE)
+                    {
+                        caster->ToPlayer()->KilledMonsterCredit(NPC_BLOODFANG_STALKER_CREDIT, 0);
+                    }
                 }
             }
         }
