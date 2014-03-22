@@ -341,7 +341,7 @@ enum Opcodes
     CMSG_MESSAGECHAT_AFK                              = 0x384,  // 5.0.5 16048
     CMSG_MESSAGECHAT_BATTLEGROUND                     = 0x4CD,  // 5.0.5 16048
     CMSG_MESSAGECHAT_CHANNEL                          = 0x79A,  // 5.0.5 16048
-    CMSG_MESSAGECHAT_DND                              = 0x1EA,  // 5.0.5 16048
+    CMSG_MESSAGECHAT_DND                              = 0x1E4,  // 5.0.5 16048
     CMSG_MESSAGECHAT_EMOTE                            = 0x285,  // 5.0.5 16048
     CMSG_MESSAGECHAT_GUILD                            = 0x0E4,  // 5.0.5 16048
     CMSG_MESSAGECHAT_OFFICER                          = 0x1C1,  // 5.0.5 16048
