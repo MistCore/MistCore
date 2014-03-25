@@ -2129,7 +2129,7 @@ void Player::Update(uint32 p_time)
        SetPhaseMask(8, true);
 
     if(GetQuestStatus(14078) == QUEST_STATUS_REWARDED && GetQuestStatus(14099) == QUEST_STATUS_REWARDED && GetQuestStatus(14159) == QUEST_STATUS_REWARDED && GetQuestStatus(14221) == QUEST_STATUS_REWARDED) //Phase 5 - Never Surrender Sometimes Retreat Quest Completed
-       SetPhaseMask(22, true);
+       SetPhaseMask(2, true);
    }
 }
 
