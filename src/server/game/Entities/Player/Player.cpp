@@ -2113,6 +2113,24 @@ void Player::Update(uint32 p_time)
     //because we don't want player's ghost teleported from graveyard
     if (IsHasDelayedTeleport() && isAlive())
         TeleportTo(m_teleport_dest, m_teleport_options);
+		
+	    if(getRace() == 22 && isInCombat() && HasSpell(68996)) // Worgen start combat
+       CastSpell(this, 97709, true);	
+		
+		    //Gilneas Phases
+   if(GetZoneId() == 4755 && !isGameMaster()){
+    if(GetQuestStatus(14078) == QUEST_STATUS_REWARDED && GetQuestStatus(14099) != QUEST_STATUS_REWARDED && GetQuestStatus(14159) != QUEST_STATUS_REWARDED && GetQuestStatus(14221) != QUEST_STATUS_REWARDED) //Phase 2 - Lockdown Quest Completed
+	SetPhaseMask(2,true);
+
+    if(GetQuestStatus(14078) == QUEST_STATUS_REWARDED && GetQuestStatus(14099) == QUEST_STATUS_REWARDED && GetQuestStatus(14159) != QUEST_STATUS_REWARDED && GetQuestStatus(14221) != QUEST_STATUS_REWARDED) //Phase 3 - Royal Orders Quest Completed
+	SetPhaseMask(4, true);
+
+    if(GetQuestStatus(14078) == QUEST_STATUS_REWARDED && GetQuestStatus(14099) == QUEST_STATUS_REWARDED && GetQuestStatus(14159) == QUEST_STATUS_REWARDED && GetQuestStatus(14221) != QUEST_STATUS_REWARDED) //Phase 4 - The Rebel Lords Arsenal Quest Completed
+       SetPhaseMask(8, true);
+
+    if(GetQuestStatus(14078) == QUEST_STATUS_REWARDED && GetQuestStatus(14099) == QUEST_STATUS_REWARDED && GetQuestStatus(14159) == QUEST_STATUS_REWARDED && GetQuestStatus(14221) == QUEST_STATUS_REWARDED) //Phase 5 - Never Surrender Sometimes Retreat Quest Completed
+       SetPhaseMask(22, true);
+   }
 }
 
 void Player::setDeathState(DeathState s)
