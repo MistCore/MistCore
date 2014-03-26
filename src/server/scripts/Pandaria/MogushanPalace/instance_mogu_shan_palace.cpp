@@ -545,11 +545,10 @@ public:
 						  xin->DisappearAndDie();
 
                     SetBossState(DATA_TRIAL_OF_THE_KING, DONE);
-
+			//this has to be done this way because setbossstate is not working for this boss
                     if (GameObject* chest = instance->GetGameObject(trialChestGuid))
                         chest->SetPhaseMask(1, true);
 
-			printf("State: %i \n", GetBossState(DATA_TRIAL_OF_THE_KING));
                 }
                 break;
             case TYPE_MING_RETIRED:

@@ -78,8 +78,6 @@ class mob_xian_the_weaponmaster_trigger : public CreatureScript
             {
                 events.Update(diff);
 
-				if (me->GetInstanceScript()->GetBossState(DATA_TRIAL_OF_THE_KING) == DONE)
-					me->DisappearAndDie();
 
                 while (uint32 eventId = events.ExecuteEvent())
                 {
@@ -230,9 +228,6 @@ class boss_ming_the_cunning : public CreatureScript
                 if (!UpdateVictim())
                     return;
 
-				if (me->GetInstanceScript()->GetBossState(DATA_TRIAL_OF_THE_KING) == DONE)
-					me->DisappearAndDie();
-
 
                 events.Update(diff);
 
@@ -338,9 +333,6 @@ class mob_whirling_dervish : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
-
-				if (me->GetInstanceScript()->GetBossState(DATA_TRIAL_OF_THE_KING) == DONE)
-					me->DisappearAndDie();
 
                 events.Update(diff);
 
@@ -477,8 +469,6 @@ class mob_adepts : public CreatureScript
                 if (status == STATUS_ATTACK_GRUNTS && me->getVictim() && me->getVictim()->ToPlayer())
                     me->AttackStop();
 
-				if (me->GetInstanceScript()->GetBossState(DATA_TRIAL_OF_THE_KING) == DONE)
-					me->DisappearAndDie();
 
                 events.Update(diff);
 
@@ -629,8 +619,6 @@ class boss_kuai_the_brute : public CreatureScript
                 if (!UpdateVictim())
                     return;
 
-				if (me->GetInstanceScript()->GetBossState(DATA_TRIAL_OF_THE_KING) == DONE)
-					me->DisappearAndDie();
 
                 events.Update(diff);
 
@@ -741,9 +729,6 @@ class mob_mu_shiba : public CreatureScript
                     return;
 
                 events.Update(diff);
-
-				if (me->GetInstanceScript()->GetBossState(DATA_TRIAL_OF_THE_KING) == DONE)
-					me->DisappearAndDie();
 
                 while (uint32 eventId = events.ExecuteEvent())
                 {
@@ -873,9 +858,6 @@ class boss_haiyan_the_unstoppable : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
-
-				if (me->GetInstanceScript()->GetBossState(DATA_TRIAL_OF_THE_KING) == DONE)
-					me->DisappearAndDie();
 
                 events.Update(diff);
 
