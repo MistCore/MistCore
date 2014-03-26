@@ -2919,8 +2919,44 @@ public:
     };
 };
 
+class npc_lord_darius_crowley : public CreatureScript
+{
+public:
+    npc_lord_darius_crowley() : CreatureScript("npc_lord_darius_crowley") {}
+
+    bool OnQuestAccept(Player* player, Creature* creature, Quest const* quest)
+    {
+        if (quest->GetQuestId() == 14212)
+        {
+	     player->TeleportTo(638, -1535.24, 1584.37, 26.53, 0.78, 0); //teleport to zone
+        }
+        return true;
+    }
+};
+
+class npc_king_g_final : public CreatureScript
+{
+public:
+    npc_king_g_final() : CreatureScript("npc_king_g_final") {}
+
+    bool OnQuestAccept(Player* player, Creature* creature, Quest const* quest)
+    {
+        if (quest->GetQuestId() == 14375)
+        {
+	     player->CastSpell(player, 93477, true);
+            player->learnSpell(68996, false);
+	     player->learnSpell(94098, false);
+            player->CastSpell(player, 68996, true);
+            player->RemoveAurasDueToSpell(72870);
+        }
+        return true;
+    }
+};
+
 void AddSC_gilneas()
 {
+    new npc_king_g_final();
+    new npc_lord_darius_crowley();
     new npc_gilneas_city_guard_phase1();
     new npc_prince_liam_greymane_phase1();
     new npc_gilneas_city_guard_phase2();
