@@ -1,7 +1,7 @@
 UPDATE `quest_template` SET `RewardSpell`='0' WHERE `Id`='14078';
 
 UPDATE creature SET phasemask='1' WHERE id='34864';
-UPDATE gameoject_template SET ScriptName='go_merchant_square_door' WHERE entry='195327';
+UPDATE gameobject_template SET ScriptName='go_merchant_square_door' WHERE entry='195327';
 
 
 UPDATE `creature_template` SET `ScriptName`='npc_gwen_armstead_p2' WHERE `entry`='35840';
