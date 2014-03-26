@@ -330,9 +330,6 @@ public:
                 player->TalkedToCreature(creature->GetEntry(), creature->GetGUID());
                 player->PrepareGossipMenu(creature, 0 ,true);
                 player->SendPreparedGossip(creature);
-		  //Phasing
-		  player->CastSpell(player, 67789, true);
-	         player->RemoveAurasDueToSpell(78644);
             }
         }
         return true;
