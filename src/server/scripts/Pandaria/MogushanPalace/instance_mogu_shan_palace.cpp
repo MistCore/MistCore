@@ -89,7 +89,7 @@ public:
             switch (id)
             {
                 case DATA_TRIAL_OF_THE_KING:
-                    HandleGameObject(doorBeforeTrialGuid, state != IN_PROGRESS);
+                 HandleGameObject(doorBeforeTrialGuid, state != IN_PROGRESS);
                     if (GameObject* chest = instance->GetGameObject(trialChestGuid))
                         chest->SetPhaseMask(state == DONE ? 1: 128, true);
                     break;
@@ -488,7 +488,8 @@ public:
                 break;
             case TYPE_ALL_ATTACK:
                 {
-                    for (auto guid : adepts)
+ 
+                  for (auto guid : adepts)
                     {
                         Creature* creature = instance->GetCreature(guid);
 
@@ -500,7 +501,7 @@ public:
 
                         Creature* grunt = instance->GetCreature(*itr);
                         if (creature && grunt)
-                            creature->Attack(grunt, true);
+                            creature->DisappearAndDie();
                     }
                     for (auto guid : grunts)
                     {
@@ -514,7 +515,7 @@ public:
 
                         Creature* scrapper = instance->GetCreature(*itr);
                         if (creature && scrapper)
-                            creature->Attack(scrapper, true);
+                            creature->DisappearAndDie();
                     }
                     for (auto guid : scrappers)
                     {
@@ -528,10 +529,26 @@ public:
 
                         Creature* adept = instance->GetCreature(*itr);
                         if (creature && adept)
-                            creature->Attack(adept, true);
+                            creature->DisappearAndDie();
                     }
 
+					if (Creature* haiyan = instance->GetCreature(haiyan_guid))
+						haiyan->DisappearAndDie();
+
+					  if (Creature* ming = instance->GetCreature(ming_guid))
+						  ming->DisappearAndDie();
+
+					  if (Creature* kuai = instance->GetCreature(kuai_guid))
+						  kuai->DisappearAndDie();
+
+					  if (Creature* xin = instance->GetCreature(xin_guid))
+						  xin->DisappearAndDie();
+
                     SetBossState(DATA_TRIAL_OF_THE_KING, DONE);
+			//this has to be done this way because setbossstate is not working for this boss
+                    if (GameObject* chest = instance->GetGameObject(trialChestGuid))
+                        chest->SetPhaseMask(1, true);
+
                 }
                 break;
             case TYPE_MING_RETIRED:

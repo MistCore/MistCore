@@ -78,6 +78,7 @@ class mob_xian_the_weaponmaster_trigger : public CreatureScript
             {
                 events.Update(diff);
 
+
                 while (uint32 eventId = events.ExecuteEvent())
                 {
                     switch (eventId)
@@ -226,6 +227,7 @@ class boss_ming_the_cunning : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
+
 
                 events.Update(diff);
 
@@ -436,6 +438,7 @@ class mob_adepts : public CreatureScript
                         me->GetMotionMaster()->MovePoint(0, x, y, me->GetMap()->GetHeight(0, x, y, me->GetPositionZ()));
 
                         me->RemoveAura(121569);
+
                         events.Reset();
                         break;
                     }
@@ -465,6 +468,7 @@ class mob_adepts : public CreatureScript
             {
                 if (status == STATUS_ATTACK_GRUNTS && me->getVictim() && me->getVictim()->ToPlayer())
                     me->AttackStop();
+
 
                 events.Update(diff);
 
@@ -615,6 +619,7 @@ class boss_kuai_the_brute : public CreatureScript
                 if (!UpdateVictim())
                     return;
 
+
                 events.Update(diff);
 
                 if (me->HasUnitState(UNIT_STATE_CASTING))
@@ -713,6 +718,7 @@ class mob_mu_shiba : public CreatureScript
                         me->AttackStop();
                         me->SetReactState(REACT_PASSIVE);
                         me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
+			   me->DisappearAndDie();
                         break;
                 }
             }
@@ -880,7 +886,7 @@ class boss_haiyan_the_unstoppable : public CreatureScript
                         events.ScheduleEvent(EVENT_METEOR, 30000);
                         break;
                     case EVENT_BOSS_RETIRE:
-                        if (me->GetInstanceScript())
+			    if (me->GetInstanceScript())
                             me->GetInstanceScript()->SetData(TYPE_ALL_ATTACK, 0);
                         break;
                     case EVENT_CONFLAGRATE_2:
