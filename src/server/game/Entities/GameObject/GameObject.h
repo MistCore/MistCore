@@ -581,7 +581,7 @@ struct GameObjectData
     uint16 mapid;
     uint16 zoneId;
     uint16 areaId;
-    uint16 phaseMask;
+    uint32 phaseMask;
     float posX;
     float posY;
     float posZ;

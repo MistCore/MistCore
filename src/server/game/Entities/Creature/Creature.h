@@ -277,7 +277,7 @@ struct CreatureData
     uint16 mapid;
     uint16 zoneId;
     uint16 areaId;
-    uint16 phaseMask;
+    uint32 phaseMask;
     uint32 displayid;
     int32 equipmentId;
     float posX;

@@ -1158,7 +1158,7 @@ void Creature::SaveToDB(uint32 mapid, uint32 spawnMask, uint32 phaseMask)
     stmt->setUInt32(index++, zoneId);
     stmt->setUInt32(index++, areaId);
     stmt->setUInt8(index++,  spawnMask);
-    stmt->setUInt16(index++, uint16(GetPhaseMask()));
+    stmt->setUInt32(index++, uint32(GetPhaseMask()));
     stmt->setUInt32(index++, displayId);
     stmt->setInt32(index++,  int32(GetEquipmentId()));
     stmt->setFloat(index++,  GetPositionX());

@@ -708,7 +708,7 @@ void GameObject::SaveToDB(uint32 mapid, uint32 spawnMask, uint32 phaseMask)
     stmt->setUInt16(index++, zoneId);
     stmt->setUInt16(index++, areaId);
     stmt->setUInt32(index++, spawnMask);
-    stmt->setUInt16(index++, uint16(GetPhaseMask()));
+    stmt->setUInt32(index++, uint32(GetPhaseMask()));
     stmt->setFloat(index++, GetPositionX());
     stmt->setFloat(index++, GetPositionY());
     stmt->setFloat(index++, GetPositionZ());
