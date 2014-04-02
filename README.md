@@ -7,17 +7,18 @@ There is still a lot to be fixed in this source, and we need all the help we can
 
 If you feel interested by this project and you would like to help, we would appriciate it.
 You can report bugs or add fixed or new systems in the 'Issues' list or the 'Pull Requests' list.
+
 ## IRC
 Feel free to join us at irc.rizon.net - #mist
 
-#Remind
+#Reminder
 MistCore is an educational project and it's opensource with GNU GPL v2.
 
 ## Database
 https://github.com/MistCore/MC-Database
 
 ## Dbc, maps, & vmaps
-You can use these extractors to generate dbc, maps & vmaps.
+You can use extractors to generate dbc, maps & vmaps.
 
 ## Requirements
 
