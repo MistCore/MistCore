@@ -5965,6 +5965,7 @@ void Spell::EffectCharge(SpellEffIndex /*effIndex*/)
         unitTarget->GetFirstCollisionPosition(pos, unitTarget->GetObjectSize(), angle);
 
         m_caster->GetMotionMaster()->MoveCharge(pos.m_positionX, pos.m_positionY, pos.m_positionZ + unitTarget->GetObjectSize());
+        m_caster->ModifyPower(POWER_RAGE, 20); // Add 20 Rage
     }
 
     if (effectHandleMode == SPELL_EFFECT_HANDLE_HIT_TARGET)
@@ -5975,6 +5976,12 @@ void Spell::EffectCharge(SpellEffIndex /*effIndex*/)
         // not all charge effects used in negative spells
         if (!m_spellInfo->IsPositive() && m_caster->GetTypeId() == TYPEID_PLAYER)
             m_caster->Attack(unitTarget, true);
+
+		if (!m_caster->HasAura(103828) && m_caster->GetTypeId() == TYPEID_PLAYER)
+			m_caster->CastSpell(unitTarget, 7922, true); // Add Charge Stun Spell = http://www.wowhead.com/spell=7922
+
+		if (m_caster->HasAura(103828) && m_caster->GetTypeId() == TYPEID_PLAYER)
+			m_caster->CastSpell(unitTarget, 105771, true); // Add Warbringer Spell = http://www.wowhead.com/spell=105771
     }
 }
 
