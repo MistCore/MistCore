@@ -657,6 +657,9 @@ void AddSC_WanderingIsland_East();
 void AddSC_WanderingIsland_West();
 void AddSC_WanderingIsland_South();
 
+//MaelStrom
+void AddSC_kezan();
+
 // battlegrounds
 
 // outdoor pvp
@@ -951,6 +954,9 @@ void AddEasternKingdomsScripts()
     AddSC_western_plaguelands();
     AddSC_westfall();
     AddSC_wetlands();
+	
+	//MaelStrom
+	AddSC_kezan();
 #endif
 }
 
