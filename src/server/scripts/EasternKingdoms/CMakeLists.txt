@@ -146,6 +146,7 @@ set(scripts_STAT_SRCS
   EasternKingdoms/Deadmines/deadmines.cpp
   EasternKingdoms/Deadmines/boss_mr_smite.cpp
   EasternKingdoms/Deadmines/instance_deadmines.cpp
+  EasternKingdoms/Deadmines/boss_glubtok.cpp
   EasternKingdoms/duskwood.cpp
   EasternKingdoms/ScarletMonastery/boss_azshir_the_sleepless.cpp
   EasternKingdoms/ScarletMonastery/boss_mograine_and_whitemane.cpp
