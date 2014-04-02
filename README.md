@@ -19,9 +19,6 @@ https://github.com/MistCore/MC-Database
 ## Dbc, maps, & vmaps
 You can use these extractors to generate dbc, maps & vmaps.
 
-https://github.com/MistCore/MistCore/releases/tag/Extractors
-
-
 ## Requirements
 
 + Platform: Linux, Windows or Mac
