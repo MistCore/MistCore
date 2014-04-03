@@ -2114,6 +2114,7 @@ void Player::Update(uint32 p_time)
 	if (IsHasDelayedTeleport() && isAlive())
 		TeleportTo(m_teleport_dest, m_teleport_options);
 
+
 	if (getRace() == 22 && isInCombat() && HasSpell(68996)) // Worgen start combat
 		CastSpell(this, 97709, true);
 
@@ -24105,8 +24106,11 @@ template<>
 inline void UpdateVisibilityOf_helper(std::set<uint64>& s64, GameObject* target, std::set<Unit*>& /*v*/)
 {
 	// Don't update only GAMEOBJECT_TYPE_TRANSPORT (or all transports and destructible buildings?)
-	if ((target->GetGOInfo()->type != GAMEOBJECT_TYPE_TRANSPORT))
+	if ((!target->IsTransport() && target->GetGOInfo()->type != GAMEOBJECT_TYPE_TRANSPORT))
 		s64.insert(target->GetGUID());
+
+	/*if (!target->IsTransport() && !(target->GetGOInfo()->type == GAMEOBJECT_TYPE_DESTRUCTIBLE_BUILDING))
+		s64.insert(target->GetGUID());*/
 }
 
 template<>

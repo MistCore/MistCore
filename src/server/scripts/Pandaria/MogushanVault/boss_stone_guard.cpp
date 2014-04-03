@@ -718,7 +718,9 @@ class spell_petrification : public SpellScriptLoader
                     {
                         uint8 stackCount = triggeredAura->GetStackAmount();
 
-                        uint8 newStackCount = (stackCount + 5 > 100) ? 100 : (stackCount + 5);
+						//Fix ME: Debuff is not seen in game i don't know why, until i figure it out this will be 0 stacks
+
+                        uint8 newStackCount = (stackCount + 0); //Stacks should be stacks + 5
                         triggeredAura->SetStackAmount(newStackCount);
                         triggeredAura->RefreshDuration();
                         triggeredAura->RecalculateAmountOfEffects();
