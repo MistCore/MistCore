@@ -174,8 +174,8 @@ class npc_defiant_troll : public CreatureScript
         }
     };
 
-    bool OnGossipHello(Player* player, Creature* creature)
-    {
+	bool OnGossipHello(Player* player, Creature* creature)
+	{
         if (player->GetQuestStatus(QUEST_GOOD_HELP_IS_HARD_TO_FIND) == QUEST_STATUS_INCOMPLETE)
         {
             player->CastSpell(creature, SPELL_LIGHTNING_VISUAL, true);
@@ -586,16 +586,6 @@ public:
     bool OnQuestAccept(Player* player, Creature* creature, const Quest* quest) 
     {
 
-		if (quest->GetQuestId() == 14115)
-        {
-	   //player->CastSpell(player, 59074, false);
-	   player->SetPhaseMask(4, false);
-        }
-	 if(quest->GetQuestId() == 14122){
-          //player->RemoveAurasDueToSpell(59074);
-	   player->SetPhaseMask(1, false);
-	 }
-	
 	 if (quest->GetQuestId() == 14153 || quest->GetQuestId() == 14113)
 	 {
 		 if (player->getGender() == GENDER_MALE)
@@ -617,8 +607,8 @@ public:
 
     }
 
-    bool OnQuestComplete(Player* player, Creature* /*creature*/, Quest const* quest) 
-    {
+	bool OnQuestReward(Player* player, Creature* creature, Quest const* quest, uint32 opt)
+	{
 
 	 if (quest->GetQuestId() == 14153 || quest->GetQuestId() == 14113)
         {
@@ -638,15 +628,7 @@ public:
 
 	 }
 
-
-	 if(quest->GetQuestId() == 14122)
-	 {
-          //player->RemoveAurasDueToSpell(59074);
-	   player->SetPhaseMask(1, false);
-	 }
-	
-
-	return true;
+    return true;
     }
 
 };
@@ -904,6 +886,7 @@ public:
 
         void SpellHit(Unit* caster, SpellInfo const* spell)
         {
+			printf("SpellHit\n");
             if (((caster->GetGUID() != PlayerGuid) || !caster->HasAura(SPELL_ENTER_VAULT)) || caster->GetTypeId() != TYPEID_PLAYER)
                 return;
 
@@ -1286,8 +1269,35 @@ public:
 };
 
 
+class npc_gas_bot : public CreatureScript
+{
+public:
+	npc_gas_bot() : CreatureScript("npc_gas_bot") { }
+
+	CreatureAI* GetAI(Creature* creature) const
+	{
+		return new npc_gas_botAI(creature);
+	}
+
+	struct npc_gas_botAI : public ScriptedAI
+	{
+		npc_gas_botAI(Creature* creature) : ScriptedAI(creature) {}
+	};
+
+	bool OnGossipHello(Player* player, Creature* creature)
+	{
+		if (player->GetQuestStatus(14125) == QUEST_STATUS_INCOMPLETE)
+		{
+			player->KilledMonsterCredit(37598);
+		}
+		return false;
+	}
+};
+
+
 void AddSC_kezan()
 {
+	new npc_gas_bot();
     new npc_fourth_and_goal_target();
     new npc_defiant_troll();
     new npc_hotrod();

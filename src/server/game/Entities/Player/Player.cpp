@@ -2120,8 +2120,21 @@ void Player::Update(uint32 p_time)
 	//Kezan Phases
 	if (GetZoneId() == 4737 && !isGameMaster())
 	{
-		if (GetQuestStatus(14113) == QUEST_STATUS_INCOMPLETE || GetQuestStatus(14153) == QUEST_STATUS_INCOMPLETE)
+		if (GetQuestStatus(14070) == QUEST_STATUS_REWARDED && GetQuestStatus(14113) != QUEST_STATUS_REWARDED && GetQuestStatus(14120) != QUEST_STATUS_REWARDED && GetQuestStatus(14125) != QUEST_STATUS_REWARDED && GetQuestStatus(14126) != QUEST_STATUS_REWARDED) //Phase 2
 			SetPhaseMask(2, true);
+
+		if (GetQuestStatus(14070) == QUEST_STATUS_REWARDED && GetQuestStatus(14113) == QUEST_STATUS_REWARDED && GetQuestStatus(14120) != QUEST_STATUS_REWARDED && GetQuestStatus(14125) != QUEST_STATUS_REWARDED && GetQuestStatus(14126) != QUEST_STATUS_REWARDED) //Phase 3
+			SetPhaseMask(4, true);
+
+		if (GetQuestStatus(14070) == QUEST_STATUS_REWARDED && GetQuestStatus(14113) == QUEST_STATUS_REWARDED && GetQuestStatus(14120) == QUEST_STATUS_REWARDED && GetQuestStatus(14125) != QUEST_STATUS_REWARDED && GetQuestStatus(14126) != QUEST_STATUS_REWARDED) //Phase 4
+			SetPhaseMask(1, true);
+
+		if (GetQuestStatus(14070) == QUEST_STATUS_REWARDED && GetQuestStatus(14113) == QUEST_STATUS_REWARDED && GetQuestStatus(14120) == QUEST_STATUS_REWARDED && GetQuestStatus(14125) == QUEST_STATUS_REWARDED && GetQuestStatus(14126) != QUEST_STATUS_REWARDED) //Phase 5
+			SetPhaseMask(8, true);
+
+		if (GetQuestStatus(14070) == QUEST_STATUS_REWARDED && GetQuestStatus(14113) == QUEST_STATUS_REWARDED && GetQuestStatus(14120) == QUEST_STATUS_REWARDED && GetQuestStatus(14125) == QUEST_STATUS_REWARDED && GetQuestStatus(14126) == QUEST_STATUS_REWARDED) //Phase 6
+			SetPhaseMask(1, true);
+
 	}
 
 	//Gilneas Phases
