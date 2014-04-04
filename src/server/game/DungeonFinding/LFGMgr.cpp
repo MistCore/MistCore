@@ -593,43 +593,6 @@ void LFGMgr::InitializeLockedDungeons(Player* player)
             locktype = LFG_LOCKSTATUS_ATTUNEMENT_TOO_HIGH_LEVEL;
         */
 
-        // MoP Dungeon-Raid
-        if (dungeon->expansion == 4)
-            locktype = LFG_LOCKSTATUS_TEMPORARILY_DISABLED;
-
-        // Normal
-        if (dungeon->difficulty == REGULAR_DIFFICULTY)
-        {
-            // Temple du serpent de jade
-            if (dungeon->map == 960)
-                locktype = LFG_LOCKSTATUS_OK;
-            // Palais Mogushan
-            else if (dungeon->map == 994)
-                locktype = LFG_LOCKSTATUS_OK;
-            // Monastère des Pandashan
-            else if (dungeon->map == 959)
-                locktype = LFG_LOCKSTATUS_OK;
-        }
-
-        // Heroic
-        if (dungeon->difficulty == HEROIC_DIFFICULTY )
-        {
-            if (dungeon->map == 962)
-                locktype = LFG_LOCKSTATUS_OK;
-        }
-
-        // LFR
-        {
-            // Caveaux Mogu'shan
-            if (dungeon->map == 1008)
-            {
-                if (player->GetAverageItemLevel() < 460)
-                    locktype = LFG_LOCKSTATUS_TOO_LOW_GEAR_SCORE;
-                else
-                    locktype =  LFG_LOCKSTATUS_OK;
-            }
-        }
-
         if (locktype != LFG_LOCKSTATUS_OK)
             lock[dungeon->Entry()] = locktype;
     }
