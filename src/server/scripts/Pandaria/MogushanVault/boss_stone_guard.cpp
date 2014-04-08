@@ -107,6 +107,8 @@ class boss_stone_guard_controler : public CreatureScript
             {
                 me->SetReactState(REACT_PASSIVE);
                 me->SetVisible(false);
+				
+				me->ClearInCombat();
 
                 fightInProgress = false;
                 lastPetrifierEntry = 0;
@@ -268,6 +270,7 @@ class boss_generic_guardian : public CreatureScript
 
             void Reset()
             {
+				me->ClearInCombat();
                 _Reset();
                 isInTrueForm = false;
                 warnedForOverload = false;
@@ -643,6 +646,7 @@ class mob_cobalt_mine : public CreatureScript
 
             void Reset()
             {
+				me->ClearInCombat();
                 preparationTimer = 3000;
                 isReady    = false;
                 isExploded = false;

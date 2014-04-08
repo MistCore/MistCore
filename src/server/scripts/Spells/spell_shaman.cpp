@@ -1247,8 +1247,8 @@ class spell_sha_lava_surge : public SpellScriptLoader
                         {
                             if (roll_chance_i(20))
                             {
+								_player->RemoveSpellCooldown(51505, true);
                                 _player->CastSpell(_player, SPELL_SHA_LAVA_SURGE_CAST_TIME, true);
-                                _player->RemoveSpellCooldown(51505, true);
                             }
                         }
                     }
@@ -1910,6 +1910,7 @@ class spell_sha_chain_heal : public SpellScriptLoader
             return new spell_sha_chain_heal_SpellScript();
         }
 };
+
 
 void AddSC_shaman_spell_scripts()
 {
