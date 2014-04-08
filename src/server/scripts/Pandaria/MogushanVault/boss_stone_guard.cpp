@@ -108,8 +108,6 @@ class boss_stone_guard_controler : public CreatureScript
                 me->SetReactState(REACT_PASSIVE);
                 me->SetVisible(false);
 				
-				me->ClearInCombat();
-
                 fightInProgress = false;
                 lastPetrifierEntry = 0;
 
@@ -270,8 +268,6 @@ class boss_generic_guardian : public CreatureScript
 
             void Reset()
             {
-				me->ClearInCombat();
-                _Reset();
                 isInTrueForm = false;
                 warnedForOverload = false;
                 me->SetReactState(REACT_DEFENSIVE);
@@ -283,8 +279,8 @@ class boss_generic_guardian : public CreatureScript
                 me->CastSpell(me, SPELL_ANIM_SIT,    true);
                 me->CastSpell(me, SPELL_ZERO_ENERGY, true);
 
-                if (Creature* stoneGuardControler = me->GetMap()->GetCreature(GetData(NPC_STONE_GUARD_CONTROLER)))
-                    stoneGuardControler->AI()->Reset();
+				if (Creature* stoneGuardControler = me->GetMap()->GetCreature(GetData(NPC_STONE_GUARD_CONTROLER)))
+					stoneGuardControler->AI()->Reset();
 
                 summons.DespawnAll();
                 me->RemoveAllAreasTrigger();
@@ -646,7 +642,6 @@ class mob_cobalt_mine : public CreatureScript
 
             void Reset()
             {
-				me->ClearInCombat();
                 preparationTimer = 3000;
                 isReady    = false;
                 isExploded = false;
