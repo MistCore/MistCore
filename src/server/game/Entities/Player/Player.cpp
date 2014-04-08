@@ -1702,6 +1702,9 @@ void Player::Update(uint32 p_time)
 	if (!IsInWorld())
 		return;
 
+	if (HasAura(77762))
+		RemoveSpellCooldown(51505, true);
+
 	//sAnticheatMgr->HandleHackDetectionTimer(this, p_time);
 
 	if (!m_initializeCallback)
