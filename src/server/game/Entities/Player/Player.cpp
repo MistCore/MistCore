@@ -3960,6 +3960,7 @@ void Player::RemoveSpecializationSpells()
 		removeSpell(itr);
 }
 
+
 void Player::InitStatsForLevel(bool reapplyMods)
 {
 	if (reapplyMods)                                        //reapply stats values only on .reset stats (level) command
@@ -4707,6 +4708,7 @@ bool Player::addSpell(uint32 spellId, bool active, bool learning, bool dependent
 		// ignore stance requirement for talent learn spell (stance set for spell only for client spell description show)
 		CastSpell(this, spellId, true);
 	}
+
 	// also cast passive spells (including all talents without SPELL_EFFECT_LEARN_SPELL) with additional checks
 	else if (spellInfo->IsPassive())
 	{
@@ -18939,13 +18941,16 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder, PreparedQueryResult
 	//mails are loaded only when needed ;-) - when player in game click on mailbox.
 	//_LoadMail();
 
+	ActivateSpec(fields[54].GetUInt8());
 	SetSpecsCount(fields[53].GetUInt8());
-	SetActiveSpec(fields[54].GetUInt8());
 
 	SetSpecializationId(0, fields[55].GetUInt32());
 	SetSpecializationId(1, fields[56].GetUInt32());
 
 	SetFreeTalentPoints(CalculateTalentsPoints());
+
+	_LoadTalents(holder->GetPreparedResult(PLAYER_LOGIN_QUERY_LOADTALENTS));
+	_LoadSpells(holder->GetPreparedResult(PLAYER_LOGIN_QUERY_CHAR_LOADSPELLS));
 
 	// sanity check
 	if (GetSpecsCount() > MAX_TALENT_SPECS || GetActiveSpec() > MAX_TALENT_SPEC || GetSpecsCount() < MIN_TALENT_SPECS)
@@ -18954,10 +18959,7 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder, PreparedQueryResult
 		sLog->outError(LOG_FILTER_PLAYER, "Player %s(GUID: %u) has SpecCount = %u and ActiveSpec = %u.", GetName(), GetGUIDLow(), GetSpecsCount(), GetActiveSpec());
 	}
 
-	_LoadTalents(holder->GetPreparedResult(PLAYER_LOGIN_QUERY_LOADTALENTS));
-	_LoadSpells(holder->GetPreparedResult(PLAYER_LOGIN_QUERY_CHAR_LOADSPELLS));
-
-	// Load of account spell, we must load it like that because it's stored in realmd database
+    // Load of account spell, we must load it like that because it's stored in realmd database
 	// With actual implementation, we can use QueryHolder only with single database
 	if (accountResult)
 	{
@@ -19140,6 +19142,9 @@ bool Player::LoadFromDB(uint32 guid, SQLQueryHolder *holder, PreparedQueryResult
 	if (GmTicket* ticket = sTicketMgr->GetTicketByPlayer(GetGUID()))
 	if (!ticket->IsClosed() && ticket->IsCompleted())
 		ticket->SendResponse(GetSession());
+
+	ActivateSpec(GetActiveSpec()); //Fixes specialization spells on player loading (prevents wrong specialization spells)
+
 
 	return true;
 }
@@ -27341,8 +27346,8 @@ void Player::UpdateSpecCount(uint8 count)
 
 void Player::ActivateSpec(uint8 spec)
 {
-	if (GetActiveSpec() == spec)
-		return;
+	//if (GetActiveSpec() == spec)
+	//	return;
 
 	if (spec > GetSpecsCount())
 		return;
