@@ -239,7 +239,7 @@ class boss_garajal : public CreatureScript
 					spiritcount++;
 
 				for (auto player : playerList)
-					if (player->HasAura(SPELL_LIFE_FRAGILE_THREAD) && player->GetHealth == player->GetMaxHealth() && spiritcount == 0)
+					if (player->HasAura(SPELL_LIFE_FRAGILE_THREAD) && player->GetHealth() == player->GetMaxHealth() && spiritcount == 0)
 						player->RemoveAurasDueToSpell(SPELL_LIFE_FRAGILE_THREAD);
 
 
