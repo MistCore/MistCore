@@ -12129,7 +12129,7 @@ InventoryResult Player::CanStoreItem_InInventorySlots(uint8 slot_begin, uint8 sl
 InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &dest, uint32 entry, uint32 count, Item* pItem, bool swap, uint32* no_space_count) const
 {
 	sLog->outDebug(LOG_FILTER_PLAYER_ITEMS, "STORAGE: CanStoreItem bag = %u, slot = %u, item = %u, count = %u", bag, slot, entry, count);
-	printf("1\n");
+
 	ItemTemplate const* pProto = sObjectMgr->GetItemTemplate(entry);
 	if (!pProto)
 	{
@@ -12137,7 +12137,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			*no_space_count = count;
 		return swap ? EQUIP_ERR_CANT_SWAP : EQUIP_ERR_ITEM_NOT_FOUND;
 	}
-	printf("2\n");
+
 	if (pItem)
 	{
 		// item used
@@ -12155,7 +12155,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			return EQUIP_ERR_NOT_OWNER;
 		}
 	}
-	printf("3\n");
+
 	// check count of items (skip for auto move for same player from bank)
 	uint32 no_similar_count = 0;                            // can't store this amount similar items
 	InventoryResult res = CanTakeMoreSimilarItems(entry, count, pItem, &no_similar_count);
@@ -12169,7 +12169,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 		}
 		count -= no_similar_count;
 	}
-	printf("4\n");
+
 	// in specific slot
 	if (bag != NULL_BAG && slot != NULL_SLOT)
 	{
@@ -12191,7 +12191,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			return EQUIP_ERR_ITEM_MAX_COUNT;
 		}
 	}
-	printf("5\n");
+
 	// not specific slot or have space for partly store only in specific slot
 
 	// in specific bag
@@ -12245,7 +12245,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 				}
 			}
 		}
-		printf("6\n");
+
 		// search free slot in bag for place to
 		if (bag == INVENTORY_SLOT_BAG_0)                     // inventory
 		{
@@ -12291,7 +12291,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			}
 		}
 	}
-	printf("7\n");
+
 	// not specific bag or have space for partly store only in specific bag
 
 	// search stack for merge to
@@ -12334,7 +12334,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 				}
 			}
 		}
-		printf("8\n");
+
 		for (uint32 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
 		{
 			res = CanStoreItem_InBag(i, dest, pProto, count, true, true, pItem, bag, slot);
@@ -12352,7 +12352,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			}
 		}
 	}
-	printf("10\n");
+
 	// search free slot - special bag case
 	if (pProto->BagFamily)
 	{
@@ -12373,10 +12373,10 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			}
 		}
 	}
-	printf("11\n");
+
 	if (pItem && pItem->IsNotEmptyBag())
 		return EQUIP_ERR_BAG_IN_BAG;
-	printf("12\n");
+
 	// search free slot
 	res = CanStoreItem_InInventorySlots(INVENTORY_SLOT_ITEM_START, INVENTORY_SLOT_ITEM_END, dest, pProto, count, false, pItem, bag, slot);
 	if (res != EQUIP_ERR_OK)
@@ -12385,7 +12385,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			*no_space_count = count + no_similar_count;
 		return res;
 	}
-	printf("13\n");
+
 	if (count == 0)
 	{
 		if (no_similar_count == 0)
@@ -12395,7 +12395,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			*no_space_count = count + no_similar_count;
 		return EQUIP_ERR_ITEM_MAX_COUNT;
 	}
-	printf("14\n");
+
 	for (uint8 i = INVENTORY_SLOT_BAG_START; i < INVENTORY_SLOT_BAG_END; i++)
 	{
 		res = CanStoreItem_InBag(i, dest, pProto, count, false, true, pItem, bag, slot);
@@ -12412,7 +12412,7 @@ InventoryResult Player::CanStoreItem(uint8 bag, uint8 slot, ItemPosCountVec &des
 			return EQUIP_ERR_ITEM_MAX_COUNT;
 		}
 	}
-	printf("15\n");
+
 	if (no_space_count)
 		*no_space_count = count + no_similar_count;
 
