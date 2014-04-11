@@ -148,7 +148,8 @@ enum eTrainingDummySpells
     SPELL_CORRUPTION_1  = 172,
     SPELL_CORRUPTION_2  = 87389,
     SPELL_CORRUPTION_3  = 131740,
-    SPELL_PAUME_TIGRE   = 100787
+    SPELL_PAUME_TIGRE   = 100787,
+	SPELL_SEAL_OF_COMMAND = 118215
 };
 
 class npc_training_dummy_start_zones : public CreatureScript
@@ -208,6 +209,7 @@ public:
                 case SPELL_CORRUPTION_2:
                 case SPELL_CORRUPTION_3:
                 case SPELL_PAUME_TIGRE:
+				case SPELL_SEAL_OF_COMMAND:
                     if (Caster->ToPlayer())
                         Caster->ToPlayer()->KilledMonsterCredit(44175, 0);
                     break;
