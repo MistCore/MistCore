@@ -5575,7 +5575,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffectPtr trigge
     int32 basepoints0 = 0;
     uint64 originalCaster = 0;
 
-	if (procSpell == 77762 && GetTypeId() == TYPEID_PLAYER) //Hack for lava surge
+	if (dummySpell->Id == 77762 && GetTypeId() == TYPEID_PLAYER) //Hack for lava surge
 		ToPlayer()->RemoveSpellCooldown(51505, true);
 
     switch (dummySpell->SpellFamilyName)
