@@ -458,11 +458,8 @@ class boss_spirit_kings_controler : public CreatureScript
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
-				printf("Here\n");
                 if (!fightInProgress)
                     return;
-
-				printf("Fight in progress\n");
 
                 events.Update(diff);
 
