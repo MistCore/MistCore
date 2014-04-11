@@ -268,7 +268,6 @@ class boss_spirit_kings_controler : public CreatureScript
                     flankingGuid[i] = 0;
 
                 spawnSpiritKings();
-                me->SetReactState(REACT_PASSIVE);
 
                 events.ScheduleEvent(EVENT_CHECK_WIPE, 2500);
                 pInstance->DoRemoveAurasDueToSpellOnPlayers(SPELL_MADDENING_SHOUT);
@@ -434,6 +433,7 @@ class boss_spirit_kings_controler : public CreatureScript
                                 default:
                                     break;
                             }
+							
                         }
 
                         break;
@@ -458,8 +458,11 @@ class boss_spirit_kings_controler : public CreatureScript
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
+				printf("Here\n");
                 if (!fightInProgress)
                     return;
+
+				printf("Fight in progress\n");
 
                 events.Update(diff);
 
@@ -748,8 +751,8 @@ class boss_spirit_kings : public CreatureScript
                 }
                 else if (me->HealthBelowPctDamaged(10, damage))
                 {
-                    if (Creature* controler = GetControler())
-                        controler->AI()->DoAction(ACTION_SAY_INTRO_FOR_NEXT_SPIRIT_IF_ANY);
+					if (Creature* controler = GetControler())
+						controler->AI()->DoAction(ACTION_SAY_INTRO_FOR_NEXT_SPIRIT_IF_ANY);
                 }
 
                 if (AuraPtr aura = me->GetAura(SPELL_COWARDICE))
