@@ -871,6 +871,7 @@ class boss_spirit_kings : public CreatureScript
                             {
                                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 2))
                                 {
+									if (!target->isPet())
                                     me->CastSpell(target, SPELL_UNDYING_SHADOWS, false);
                                     Talk(ZIAN_SPELL);
                                 }
