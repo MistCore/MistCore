@@ -771,6 +771,9 @@ uint32 Unit::DealDamage(Unit* victim, uint32 damage, CleanDamage const* cleanDam
         }
     }
 
+	if (victim->HasAura(117708) && ToPlayer() && damage >= 30000) //Madening Shout -> Spirit Kings -> Mogushan Vaults
+		victim->RemoveAurasDueToSpell(117708);
+
     if (victim->IsAIEnabled)
         victim->GetAI()->DamageTaken(this, damage);
 
