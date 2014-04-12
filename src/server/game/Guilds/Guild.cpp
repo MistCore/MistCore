@@ -3374,6 +3374,9 @@ void Guild::SendGuildRanksUpdate(uint64 setterGuid, uint64 targetGuid, uint32 ra
 
 void Guild::GiveXP(uint32 xp, Player* source)
 {
+    if (!source->GetGuild())
+        return;
+
     if (!sWorld->getBoolConfig(CONFIG_GUILD_LEVELING_ENABLED))
         return;
 
