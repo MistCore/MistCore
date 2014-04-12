@@ -138,17 +138,18 @@ public:
 
 enum eTrainingDummySpells
 {
-    SPELL_CHARGE        = 100,
-    SPELL_AUTORITE      = 105361, // OnDamage
-    SPELL_ASSURE        = 56641,
-    SPELL_EVISCERATION  = 2098,
-    SPELL_MOT_DOULEUR_1 = 589,
-    SPELL_MOT_DOULEUR_2 = 124464, // Je ne sais pas si un des deux est le bon
-    SPELL_NOVA          = 122,
-    SPELL_CORRUPTION_1  = 172,
-    SPELL_CORRUPTION_2  = 87389,
-    SPELL_CORRUPTION_3  = 131740,
-    SPELL_PAUME_TIGRE   = 100787
+    SPELL_CHARGE		= 100,
+    SPELL_AUTORITE		= 105361, // OnDamage
+    SPELL_ASSURE		= 56641,
+    SPELL_EVISCERATION		= 2098,
+    SPELL_MOT_DOULEUR_1 	= 589,
+    SPELL_MOT_DOULEUR_2 	= 124464, // Je ne sais pas si un des deux est le bon
+    SPELL_NOVA          	= 122,
+    SPELL_CORRUPTION_1  	= 172,
+    SPELL_CORRUPTION_2  	= 87389,
+    SPELL_CORRUPTION_3		= 131740,
+    SPELL_PAUME_TIGR		= 100787,
+    SPELL_SEAL_OF_COMMAND	= 118215
 };
 
 class npc_training_dummy_start_zones : public CreatureScript
@@ -208,6 +209,7 @@ public:
                 case SPELL_CORRUPTION_2:
                 case SPELL_CORRUPTION_3:
                 case SPELL_PAUME_TIGRE:
+		case SPELL_SEAL_OF_COMMAND:
                     if (Caster->ToPlayer())
                         Caster->ToPlayer()->KilledMonsterCredit(44175, 0);
                     break;
