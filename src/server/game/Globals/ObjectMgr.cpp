@@ -2396,7 +2396,7 @@ void ObjectMgr::LoadItemTemplates()
 
         itemTemplate.ArmorDamageModifier = sparse->ArmorDamageModifier;
         itemTemplate.Duration = sparse->Duration;
-        itemTemplate.ItemLimitCategory = sparse->ItemLimitCategory;
+        itemTemplate.ItemLimitCategory = sparse->ItemLimitCategory > 206 ? 206 : sparse->ItemLimitCategory; // Temporary core solution for missing dbc data in ItemLimitCategory.dbc
         itemTemplate.HolidayId = sparse->HolidayId;
         itemTemplate.StatScalingFactor = sparse->StatScalingFactor;
         itemTemplate.CurrencySubstitutionId = sparse->CurrencySubstitutionId;
