@@ -8019,6 +8019,9 @@ Expansion Player::GetExpByLevel()
 
 void Player::RewardGuildReputation(Quest const* quest)
 {
+        if (!GetGuild()) // player has is not in guild therefore will not be rewarded with any reputation gains
+            return;
+
 	uint32 rep = 0;
 
 	switch (GetExpByLevel())
