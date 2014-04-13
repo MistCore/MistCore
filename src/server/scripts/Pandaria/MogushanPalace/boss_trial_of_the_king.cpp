@@ -718,7 +718,7 @@ class mob_mu_shiba : public CreatureScript
                         me->AttackStop();
                         me->SetReactState(REACT_PASSIVE);
                         me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC);
-			   me->DisappearAndDie();
+               me->DisappearAndDie();
                         break;
                 }
             }
@@ -886,7 +886,7 @@ class boss_haiyan_the_unstoppable : public CreatureScript
                         events.ScheduleEvent(EVENT_METEOR, 30000);
                         break;
                     case EVENT_BOSS_RETIRE:
-			    if (me->GetInstanceScript())
+                if (me->GetInstanceScript())
                             me->GetInstanceScript()->SetData(TYPE_ALL_ATTACK, 0);
                         break;
                     case EVENT_CONFLAGRATE_2:

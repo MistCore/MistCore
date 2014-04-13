@@ -1619,13 +1619,13 @@ class spell_pri_evangelism : public SpellScriptLoader
         {
             PrepareSpellScript(spell_pri_evangelism_SpellScript);
 
-			void HandleOnHit()
-			{
+            void HandleOnHit()
+            {
                 if (Player* _player = GetCaster()->ToPlayer())
                     if (_player->HasAura(PRIEST_EVANGELISM_AURA))
                         if (GetHitDamage())
                             _player->CastSpell(_player, PRIEST_EVANGELISM_STACK, true);
-			}
+            }
 
             void Register()
             {
@@ -1649,24 +1649,24 @@ class spell_pri_archangel : public SpellScriptLoader
         {
             PrepareSpellScript(spell_pri_archangel_SpellScript);
 
-			void HandleOnHit()
-			{
-				if (Player* _player = GetCaster()->ToPlayer())
-				{
+            void HandleOnHit()
+            {
+                if (Player* _player = GetCaster()->ToPlayer())
+                {
                     int stackNumber = _player->GetAura(PRIEST_EVANGELISM_STACK)->GetStackAmount();
-					if (!(stackNumber > 0))
-						return;
+                    if (!(stackNumber > 0))
+                        return;
 
-					if (AuraPtr archangel = _player->GetAura(GetSpellInfo()->Id))
-					{
-						if (archangel->GetEffect(0))
-						{
+                    if (AuraPtr archangel = _player->GetAura(GetSpellInfo()->Id))
+                    {
+                        if (archangel->GetEffect(0))
+                        {
                             archangel->GetEffect(0)->ChangeAmount(archangel->GetEffect(0)->GetAmount() * stackNumber);
                             _player->RemoveAura(PRIEST_EVANGELISM_STACK);
-						}
-					}
-				}
-			}
+                        }
+                    }
+                }
+            }
 
             void Register()
             {

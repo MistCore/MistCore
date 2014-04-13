@@ -28,8 +28,8 @@ class mob_zhao_jin : public CreatureScript
 {
     public:
         mob_zhao_jin() : CreatureScript("mob_zhao_jin")
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -99,8 +99,8 @@ class npc_lao_softfoot : public CreatureScript
 {
     public:
         npc_lao_softfoot() : CreatureScript("npc_lao_softfoot") 
-		{ 
-		}
+        { 
+        }
 
         bool OnGossipHello(Player* player, Creature* creature)
         {
@@ -173,7 +173,7 @@ class mob_reanimated_jade_warrior : public CreatureScript
 
             void Reset()
             {
-                jadeFireTimer	  = urand(10000, 12000);
+                jadeFireTimer      = urand(10000, 12000);
                 jadeStrenghtTimer = urand(5000, 7000);
             }
 
@@ -213,8 +213,8 @@ class mob_subjuged_serpent : public CreatureScript
 {
     public:
         mob_subjuged_serpent() : CreatureScript("mob_subjuged_serpent") 
-		{
-		}
+        {
+        }
 
         struct mob_subjuged_serpentAI : public ScriptedAI
         {

@@ -187,10 +187,10 @@ uint32 UnitUpdateFieldFlags[PLAYER_END] =
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_TARGET+1
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_CHANNEL_OBJECT
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_CHANNEL_OBJECT+1
-	UF_FLAG_PUBLIC,                                         // UNIT_SUMMONED_BY_HOME_REALM
+    UF_FLAG_PUBLIC,                                         // UNIT_SUMMONED_BY_HOME_REALM
     UF_FLAG_PUBLIC,                                         // UNIT_CHANNEL_SPELL
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_BYTES_0
-	UF_FLAG_PUBLIC,                                         // UNIT_FIELD_OVERRIDE_BYTES_0
+    UF_FLAG_PUBLIC,                                         // UNIT_FIELD_OVERRIDE_BYTES_0
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_HEALTH
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_POWER1
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_POWER2
@@ -311,7 +311,7 @@ uint32 UnitUpdateFieldFlags[PLAYER_END] =
     UF_FLAG_PRIVATE | UF_FLAG_OWNER,                        // UNIT_FIELD_POWER_COST_MULTIPLIER+6
     UF_FLAG_PRIVATE | UF_FLAG_OWNER,                        // UNIT_FIELD_MAXHEALTHMODIFIER
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_HOVERHEIGHT
-	UF_FLAG_PUBLIC,                                         // UNIT_FIELD_MINITEMLEVEL
+    UF_FLAG_PUBLIC,                                         // UNIT_FIELD_MINITEMLEVEL
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_MAXITEMLEVEL
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_WILD_BATTLE_PET_LEVEL
     UF_FLAG_PUBLIC,                                         // UNIT_FIELD_BATTLE_PET_COMPANION_ID
@@ -1077,7 +1077,7 @@ uint32 UnitUpdateFieldFlags[PLAYER_END] =
     UF_FLAG_PARTY_MEMBER,                                   // PLAYER_QUEST_LOG_150_2
     UF_FLAG_PARTY_MEMBER,                                   // PLAYER_QUEST_LOG_150_3
     UF_FLAG_PARTY_MEMBER,                                   // PLAYER_QUEST_LOG_150_4
-    UF_FLAG_PARTY_MEMBER,                                   // PLAYER_QUEST_LOG_150_5	
+    UF_FLAG_PARTY_MEMBER,                                   // PLAYER_QUEST_LOG_150_5    
     UF_FLAG_PUBLIC,                                         // PLAYER_VISIBLE_ITEM_1_ENTRYID
     UF_FLAG_PUBLIC,                                         // PLAYER_VISIBLE_ITEM_1_ENCHANTMENT
     UF_FLAG_PUBLIC,                                         // PLAYER_VISIBLE_ITEM_2_ENTRYID
@@ -1117,7 +1117,7 @@ uint32 UnitUpdateFieldFlags[PLAYER_END] =
     UF_FLAG_PUBLIC,                                         // PLAYER_VISIBLE_ITEM_19_ENTRYID
     UF_FLAG_PUBLIC,                                         // PLAYER_VISIBLE_ITEM_19_ENCHANTMENT
     UF_FLAG_PUBLIC,                                         // PLAYER_CHOSEN_TITLE
-    UF_FLAG_PUBLIC,                                         // PLAYER_FAKE_INEBRIATION	
+    UF_FLAG_PUBLIC,                                         // PLAYER_FAKE_INEBRIATION    
     UF_FLAG_PRIVATE,                                   // Autogen POWERRR !! ... OSEF
     UF_FLAG_PRIVATE,                                   // Autogen POWERRR !! ... OSEF
     UF_FLAG_PRIVATE,                                   // Autogen POWERRR !! ... OSEF

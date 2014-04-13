@@ -4884,11 +4884,11 @@ void Spell::TakePower()
     if (m_caster->GetTypeId() == TYPEID_PLAYER)
     {
         if (powerType == POWER_HOLY_POWER || powerType == POWER_ENERGY || powerType == POWER_RUNES)
-		{
+        {
             if (uint64 targetGUID = m_targets.GetUnitTargetGUID())
-			{
+            {
                 for (std::list<TargetInfo>::iterator ihit= m_UniqueTargetInfo.begin(); ihit != m_UniqueTargetInfo.end(); ++ihit)
-				{
+                {
                     if (ihit->targetGUID == targetGUID)
                     {
                         if (ihit->missCondition != SPELL_MISS_NONE)
@@ -4900,11 +4900,11 @@ void Spell::TakePower()
                         }
                         break;
                     }
-				}
-			}
-		}
+                }
+            }
+        }
     }
-	
+    
     if (powerType == POWER_RUNES)
     {
         TakeRunePower(hit);
@@ -5803,10 +5803,10 @@ SpellCastResult Spell::CheckCast(bool strict)
                 }
                 if (m_caster->HasUnitState(UNIT_STATE_ROOT))
                     return SPELL_FAILED_ROOTED;
-				if (m_caster->GetTypeId() == TYPEID_PLAYER)
-					if (Unit* target = m_targets.GetUnitTarget())
-						if (!target->isAlive())
-							return SPELL_FAILED_BAD_TARGETS;
+                if (m_caster->GetTypeId() == TYPEID_PLAYER)
+                    if (Unit* target = m_targets.GetUnitTarget())
+                        if (!target->isAlive())
+                            return SPELL_FAILED_BAD_TARGETS;
                 break;
             }
             case SPELL_EFFECT_SKINNING:

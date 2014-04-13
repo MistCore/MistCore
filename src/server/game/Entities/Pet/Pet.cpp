@@ -575,10 +575,10 @@ void Pet::DeleteFromDB(uint32 guidlow)
 {
     SQLTransaction trans = CharacterDatabase.BeginTransaction();
 
-    trans->PAppend("DELETE FROM character_pet WHERE id = '%u'", guidlow);	  	
-    trans->PAppend("DELETE FROM character_pet_declinedname WHERE id = '%u'", guidlow);	  	
-    trans->PAppend("DELETE FROM pet_aura WHERE guid = '%u'", guidlow);	  	
-    trans->PAppend("DELETE FROM pet_spell WHERE guid = '%u'", guidlow);	  	
+    trans->PAppend("DELETE FROM character_pet WHERE id = '%u'", guidlow);          
+    trans->PAppend("DELETE FROM character_pet_declinedname WHERE id = '%u'", guidlow);          
+    trans->PAppend("DELETE FROM pet_aura WHERE guid = '%u'", guidlow);          
+    trans->PAppend("DELETE FROM pet_spell WHERE guid = '%u'", guidlow);          
     trans->PAppend("DELETE FROM pet_spell_cooldown WHERE guid = '%u'", guidlow);
 
     CharacterDatabase.CommitTransaction(trans);

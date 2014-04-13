@@ -23,8 +23,8 @@ class mob_nessos_the_oracle : public CreatureScript
 {
     public:
         mob_nessos_the_oracle() : CreatureScript("mob_nessos_the_oracle") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -113,8 +113,8 @@ class mob_ski_thik : public CreatureScript
 {
     public:
         mob_ski_thik() : CreatureScript("mob_ski_thik") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -202,7 +202,7 @@ enum eHavakSpells
 
 enum eHavakEvents
 {
-    EVENT_DEVASTATING_ARC		= 1,
+    EVENT_DEVASTATING_ARC        = 1,
     EVENT_SUMMON_QUILEN         = 2,
     EVENT_TITANIC_STRENGH       = 3,
 };
@@ -285,7 +285,7 @@ enum eMogujiaSoulCallerSpells
 
 enum eMogujiaSoulCallerEvents
 {
-    EVENT_DRAIN_LIFE		= 1,
+    EVENT_DRAIN_LIFE        = 1,
     EVENT_SHADOW_BOLT       = 2,
     EVENT_SHADOW_CRASH      = 3,
 };
@@ -294,8 +294,8 @@ class mob_mogujia_soul_caller : public CreatureScript
 {
     public:
         mob_mogujia_soul_caller() : CreatureScript("mob_mogujia_soul_caller") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -348,7 +348,7 @@ class mob_mogujia_soul_caller : public CreatureScript
                                 me->CastSpell(target, SPELL_SHADOW_CRASH, false);
                             events.ScheduleEvent(EVENT_SHADOW_CRASH, 32000);
                             break;
-							
+                            
                         default:
                             break;
                     }
@@ -366,7 +366,7 @@ enum eQuilenStonemawSpells
 
 enum eQuilenStonemawEvents
 {
-    EVENT_UNSTABLE_SERUM		= 1,
+    EVENT_UNSTABLE_SERUM        = 1,
 };
 
 class mob_quilen_stonemaw : public CreatureScript

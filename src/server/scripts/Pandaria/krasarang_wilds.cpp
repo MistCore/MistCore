@@ -6,23 +6,23 @@
 enum eArnessSpells
 {
     SPELL_GRAPPLING_HOOK    = 125623,
-	SPELL_VANISH			= 125632,
-    SPELL_VICIOUS_REND		= 125624,
+    SPELL_VANISH            = 125632,
+    SPELL_VICIOUS_REND        = 125624,
 };
 
 enum eArnessEvents
 {
     EVENT_GRAPPLING_HOOK        = 1,
-	EVENT_VANISH				= 2,
-    EVENT_VICIOUS_REND		    = 3,
+    EVENT_VANISH                = 2,
+    EVENT_VICIOUS_REND            = 3,
 };
 
 class mob_arness_the_scale : public CreatureScript
 {
     public:
         mob_arness_the_scale() : CreatureScript("mob_arness_the_scale")
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -42,8 +42,8 @@ class mob_arness_the_scale : public CreatureScript
                 events.Reset();
                 
                 events.ScheduleEvent(EVENT_GRAPPLING_HOOK,  40000);
-                events.ScheduleEvent(EVENT_VANISH,			20000);
-                events.ScheduleEvent(EVENT_VICIOUS_REND,	15000);
+                events.ScheduleEvent(EVENT_VANISH,            20000);
+                events.ScheduleEvent(EVENT_VICIOUS_REND,    15000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -54,7 +54,7 @@ class mob_arness_the_scale : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
-				
+                
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
@@ -92,13 +92,13 @@ class mob_arness_the_scale : public CreatureScript
 enum eGaarnSpells
 {
     SPELL_SHADOWBOLT    = 125212,
-    SPELL_VOIDCLOUD		= 125241,
+    SPELL_VOIDCLOUD        = 125241,
 };
 
 enum eGaarnEvents
 {
     EVENT_SHADOWBOLT        = 1,
-    EVENT_VOIDCLOUD			= 2,
+    EVENT_VOIDCLOUD            = 2,
 };
 
 class mob_gaarn_the_toxic : public CreatureScript
@@ -126,7 +126,7 @@ class mob_gaarn_the_toxic : public CreatureScript
                 events.Reset();
 
                 events.ScheduleEvent(EVENT_SHADOWBOLT,  15000);
-                events.ScheduleEvent(EVENT_VOIDCLOUD,	70000);
+                events.ScheduleEvent(EVENT_VOIDCLOUD,    70000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -170,15 +170,15 @@ class mob_gaarn_the_toxic : public CreatureScript
 enum eQuNasSpells
 {
     SPELL_DEVASTATING_ARC    = 124946,
-    SPELL_SUMMON_QUILEN	     = 124980,
+    SPELL_SUMMON_QUILEN         = 124980,
     SPELL_TITANIC_STRENGTH   = 124976,
 };
 
 enum eQuNasEvents
 {
     EVENT_DEVASTATING_ARC       = 1,
-    EVENT_SUMMON_QUILEN			= 2,
-    EVENT_TITANIC_STRENGTH		= 3,
+    EVENT_SUMMON_QUILEN            = 2,
+    EVENT_TITANIC_STRENGTH        = 3,
 };
 
 class mob_qu_nas : public CreatureScript
@@ -206,7 +206,7 @@ class mob_qu_nas : public CreatureScript
                 events.Reset();
 
                 events.ScheduleEvent(EVENT_DEVASTATING_ARC,  25000);
-                events.ScheduleEvent(EVENT_SUMMON_QUILEN,	 15000);
+                events.ScheduleEvent(EVENT_SUMMON_QUILEN,     15000);
                 events.ScheduleEvent(EVENT_TITANIC_STRENGTH, 70000);
             }
 

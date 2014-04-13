@@ -326,21 +326,21 @@ void Object::_BuildMovementUpdate(ByteBuffer* data, uint16 flags) const
     data->WriteBit(flags & UPDATEFLAG_HAS_TARGET);
     data->WriteBit(flags & UPDATEFLAG_VEHICLE);
     data->WriteBits(unkLoopCounter, 24);
-    data->WriteBit(0);								//HasUnknown5
+    data->WriteBit(0);                                //HasUnknown5
     data->WriteBit(flags & UPDATEFLAG_GO_TRANSPORT_POSITION);
     data->WriteBit(flags & UPDATEFLAG_STATIONARY_POSITION);
-    data->WriteBits(bitCounter2, 21);				//BitCounter2
-    data->WriteBit(flags & UPDATEFLAG_TRANSPORT);	//isTransport
-    data->WriteBit(hasAreaTriggerData);				//HasAreaTriggerInfo
-    data->WriteBit(flags & UPDATEFLAG_SELF);		//isSelf						
-    data->WriteBit(flags & UPDATEFLAG_LIVING);		//isAlive
-    data->WriteBit(0);								//Bit1
-    data->WriteBit(0);								//HasUnknown2
-    data->WriteBit(0);								//Bit2
-    data->WriteBit(flags & UPDATEFLAG_ROTATION);	//HasRotation
-    data->WriteBit(flags & UPDATEFLAG_ANIMKITS);	//HasAnimKits
-    data->WriteBit(0);								//Bit3
-    data->WriteBit(0);		                        //HasUnknown4
+    data->WriteBits(bitCounter2, 21);                //BitCounter2
+    data->WriteBit(flags & UPDATEFLAG_TRANSPORT);    //isTransport
+    data->WriteBit(hasAreaTriggerData);                //HasAreaTriggerInfo
+    data->WriteBit(flags & UPDATEFLAG_SELF);        //isSelf                        
+    data->WriteBit(flags & UPDATEFLAG_LIVING);        //isAlive
+    data->WriteBit(0);                                //Bit1
+    data->WriteBit(0);                                //HasUnknown2
+    data->WriteBit(0);                                //Bit2
+    data->WriteBit(flags & UPDATEFLAG_ROTATION);    //HasRotation
+    data->WriteBit(flags & UPDATEFLAG_ANIMKITS);    //HasAnimKits
+    data->WriteBit(0);                                //Bit3
+    data->WriteBit(0);                                //HasUnknown4
 
     // Transport time related
     if (bitCounter2)
@@ -362,8 +362,8 @@ void Object::_BuildMovementUpdate(ByteBuffer* data, uint16 flags) const
         data->WriteBit(transGuid[0]);
         data->WriteBit(transGuid[5]);
         data->WriteBit(transGuid[1]);
-        data->WriteBit(0);				// HasTransportTime2
-        data->WriteBit(0);				// HasTransportTime3
+        data->WriteBit(0);                // HasTransportTime2
+        data->WriteBit(0);                // HasTransportTime3
         data->WriteBit(transGuid[2]);
         data->WriteBit(transGuid[7]);
     }
@@ -418,7 +418,7 @@ void Object::_BuildMovementUpdate(ByteBuffer* data, uint16 flags) const
         data->WriteBit(guid[7]);
         data->WriteBit(!movementFlagsExtra);
         data->WriteBit(guid[0]);
-        data->WriteBit(0);													//IsAlive_unk1
+        data->WriteBit(0);                                                    //IsAlive_unk1
         data->WriteBit(guid[5]);
         if (movementFlagsExtra)
             data->WriteBits(movementFlagsExtra, 13);
@@ -430,8 +430,8 @@ void Object::_BuildMovementUpdate(ByteBuffer* data, uint16 flags) const
         if (movementFlags)
             data->WriteBits(movementFlags, 30);
         data->WriteBit(G3D::fuzzyEq(self->GetOrientation(), 0.0f));          // Has Orientation bit
-        data->WriteBit(0);													//IsAlive_unk4
-        data->WriteBit(0);													//IsAlive_unk3
+        data->WriteBit(0);                                                    //IsAlive_unk4
+        data->WriteBit(0);                                                    //IsAlive_unk3
         if (self->IsSplineEnabled())
             Movement::PacketBuilder::WriteCreateBits(*self->movespline, *data); //TODO: CHANGE THE STRUCT IN WRITECREATEBITS // Useless, spline feature are not implanted in TrinityCore
         data->WriteBit(guid[1]);

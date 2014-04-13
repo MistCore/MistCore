@@ -228,19 +228,19 @@ class boss_garajal : public CreatureScript
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
-				std::list<Player*> playerList;
-				GetPlayerListInGrid(playerList, me, 6.0f);
+                std::list<Player*> playerList;
+                GetPlayerListInGrid(playerList, me, 6.0f);
 
-				std::list<Creature*> creatureList;
-				GetCreatureListWithEntryInGrid(creatureList, me, 56405, 6.0f);
-				uint32 spiritcount = 0;
+                std::list<Creature*> creatureList;
+                GetCreatureListWithEntryInGrid(creatureList, me, 56405, 6.0f);
+                uint32 spiritcount = 0;
 
-				for (auto creature : creatureList)
-					spiritcount++;
+                for (auto creature : creatureList)
+                    spiritcount++;
 
-				for (auto player : playerList)
-					if (player->HasAura(SPELL_LIFE_FRAGILE_THREAD) && player->GetHealth() == player->GetMaxHealth() && spiritcount == 0)
-						player->RemoveAurasDueToSpell(SPELL_LIFE_FRAGILE_THREAD);
+                for (auto player : playerList)
+                    if (player->HasAura(SPELL_LIFE_FRAGILE_THREAD) && player->GetHealth() == player->GetMaxHealth() && spiritcount == 0)
+                        player->RemoveAurasDueToSpell(SPELL_LIFE_FRAGILE_THREAD);
 
 
                 events.Update(diff);

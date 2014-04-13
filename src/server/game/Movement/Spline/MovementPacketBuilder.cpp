@@ -222,10 +222,10 @@ namespace Movement
                 ObjectGuid targetGuid = moveSpline.facing.target;
                 data.WriteBits(0, 2);
                 data.WriteBit(targetGuid[4]);
-				data.WriteBit(targetGuid[5]);
-				data.WriteBit(targetGuid[0]);
-				data.WriteBit(targetGuid[7]);
-				data.WriteBit(targetGuid[1]);
+                data.WriteBit(targetGuid[5]);
+                data.WriteBit(targetGuid[0]);
+                data.WriteBit(targetGuid[7]);
+                data.WriteBit(targetGuid[1]);
                 data.WriteBit(targetGuid[3]);
                 data.WriteBit(targetGuid[2]);
                 data.WriteBit(targetGuid[6]);

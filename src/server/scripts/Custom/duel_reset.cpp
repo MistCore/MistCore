@@ -28,7 +28,7 @@ class duel_reset : public PlayerScript
                             if (looser->getPowerType() == POWER_MANA)
                                 looser->SetPower(POWER_MANA, looser->GetMaxPower(POWER_MANA));
                         }
-						
+                        
                         winner->HandleEmoteCommand(EMOTE_ONESHOT_CHEER);
                     }
                 }

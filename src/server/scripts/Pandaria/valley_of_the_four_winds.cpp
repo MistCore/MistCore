@@ -6,23 +6,23 @@
 enum eBonobosSpells
 {
     SPELL_GOING_BANANAS     = 125363,
-	SPELL_BANANARANG		= 125311,
-    SPELL_TOSS_FILTH		= 125365,
+    SPELL_BANANARANG        = 125311,
+    SPELL_TOSS_FILTH        = 125365,
 };
 
 enum eBonobosEvents
 {
     EVENT_GOING_BANANAS         = 1,
-	EVENT_BANANARANG			= 2,
-    EVENT_TOSS_FILTH		    = 3,
+    EVENT_BANANARANG            = 2,
+    EVENT_TOSS_FILTH            = 3,
 };
 
 class mob_bonobos : public CreatureScript
 {
     public:
         mob_bonobos() : CreatureScript("mob_bonobos") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -41,9 +41,9 @@ class mob_bonobos : public CreatureScript
             {
                 events.Reset();
                 
-                events.ScheduleEvent(EVENT_GOING_BANANAS,		12000);
-                events.ScheduleEvent(EVENT_BANANARANG,			 8000);
-                events.ScheduleEvent(EVENT_TOSS_FILTH,			15000);
+                events.ScheduleEvent(EVENT_GOING_BANANAS,        12000);
+                events.ScheduleEvent(EVENT_BANANARANG,             8000);
+                events.ScheduleEvent(EVENT_TOSS_FILTH,            15000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -59,7 +59,7 @@ class mob_bonobos : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
-				
+                
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
@@ -98,14 +98,14 @@ class mob_bonobos : public CreatureScript
 enum eSeleNaSpells
 {
     SPELL_RAIN_DANCE    = 124860,
-	SPELL_TORRENT		= 124935,
+    SPELL_TORRENT        = 124935,
     SPELL_WATER_BOLT    = 124854,
 };
 
 enum eSeleNaEvents
 {
     EVENT_RAIN_DANCE        = 1,
-	EVENT_TORRENT			= 2,
+    EVENT_TORRENT            = 2,
     EVENT_WATER_BOLT        = 3,
 };
 
@@ -113,8 +113,8 @@ class mob_sele_na : public CreatureScript
 {
     public:
         mob_sele_na() : CreatureScript("mob_sele_na") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -133,9 +133,9 @@ class mob_sele_na : public CreatureScript
             {
                 events.Reset();
                 
-                events.ScheduleEvent(EVENT_RAIN_DANCE,		 5000);
-                events.ScheduleEvent(EVENT_TORRENT,			15000);
-                events.ScheduleEvent(EVENT_WATER_BOLT,		25000);
+                events.ScheduleEvent(EVENT_RAIN_DANCE,         5000);
+                events.ScheduleEvent(EVENT_TORRENT,            15000);
+                events.ScheduleEvent(EVENT_WATER_BOLT,        25000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -151,7 +151,7 @@ class mob_sele_na : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
-				
+                
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
@@ -190,14 +190,14 @@ class mob_sele_na : public CreatureScript
 enum eBlackhoofSpells
 {
     SPELL_BELLOWING_RAGE    = 124297,
-	SPELL_RUSHING_RAGE		= 124302,
+    SPELL_RUSHING_RAGE        = 124302,
     SPELL_YAUNGOL_STOMP     = 124289,
 };
 
 enum eBlackhoofEvents
 {
     EVENT_BELLOWING_RAGE        = 1,
-	EVENT_RUSHING_RAGE			= 2,
+    EVENT_RUSHING_RAGE            = 2,
     EVENT_YAUNGOL_STOMP         = 3,
 };
 
@@ -205,8 +205,8 @@ class mob_blackhoof : public CreatureScript
 {
     public:
         mob_blackhoof() : CreatureScript("mob_blackhoof") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -225,9 +225,9 @@ class mob_blackhoof : public CreatureScript
             {
                 events.Reset();
                 
-                events.ScheduleEvent(EVENT_RUSHING_RAGE,		 5000);
-                events.ScheduleEvent(EVENT_YAUNGOL_STOMP,		15000);
-                events.ScheduleEvent(EVENT_BELLOWING_RAGE,	    25000);
+                events.ScheduleEvent(EVENT_RUSHING_RAGE,         5000);
+                events.ScheduleEvent(EVENT_YAUNGOL_STOMP,        15000);
+                events.ScheduleEvent(EVENT_BELLOWING_RAGE,        25000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -243,7 +243,7 @@ class mob_blackhoof : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
-				
+                
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
@@ -282,13 +282,13 @@ class mob_blackhoof : public CreatureScript
 enum eIkThikWarriorSpells
 {
     SPELL_PIERCE_ARMOR      = 6016,
-    SPELL_SHOCK_AND_AWE		= 118538,
+    SPELL_SHOCK_AND_AWE        = 118538,
 };
 
 enum eIkThikWarriorEvents
 {
     EVENT_PIERCE_ARMOR          = 1,
-    EVENT_SHOCK_AND_AWE			= 2,
+    EVENT_SHOCK_AND_AWE            = 2,
 };
 
 class mob_ik_thik_warrior : public CreatureScript
@@ -315,8 +315,8 @@ class mob_ik_thik_warrior : public CreatureScript
             {
                 events.Reset();
 
-                events.ScheduleEvent(EVENT_PIERCE_ARMOR,		 5000);
-                events.ScheduleEvent(EVENT_SHOCK_AND_AWE,		15000);
+                events.ScheduleEvent(EVENT_PIERCE_ARMOR,         5000);
+                events.ScheduleEvent(EVENT_SHOCK_AND_AWE,        15000);
             }
 
             void JustDied(Unit* /*killer*/)

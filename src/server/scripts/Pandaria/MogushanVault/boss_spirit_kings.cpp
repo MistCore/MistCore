@@ -433,7 +433,7 @@ class boss_spirit_kings_controler : public CreatureScript
                                 default:
                                     break;
                             }
-							
+                            
                         }
 
                         break;
@@ -748,8 +748,8 @@ class boss_spirit_kings : public CreatureScript
                 }
                 else if (me->HealthBelowPctDamaged(10, damage))
                 {
-					if (Creature* controler = GetControler())
-						controler->AI()->DoAction(ACTION_SAY_INTRO_FOR_NEXT_SPIRIT_IF_ANY);
+                    if (Creature* controler = GetControler())
+                        controler->AI()->DoAction(ACTION_SAY_INTRO_FOR_NEXT_SPIRIT_IF_ANY);
                 }
 
                 if (AuraPtr aura = me->GetAura(SPELL_COWARDICE))
@@ -871,7 +871,7 @@ class boss_spirit_kings : public CreatureScript
                             {
                                 if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 2))
                                 {
-									if (!target->isPet())
+                                    if (!target->isPet())
                                     me->CastSpell(target, SPELL_UNDYING_SHADOWS, false);
                                     Talk(ZIAN_SPELL);
                                 }

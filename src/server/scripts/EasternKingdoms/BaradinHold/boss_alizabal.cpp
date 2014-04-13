@@ -51,17 +51,17 @@ class boss_alizabal : public CreatureScript
             boss_alizabalAI(Creature* pCreature) : BossAI(pCreature, DATA_ALIZABAL) 
             {
                 me->ApplySpellImmune(0, IMMUNITY_EFFECT, SPELL_EFFECT_KNOCK_BACK, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_GRIP, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_STUN, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_FEAR, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_ROOT, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_FREEZE, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_POLYMORPH, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_HORROR, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_SAPPED, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_CHARM, true);
-				me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_DISORIENTED, true);
-				me->ApplySpellImmune(0, IMMUNITY_STATE, SPELL_AURA_MOD_CONFUSE, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_GRIP, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_STUN, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_FEAR, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_ROOT, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_FREEZE, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_POLYMORPH, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_HORROR, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_SAPPED, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_CHARM, true);
+                me->ApplySpellImmune(0, IMMUNITY_MECHANIC, MECHANIC_DISORIENTED, true);
+                me->ApplySpellImmune(0, IMMUNITY_STATE, SPELL_AURA_MOD_CONFUSE, true);
                 introDone = false;
             }
 
@@ -139,9 +139,9 @@ class boss_alizabal : public CreatureScript
                     return;
 
                 while (uint32 eventId = events.ExecuteEvent())
-				{
-					switch (eventId)
-					{
+                {
+                    switch (eventId)
+                    {
                         case EVENT_BERSERK:
                             DoCast(me, SPELL_BERSERK, true);
                             break;
@@ -200,9 +200,9 @@ class spell_alizabal_seething_hate : public SpellScriptLoader
             PrepareSpellScript(spell_alizabal_seething_hate_SpellScript);
 
             void HandleDummy(SpellEffIndex /*effIndex*/)
-			{
-				if(!GetCaster() || !GetHitUnit())
-					return;
+            {
+                if(!GetCaster() || !GetHitUnit())
+                    return;
 
                 GetCaster()->CastSpell(GetHitUnit(), SPELL_SEETHING_HATE, true);
             }
@@ -229,9 +229,9 @@ class spell_alizabal_blade_dance : public SpellScriptLoader
             PrepareSpellScript(spell_alizabal_blade_dance_SpellScript);
 
             void HandleDummy(SpellEffIndex /*effIndex*/)
-			{
-				if(!GetCaster() || !GetHitUnit())
-					return;
+            {
+                if(!GetCaster() || !GetHitUnit())
+                    return;
 
                 GetCaster()->CastSpell(GetHitUnit(), SPELL_BLADE_DANCE_CHARGE, true);
             }

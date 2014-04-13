@@ -3351,7 +3351,7 @@ void Spell::EffectDispel(SpellEffIndex effIndex)
             }
         }
     }
-	
+    
     WorldPacket dataSuccess(SMSG_SPELLDISPELLOG, 8+8+4+1+4+success_list.size()*5);
     // Send packet header
     dataSuccess.append(unitTarget->GetPackGUID());         // Victim GUID
@@ -5977,11 +5977,11 @@ void Spell::EffectCharge(SpellEffIndex /*effIndex*/)
         if (!m_spellInfo->IsPositive() && m_caster->GetTypeId() == TYPEID_PLAYER)
             m_caster->Attack(unitTarget, true);
 
-		if (!m_caster->HasAura(103828) && m_caster->GetTypeId() == TYPEID_PLAYER)
-			m_caster->CastSpell(unitTarget, 7922, true); // Add Charge Stun Spell = http://www.wowhead.com/spell=7922
+        if (!m_caster->HasAura(103828) && m_caster->GetTypeId() == TYPEID_PLAYER)
+            m_caster->CastSpell(unitTarget, 7922, true); // Add Charge Stun Spell = http://www.wowhead.com/spell=7922
 
-		if (m_caster->HasAura(103828) && m_caster->GetTypeId() == TYPEID_PLAYER)
-			m_caster->CastSpell(unitTarget, 105771, true); // Add Warbringer Spell = http://www.wowhead.com/spell=105771
+        if (m_caster->HasAura(103828) && m_caster->GetTypeId() == TYPEID_PLAYER)
+            m_caster->CastSpell(unitTarget, 105771, true); // Add Warbringer Spell = http://www.wowhead.com/spell=105771
     }
 }
 

@@ -141,8 +141,8 @@ public:
     
     struct mob_training_targetAI : public ScriptedAI
     {
-    	mob_training_targetAI(Creature* creature) : ScriptedAI(creature) {}
-    	
+        mob_training_targetAI(Creature* creature) : ScriptedAI(creature) {}
+        
         void Reset()
         {
             me->SetReactState(REACT_PASSIVE);
@@ -310,7 +310,7 @@ public:
                         break;
                     case EVENT_RESET: //remechant
                         Reset();
-                    	break;
+                        break;
                     case EVENT_CHECK_AREA:
                         if (me->GetAreaId() != 5843) // Grotte Paisible
                             Reset();
@@ -334,8 +334,8 @@ public:
     
     struct mob_attacker_dimwindAI : public ScriptedAI
     {
-    	mob_attacker_dimwindAI(Creature* creature) : ScriptedAI(creature) {}
-    	
+        mob_attacker_dimwindAI(Creature* creature) : ScriptedAI(creature) {}
+        
         void DamageTaken(Unit* pDoneBy, uint32 &uiDamage)
         {
             if(me->GetHealthPct() < 90 && pDoneBy && pDoneBy->ToCreature() && pDoneBy->ToCreature()->GetEntry() == 54785)
@@ -441,8 +441,8 @@ public:
                     {
                         if(VerifyMobs()) //plus de mobs, win!
                         {
-                    	    me->HandleEmoteCommand(EMOTE_STATE_STAND);
-                    	    me->MonsterYell("Thank you!", LANG_UNIVERSAL, 0);
+                            me->HandleEmoteCommand(EMOTE_STATE_STAND);
+                            me->MonsterYell("Thank you!", LANG_UNIVERSAL, 0);
                         
                             std::list<Player*> PlayerList;
                             GetPlayerListInGrid(PlayerList, me, 20.0f);
@@ -558,7 +558,7 @@ public:
     
     struct mob_aysaAI : public ScriptedAI
     {
-    	EventMap events;
+        EventMap events;
         std::list<Player*> playersInvolved;
         TempSummon* lifei;
         bool inCombat;
@@ -601,7 +601,7 @@ public:
                 GetCreatureListWithEntryInGrid(unitlist, me, 59637, 50.0f);
                 for (auto creature: unitlist)
                     me->Kill(creature);
-                	
+                    
                 events.ScheduleEvent(EVENT_START, 20000);
                 events.CancelEvent(EVENT_SPAWN_MOBS);
                 events.CancelEvent(EVENT_PROGRESS);
@@ -630,7 +630,7 @@ public:
                 {
                     case EVENT_START: //Begin script if playersInvolved is not empty
                     {
-                    	updatePlayerList();
+                        updatePlayerList();
                         if(playersInvolved.empty())
                             events.ScheduleEvent(1, 600);
                         else
@@ -654,7 +654,7 @@ public:
                                 if (temp->AI())
                                     temp->AI()->AttackStart(me);
 
-			                    temp->AddThreat(me, 250.0f);
+                                temp->AddThreat(me, 250.0f);
                                 temp->GetMotionMaster()->Clear();
                                 temp->GetMotionMaster()->MoveChase(me);
                             }
@@ -776,12 +776,12 @@ public:
                 switch(eventId)
                 {
                     case 1:
-                    	me->CastSpell(me->getVictim(), 108693);
-                    	break;
+                        me->CastSpell(me->getVictim(), 108693);
+                        break;
                     case 2:
-                    	me->CastSpell(me->getVictim(), 73212);
-                    	events.ScheduleEvent(2, 5000);
-                    	break;
+                        me->CastSpell(me->getVictim(), 73212);
+                        events.ScheduleEvent(2, 5000);
+                        break;
                 }
             }
             
@@ -925,21 +925,21 @@ public:
                     }
                     case EVENT_FEET_OF_FURY:
                         if(me->getVictim())
-                    	    me->CastSpell(me->getVictim(), 108958);
+                            me->CastSpell(me->getVictim(), 108958);
 
                         events.ScheduleEvent(EVENT_FEET_OF_FURY, 5000);
-                    	break;
+                        break;
                     case EVENT_SHADOW_KICK:
                         if(me->getVictim())
-                    	    me->CastSpell(me->getVictim(), 108936);
+                            me->CastSpell(me->getVictim(), 108936);
 
-                    	events.ScheduleEvent(EVENT_SHADOW_KICK_STUN, 2500);
-                    	events.ScheduleEvent(EVENT_SHADOW_KICK, 30000);
-                    	break;
+                        events.ScheduleEvent(EVENT_SHADOW_KICK_STUN, 2500);
+                        events.ScheduleEvent(EVENT_SHADOW_KICK, 30000);
+                        break;
                     case 4:
                         if(me->getVictim())
-                    	    me->CastSpell(me->getVictim(), 108944);
-                    	break;
+                            me->CastSpell(me->getVictim(), 108944);
+                        break;
                 }
             }
             

@@ -127,7 +127,7 @@ namespace Movement
             args.flags = MoveSplineFlag::Done;
             unit.m_movementInfo.RemoveMovementFlag(MOVEMENTFLAG_FORWARD);
             move_spline.Initialize(args);
-        	return;
+            return;
         }
 
         // No need to stop if we are not moving

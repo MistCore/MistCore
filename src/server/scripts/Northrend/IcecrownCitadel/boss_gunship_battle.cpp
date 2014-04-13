@@ -287,7 +287,7 @@ public:
 
             if(pCreature->GetEntry() == NPC_MURADIN_GUNSHIP)
                 pPlayer->ADD_GOSSIP_ITEM(0, "Mes compagnons sont en bon ordre, Muradin. Allons-y !", 631, ALLIANCE);
-			else
+            else
                 pPlayer->ADD_GOSSIP_ITEM(0, "Mes compagnons sont en bon ordre, Saurcroc. Allons-y !", 631, HORDE);
 
 
@@ -310,7 +310,7 @@ public:
             pInstance->SetData(DATA_TEAM_IN_INSTANCE, action); // Pour s'assurer que le TeamInInstance correspond bien
             pInstance->SetData(DATA_GUNSHIP_EVENT, IN_PROGRESS); // Lance l'event cote instance
         }
-		return true;
+        return true;
     }
 
     CreatureAI* GetAI(Creature* pCreature) const
@@ -653,7 +653,7 @@ struct npc_gunship_adds_AI : ScriptedAI
         {
             DoUpdateRank();
         }
-		else
+        else
             RankTimer -= diff;
     }
 
@@ -1261,7 +1261,7 @@ public:
 
         void DamageTaken(Unit* /*pDone_by*/, uint32& uiDamage)
         {
-			uiDamage = 0; // Les canons ne peuvent pas mourir
+            uiDamage = 0; // Les canons ne peuvent pas mourir
         }
 
         void UpdateAI(const uint32 diff)

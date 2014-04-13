@@ -107,7 +107,7 @@ class boss_stone_guard_controler : public CreatureScript
             {
                 me->SetReactState(REACT_PASSIVE);
                 me->SetVisible(false);
-				
+                
                 fightInProgress = false;
                 lastPetrifierEntry = 0;
 
@@ -279,8 +279,8 @@ class boss_generic_guardian : public CreatureScript
                 me->CastSpell(me, SPELL_ANIM_SIT,    true);
                 me->CastSpell(me, SPELL_ZERO_ENERGY, true);
 
-				if (Creature* stoneGuardControler = me->GetMap()->GetCreature(GetData(NPC_STONE_GUARD_CONTROLER)))
-					stoneGuardControler->AI()->Reset();
+                if (Creature* stoneGuardControler = me->GetMap()->GetCreature(GetData(NPC_STONE_GUARD_CONTROLER)))
+                    stoneGuardControler->AI()->Reset();
 
                 summons.DespawnAll();
                 me->RemoveAllAreasTrigger();
@@ -717,7 +717,7 @@ class spell_petrification : public SpellScriptLoader
                     {
                         uint8 stackCount = triggeredAura->GetStackAmount();
 
-						//Fix ME: Debuff is not seen in game i don't know why, until i figure it out this will be 0 stacks
+                        //Fix ME: Debuff is not seen in game i don't know why, until i figure it out this will be 0 stacks
 
                         uint8 newStackCount = (stackCount + 0); //Stacks should be stacks + 5
                         triggeredAura->SetStackAmount(newStackCount);

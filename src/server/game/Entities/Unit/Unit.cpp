@@ -653,9 +653,9 @@ uint32 Unit::DealDamage(Unit* victim, uint32 damage, CleanDamage const* cleanDam
     DamageDone* dmgDone = new DamageDone(damage, getMSTime());
     SetDamageDone(dmgDone);
 
-	// Log damage > 1 000 000 on worldboss
-	if (damage > 1000000 && GetTypeId() == TYPEID_PLAYER && victim->GetTypeId() == TYPEID_UNIT && victim->ToCreature()->GetCreatureTemplate()->rank)
-		sLog->outFatal(LOG_FILTER_PLAYER_SKILLS, "World Boss %u [%s] take more than 1M damage (%u) by player %u [%s] with spell %u", victim->GetEntry(), victim->GetName(), damage, GetGUIDLow(), GetName(), spellProto ? spellProto->Id : 0);
+    // Log damage > 1 000 000 on worldboss
+    if (damage > 1000000 && GetTypeId() == TYPEID_PLAYER && victim->GetTypeId() == TYPEID_UNIT && victim->ToCreature()->GetCreatureTemplate()->rank)
+        sLog->outFatal(LOG_FILTER_PLAYER_SKILLS, "World Boss %u [%s] take more than 1M damage (%u) by player %u [%s] with spell %u", victim->GetEntry(), victim->GetName(), damage, GetGUIDLow(), GetName(), spellProto ? spellProto->Id : 0);
 
     // Custom MoP Script
     if (ToPlayer() && getClass() == CLASS_MONK && ToPlayer()->GetSpecializationId(ToPlayer()->GetActiveSpec()) == SPEC_MONK_BREWMASTER && HasAura(115315))
@@ -771,8 +771,8 @@ uint32 Unit::DealDamage(Unit* victim, uint32 damage, CleanDamage const* cleanDam
         }
     }
 
-	if (victim->HasAura(117708) && ToPlayer() && damage >= 30000) //Madening Shout -> Spirit Kings -> Mogushan Vaults
-		victim->RemoveAurasDueToSpell(117708);
+    if (victim->HasAura(117708) && ToPlayer() && damage >= 30000) //Madening Shout -> Spirit Kings -> Mogushan Vaults
+        victim->RemoveAurasDueToSpell(117708);
 
     if (victim->IsAIEnabled)
         victim->GetAI()->DamageTaken(this, damage);
@@ -886,7 +886,7 @@ uint32 Unit::DealDamage(Unit* victim, uint32 damage, CleanDamage const* cleanDam
             if (damagetype != DOT || (spellProto && spellProto->IsChanneled()))
             {
                 if (Spell* spell = victim->m_currentSpells[CURRENT_GENERIC_SPELL])
-				{
+                {
                     if (spell->getState() == SPELL_STATE_PREPARING)
                     {
                         uint32 interruptFlags = spell->m_spellInfo->InterruptFlags;
@@ -5578,8 +5578,8 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffectPtr trigge
     int32 basepoints0 = 0;
     uint64 originalCaster = 0;
 
-	if (dummySpell->Id == 77762 && GetTypeId() == TYPEID_PLAYER) //Hack for lava surge
-		ToPlayer()->RemoveSpellCooldown(51505, true);
+    if (dummySpell->Id == 77762 && GetTypeId() == TYPEID_PLAYER) //Hack for lava surge
+        ToPlayer()->RemoveSpellCooldown(51505, true);
 
     switch (dummySpell->SpellFamilyName)
     {
@@ -9907,7 +9907,7 @@ ReputationRank Unit::GetReactionTo(Unit const* target) const
         return REP_FRIENDLY;
 
     if (!target)
-    	return REP_FRIENDLY;
+        return REP_FRIENDLY;
 
     // always friendly to charmer or owner
     if (GetCharmerOrOwnerOrSelf() == target->GetCharmerOrOwnerOrSelf())
@@ -14969,7 +14969,7 @@ float Unit::GetSpellMaxRangeForTarget(Unit const* target, SpellInfo const* spell
         return spellInfo->GetMaxRange();
 
     if (!target)
-    	return spellInfo->RangeEntry->maxRangeFriend;
+        return spellInfo->RangeEntry->maxRangeFriend;
 
     return spellInfo->GetMaxRange(!IsHostileTo(target));
 }

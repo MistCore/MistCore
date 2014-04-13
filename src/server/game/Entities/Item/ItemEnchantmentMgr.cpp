@@ -69,10 +69,10 @@ void LoadRandomEnchantmentsTable()
 
             if (chance > 0.000001f && chance <= 100.0f)
             {
-            	if (type == ENCHANTMENT_RANDOM_SUFFIX)
-            		RandomSuffixItemEnch[entry].push_back(EnchStoreItem(ench, chance));
-            	else if (type == ENCHANTMENT_RANDOM_PROPERTY)
-            		RandomPropertyItemEnch[entry].push_back(EnchStoreItem(ench, chance));
+                if (type == ENCHANTMENT_RANDOM_SUFFIX)
+                    RandomSuffixItemEnch[entry].push_back(EnchStoreItem(ench, chance));
+                else if (type == ENCHANTMENT_RANDOM_PROPERTY)
+                    RandomPropertyItemEnch[entry].push_back(EnchStoreItem(ench, chance));
             }
 
             ++count;

@@ -21,8 +21,8 @@ class mob_kah_tir : public CreatureScript
 {
     public:
         mob_kah_tir() : CreatureScript("mob_kah_tir") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -368,14 +368,14 @@ class mob_hei_feng : public CreatureScript
 enum eEshelonSpells
 {
     SPELL_RAIN_DANCE    = 124860,
-    SPELL_TORRENT		= 124935,
+    SPELL_TORRENT        = 124935,
     SPELL_WATER_BOLT    = 124854,
 };
 
 enum eEshelonEvents
 {
     EVENT_RAIN_DANCE        = 1,
-    EVENT_TORRENT			= 2,
+    EVENT_TORRENT            = 2,
     EVENT_WATER_BOLT        = 3,
 };
 
@@ -403,9 +403,9 @@ class mob_eshelon : public CreatureScript
             {
                 events.Reset();
 
-                events.ScheduleEvent(EVENT_RAIN_DANCE,		 5000);
-                events.ScheduleEvent(EVENT_TORRENT,			15000);
-                events.ScheduleEvent(EVENT_WATER_BOLT,		25000);
+                events.ScheduleEvent(EVENT_RAIN_DANCE,         5000);
+                events.ScheduleEvent(EVENT_TORRENT,            15000);
+                events.ScheduleEvent(EVENT_WATER_BOLT,        25000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -460,7 +460,7 @@ class mob_eshelon : public CreatureScript
 void AddSC_townlong_steppes()
 {
     //Rare mobs
-	new mob_kah_tir();
+    new mob_kah_tir();
     new mob_lith_ik();
     new mob_eshelon();
     //Elite mobs

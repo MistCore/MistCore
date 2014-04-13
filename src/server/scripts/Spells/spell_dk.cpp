@@ -57,7 +57,7 @@ enum DeathKnightSpells
     DK_SPELL_SOUL_REAPER_DAMAGE                 = 114867,
     DK_SPELL_REMORSELESS_WINTER_STUN            = 115001,
     DK_SPELL_REMORSELESS_WINTER                 = 115000,
-    DK_SPELL_CONVERSION							= 119975,
+    DK_SPELL_CONVERSION                            = 119975,
     DK_SPELL_WEAKENED_BLOWS                     = 115798,
     DK_SPELL_SCARLET_FEVER                      = 81132,
     DK_SPELL_SCENT_OF_BLOOD_AURA                = 50421,

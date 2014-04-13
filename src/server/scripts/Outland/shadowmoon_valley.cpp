@@ -1993,14 +1993,14 @@ public:
 
 enum eCollidusTheWarpWatcherSpells
 {
-    SPELL_BLINK				= 38932,
+    SPELL_BLINK                = 38932,
     SPELL_FOCUSED_BURSTS    = 36414,
     SPELL_PSYCHIC_SCREAM    = 34322,
 };
 
 enum eCollidusTheWarpWatcherEvents
 {
-    EVENT_BLINK			    = 1,
+    EVENT_BLINK                = 1,
     EVENT_FOCUSED_BURSTS    = 2,
     EVENT_PSYCHIC_SCREAM    = 3,
 };
@@ -2009,8 +2009,8 @@ class mob_collidus_the_warp_watcher : public CreatureScript
 {
     public:
         mob_collidus_the_warp_watcher() : CreatureScript("mob_collidus_the_warp_watcher")
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -2029,10 +2029,10 @@ class mob_collidus_the_warp_watcher : public CreatureScript
             {
                 events.Reset();
                 
-                events.ScheduleEvent(EVENT_BLINK,			 10000);
+                events.ScheduleEvent(EVENT_BLINK,             10000);
                 events.ScheduleEvent(EVENT_FOCUSED_BURSTS,   25000);
                 events.ScheduleEvent(EVENT_PSYCHIC_SCREAM,   10000);
-			}
+            }
 
             void UpdateAI(const uint32 diff)
             {
@@ -2064,7 +2064,7 @@ class mob_collidus_the_warp_watcher : public CreatureScript
                                 me->CastSpell(target, SPELL_PSYCHIC_SCREAM, false);
                             events.ScheduleEvent(EVENT_PSYCHIC_SCREAM,       7000);
                             break;
-							
+                            
                         default:
                             break;
                     }
@@ -2094,5 +2094,5 @@ void AddSC_shadowmoon_valley()
     new npc_enraged_spirit();
     new spell_unlocking_zuluheds_chains();
     new npc_shadowmoon_tuber_node();
-	new mob_collidus_the_warp_watcher();
+    new mob_collidus_the_warp_watcher();
 }

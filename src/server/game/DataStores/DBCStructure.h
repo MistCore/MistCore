@@ -1662,14 +1662,14 @@ struct ScalingStatValuesEntry
 
 struct SkillLineEntry
 {
-    uint32 id;                                              // 0	m_ID
-    int32 categoryId;                                       // 1	m_categoryID
-    char* name;                                             // 2	m_displayName_lang
-    //DBCString description;                                // 3	m_description_lang
-    uint32 spellIcon;                                       // 4	m_spellIconID
-    //DBCString alternateVerb;                              // 5	m_alternateVerb_lang
-    uint32 canLink;                                         // 6	m_canLink (prof. with recipes)
-    //uint32 Unknown;                                       // 7	5.0.1
+    uint32 id;                                              // 0    m_ID
+    int32 categoryId;                                       // 1    m_categoryID
+    char* name;                                             // 2    m_displayName_lang
+    //DBCString description;                                // 3    m_description_lang
+    uint32 spellIcon;                                       // 4    m_spellIconID
+    //DBCString alternateVerb;                              // 5    m_alternateVerb_lang
+    uint32 canLink;                                         // 6    m_canLink (prof. with recipes)
+    //uint32 Unknown;                                       // 7    5.0.1
 };
 
 struct SkillLineAbilityEntry
@@ -1742,7 +1742,7 @@ struct SpellEffectEntry
     uint32    EffectRadiusMaxIndex;                         // 16        4.0.0
     float     EffectRealPointsPerLevel;                     // 17        m_effectRealPointsPerLevel
     flag96    EffectSpellClassMask;                         // 18 19 20  m_effectSpellClassMask1(2/3), effect 0
-    //uint32                                                // 19		 5.0.5
+    //uint32                                                // 19         5.0.5
     uint32    EffectTriggerSpell;                           // 21        m_effectTriggerSpell
     //float                                                 // 20        5.0.5
     uint32    EffectImplicitTargetA;                        // 22        m_implicitTargetA
@@ -1871,8 +1871,8 @@ struct SpellCategoriesEntry
 // SpellCategory.dbc
 struct SpellCategoryEntry
 {
-	uint32 CategoryId;
-	uint32 Flags;
+    uint32 CategoryId;
+    uint32 Flags;
 };
 
 typedef std::set<uint32> SpellCategorySet;

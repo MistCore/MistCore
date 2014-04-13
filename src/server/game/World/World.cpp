@@ -2055,7 +2055,7 @@ void World::Update(uint32 diff)
     {
         if (m_updateTimeSum > m_int_configs[CONFIG_INTERVAL_LOG_UPDATE])
         {
-        	LoginDatabase.PExecute("UPDATE realmlist set online=%u where id=%u", GetActiveSessionCount(), realmID);
+            LoginDatabase.PExecute("UPDATE realmlist set online=%u where id=%u", GetActiveSessionCount(), realmID);
             sLog->outDebug(LOG_FILTER_GENERAL, "Update time diff: %u. Players online: %u.", m_updateTimeSum / m_updateTimeCount, GetActiveSessionCount());
             m_updateTimeSum = m_updateTime;
             m_updateTimeCount = 1;
@@ -3336,9 +3336,9 @@ CharacterNameData const* World::GetCharacterNameData(uint32 guid) const
 }
 
 void World::UpdatePhaseDefinitions()
-{	
-    SessionMap::const_iterator itr;	
-    for (itr = m_sessions.begin(); itr != m_sessions.end(); ++itr)	
-        if (itr->second && itr->second->GetPlayer() && itr->second->GetPlayer()->IsInWorld())	
-            itr->second->GetPlayer()->GetPhaseMgr().NotifyStoresReloaded();	
+{    
+    SessionMap::const_iterator itr;    
+    for (itr = m_sessions.begin(); itr != m_sessions.end(); ++itr)    
+        if (itr->second && itr->second->GetPlayer() && itr->second->GetPlayer()->IsInWorld())    
+            itr->second->GetPlayer()->GetPhaseMgr().NotifyStoresReloaded();    
 }

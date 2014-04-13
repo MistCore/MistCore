@@ -370,7 +370,7 @@ enum SpellCategory
 
 enum SpellCategoryFlags
 {
-    SPELL_CATEGORY_FLAGS_IS_DAILY_COOLDOWN		= 0x08,
+    SPELL_CATEGORY_FLAGS_IS_DAILY_COOLDOWN        = 0x08,
 };
 
 const uint32 ItemQualityColors[MAX_ITEM_QUALITY] =
@@ -3667,31 +3667,31 @@ enum SkillType
     SKILL_PET_BEETLE               = 818,
     SKILL_ALL_GUILD_PERKS          = 821,
     SKILL_PET_HYDRA                = 824,
-    SKILL_GENERAL_MONK			   = 829, // GENERAL? 5.0.5
-    SKILL_NEW_WARRIOR			   = 840, // New on MoP 5.0.5
-    SKILL_NEW_WARLOCK			   = 849, // New in MoP 5.0.5
-    SKILL_RACIAL_PANDAREN		   = 899, // 5.0.5
-    SKILL_NEW_MAGE				   = 904, // New in MoP 5.0.5
-    SKILL_LANG_PANDAREN_N		   = 905, // 5.0.5
-    SKILL_LANG_PANDAREN_A		   = 906, // 5.0.5
-    SKILL_LANG_PANDAREN_H		   = 907, // 5.0.5
-    SKILL_LOCKPICKING			   = 921, // New LOCKPICKING in MoP 5.0.5
-    SKILL_NEW_SHAMAN			   = 924, // New in MoP 5.0.5
-    SKILL_NEW_PET_IMP			   = 927, // New in MoP 5.0.5
-    SKILL_NEW_PET_VOIDWALKER	   = 928, // New in MoP 5.0.5
-    SKILL_NEW_PET_OBSERVER		   = 930, // New in MoP 5.0.5
-    SKILL_NEW_PET_WRATHGUARD	   = 931, // New in MoP 5.0.5
-    SKILL_ALL					   = 934, // 5.0.5 Tous - Specialisations","Les sorts gerant une combinaison de specialisation se trouvent ici.
-    SKILL_NEW_RUNEFORGING		   = 960, // New in MoP 5.0.5
-    SKILL_WAY_OF_GRILL			   = 975, // New in MoP 5.0.5 (cooking)
-    SKILL_WAY_OF_WOK			   = 976, // New in MoP 5.0.5 (cooking)
-    SKILL_WAY_OF_POT			   = 977, // New in MoP 5.0.5 (cooking)
-    SKILL_WAY_OF_STEAMER		   = 978, // New in MoP 5.0.5 (cooking)
-    SKILL_WAY_OF_OVEN			   = 979, // New in MoP 5.0.5 (cooking)
-    SKILL_WAY_OF_BREW			   = 980, // New in MoP 5.0.5 (cooking)
-    SKILL_APPRENTICE_COOKING	   = 981, // New in MoP 5.0.5 (cooking)
-    SKILL_JOURNEYMAN_COOKBOOK	   = 982, // New in MoP 5.0.5 (cooking)
-    SKILL_NO_PLAYER				   = 999  // Last on DBC
+    SKILL_GENERAL_MONK               = 829, // GENERAL? 5.0.5
+    SKILL_NEW_WARRIOR               = 840, // New on MoP 5.0.5
+    SKILL_NEW_WARLOCK               = 849, // New in MoP 5.0.5
+    SKILL_RACIAL_PANDAREN           = 899, // 5.0.5
+    SKILL_NEW_MAGE                   = 904, // New in MoP 5.0.5
+    SKILL_LANG_PANDAREN_N           = 905, // 5.0.5
+    SKILL_LANG_PANDAREN_A           = 906, // 5.0.5
+    SKILL_LANG_PANDAREN_H           = 907, // 5.0.5
+    SKILL_LOCKPICKING               = 921, // New LOCKPICKING in MoP 5.0.5
+    SKILL_NEW_SHAMAN               = 924, // New in MoP 5.0.5
+    SKILL_NEW_PET_IMP               = 927, // New in MoP 5.0.5
+    SKILL_NEW_PET_VOIDWALKER       = 928, // New in MoP 5.0.5
+    SKILL_NEW_PET_OBSERVER           = 930, // New in MoP 5.0.5
+    SKILL_NEW_PET_WRATHGUARD       = 931, // New in MoP 5.0.5
+    SKILL_ALL                       = 934, // 5.0.5 Tous - Specialisations","Les sorts gerant une combinaison de specialisation se trouvent ici.
+    SKILL_NEW_RUNEFORGING           = 960, // New in MoP 5.0.5
+    SKILL_WAY_OF_GRILL               = 975, // New in MoP 5.0.5 (cooking)
+    SKILL_WAY_OF_WOK               = 976, // New in MoP 5.0.5 (cooking)
+    SKILL_WAY_OF_POT               = 977, // New in MoP 5.0.5 (cooking)
+    SKILL_WAY_OF_STEAMER           = 978, // New in MoP 5.0.5 (cooking)
+    SKILL_WAY_OF_OVEN               = 979, // New in MoP 5.0.5 (cooking)
+    SKILL_WAY_OF_BREW               = 980, // New in MoP 5.0.5 (cooking)
+    SKILL_APPRENTICE_COOKING       = 981, // New in MoP 5.0.5 (cooking)
+    SKILL_JOURNEYMAN_COOKBOOK       = 982, // New in MoP 5.0.5 (cooking)
+    SKILL_NO_PLAYER                   = 999  // Last on DBC
 };
 
 #define MAX_SKILL_TYPE               1000

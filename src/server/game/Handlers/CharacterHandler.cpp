@@ -1930,7 +1930,7 @@ void WorldSession::HandleCharFactionOrRaceChange(WorldPacket& recvData)
         case RACE_TROLL:
         case RACE_BLOODELF:
         case RACE_PANDAREN_HORDE:
-        	oldTeam = BG_TEAM_HORDE;
+            oldTeam = BG_TEAM_HORDE;
             break;
         default:
             break;
@@ -1940,10 +1940,10 @@ void WorldSession::HandleCharFactionOrRaceChange(WorldPacket& recvData)
     // Because client always send neutral ID
     if (race == RACE_PANDAREN_NEUTRAL)
     {
-    	if ((recvData.GetOpcode() == CMSG_CHAR_RACE_CHANGE))
-    		race = oldTeam == BG_TEAM_ALLIANCE ? RACE_PANDAREN_ALLI : RACE_PANDAREN_HORDE;
-    	else
-    		race = oldTeam == BG_TEAM_ALLIANCE ? RACE_PANDAREN_HORDE : RACE_PANDAREN_ALLI;
+        if ((recvData.GetOpcode() == CMSG_CHAR_RACE_CHANGE))
+            race = oldTeam == BG_TEAM_ALLIANCE ? RACE_PANDAREN_ALLI : RACE_PANDAREN_HORDE;
+        else
+            race = oldTeam == BG_TEAM_ALLIANCE ? RACE_PANDAREN_HORDE : RACE_PANDAREN_ALLI;
     }
 
     if (!sObjectMgr->GetPlayerInfo(race, playerClass))

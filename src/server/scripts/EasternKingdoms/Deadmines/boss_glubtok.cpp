@@ -32,12 +32,12 @@
 enum Spells
 {
     //Glubtok
-	SPELL_FIRE_BLOSSOMS = 91275,
+    SPELL_FIRE_BLOSSOMS = 91275,
     SPELL_FIRE_BLOSSOM = 91286,
-	SPELL_FROST_BLOSSOMS = 91274,
-	SPELL_FROST_BLOSSOM = 91287,
-	SPELL_ARCANE_POWER = 88009,
-	SPELL_BLINK = 38932,
+    SPELL_FROST_BLOSSOMS = 91274,
+    SPELL_FROST_BLOSSOM = 91287,
+    SPELL_ARCANE_POWER = 88009,
+    SPELL_BLINK = 38932,
 };
 
 const Position pos[1] =
@@ -48,159 +48,159 @@ const Position pos[1] =
 enum Phases
 {
     PHASE_NORMAL = 1,
-	PHASE_50_PERCENT = 2,
+    PHASE_50_PERCENT = 2,
 };
 
 enum BlossomSpell
 {
     SUPER_FIRE_BLOSSOM,
-	SUPER_FROST_BLOSSOM,
+    SUPER_FROST_BLOSSOM,
 };
 
 class boss_glubtok : public CreatureScript
 {
  public:
     boss_glubtok() : CreatureScript("boss_glubtok") {}
-	  
-	struct boss_glubtokAI : public ScriptedAI
-	{
-	    boss_glubtokAI(Creature* pCreature) : ScriptedAI(pCreature)
-		{
-	        pInstance = me->GetInstanceScript();
-	    }
-			 
-		InstanceScript* pInstance;
-	   
-	    uint8 Phase;
-			 
-		uint32 elemental_fists;
-		uint32 ArcanePowerTimer;
-		uint32 blinkTimer;
-		uint32 PhaseChangeTimer;
-		uint32 NormalCastTimer;
-		uint8 BlossomSpell;
-		
-		uint32 SUPER_FROST_BLOSSOMS;
-		uint32 SUPER_FIRE_BLOSSOMS;
-		
-		bool Phased;
-		
-		void Reset()
-		{
-			Phased = false;
-			Phase = PHASE_NORMAL;
-		
-			elemental_fists = 20000;
-			blinkTimer = 12000;
-		
-			NormalCastTimer = 3000;
-			SUPER_FROST_BLOSSOMS = 2000;
-			SUPER_FIRE_BLOSSOMS = 2000;
-		}
-			
-		void EnterCombat(Unit* pWho)
-		{
-		    me->MonsterYell(SAY_AGGRO, LANG_UNIVERSAL, NULL);
-		}
+      
+    struct boss_glubtokAI : public ScriptedAI
+    {
+        boss_glubtokAI(Creature* pCreature) : ScriptedAI(pCreature)
+        {
+            pInstance = me->GetInstanceScript();
+        }
+             
+        InstanceScript* pInstance;
+       
+        uint8 Phase;
+             
+        uint32 elemental_fists;
+        uint32 ArcanePowerTimer;
+        uint32 blinkTimer;
+        uint32 PhaseChangeTimer;
+        uint32 NormalCastTimer;
+        uint8 BlossomSpell;
+        
+        uint32 SUPER_FROST_BLOSSOMS;
+        uint32 SUPER_FIRE_BLOSSOMS;
+        
+        bool Phased;
+        
+        void Reset()
+        {
+            Phased = false;
+            Phase = PHASE_NORMAL;
+        
+            elemental_fists = 20000;
+            blinkTimer = 12000;
+        
+            NormalCastTimer = 3000;
+            SUPER_FROST_BLOSSOMS = 2000;
+            SUPER_FIRE_BLOSSOMS = 2000;
+        }
+            
+        void EnterCombat(Unit* pWho)
+        {
+            me->MonsterYell(SAY_AGGRO, LANG_UNIVERSAL, NULL);
+        }
 
         void JustDied(Unit* /*Killer*/)
-		{
-		    me->MonsterYell(SAY_DIED, LANG_UNIVERSAL, NULL);
-		}
-		
-		void UpdateAI(const uint32 diff)
-		{
-			if (!UpdateVictim())
+        {
+            me->MonsterYell(SAY_DIED, LANG_UNIVERSAL, NULL);
+        }
+        
+        void UpdateAI(const uint32 diff)
+        {
+            if (!UpdateVictim())
             return;
-				
-			if(me->HealthBelowPct(51) && Phase == PHASE_50_PERCENT && Phased == false)
-			{
-			    me->SetReactState(REACT_PASSIVE);
-			    me->MonsterYell(SAY_ARCANE, LANG_UNIVERSAL, NULL);
-				DoCast(me, SPELL_ARCANE_POWER);
-				Position pos;
+                
+            if(me->HealthBelowPct(51) && Phase == PHASE_50_PERCENT && Phased == false)
+            {
+                me->SetReactState(REACT_PASSIVE);
+                me->MonsterYell(SAY_ARCANE, LANG_UNIVERSAL, NULL);
+                DoCast(me, SPELL_ARCANE_POWER);
+                Position pos;
                 me->GetPosition(&pos);
-					
-				if(NormalCastTimer <= diff)
-				{
-				   if(!me->IsNonMeleeSpellCasted(false))
-					{
-						uint8 Available[2]; 
-					    switch (BlossomSpell) 
-						{
-					        case SUPER_FIRE_BLOSSOM:
-					        Available [0] = SUPER_FIRE_BLOSSOM;
-							break;
-							case SUPER_FROST_BLOSSOM:
+                    
+                if(NormalCastTimer <= diff)
+                {
+                   if(!me->IsNonMeleeSpellCasted(false))
+                    {
+                        uint8 Available[2]; 
+                        switch (BlossomSpell) 
+                        {
+                            case SUPER_FIRE_BLOSSOM:
+                            Available [0] = SUPER_FIRE_BLOSSOM;
+                            break;
+                            case SUPER_FROST_BLOSSOM:
                             Available [1] = SUPER_FROST_BLOSSOM;
-							break;
-						}
+                            break;
+                        }
 
-						BlossomSpell = Available[urand(0, 1)]; 
+                        BlossomSpell = Available[urand(0, 1)]; 
                         switch (BlossomSpell)  
                         {
                             case SUPER_FIRE_BLOSSOM:
-      	                        if(Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true));
-									DoCast(SPELL_FIRE_BLOSSOM);
-									DoCast(SPELL_FIRE_BLOSSOMS);
-									SUPER_FIRE_BLOSSOMS = 2000;
-									break;
-					        case SUPER_FROST_BLOSSOM:
-								if(Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true));
-									DoCast(SPELL_FROST_BLOSSOM);
-									DoCast(SPELL_FROST_BLOSSOMS);
-									SUPER_FROST_BLOSSOMS = 2000;
-									break;
-					    }
-					}
-					NormalCastTimer = 3000;
+                                  if(Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true));
+                                    DoCast(SPELL_FIRE_BLOSSOM);
+                                    DoCast(SPELL_FIRE_BLOSSOMS);
+                                    SUPER_FIRE_BLOSSOMS = 2000;
+                                    break;
+                            case SUPER_FROST_BLOSSOM:
+                                if(Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true));
+                                    DoCast(SPELL_FROST_BLOSSOM);
+                                    DoCast(SPELL_FROST_BLOSSOMS);
+                                    SUPER_FROST_BLOSSOMS = 2000;
+                                    break;
+                        }
+                    }
+                    NormalCastTimer = 3000;
                 } else NormalCastTimer -= diff;
-				
-				Phase = PHASE_50_PERCENT;
-			    Phased = true;
-				 
-			}
-				
-			if(PhaseChangeTimer <= diff && Phase == PHASE_NORMAL)
+                
+                Phase = PHASE_50_PERCENT;
+                Phased = true;
+                 
+            }
+                
+            if(PhaseChangeTimer <= diff && Phase == PHASE_NORMAL)
             {
-				if(PhaseChangeTimer<= diff)
-				{
-					me->SetReactState(REACT_AGGRESSIVE);
-					elemental_fists = 20000;
-					blinkTimer = 12000;
-					Phase = PHASE_NORMAL;
-				} else PhaseChangeTimer -= diff;
-				
-				if(elemental_fists <= diff && Phase == PHASE_NORMAL)
-				{
-					if(elemental_fists<= diff)
-					{
-					DoCast(me, elemental_fists);
-					me->MonsterYell(SAY_FLAME, LANG_UNIVERSAL, NULL);
-					elemental_fists = 20000;
-				} else elemental_fists -= diff;
-				}
-				if(blinkTimer <= diff && Phase == PHASE_NORMAL)
-				{
-					if(Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 10.0f, true));
-					DoCast(SPELL_BLINK);
-					blinkTimer = 12000;
-				} else blinkTimer -= diff;
-			
-				DoMeleeAttackIfReady();
-			}
-		}
+                if(PhaseChangeTimer<= diff)
+                {
+                    me->SetReactState(REACT_AGGRESSIVE);
+                    elemental_fists = 20000;
+                    blinkTimer = 12000;
+                    Phase = PHASE_NORMAL;
+                } else PhaseChangeTimer -= diff;
+                
+                if(elemental_fists <= diff && Phase == PHASE_NORMAL)
+                {
+                    if(elemental_fists<= diff)
+                    {
+                    DoCast(me, elemental_fists);
+                    me->MonsterYell(SAY_FLAME, LANG_UNIVERSAL, NULL);
+                    elemental_fists = 20000;
+                } else elemental_fists -= diff;
+                }
+                if(blinkTimer <= diff && Phase == PHASE_NORMAL)
+                {
+                    if(Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 10.0f, true));
+                    DoCast(SPELL_BLINK);
+                    blinkTimer = 12000;
+                } else blinkTimer -= diff;
+            
+                DoMeleeAttackIfReady();
+            }
+        }
 
     };
 
-	CreatureAI* GetAI(Creature *pCreature) const
-	{
-		return new boss_glubtokAI(pCreature);
-	}
+    CreatureAI* GetAI(Creature *pCreature) const
+    {
+        return new boss_glubtokAI(pCreature);
+    }
 
 };
 
 void AddSC_boss_glubtok()
 {
-	new boss_glubtok();
+    new boss_glubtok();
 }

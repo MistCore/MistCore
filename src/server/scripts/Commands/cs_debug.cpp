@@ -991,20 +991,20 @@ public:
     {
         if (!*args)
             return false;
-	
-        char* t = strtok((char*)args, " ");	
-        char* p = strtok(NULL, " ");		
-        if (!t)	
-            return false;	
-	
-        std::set<uint32> terrainswap;	
-        std::set<uint32> phaseId;	
-	
-        terrainswap.insert((uint32)atoi(t));	
-	
-        if (p)	
-            phaseId.insert((uint32)atoi(p));	
-	
+    
+        char* t = strtok((char*)args, " ");    
+        char* p = strtok(NULL, " ");        
+        if (!t)    
+            return false;    
+    
+        std::set<uint32> terrainswap;    
+        std::set<uint32> phaseId;    
+    
+        terrainswap.insert((uint32)atoi(t));    
+    
+        if (p)    
+            phaseId.insert((uint32)atoi(p));    
+    
         handler->GetSession()->SendSetPhaseShift(phaseId, terrainswap);
         return true;
     }
@@ -1387,15 +1387,15 @@ public:
         return true;
     }
 
-    static bool HandleDebugPhaseCommand(ChatHandler* handler, char const* args)	
-    {	
-        Unit* unit = handler->getSelectedUnit();	
-        Player* player = handler->GetSession()->GetPlayer();	
-        if(unit && unit->GetTypeId() == TYPEID_PLAYER)	
-            player = unit->ToPlayer();	
-	
-        player->GetPhaseMgr().SendDebugReportToPlayer(handler->GetSession()->GetPlayer());	
-        return true;	
+    static bool HandleDebugPhaseCommand(ChatHandler* handler, char const* args)    
+    {    
+        Unit* unit = handler->getSelectedUnit();    
+        Player* player = handler->GetSession()->GetPlayer();    
+        if(unit && unit->GetTypeId() == TYPEID_PLAYER)    
+            player = unit->ToPlayer();    
+    
+        player->GetPhaseMgr().SendDebugReportToPlayer(handler->GetSession()->GetPlayer());    
+        return true;    
     }
 
     static bool HandleDebugMoveJump(ChatHandler* handler, char const* args)

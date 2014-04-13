@@ -657,7 +657,7 @@ public:
                                 sorcererMogu->AI()->DoAction(ACTION_SET_NATIVE_DISPLAYID);
                                 sorcererMogu->AI()->DoAction(ACTION_SET_GHOST_VISUAL);
                                 sorcererMogu->AI()->DoAction(ACTION_BEFORE_COMBAT);
-                                events.ScheduleEvent(EVENT_START_FIRST_COMBAT,	4000);
+                                events.ScheduleEvent(EVENT_START_FIRST_COMBAT,    4000);
                             }
                         }
                     }
@@ -705,7 +705,7 @@ public:
                             zian->AI()->DoAction(ACTION_SET_GHOST_VISUAL);
                             zian->AI()->DoAction(ACTION_SET_NATIVE_DISPLAYID);
                             zian->AI()->DoAction(ACTION_BEFORE_COMBAT);
-                            events.ScheduleEvent(EVENT_START_FIRST_COMBAT,	5000);
+                            events.ScheduleEvent(EVENT_START_FIRST_COMBAT,    5000);
                         }
                     }
 
@@ -864,7 +864,7 @@ class mob_zian : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
                 events.Reset();
-                events.ScheduleEvent(EVENT_CHARGED_SHADOWS,	urand(5000, 15000));
+                events.ScheduleEvent(EVENT_CHARGED_SHADOWS,    urand(5000, 15000));
             }
 
             void DoAction(const int32 action)
@@ -956,7 +956,7 @@ class mob_sorcerer_mogu : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
                 events.Reset();
-                events.ScheduleEvent(EVENT_SHADOW_BLAST,		 5000);
+                events.ScheduleEvent(EVENT_SHADOW_BLAST,         5000);
             }
 
             void DoAction(const int32 action)
@@ -1047,7 +1047,7 @@ class mob_qiang : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
                 events.Reset();
-                events.ScheduleEvent(EVENT_ANNIHILATE,	urand(5000, 15000));
+                events.ScheduleEvent(EVENT_ANNIHILATE,    urand(5000, 15000));
             }
 
             void DoAction(const int32 action)
@@ -1177,7 +1177,7 @@ class mob_mounted_mogu : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
                 events.Reset();
-                events.ScheduleEvent(EVENT_CRUSHING_ATTACKS,	urand(5000, 12000));
+                events.ScheduleEvent(EVENT_CRUSHING_ATTACKS,    urand(5000, 12000));
             }
 
             void DoAction(const int32 action)
@@ -1274,7 +1274,7 @@ class mob_subetai : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
                 events.Reset();
-                events.ScheduleEvent(EVENT_VOLLEY,	urand(5000, 15000));
+                events.ScheduleEvent(EVENT_VOLLEY,    urand(5000, 15000));
             }
 
             void DoAction(const int32 action)
@@ -1403,7 +1403,7 @@ class mob_mogu_archer : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
                 events.Reset();
-                events.ScheduleEvent(EVENT_SHOOT,	urand(5000, 12000));
+                events.ScheduleEvent(EVENT_SHOOT,    urand(5000, 12000));
             }
 
             void DoAction(const int32 action)
@@ -1631,8 +1631,8 @@ class mob_kingsguard : public CreatureScript
                 me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
 
                 events.Reset();
-                events.ScheduleEvent(EVENT_ENRAGE,	urand(5000, 12000));
-                events.ScheduleEvent(EVENT_REFLECTIVE_SHIELDS,	urand(15000, 20000));
+                events.ScheduleEvent(EVENT_ENRAGE,    urand(5000, 12000));
+                events.ScheduleEvent(EVENT_REFLECTIVE_SHIELDS,    urand(15000, 20000));
             }
 
             void DoAction(const int32 action)

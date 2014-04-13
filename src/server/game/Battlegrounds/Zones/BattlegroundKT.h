@@ -22,7 +22,7 @@
 
 enum BG_KT_NPC
 {
-    BG_SM_NPC_POWERBALL					= 29265
+    BG_SM_NPC_POWERBALL                    = 29265
 };
 
 #define BG_KT_MAX_TEAM_SCORE        1600
@@ -92,9 +92,9 @@ enum BG_KT_SpellId
 enum BG_KT_WorldStates
 {
     BG_KT_ICON_A                = 6308,
-	BG_KT_ICON_H                = 6307,
-	BG_KT_ORB_POINTS_A          = 6303,
-	BG_KT_ORB_POINTS_H          = 6304,
+    BG_KT_ICON_H                = 6307,
+    BG_KT_ORB_POINTS_A          = 6303,
+    BG_KT_ORB_POINTS_H          = 6304,
     BG_KT_ORB_STATE             = 6309,
     BG_KT_TIME_ENABLED          = 4247,
     BG_KT_TIME_REMAINING        = 4248

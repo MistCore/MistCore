@@ -37,7 +37,7 @@ public:
         {
             { "achievements",   SEC_ADMINISTRATOR,  true,  &HandleResetAchievementsCommand,     "", NULL },
             { "honor",          SEC_ADMINISTRATOR,  true,  &HandleResetHonorCommand,            "", NULL },
-	    { "level",          SEC_ADMINISTRATOR,  true,  &HandleResetLevelCommand,            "", NULL },
+        { "level",          SEC_ADMINISTRATOR,  true,  &HandleResetLevelCommand,            "", NULL },
             { "spells",         SEC_ADMINISTRATOR,  true,  &HandleResetSpellsCommand,           "", NULL },
             { "stats",          SEC_ADMINISTRATOR,  true,  &HandleResetStatsCommand,            "", NULL },
             { "talents",        SEC_ADMINISTRATOR,  true,  &HandleResetTalentsCommand,          "", NULL },
@@ -118,41 +118,41 @@ public:
         return true;
     }
 
-	static bool HandleResetLevelCommand(ChatHandler* handler, char const* args)
-	{
-		Player* target;
-		if (!handler->extractPlayerTarget((char*)args, &target))
-			return false;
+    static bool HandleResetLevelCommand(ChatHandler* handler, char const* args)
+    {
+        Player* target;
+        if (!handler->extractPlayerTarget((char*)args, &target))
+            return false;
 
-		if (!HandleResetStatsOrLevelHelper(target))
-			return false;
+        if (!HandleResetStatsOrLevelHelper(target))
+            return false;
 
-		uint8 oldLevel = target->getLevel();
+        uint8 oldLevel = target->getLevel();
 
-		// set starting level
-		uint32 startLevel = target->getClass() != CLASS_DEATH_KNIGHT
-			? sWorld->getIntConfig(CONFIG_START_PLAYER_LEVEL)
-			: sWorld->getIntConfig(CONFIG_START_HEROIC_PLAYER_LEVEL);
+        // set starting level
+        uint32 startLevel = target->getClass() != CLASS_DEATH_KNIGHT
+            ? sWorld->getIntConfig(CONFIG_START_PLAYER_LEVEL)
+            : sWorld->getIntConfig(CONFIG_START_HEROIC_PLAYER_LEVEL);
 
-		target->_ApplyAllLevelScaleItemMods(false);
-		target->SetLevel(startLevel);
-		target->InitRunes();
-		target->InitStatsForLevel(true);
-		target->InitTaxiNodesForLevel();
-		target->InitGlyphsForLevel();
-		target->InitTalentForLevel();
-		target->SetUInt32Value(PLAYER_XP, 0);
+        target->_ApplyAllLevelScaleItemMods(false);
+        target->SetLevel(startLevel);
+        target->InitRunes();
+        target->InitStatsForLevel(true);
+        target->InitTaxiNodesForLevel();
+        target->InitGlyphsForLevel();
+        target->InitTalentForLevel();
+        target->SetUInt32Value(PLAYER_XP, 0);
 
-		target->_ApplyAllLevelScaleItemMods(true);
+        target->_ApplyAllLevelScaleItemMods(true);
 
-		// reset level for pet
-		if (Pet* pet = target->GetPet())
-			pet->SynchronizeLevelWithOwner();
+        // reset level for pet
+        if (Pet* pet = target->GetPet())
+            pet->SynchronizeLevelWithOwner();
 
-		sScriptMgr->OnPlayerLevelChanged(target, oldLevel);
+        sScriptMgr->OnPlayerLevelChanged(target, oldLevel);
 
-		return true;
-	}
+        return true;
+    }
 
     static bool HandleResetSpellsCommand(ChatHandler* handler, char const* args)
     {

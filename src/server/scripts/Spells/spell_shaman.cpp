@@ -34,10 +34,10 @@ enum ShamanSpells
     HUNTER_SPELL_INSANITY                   = 95809,
     MAGE_SPELL_TEMPORAL_DISPLACEMENT        = 80354,
     SPELL_SHA_LIGHTNING_SHIELD_AURA         = 324,
-    SPELL_SHA_ASCENDANCE_ELEMENTAL	        = 114050,
+    SPELL_SHA_ASCENDANCE_ELEMENTAL            = 114050,
     SPELL_SHA_ASCENDANCE_RESTORATION        = 114052,
-    SPELL_SHA_ASCENDANCE_ENHANCED	        = 114051,
-    SPELL_SHA_ASCENDANCE			        = 114049,
+    SPELL_SHA_ASCENDANCE_ENHANCED            = 114051,
+    SPELL_SHA_ASCENDANCE                    = 114049,
     SPELL_SHA_HEALING_RAIN                  = 73920,
     SPELL_SHA_HEALING_RAIN_TICK             = 73921,
     SPELL_SHA_EARTHQUAKE                    = 61882,
@@ -1247,7 +1247,7 @@ class spell_sha_lava_surge : public SpellScriptLoader
                         {
                             if (roll_chance_i(20))
                             {
-								_player->RemoveSpellCooldown(51505, true);
+                                _player->RemoveSpellCooldown(51505, true);
                                 _player->CastSpell(_player, SPELL_SHA_LAVA_SURGE_CAST_TIME, true);
                             }
                         }

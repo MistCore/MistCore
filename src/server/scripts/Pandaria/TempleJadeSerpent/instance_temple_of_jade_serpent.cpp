@@ -266,7 +266,7 @@ public:
             OnCreatureCreate_sha_of_doubt(creature);
 
             if (creature->GetEntry() == 56448)
-            	wiseMariGUID = creature->GetGUID();
+                wiseMariGUID = creature->GetGUID();
         }
 
         void OnUnitDeath(Unit* unit)
@@ -307,10 +307,10 @@ public:
 
                         Unit* wiseMari = Unit::GetUnit(*plr, wiseMariGUID);
                         if (!wiseMari)
-                        	continue;
+                            continue;
 
                         if (!wiseMari->isAlive() || !wiseMari->isInCombat())
-                        	continue;
+                            continue;
 
                         // position : center of the wise mari's room
                         Position pos;

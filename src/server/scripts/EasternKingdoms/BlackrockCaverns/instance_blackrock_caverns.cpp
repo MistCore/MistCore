@@ -24,7 +24,7 @@ public:
         uint64 uiKarshGUID;
         uint64 uiBeautyGUID;
         uint64 uiLordObsidiusGUID;
-		uint64 m_uiPortalGUID[4];
+        uint64 m_uiPortalGUID[4];
 
         void Initialize()
         {
@@ -33,7 +33,7 @@ public:
              uiKarshGUID = 0;
              uiBeautyGUID = 0;
              uiLordObsidiusGUID = 0;
-			 memset(&m_uiPortalGUID[4], 0, sizeof(m_uiPortalGUID[4]));
+             memset(&m_uiPortalGUID[4], 0, sizeof(m_uiPortalGUID[4]));
         }
 
         void OnCreatureCreate(Creature* pCreature)

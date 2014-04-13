@@ -263,63 +263,63 @@ public:
         return true;
     }
 
-	//add item in vendorlist
-	static bool HandleNpcAddVendorItemCommand(ChatHandler* handler, char const* args)
-	{
-		if (!*args)
-			return false;
+    //add item in vendorlist
+    static bool HandleNpcAddVendorItemCommand(ChatHandler* handler, char const* args)
+    {
+        if (!*args)
+            return false;
 
-		const uint8 type = 1; // FIXME: make type (1 item, 2 currency) an argument
+        const uint8 type = 1; // FIXME: make type (1 item, 2 currency) an argument
 
-		char* pitem = handler->extractKeyFromLink((char*)args, "Hitem");
-		if (!pitem)
-		{
-			handler->SendSysMessage(LANG_COMMAND_NEEDITEMSEND);
-			handler->SetSentErrorMessage(true);
-			return false;
-		}
+        char* pitem = handler->extractKeyFromLink((char*)args, "Hitem");
+        if (!pitem)
+        {
+            handler->SendSysMessage(LANG_COMMAND_NEEDITEMSEND);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
 
-		int32 item_int = atol(pitem);
-		if (item_int <= 0)
-			return false;
+        int32 item_int = atol(pitem);
+        if (item_int <= 0)
+            return false;
 
-		uint32 itemId = item_int;
+        uint32 itemId = item_int;
 
-		char* fmaxcount = strtok(NULL, " ");                    //add maxcount, default: 0
-		uint32 maxcount = 0;
-		if (fmaxcount)
-			maxcount = atol(fmaxcount);
+        char* fmaxcount = strtok(NULL, " ");                    //add maxcount, default: 0
+        uint32 maxcount = 0;
+        if (fmaxcount)
+            maxcount = atol(fmaxcount);
 
-		char* fincrtime = strtok(NULL, " ");                    //add incrtime, default: 0
-		uint32 incrtime = 0;
-		if (fincrtime)
-			incrtime = atol(fincrtime);
+        char* fincrtime = strtok(NULL, " ");                    //add incrtime, default: 0
+        uint32 incrtime = 0;
+        if (fincrtime)
+            incrtime = atol(fincrtime);
 
-		char* fextendedcost = strtok(NULL, " ");                //add ExtendedCost, default: 0
-		uint32 extendedcost = fextendedcost ? atol(fextendedcost) : 0;
-		Creature* vendor = handler->getSelectedCreature();
-		if (!vendor)
-		{
-			handler->SendSysMessage(LANG_SELECT_CREATURE);
-			handler->SetSentErrorMessage(true);
-			return false;
-		}
+        char* fextendedcost = strtok(NULL, " ");                //add ExtendedCost, default: 0
+        uint32 extendedcost = fextendedcost ? atol(fextendedcost) : 0;
+        Creature* vendor = handler->getSelectedCreature();
+        if (!vendor)
+        {
+            handler->SendSysMessage(LANG_SELECT_CREATURE);
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
 
-		uint32 vendor_entry = vendor ? vendor->GetEntry() : 0;
+        uint32 vendor_entry = vendor ? vendor->GetEntry() : 0;
 
-		if (!sObjectMgr->IsVendorItemValid(vendor_entry, itemId, maxcount, incrtime, extendedcost, type, handler->GetSession()->GetPlayer()))
-		{
-			handler->SetSentErrorMessage(true);
-			return false;
-		}
+        if (!sObjectMgr->IsVendorItemValid(vendor_entry, itemId, maxcount, incrtime, extendedcost, type, handler->GetSession()->GetPlayer()))
+        {
+            handler->SetSentErrorMessage(true);
+            return false;
+        }
 
-		sObjectMgr->AddVendorItem(vendor_entry, itemId, maxcount, incrtime, extendedcost, type);
+        sObjectMgr->AddVendorItem(vendor_entry, itemId, maxcount, incrtime, extendedcost, type);
 
-		ItemTemplate const* itemTemplate = sObjectMgr->GetItemTemplate(itemId);
+        ItemTemplate const* itemTemplate = sObjectMgr->GetItemTemplate(itemId);
 
-		handler->PSendSysMessage(LANG_ITEM_ADDED_TO_LIST, itemId, itemTemplate->Name1.c_str(), maxcount, incrtime, extendedcost);
-		return true;
-	}
+        handler->PSendSysMessage(LANG_ITEM_ADDED_TO_LIST, itemId, itemTemplate->Name1.c_str(), maxcount, incrtime, extendedcost);
+        return true;
+    }
 
     //add move for creature
     static bool HandleNpcAddMoveCommand(ChatHandler* handler, const char* args)

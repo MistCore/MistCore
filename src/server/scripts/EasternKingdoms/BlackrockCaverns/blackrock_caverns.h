@@ -20,19 +20,19 @@
 
 enum Data
 {
-    DATA_ROMOGG						= 1,
-    DATA_CORLA						= 2,
-    DATA_KARSH						= 3,
-    DATA_BEAUTY						= 4,
-    DATA_ASCENDANT_LORD_OBSIDIUS	= 5,
-    DATA_TEAM_IN_INSTANCE			= 6,
+    DATA_ROMOGG                        = 1,
+    DATA_CORLA                        = 2,
+    DATA_KARSH                        = 3,
+    DATA_BEAUTY                        = 4,
+    DATA_ASCENDANT_LORD_OBSIDIUS    = 5,
+    DATA_TEAM_IN_INSTANCE            = 6,
 };
 
 enum NPCs
 {
-    NPC_ROMOGG					= 39665,
+    NPC_ROMOGG                    = 39665,
     NPC_CORLA                   = 39679,
-    NPC_KARSH					= 39698,
+    NPC_KARSH                    = 39698,
     NPC_BEAUTY                  = 39700,
     NPC_ASCENDANT_LORD_OBSIDIUS = 39705,
 
@@ -57,10 +57,10 @@ enum NPCs
 enum GameObjectIds
 {
     GO_STONE_TABLET             = 207412,
-	GO_PORTA1					= 402092,
-	GO_PORTA2					= 315000,
-	GO_PORTA3					= 315001,
-	GO_PORTA4					= 315002,
+    GO_PORTA1                    = 402092,
+    GO_PORTA2                    = 315000,
+    GO_PORTA3                    = 315001,
+    GO_PORTA4                    = 315002,
 };
 
 #endif

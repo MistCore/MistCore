@@ -21,8 +21,8 @@ class mob_shadow_of_doubt : public CreatureScript
 {
     public:
         mob_shadow_of_doubt() : CreatureScript("mob_shadow_of_doubt") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -43,7 +43,7 @@ class mob_shadow_of_doubt : public CreatureScript
                 
                 events.ScheduleEvent(EVENT_DEAFENED,      30000);
                 events.ScheduleEvent(EVENT_GROWING_DOUBT,  9000);
-                events.ScheduleEvent(EVENT_SHA_BOLT,	  15000);
+                events.ScheduleEvent(EVENT_SHA_BOLT,      15000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -271,15 +271,15 @@ class mob_krax_ik : public CreatureScript
 enum eMisterFerociousSpells
 {
     SPELL_GOING_BANANAS     = 125363,
-    SPELL_BANANARANG		= 125311,
-    SPELL_TOSS_FILTH		= 125365,
+    SPELL_BANANARANG        = 125311,
+    SPELL_TOSS_FILTH        = 125365,
 };
 
 enum eMisterFerociousEvents
 {
     EVENT_GOING_BANANAS         = 1,
-    EVENT_BANANARANG			= 2,
-    EVENT_TOSS_FILTH		    = 3,
+    EVENT_BANANARANG            = 2,
+    EVENT_TOSS_FILTH            = 3,
 };
 
 class mob_mister_ferocious : public CreatureScript
@@ -306,9 +306,9 @@ class mob_mister_ferocious : public CreatureScript
             {
                 events.Reset();
 
-                events.ScheduleEvent(EVENT_GOING_BANANAS,		12000);
-                events.ScheduleEvent(EVENT_BANANARANG,			 8000);
-                events.ScheduleEvent(EVENT_TOSS_FILTH,			15000);
+                events.ScheduleEvent(EVENT_GOING_BANANAS,        12000);
+                events.ScheduleEvent(EVENT_BANANARANG,             8000);
+                events.ScheduleEvent(EVENT_TOSS_FILTH,            15000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -362,19 +362,19 @@ class mob_mister_ferocious : public CreatureScript
 enum eAkkalarSpells
 {
     SPELL_BOUCLIER_D_EAU        = 79892,
-    SPELL_BOUCLIER_D_EAU_2		= 34828,
-    SPELL_BOUCLIER_DE_TERRE		= 79927,
-    SPELL_CARAPACE_BOUCLIER		= 83488,
-    SPELL_MOT_DE_POUVOIR		= 11835,
+    SPELL_BOUCLIER_D_EAU_2        = 34828,
+    SPELL_BOUCLIER_DE_TERRE        = 79927,
+    SPELL_CARAPACE_BOUCLIER        = 83488,
+    SPELL_MOT_DE_POUVOIR        = 11835,
 };
 
 enum eAkkalarEvents
 {
     EVENT_BOUCLIER_D_EAU            = 1,
-    EVENT_BOUCLIER_D_EAU_2			= 2,
-    EVENT_BOUCLIER_DE_TERRE		    = 3,
-    EVENT_CARAPACE_BOUCLIER			= 4,
-    EVENT_MOT_DE_POUVOIR		    = 5,
+    EVENT_BOUCLIER_D_EAU_2            = 2,
+    EVENT_BOUCLIER_DE_TERRE            = 3,
+    EVENT_CARAPACE_BOUCLIER            = 4,
+    EVENT_MOT_DE_POUVOIR            = 5,
 };
 
 class mob_akkalar : public CreatureScript
@@ -401,11 +401,11 @@ class mob_akkalar : public CreatureScript
             {
                 events.Reset();
 
-                events.ScheduleEvent(EVENT_BOUCLIER_D_EAU,		10000);
+                events.ScheduleEvent(EVENT_BOUCLIER_D_EAU,        10000);
                 events.ScheduleEvent(EVENT_BOUCLIER_D_EAU_2,    20000);
-                events.ScheduleEvent(EVENT_BOUCLIER_DE_TERRE,	30000);
-                events.ScheduleEvent(EVENT_CARAPACE_BOUCLIER,	40000);
-                events.ScheduleEvent(EVENT_MOT_DE_POUVOIR,		50000);
+                events.ScheduleEvent(EVENT_BOUCLIER_DE_TERRE,    30000);
+                events.ScheduleEvent(EVENT_CARAPACE_BOUCLIER,    40000);
+                events.ScheduleEvent(EVENT_MOT_DE_POUVOIR,        50000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -463,14 +463,14 @@ class mob_akkalar : public CreatureScript
 
 enum eGrookinOutrunnerSpells
 {
-    SPELL_SHOOT		= 23337,
-    SPELL_CLEAVE 	= 40505,
+    SPELL_SHOOT        = 23337,
+    SPELL_CLEAVE     = 40505,
 };
 
 enum eGrookinOutrunnerEvents
 {
     EVENT_SHOOT             = 1,
-    EVENT_CLEAVE		    = 2,
+    EVENT_CLEAVE            = 2,
 };
 
 class mob_grookin_outrunner : public CreatureScript
@@ -497,8 +497,8 @@ class mob_grookin_outrunner : public CreatureScript
             {
                 events.Reset();
 
-                events.ScheduleEvent(EVENT_SHOOT,		7000);
-                events.ScheduleEvent(EVENT_CLEAVE,	    12000);
+                events.ScheduleEvent(EVENT_SHOOT,        7000);
+                events.ScheduleEvent(EVENT_CLEAVE,        12000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -541,7 +541,7 @@ class mob_grookin_outrunner : public CreatureScript
 
 enum eBambooPythonSpells
 {
-    SPELL_SWAMP_FEVER		= 116026,
+    SPELL_SWAMP_FEVER        = 116026,
 };
 
 enum eBambooPythonEvents
@@ -573,7 +573,7 @@ class mob_bamboo_python : public CreatureScript
             {
                 events.Reset();
 
-                events.ScheduleEvent(EVENT_SWAMP_FEVER,		7000);
+                events.ScheduleEvent(EVENT_SWAMP_FEVER,        7000);
             }
 
             void EnterCombat(Unit* attacker)
@@ -610,7 +610,7 @@ class mob_bamboo_python : public CreatureScript
         };
 };
 
-#define    SPELL_STEALTH	77806
+#define    SPELL_STEALTH    77806
 
 class mob_lurking_tiger : public CreatureScript
 {
@@ -652,20 +652,20 @@ class mob_lurking_tiger : public CreatureScript
 
 enum eRakiraSpells
 {
-    SPELL_BLOODY_PREY	        	= 131145,
-    SPELL_CLAW_RIP              	= 131130,
-    SPELL_GROWL 	                = 2649,
-    SPELL_HOWL_OF_THE_DENMOTHER 	= 131199,
-    SPELL_ROAR_OF_COURAGE	        = 93435,
+    SPELL_BLOODY_PREY                = 131145,
+    SPELL_CLAW_RIP                  = 131130,
+    SPELL_GROWL                     = 2649,
+    SPELL_HOWL_OF_THE_DENMOTHER     = 131199,
+    SPELL_ROAR_OF_COURAGE            = 93435,
 };
 
 enum eRakiraEvents
 {
     EVENT_BLOODY_PREY               = 1,
-    EVENT_CLAW_RIP		            = 2,
+    EVENT_CLAW_RIP                    = 2,
     EVENT_GROWL                     = 3,
-    EVENT_HOWL_OF_THE_DENMOTHER	    = 4,
-    EVENT_ROAR_OF_COURAGE		    = 5,
+    EVENT_HOWL_OF_THE_DENMOTHER        = 4,
+    EVENT_ROAR_OF_COURAGE            = 5,
 };
 
 class mob_rakira : public CreatureScript
@@ -692,11 +692,11 @@ class mob_rakira : public CreatureScript
             {
                 events.Reset();
 
-                events.ScheduleEvent(EVENT_BLOODY_PREY,		             8000);
-                events.ScheduleEvent(EVENT_CLAW_RIP,	                15000);
-                events.ScheduleEvent(EVENT_GROWL,	                  	22000);
-                events.ScheduleEvent(EVENT_HOWL_OF_THE_DENMOTHER,	    30000);
-                events.ScheduleEvent(EVENT_ROAR_OF_COURAGE,	            40000);
+                events.ScheduleEvent(EVENT_BLOODY_PREY,                     8000);
+                events.ScheduleEvent(EVENT_CLAW_RIP,                    15000);
+                events.ScheduleEvent(EVENT_GROWL,                          22000);
+                events.ScheduleEvent(EVENT_HOWL_OF_THE_DENMOTHER,        30000);
+                events.ScheduleEvent(EVENT_ROAR_OF_COURAGE,                40000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -755,17 +755,17 @@ class mob_rakira : public CreatureScript
 enum eRoShenSpells
 {
     SPELL_CLAW_SLASH                = 131133,
-    SPELL_BLOOD_CRAZED	        	= 131150,
-    SPELL_BLOODTHIRST              	= 131141,
-    SPELL_FRENZY	                =  19615,
+    SPELL_BLOOD_CRAZED                = 131150,
+    SPELL_BLOODTHIRST                  = 131141,
+    SPELL_FRENZY                    =  19615,
 };
 
 enum eRoShenEvents
 {
     EVENT_BLOOD_CRAZED              = 6,
-    EVENT_BLOODTHIRST		        = 7,
+    EVENT_BLOODTHIRST                = 7,
     EVENT_CLAW_SLASH                = 8,
-    EVENT_FRENZY		            = 9,
+    EVENT_FRENZY                    = 9,
 };
 
 class mob_ro_shen : public CreatureScript
@@ -873,7 +873,7 @@ class mob_ro_shen : public CreatureScript
 enum eShaReminantSpells
 {
     SPELL_SHADOW_CLAW               = 116128,
-    SPELL_OVERWHELMING_GUILT      	= 131150,
+    SPELL_OVERWHELMING_GUILT          = 131150,
 };
 
 enum eShaReminantEvents

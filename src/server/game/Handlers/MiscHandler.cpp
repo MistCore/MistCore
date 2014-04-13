@@ -348,10 +348,10 @@ void WorldSession::HandleWhoOpcode(WorldPacket& recvData)
         // through config, but is unstable
         if ((matchcount++) >= sWorld->getIntConfig(CONFIG_MAX_WHO))
         {
-        	if (sWorld->getBoolConfig(CONFIG_LIMIT_WHO_ONLINE))
-        		break;
-        	else
-        		continue;
+            if (sWorld->getBoolConfig(CONFIG_LIMIT_WHO_ONLINE))
+                break;
+            else
+                continue;
 
             break;
         }
@@ -370,7 +370,7 @@ void WorldSession::HandleWhoOpcode(WorldPacket& recvData)
     uint32 count = m.size();
     data.put(0, displaycount);                              // insert right count, count displayed
     if (count > sWorld->getIntConfig(CONFIG_MAX_WHO))
-    	 count = ceil(sWorld->getRate(RATE_ONLINE)*m.size());
+         count = ceil(sWorld->getRate(RATE_ONLINE)*m.size());
     data.put( 4, count > sWorld->getIntConfig(CONFIG_MAX_WHO) ? count : displaycount );        // insert right count, online count
 
     SendPacket(&data);

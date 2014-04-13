@@ -200,9 +200,9 @@ void BattlegroundMgr::BuildBattlegroundStatusPacket(WorldPacket* data, Battlegro
             data->WriteByteSeq(guidBytes1[2]);
 
             if (bg)
-            	*data << uint32(bg->isArena() ? bg->GetMaxPlayersPerTeam() : 1);                         // unk, always 1
+                *data << uint32(bg->isArena() ? bg->GetMaxPlayersPerTeam() : 1);                         // unk, always 1
             else
-            	*data << uint32(1);
+                *data << uint32(1);
 
             data->WriteByteSeq(guidBytes1[5]);
             data->WriteByteSeq(guidBytes1[1]);

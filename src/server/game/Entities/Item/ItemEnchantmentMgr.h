@@ -23,8 +23,8 @@
 
 enum enchantmentRandomType
 {
-	ENCHANTMENT_RANDOM_SUFFIX,
-	ENCHANTMENT_RANDOM_PROPERTY,
+    ENCHANTMENT_RANDOM_SUFFIX,
+    ENCHANTMENT_RANDOM_PROPERTY,
 };
 
 void LoadRandomEnchantmentsTable();

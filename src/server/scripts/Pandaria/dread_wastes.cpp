@@ -23,8 +23,8 @@ class mob_ik_ik_the_nimble : public CreatureScript
 {
     public:
         mob_ik_ik_the_nimble() : CreatureScript("mob_ik_ik_the_nimble") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -45,7 +45,7 @@ class mob_ik_ik_the_nimble : public CreatureScript
                 
                 events.ScheduleEvent(EVENT_BANANARANG,     10000);
                 events.ScheduleEvent(EVENT_GOING_BANANAS,  17000);
-                events.ScheduleEvent(EVENT_TOSS_FILTH,	   22000);
+                events.ScheduleEvent(EVENT_TOSS_FILTH,       22000);
                 events.ScheduleEvent(EVENT_UNSTABLE_SERUM, 30000);
             }
 
@@ -53,11 +53,11 @@ class mob_ik_ik_the_nimble : public CreatureScript
             {
             }
 
-			void JustSummoned(Creature* summon)
-			{
-				summon->DespawnOrUnsummon(15000);
-				summon->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE);
-			}
+            void JustSummoned(Creature* summon)
+            {
+                summon->DespawnOrUnsummon(15000);
+                summon->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISABLE_MOVE);
+            }
 
             void UpdateAI(const uint32 diff)
             {
@@ -145,7 +145,7 @@ class mob_adjunct_kree_zot : public CreatureScript
 
                 events.ScheduleEvent(EVENT_SHA_SPIT,             10000);
                 events.ScheduleEvent(EVENT_SHA_SPIT_2,           20000);
-                events.ScheduleEvent(EVENT_SLICING_STRIKE,	     25000);
+                events.ScheduleEvent(EVENT_SLICING_STRIKE,         25000);
                 events.ScheduleEvent(EVENT_WRATH_OF_THE_EMPRESS, 35000);
             }
 
@@ -440,7 +440,7 @@ class mob_dread_matriarch : public CreatureScript
             {
                 events.Reset();
 
-                events.ScheduleEvent(EVENT_POUNCE,	         17000);
+                events.ScheduleEvent(EVENT_POUNCE,             17000);
                 events.ScheduleEvent(EVENT_RAVAGE,           23000);
                 events.ScheduleEvent(EVENT_UNSTABLE_SERUM_4, 8000);
             }
@@ -1622,7 +1622,7 @@ enum eOvergrownSeacarpSpells
 
 enum eOvergrownSeacarpEvents
 {
-    EVENT_SNAPJAW				 = 1,
+    EVENT_SNAPJAW                 = 1,
     EVENT_UNSTABLE_SERUM_17      = 2,
 };
 
@@ -1698,9 +1698,9 @@ enum eGarLokSpells
 
 enum eGarLokEvents
 {
-    EVENT_SNAPJAW_2				 = 1,
+    EVENT_SNAPJAW_2                 = 1,
     EVENT_UNSTABLE_SERUM_18      = 2,
-    EVENT_BLADE_FURRY       	 = 3,
+    EVENT_BLADE_FURRY            = 3,
     EVENT_TORNADO                = 4,
 };
 
@@ -1793,7 +1793,7 @@ class mob_gar_lok : public CreatureScript
 enum eDakTheBreakerSpells
 {
     SPELL_BELLOWING_RAGE    = 124297,
-	SPELL_RUSHING_RAGE		= 124302,
+    SPELL_RUSHING_RAGE        = 124302,
     SPELL_YAUNGOL_STOMP     = 124289,
 };
 
@@ -1801,7 +1801,7 @@ enum eDakTheBreakerEvents
 {
     EVENT_BELLOWING_RAGE        = 1,
     EVENT_UNSTABLE_SERUM_19     = 2,
-	EVENT_RUSHING_RAGE			= 3,
+    EVENT_RUSHING_RAGE            = 3,
     EVENT_YAUNGOL_STOMP         = 4,
 };
 
@@ -1809,8 +1809,8 @@ class mob_dak_the_breaker : public CreatureScript
 {
     public:
         mob_dak_the_breaker() : CreatureScript("mob_dak_the_breaker") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -1829,10 +1829,10 @@ class mob_dak_the_breaker : public CreatureScript
             {
                 events.Reset();
                 
-                events.ScheduleEvent(EVENT_RUSHING_RAGE,		 5000);
+                events.ScheduleEvent(EVENT_RUSHING_RAGE,         5000);
                 events.ScheduleEvent(EVENT_UNSTABLE_SERUM_19,   12000);
-                events.ScheduleEvent(EVENT_YAUNGOL_STOMP,		20000);
-                events.ScheduleEvent(EVENT_BELLOWING_RAGE,	    28000);
+                events.ScheduleEvent(EVENT_YAUNGOL_STOMP,        20000);
+                events.ScheduleEvent(EVENT_BELLOWING_RAGE,        28000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -1848,7 +1848,7 @@ class mob_dak_the_breaker : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
-				
+                
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
@@ -1892,7 +1892,7 @@ class mob_dak_the_breaker : public CreatureScript
 enum eNalashVerdantisSpells
 {
     SPELL_RAIN_DANCE    = 124860,
-	SPELL_TORRENT		= 124935,
+    SPELL_TORRENT        = 124935,
     SPELL_WATER_BOLT    = 124854,
 };
 
@@ -1900,7 +1900,7 @@ enum eNalashVerdantisEvents
 {
     EVENT_UNSTABLE_SERUM_20     = 1,
     EVENT_RAIN_DANCE            = 2,
-	EVENT_TORRENT			    = 3,
+    EVENT_TORRENT                = 3,
     EVENT_WATER_BOLT            = 4,
 };
 
@@ -1908,8 +1908,8 @@ class mob_nalash_verdantis : public CreatureScript
 {
     public:
         mob_nalash_verdantis() : CreatureScript("mob_nalash_verdantis") 
-		{ 
-		}
+        { 
+        }
 
         CreatureAI* GetAI(Creature* creature) const
         {
@@ -1928,10 +1928,10 @@ class mob_nalash_verdantis : public CreatureScript
             {
                 events.Reset();
                 
-                events.ScheduleEvent(EVENT_RUSHING_RAGE,		 5000);
+                events.ScheduleEvent(EVENT_RUSHING_RAGE,         5000);
                 events.ScheduleEvent(EVENT_UNSTABLE_SERUM_20,   12000);
-                events.ScheduleEvent(EVENT_YAUNGOL_STOMP,		20000);
-                events.ScheduleEvent(EVENT_BELLOWING_RAGE,	    28000);
+                events.ScheduleEvent(EVENT_YAUNGOL_STOMP,        20000);
+                events.ScheduleEvent(EVENT_BELLOWING_RAGE,        28000);
             }
 
             void JustDied(Unit* /*killer*/)
@@ -1947,7 +1947,7 @@ class mob_nalash_verdantis : public CreatureScript
             {
                 if (!UpdateVictim())
                     return;
-				
+                
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
@@ -1991,7 +1991,7 @@ class mob_nalash_verdantis : public CreatureScript
 void AddSC_dread_wastes()
 {
     //Rare Mobs
-	new mob_ik_ik_the_nimble();
+    new mob_ik_ik_the_nimble();
     new mob_ai_li_skymirror();
     new mob_gar_lok();
     new mob_dak_the_breaker();
