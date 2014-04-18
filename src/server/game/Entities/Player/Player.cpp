@@ -1391,10 +1391,10 @@ void Player::RewardCurrencyAtKill(Unit* victim)
     if (!victim->ToCreature()->GetEntry())
         return;
 
-    CurrencyOnKillEntry const* Curr = sObjectMgr->GetCurrencyOnKillEntry(victim->ToCreature()->GetEntry());
+	CurrencyOnKillEntry const* Curr = sObjectMgr->GetCurrencyOnKillEntry(victim->ToCreature()->GetEntry());
 
-    if (!Curr)
-        return;
+	if (!Curr)
+	return;
 
     if (Curr->currencyId1 && Curr->currencyCount1)
         ModifyCurrency(Curr->currencyId1, Curr->currencyCount1);
