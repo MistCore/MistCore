@@ -1176,6 +1176,18 @@ class spell_warr_charge : public SpellScriptLoader
 
                         if (!_player->HasSpell(WARRIOR_SPELL_DOUBLE_TIME))
                             _player->EnergizeBySpell(_player, GetSpellInfo()->Id, 100, POWER_RAGE);
+
+						if (AuraPtr daura = _player->GetAura(WARRIOR_SPELL_DOUBLE_TIME))
+						{
+							
+							if (daura->GetCharges() < 1)
+								daura->SetCharges(daura->GetCharges() + 1);
+							else{
+								daura->SetCharges(0);
+								_player->AddSpellCooldown(100, 0, time(NULL) + 20);
+							}
+
+						}
                     }
                 }
             }

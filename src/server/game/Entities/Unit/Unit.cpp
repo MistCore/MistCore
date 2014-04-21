@@ -5578,7 +5578,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffectPtr trigge
     int32 basepoints0 = 0;
     uint64 originalCaster = 0;
 
-    if (dummySpell->Id == 77762 && GetTypeId() == TYPEID_PLAYER) //Hack for lava surge
+    if (dummySpell->Id == 77756 && GetTypeId() == TYPEID_PLAYER) //Hack for lava surge
         ToPlayer()->RemoveSpellCooldown(51505, true);
 
     switch (dummySpell->SpellFamilyName)
@@ -16099,6 +16099,9 @@ void Unit::ProcDamageAndSpellFor(bool isVictim, Unit* target, uint32 procFlag, u
             }
         }
     }
+
+	if (procSpell->Id == 110745 && GetTypeId() == TYPEID_PLAYER) //Divine Star Proc
+		return; //Do not let it proc directly from player
 
     // Leader of the Pack
     if (target && GetTypeId() == TYPEID_PLAYER && (procExtra & PROC_EX_CRITICAL_HIT) && HasAura(17007) && (attType == BASE_ATTACK || (procSpell && procSpell->GetSchoolMask() == SPELL_SCHOOL_MASK_NORMAL)))
