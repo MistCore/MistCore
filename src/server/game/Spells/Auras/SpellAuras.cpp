@@ -534,6 +534,7 @@ void Aura::_ApplyForTarget(Unit* target, Unit* caster, AuraApplication * auraApp
             Item* castItem = m_castItemGuid ? caster->ToPlayer()->GetItemByGuid(m_castItemGuid) : NULL;
             caster->ToPlayer()->AddSpellAndCategoryCooldowns(m_spellInfo, castItem ? castItem->GetEntry() : 0, NULL, true);
         }
+
     }
 }
 
@@ -565,6 +566,17 @@ void Aura::_UnapplyForTarget(Unit* target, Unit* caster, AuraApplication * auraA
         if (GetSpellInfo()->Attributes & SPELL_ATTR0_DISABLED_WHILE_ACTIVE && !(GetSpellInfo()->Id == 34477 && caster->HasAura(56829) && (caster->GetPetGUID() == target->GetGUID())))
             // note: item based cooldowns and cooldown spell mods with charges ignored (unknown existed cases)
             caster->ToPlayer()->SendCooldownEvent(GetSpellInfo());
+
+		if (GetSpellInfo()->Id == 1784){
+			if (caster->ToPlayer()->HasSpell(108208)){
+				caster->ToPlayer()->CastSpell(caster, 115192, true); //Cast Subterfuge
+				caster->ToPlayer()->CastSpell(caster, 42943, true);
+			}
+		}
+
+		if (m_spellInfo->Id == 115192) //Subterfuge - Removes Final Stealth
+			caster->RemoveAurasDueToSpell(42943);
+
     }
 }
 

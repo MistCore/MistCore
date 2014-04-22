@@ -1470,6 +1470,8 @@ class spell_rog_shadowstep : public SpellScriptLoader
         }
 };
 
+
+
 void AddSC_rogue_spell_scripts()
 {
     new spell_rog_glyph_of_expose_armor();
