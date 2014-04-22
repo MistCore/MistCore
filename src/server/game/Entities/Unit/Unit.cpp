@@ -16100,9 +16100,6 @@ void Unit::ProcDamageAndSpellFor(bool isVictim, Unit* target, uint32 procFlag, u
         }
     }
 
-	if (procSpell->Id == 110745 && GetTypeId() == TYPEID_PLAYER) //Divine Star Proc
-		return; //Do not let it proc directly from player
-
     // Leader of the Pack
     if (target && GetTypeId() == TYPEID_PLAYER && (procExtra & PROC_EX_CRITICAL_HIT) && HasAura(17007) && (attType == BASE_ATTACK || (procSpell && procSpell->GetSchoolMask() == SPELL_SCHOOL_MASK_NORMAL)))
     {
