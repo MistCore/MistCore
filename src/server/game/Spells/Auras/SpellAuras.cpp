@@ -574,7 +574,7 @@ void Aura::_UnapplyForTarget(Unit* target, Unit* caster, AuraApplication * auraA
 			}
 		}
 
-		if (m_spellInfo->Id == 115192) //Subterfuge - Removes Final Stealth
+		if (GetSpellInfo()->Id == 115192) //Subterfuge - Removes Final Stealth
 			caster->RemoveAurasDueToSpell(42943);
 
     }
