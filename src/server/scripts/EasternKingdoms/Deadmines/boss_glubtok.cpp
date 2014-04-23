@@ -140,13 +140,13 @@ class boss_glubtok : public CreatureScript
                         switch (BlossomSpell)  
                         {
                             case SUPER_FIRE_BLOSSOM:
-                                  if(Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true));
+                                  if(Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
                                     DoCast(SPELL_FIRE_BLOSSOM);
                                     DoCast(SPELL_FIRE_BLOSSOMS);
                                     SUPER_FIRE_BLOSSOMS = 2000;
                                     break;
                             case SUPER_FROST_BLOSSOM:
-                                if(Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true));
+                                if(Unit* pTarget = SelectTarget(SELECT_TARGET_RANDOM, 0, 100, true))
                                     DoCast(SPELL_FROST_BLOSSOM);
                                     DoCast(SPELL_FROST_BLOSSOMS);
                                     SUPER_FROST_BLOSSOMS = 2000;
@@ -182,7 +182,7 @@ class boss_glubtok : public CreatureScript
                 }
                 if(blinkTimer <= diff && Phase == PHASE_NORMAL)
                 {
-                    if(Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 10.0f, true));
+                    if(Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 10.0f, true))
                     DoCast(SPELL_BLINK);
                     blinkTimer = 12000;
                 } else blinkTimer -= diff;
