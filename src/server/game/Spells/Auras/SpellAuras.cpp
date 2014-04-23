@@ -567,15 +567,16 @@ void Aura::_UnapplyForTarget(Unit* target, Unit* caster, AuraApplication * auraA
             // note: item based cooldowns and cooldown spell mods with charges ignored (unknown existed cases)
             caster->ToPlayer()->SendCooldownEvent(GetSpellInfo());
 
-		//if (GetSpellInfo()->Id == 1784){
-		//	if (caster->ToPlayer()->HasSpell(108208)){
-		//		caster->ToPlayer()->CastSpell(caster, 115192, true); //Cast Subterfuge
-		//		caster->ToPlayer()->CastSpell(caster, 42943, true);
-		//	}
-		//}
+		if (GetSpellInfo()->Id == 1784){
+			if (caster->ToPlayer()->HasSpell(108208)){
+				caster->ToPlayer()->CastSpell(caster, 115192, true); //Cast Subterfuge
+				caster->ToPlayer()->CastSpell(caster, 42943, true);
+			}
+		}
 
-		//if (GetSpellInfo()->Id == 115192) //Subterfuge - Removes Final Stealth
-		//	caster->RemoveAurasDueToSpell(42943);
+		if (GetSpellInfo()->Id == 115192) //Subterfuge - Removes Final Stealth
+			if (caster->HasAura(42943))
+				caster->RemoveAurasDueToSpell(42943);
 
     }
 }
