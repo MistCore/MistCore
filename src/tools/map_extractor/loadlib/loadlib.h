@@ -31,6 +31,8 @@ typedef uint8_t            uint8;
 
 #define FILE_FORMAT_VERSION    18
 
+#pragma pack(push, 1)
+
 //
 // File version chunk
 //
@@ -59,4 +61,7 @@ public:
     bool loadFile(HANDLE mpq, char *filename, bool log = true);
     virtual void free();
 };
+
+#pragma pack(pop)
+
 #endif

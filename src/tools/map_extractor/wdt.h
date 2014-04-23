@@ -7,6 +7,8 @@
 //**************************************************************************************
 #define WDT_MAP_SIZE 64
 
+#pragma pack(push, 1)
+
 class wdt_MWMO{
     union{
         uint32 fcc;
@@ -64,5 +66,7 @@ public:
     wdt_MAIN *main;
     wdt_MWMO *wmo;
 };
+
+#pragma pack(pop)
 
 #endif
