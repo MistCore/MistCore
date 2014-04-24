@@ -311,7 +311,6 @@ bool SpellChatLink::ValidateName(char* buffer, const char* context)
             // -2 = strlen(": ")
             uint32 spellNameLength = strlen(buffer) - skillLineNameLength - 2;
             memmove(buffer, buffer + skillLineNameLength + 2, spellNameLength + 1);
-            break;
         }
     }
 

@@ -783,7 +783,7 @@ Player* ChatHandler::getSelectedPlayerOrSelf()
     if (!m_session)
         return NULL;
 
-    uint64 selected = m_session->GetPlayer()->GetTarget();
+    uint64 selected = m_session->GetPlayer()->GetSelection();
     if (!selected)
         return m_session->GetPlayer();
 
