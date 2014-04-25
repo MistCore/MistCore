@@ -868,7 +868,7 @@ bool Creature::isCanTrainingOf(Player* player, bool msg) const
 
     TrainerSpellData const* trainer_spells = GetTrainerSpells();
 
-    if ((!trainer_spells || trainer_spells->spellList.empty()) && GetCreatureTemplate()->trainer_type != TRAINER_TYPE_PETS)
+    if ((!trainer_spells || trainer_spells->spellList.empty()) && GetCreatureTemplate()->trainer_type != TRAINER_TYPE_PETS && GetCreatureTemplate()->trainer_type != TRAINER_TYPE_CLASS )
     {
         sLog->outError(LOG_FILTER_SQL, "Creature %u (Entry: %u) have UNIT_NPC_FLAG_TRAINER but have empty trainer spell list.",
             GetGUIDLow(), GetEntry());
