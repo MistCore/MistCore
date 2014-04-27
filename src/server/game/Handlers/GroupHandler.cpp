@@ -736,11 +736,11 @@ void WorldSession::HandleMinimapPingOpcode(WorldPacket& recvData)
 
 void WorldSession::HandleRandomRollOpcode(WorldPacket& recvData)
 {
-    sLog->outDebug(LOG_FILTER_NETWORKIO, "WORLD: Received MSG_RANDOM_ROLL");
-
     uint32 minimum, maximum, roll;
-    recvData >> minimum;
-    recvData >> maximum;
+
+    recvData >> maximum >> minimum;
+
+	sLog->outDebug(LOG_FILTER_NETWORKIO, "WORLD: Received MSG_RANDOM_ROLL ROLL: MIN: %u, MAX: %u", minimum, maximum);
 
     /** error handling **/
     if (minimum > maximum || maximum > 10000)                // < 32768 for urand call
@@ -752,11 +752,12 @@ void WorldSession::HandleRandomRollOpcode(WorldPacket& recvData)
 
     //sLog->outDebug(LOG_FILTER_GENERAL, "ROLL: MIN: %u, MAX: %u, ROLL: %u", minimum, maximum, roll);
 
-    WorldPacket data(MSG_RANDOM_ROLL, 4+4+4+8);
-    ObjectGuid guid = GetPlayer()->GetGUID();
-    data << uint32(roll);
-    data << uint32(minimum);
+    WorldPacket data(SMSG_RANDOM_ROLL, 4+4+4+8);
+    ObjectGuid guid = GetPlayer()->GetGUID();    
+    
     data << uint32(maximum);
+	data << uint32(minimum);
+	data << uint32(roll);
 
     data.WriteBit(guid[0]);
     data.WriteBit(guid[3]);
@@ -778,7 +779,7 @@ void WorldSession::HandleRandomRollOpcode(WorldPacket& recvData)
 
     if (GetPlayer()->GetGroup())
         GetPlayer()->GetGroup()->BroadcastPacket(&data, false);
-    else
+    else		
         SendPacket(&data);
 }
 
