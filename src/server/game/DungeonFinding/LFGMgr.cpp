@@ -122,6 +122,44 @@ void LFGMgr::_SaveToDB(uint64 guid, uint32 db_guid)
     CharacterDatabase.Execute(stmt);
 }
 
+void LFGMgr::LoadRequiredLevels()
+{
+    uint32 oldMSTime = getMSTime();
+
+    m_RequiredIlvlMap.clear();
+
+    // ORDER BY is very important for GetRandomDungeonReward!
+    QueryResult result = WorldDatabase.Query("SELECT ID, ItemLevel FROM lfg_required_ilevel ORDER BY ID");
+
+    if (!result)
+    {
+        sLog->outError(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 lfg required item levels for instances");
+        return;
+    }
+
+    uint32 count = 0;
+
+    Field* fields = NULL;
+    do
+    {
+        fields = result->Fetch();
+        uint32 dungeonId = fields[0].GetUInt32();
+        uint32 itemLevel = fields[1].GetUInt32();
+
+        const LFGDungeonEntry* dungeon = sLFGDungeonStore.LookupEntry(dungeonId);
+        if (!sLFGDungeonStore.LookupEntry(dungeonId))
+        {
+            sLog->outError(LOG_FILTER_SQL, "Dungeon %u specified in table `lfg_required_ilevel` does not exist!", dungeonId);
+            continue;
+        }
+
+        m_RequiredIlvlMap.insert(LfgRequiredIlvlMap::value_type(dungeonId, itemLevel));
+        ++count;
+    } while (result->NextRow());
+
+    sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded %u lfg required itemlevels in %u ms", count, GetMSTimeDiffToNow(oldMSTime));
+}
+
 /// Load rewards for completing dungeons
 void LFGMgr::LoadRewards()
 {
@@ -525,7 +563,6 @@ bool LFGMgr::RemoveFromQueue(uint64 guid)
         sLog->outDebug(LOG_FILTER_LFG, "LFGMgr::RemoveFromQueue: [" UI64FMTD "] not in queue", guid);
         return false;
     }
-
 }
 
 /**
@@ -537,7 +574,9 @@ void LFGMgr::InitializeLockedDungeons(Player* player)
 {
     uint64 guid = player->GetGUID();
     uint8 level = player->getLevel();
+    float PlrIlvl = player->GetAverageItemLevel();
     uint8 expansion = player->GetSession()->Expansion();
+    uint32 reqItemLevel = 0;
     LfgDungeonSet dungeons = GetDungeonsByRandom(0);
     LfgLockMap lock;
 
@@ -547,45 +586,53 @@ void LFGMgr::InitializeLockedDungeons(Player* player)
         if (!dungeon) // should never happen - We provide a list from sLFGDungeonStore
             continue;
 
+        for (LfgRequiredIlvlMap::const_iterator iter = m_RequiredIlvlMap.begin(); iter != m_RequiredIlvlMap.end(); ++iter)
+        {
+            if (dungeon->ID != iter->first)
+                continue;
+            reqItemLevel = iter->second;
+            break;
+        }
+
         AccessRequirement const* ar = sObjectMgr->GetAccessRequirement(dungeon->map, Difficulty(dungeon->difficulty));
 
-        LfgLockStatusType locktype = LFG_LOCKSTATUS_OK;
+        LfgLockStatus locktype;
+        locktype.lockstatus = LFG_LOCKSTATUS_OK;
+        locktype.reqIlvl = reqItemLevel;
         if (dungeon->expansion > expansion)
-            locktype = LFG_LOCKSTATUS_INSUFFICIENT_EXPANSION;
+            locktype.lockstatus = LFG_LOCKSTATUS_INSUFFICIENT_EXPANSION;
         else if (DisableMgr::IsDisabledFor(DISABLE_TYPE_MAP, dungeon->map, player))
-            locktype = LFG_LOCKSTATUS_RAID_LOCKED;
+            locktype.lockstatus = LFG_LOCKSTATUS_RAID_LOCKED;
         else if (dungeon->difficulty > REGULAR_DIFFICULTY && player->GetBoundInstance(dungeon->map, Difficulty(dungeon->difficulty)))
-        {
-            //if (!player->GetGroup() || !player->GetGroup()->isLFGGroup() || GetDungeon(player->GetGroup()->GetGUID(), true) != dungeon->ID || GetState(player->GetGroup()->GetGUID()) != LFG_STATE_DUNGEON)
-            locktype = LFG_LOCKSTATUS_RAID_LOCKED;
-        }
+            locktype.lockstatus = LFG_LOCKSTATUS_RAID_LOCKED;
         else if (dungeon->minlevel > level)
-            locktype = LFG_LOCKSTATUS_TOO_LOW_LEVEL;
+            locktype.lockstatus = LFG_LOCKSTATUS_TOO_LOW_LEVEL;
         else if (dungeon->maxlevel < level)
-            locktype = LFG_LOCKSTATUS_TOO_HIGH_LEVEL;
+            locktype.lockstatus = LFG_LOCKSTATUS_TOO_HIGH_LEVEL;
         else if (dungeon->flags & LFG_FLAG_SEASONAL)
         {
             if (HolidayIds holiday = sLFGMgr->GetDungeonSeason(dungeon->ID))
                 if (!IsHolidayActive(holiday))
-                    locktype = LFG_LOCKSTATUS_NOT_IN_SEASON;
+                    locktype.lockstatus = LFG_LOCKSTATUS_NOT_IN_SEASON;
         }
-        else if (locktype == LFG_LOCKSTATUS_OK && ar)
+        else if (locktype.lockstatus == LFG_LOCKSTATUS_OK && ar)
         {
             if (ar->achievement && !player->GetAchievementMgr().HasAchieved(ar->achievement))
-                locktype = LFG_LOCKSTATUS_RAID_LOCKED;       // FIXME: Check the correct lock value
+                locktype.lockstatus = LFG_LOCKSTATUS_RAID_LOCKED;       // FIXME: Check the correct lock value
             else if (player->GetTeam() == ALLIANCE && ar->quest_A && !player->GetQuestRewardStatus(ar->quest_A))
-                locktype = LFG_LOCKSTATUS_QUEST_NOT_COMPLETED;
+                locktype.lockstatus = LFG_LOCKSTATUS_QUEST_NOT_COMPLETED;
             else if (player->GetTeam() == HORDE && ar->quest_H && !player->GetQuestRewardStatus(ar->quest_H))
-                locktype = LFG_LOCKSTATUS_QUEST_NOT_COMPLETED;
+                locktype.lockstatus = LFG_LOCKSTATUS_QUEST_NOT_COMPLETED;
             else
                 if (ar->item)
                 {
                     if (!player->HasItemCount(ar->item) && (!ar->item2 || !player->HasItemCount(ar->item2)))
-                        locktype = LFG_LOCKSTATUS_MISSING_ITEM;
+                        locktype.lockstatus = LFG_LOCKSTATUS_MISSING_ITEM;
                 }
                 else if (ar->item2 && !player->HasItemCount(ar->item2))
-                    locktype = LFG_LOCKSTATUS_MISSING_ITEM;
+                    locktype.lockstatus = LFG_LOCKSTATUS_MISSING_ITEM;
         }
+
         /* TODO VoA closed if WG is not under team control (LFG_LOCKSTATUS_RAID_LOCKED)
             locktype = LFG_LOCKSTATUS_TOO_LOW_GEAR_SCORE;
             locktype = LFG_LOCKSTATUS_TOO_HIGH_GEAR_SCORE;
@@ -593,7 +640,35 @@ void LFGMgr::InitializeLockedDungeons(Player* player)
             locktype = LFG_LOCKSTATUS_ATTUNEMENT_TOO_HIGH_LEVEL;
         */
 
-        if (locktype != LFG_LOCKSTATUS_OK)
+        if (!locktype.lockstatus && dungeon->expansion == 4)
+        {
+            switch (dungeon->map)
+            {
+                //normal dungeons
+                case 960: // Temple du serpent de jade
+                case 994: // Palais Mogushan
+                case 959: // Monastère des Pandashan
+                    if (dungeon->difficulty == HEROIC_DIFFICULTY)
+                        locktype.lockstatus = LFG_LOCKSTATUS_TEMPORARILY_DISABLED;
+                        break;
+                //heroic dungeons
+                case 962:
+                    if (dungeon->difficulty == REGULAR_DIFFICULTY)
+                        locktype.lockstatus = LFG_LOCKSTATUS_TEMPORARILY_DISABLED;
+                            break;
+                //LFR
+                case 1008:
+                break;
+                default:
+                    locktype.lockstatus = LFG_LOCKSTATUS_TEMPORARILY_DISABLED;
+                    break;
+            }
+        }
+
+        if (!locktype.lockstatus && reqItemLevel && reqItemLevel > PlrIlvl)
+            locktype.lockstatus = LFG_LOCKSTATUS_TOO_LOW_GEAR_SCORE;
+
+        if (locktype.lockstatus)
             lock[dungeon->Entry()] = locktype;
     }
     SetLockedDungeons(guid, lock);

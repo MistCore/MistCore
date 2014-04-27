@@ -32,21 +32,8 @@ void BuildPlayerLockDungeonBlock(ByteBuffer& data, const LfgLockMap& lock, Playe
     for (LfgLockMap::const_iterator it = lock.begin(); it != lock.end(); ++it)
     {
         data << uint32(it->first);                         // Dungeon entry (id + type)
-        data << uint32(it->second);                        // Lock status
-
-        uint32 itemLevelRequired = 0;
-
-        switch(it->first & 0xFFFFFF)
-        {
-            // Gardiens des Mogu’shan
-            case 527:
-                itemLevelRequired = 460;
-                break;
-            default:
-                break;
-        }
-
-        data << uint32(itemLevelRequired);
+        data << uint32(it->second.lockstatus);                        // Lock status
+        data << uint32(it->second.reqIlvl);
         data << uint32(plr->GetAverageItemLevel());
     }
 }

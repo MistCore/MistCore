@@ -1597,6 +1597,9 @@ void World::SetInitialWorldSettings()
     sLog->outInfo(LOG_FILTER_SERVER_LOADING, "Loading Dungeon boss data...");
     sObjectMgr->LoadInstanceEncounters();
 
+    sLog->outInfo(LOG_FILTER_SERVER_LOADING, "Loading LFG required item levels...");
+    sLFGMgr->LoadRequiredLevels();
+
     sLog->outInfo(LOG_FILTER_SERVER_LOADING, "Loading LFG rewards...");
     sLFGMgr->LoadRewards();
 

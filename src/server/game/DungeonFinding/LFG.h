@@ -80,12 +80,13 @@ enum LfgLockStatusType
 /// Dungeon and reason why player can't join
 struct LfgLockStatus
 {
-    uint32 dungeon;                                        ///< Dungeon Id
-    LfgLockStatusType lockstatus;                          ///< Lock type
+    LfgLockStatusType lockstatus; //lock type
+    uint32 reqIlvl;               //required item level for dungeon
 };
 
 typedef std::set<uint32> LfgDungeonSet;
-typedef std::map<uint32, LfgLockStatusType> LfgLockMap;
+typedef std::map<uint32, uint32> LfgRequiredIlvlMap;
+typedef std::map<uint32, LfgLockStatus> LfgLockMap;
 typedef std::map<uint64, LfgLockMap> LfgLockPartyMap;
 
 #endif
