@@ -3003,14 +3003,15 @@ void Player::Regenerate(Powers power)
         // Regenerate Mana
     case POWER_MANA:
     {
-                       float ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA);
+            float ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA);
 
-                       if (isInCombat()) // Trinity Updates Mana in intervals of 2s, which is correct
-                           addvalue += GetFloatValue(UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER) *  ManaIncreaseRate * ((0.001f * m_regenTimer) + CalculatePct(0.001f, spellHaste));
-                       else
-                           addvalue += GetFloatValue(UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER) *  ManaIncreaseRate * ((0.001f * m_regenTimer) + CalculatePct(0.001f, spellHaste));
+            if (getLevel() < 15)
+                ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA) * (2.066f - (getLevel() * 0.066f));
 
-                       break;
+            uint16 index = isInCombat() ? UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER+POWER_MANA : UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER+POWER_MANA;
+            float time = 0.001f * m_regenTimer;
+
+            addvalue += GetFloatValue(index) *  ManaIncreaseRate * time;
     }
         // Regenerate Rage
     case POWER_RAGE:
@@ -3233,7 +3234,7 @@ void Player::Regenerate(Powers power)
     }
     
     //SetPower(power, curValue);   
-    UpdateUInt32Value(UNIT_FIELD_POWER1 + powerIndex, curValue);*/
+    UpdateUInt32Value(UNIT_FIELD_POWER1 + powerIndex, curValue);
 }
 
 void Player::RegenerateHealth()
