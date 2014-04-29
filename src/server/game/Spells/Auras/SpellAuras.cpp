@@ -534,7 +534,6 @@ void Aura::_ApplyForTarget(Unit* target, Unit* caster, AuraApplication * auraApp
             Item* castItem = m_castItemGuid ? caster->ToPlayer()->GetItemByGuid(m_castItemGuid) : NULL;
             caster->ToPlayer()->AddSpellAndCategoryCooldowns(m_spellInfo, castItem ? castItem->GetEntry() : 0, NULL, true);
         }
-
     }
 }
 
