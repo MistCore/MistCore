@@ -47,9 +47,12 @@ enum eEvents
 
 enum eCreatures
 {
-    CREATURE_FOUTAIN_TRIGGER            = 56586,
-    CREATURE_CORRUPT_DROPLET            = 62358,
+	CREATURE_FOUTAIN_TRIGGER = 56586,
+	CREATURE_FOUTAIN_TRIGGER_HC = 144970,
+	CREATURE_CORRUPT_DROPLET = 62358,
+	CREATURE_CORRUPT_DROPLET_HC = 144957,
     CREATURE_HYDROLANCE_BOTTOM_TRIGGER  = 56542,
+	CREATURE_HYDROLANCE_BOTTOM_TRIGGER_HC = 144971,
 };
 
 enum eTimers
@@ -124,7 +127,13 @@ class boss_wase_mari : public CreatureScript
                     foutainTrigger[i] = 0;
 
                 std::list<Creature*> searcher;
-                GetCreatureListWithEntryInGrid(searcher, me, CREATURE_FOUTAIN_TRIGGER, 50.0f);
+
+				if (me->GetMap()->GetDifficulty() == HEROIC_DIFFICULTY)
+					GetCreatureListWithEntryInGrid(searcher, me, CREATURE_FOUTAIN_TRIGGER_HC, 50.0f);
+				else
+					GetCreatureListWithEntryInGrid(searcher, me, CREATURE_FOUTAIN_TRIGGER, 50.0f);
+
+
                 for (auto itr : searcher)
                 {
                     if (!itr)
@@ -146,7 +155,12 @@ class boss_wase_mari : public CreatureScript
             void EnterCombat(Unit* /*who*/)
             {
                 std::list<Creature*> searcher;
-                GetCreatureListWithEntryInGrid(searcher, me, CREATURE_FOUTAIN_TRIGGER, 50.0f);
+
+				if (me->GetMap()->GetDifficulty() == HEROIC_DIFFICULTY)
+					GetCreatureListWithEntryInGrid(searcher, me, CREATURE_FOUTAIN_TRIGGER_HC, 50.0f);
+				else
+					GetCreatureListWithEntryInGrid(searcher, me, CREATURE_FOUTAIN_TRIGGER, 50.0f);
+
                 uint8 tab = 0;
                 for (auto itr : searcher)
                 {
@@ -159,7 +173,11 @@ class boss_wase_mari : public CreatureScript
                 }
 
                 searcher.clear();
-                GetCreatureListWithEntryInGrid(searcher, me, CREATURE_CORRUPT_DROPLET, 50.0f);
+				if (me->GetMap()->GetDifficulty() == HEROIC_DIFFICULTY)
+					GetCreatureListWithEntryInGrid(searcher, me, CREATURE_CORRUPT_DROPLET_HC, 50.0f);
+				else
+                     GetCreatureListWithEntryInGrid(searcher, me, CREATURE_CORRUPT_DROPLET, 50.0f);
+
                 for (auto itr : searcher)
                 {
                     if (!itr)
@@ -245,9 +263,10 @@ class boss_wase_mari : public CreatureScript
                             Talk(TEXT_CALL_WATER);
 
                             Creature* trigger = me->GetCreature(*me, foutainTrigger[++foutainCount]);
+
                             if (trigger)
                             {
-                                me->CastSpell(trigger, SPELL_CALL_WATER, true);
+								me->CastSpell(trigger, SPELL_CALL_WATER, true);
                                 trigger->AddAura(SPELL_CORRUPTED_FOUTAIN, trigger);
                             }
 
@@ -273,7 +292,12 @@ class boss_wase_mari : public CreatureScript
                                 case HYDROLANCE_BOTTOM:
                                     {
                                         std::list<Creature*> trigger;
-                                        me->GetCreatureListWithEntryInGrid(trigger,CREATURE_HYDROLANCE_BOTTOM_TRIGGER, 50.0f);
+
+										if (me->GetMap()->GetDifficulty() == HEROIC_DIFFICULTY)
+											me->GetCreatureListWithEntryInGrid(trigger, CREATURE_HYDROLANCE_BOTTOM_TRIGGER_HC, 50.0f);
+										else
+											me->GetCreatureListWithEntryInGrid(trigger,CREATURE_HYDROLANCE_BOTTOM_TRIGGER, 50.0f);
+
                                         for (auto itr : trigger)
                                             itr->CastSpell(itr, SPELL_HYDROLANCE_PRECAST, true);
                                         facing = 1.23f;
@@ -305,7 +329,12 @@ class boss_wase_mari : public CreatureScript
                                 case HYDROLANCE_BOTTOM:
                                 {
                                     std::list<Creature*> trigger;
-                                    me->GetCreatureListWithEntryInGrid(trigger,CREATURE_HYDROLANCE_BOTTOM_TRIGGER, 50.0f);
+
+									if (me->GetMap()->GetDifficulty() == HEROIC_DIFFICULTY)
+										me->GetCreatureListWithEntryInGrid(trigger, CREATURE_HYDROLANCE_BOTTOM_TRIGGER_HC, 50.0f);
+									else
+                                        me->GetCreatureListWithEntryInGrid(trigger,CREATURE_HYDROLANCE_BOTTOM_TRIGGER, 50.0f);
+
                                     for (auto itr : trigger)
                                         itr->CastSpell(itr->GetPositionX(), itr->GetPositionY(), itr->GetPositionZ(), SPELL_HYDROLANCE_DMG_BOTTOM, true);
                                     break;
@@ -403,7 +432,13 @@ class mob_corrupt_living_water : public CreatureScript
                 {
                     Position pos;
                     me->GetRandomNearPosition(pos, 4.0f);
-                    Creature* droplet = me->SummonCreature(CREATURE_CORRUPT_DROPLET, pos);
+					Creature* droplet;
+
+					if (me->GetMap()->GetDifficulty() == HEROIC_DIFFICULTY)
+						droplet = me->SummonCreature(CREATURE_CORRUPT_DROPLET_HC, pos);
+					else
+						droplet = me->SummonCreature(CREATURE_CORRUPT_DROPLET, pos);
+
                     if (!droplet)
                         continue;
 
