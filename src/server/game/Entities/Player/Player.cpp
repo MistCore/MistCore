@@ -3012,6 +3012,7 @@ void Player::Regenerate(Powers power)
             float time = 0.001f * m_regenTimer;
 
             addvalue += GetFloatValue(index) *  ManaIncreaseRate * time;
+			break;
     }
         // Regenerate Rage
     case POWER_RAGE:
@@ -3233,7 +3234,7 @@ void Player::Regenerate(Powers power)
             m_powerFraction[powerIndex] = addvalue - integerValue;
     }
     
-    //SetPower(power, curValue);   
+    SetPower(power, curValue);   
     UpdateUInt32Value(UNIT_FIELD_POWER1 + powerIndex, curValue);
 }
 
