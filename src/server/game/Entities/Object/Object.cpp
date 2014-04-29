@@ -543,9 +543,9 @@ void Object::_BuildMovementUpdate(ByteBuffer* data, uint16 flags) const
             *data << float(self->GetOrientation());
         data->WriteByteSeq(guid[4]);
         *data << self->GetSpeed(MOVE_SWIM);
-        *data << self->GetSpeed(MOVE_SWIM_BACK);
-        *data << self->GetSpeed(MOVE_TURN_RATE);
         *data << self->GetSpeed(MOVE_RUN_BACK);
+        *data << self->GetSpeed(MOVE_TURN_RATE);
+        *data << self->GetSpeed(MOVE_SWIM_BACK);
         data->WriteByteSeq(guid[0]);
     }
 
