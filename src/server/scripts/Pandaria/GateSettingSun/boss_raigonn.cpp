@@ -169,7 +169,7 @@ class boss_raigonn : public CreatureScript
                 if (!whoPlayer)
                     return;
 
-                if (whoPlayer->isGameMaster())
+                if (whoPlayer->IsGameMaster())
                     return;
 
                 inFight = true;

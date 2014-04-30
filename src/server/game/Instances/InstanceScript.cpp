@@ -402,7 +402,7 @@ bool InstanceScript::CheckAchievementCriteriaMeet(uint32 criteria_id, Player con
 
 bool InstanceScript::CheckRequiredBosses(uint32 /*bossId*/, Player const* player) const
 {
-    if (player && player->isGameMaster())
+    if (player && player->IsGameMaster())
         return true;
 
     if(instance->GetPlayersCountExceptGMs() > instance->ToInstanceMap()->GetMaxPlayers())
@@ -461,7 +461,7 @@ bool InstanceScript::IsWipe()
         if (!player)
             continue;
 
-        if (player->isAlive() && !player->isGameMaster())
+        if (player->isAlive() && !player->IsGameMaster())
             return false;
     }
 

@@ -103,7 +103,7 @@ void AnticheatMgr::StartHackDetection(Player* player, MovementInfo movementInfo,
     if (!sWorld->getBoolConfig(CONFIG_ANTICHEAT_ENABLE))
         return;
 
-    if (player->isGameMaster())
+    if (player->IsGameMaster())
         return;
 
     uint32 key = player->GetGUIDLow();

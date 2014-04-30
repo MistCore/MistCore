@@ -784,7 +784,7 @@ void WorldSession::SendListInventory(uint64 vendorGuid)
                 continue;
 
             uint32 leftInStock = !vendorItem->maxcount ? 0xFFFFFFFF : vendor->GetVendorItemCurrentCount(vendorItem);
-            if (!_player->isGameMaster()) // ignore conditions if GM on
+            if (!_player->IsGameMaster()) // ignore conditions if GM on
             {
 
                 ConditionList conditions = sConditionMgr->GetConditionsForNpcVendorEvent(vendor->GetEntry(), vendorItem->item);

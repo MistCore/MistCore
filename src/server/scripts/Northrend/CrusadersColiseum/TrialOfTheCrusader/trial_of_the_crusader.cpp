@@ -211,7 +211,7 @@ class npc_announcer_toc10 : public CreatureScript
                     break;
                 case GOSSIP_ACTION_INFO_DEF+5:
                 {
-                    if (instanceScript->GetData(TYPE_LICH_KING) != DONE && !player->isGameMaster())
+                    if (instanceScript->GetData(TYPE_LICH_KING) != DONE && !player->IsGameMaster())
                         return true;
 
                     if (GameObject* floor = GameObject::GetGameObject(*player, instanceScript->GetData64(GO_ARGENT_COLISEUM_FLOOR)))

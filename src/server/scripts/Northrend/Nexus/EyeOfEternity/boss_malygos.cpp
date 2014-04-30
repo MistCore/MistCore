@@ -690,7 +690,7 @@ class spell_malygos_vortex_visual : public SpellScriptLoader
                         {
                             Player* targetPlayer = target->ToPlayer();
 
-                            if (!targetPlayer || targetPlayer->isGameMaster())
+                            if (!targetPlayer || targetPlayer->IsGameMaster())
                                 continue;
 
                             if (InstanceScript* instance = caster->GetInstanceScript())

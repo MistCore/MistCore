@@ -2119,7 +2119,7 @@ void Player::Update(uint32 p_time)
         CastSpell(this, 97709, true);
 
     //Kezan Phases
-    if (GetZoneId() == 4737 && !isGameMaster())
+    if (GetZoneId() == 4737 && !IsGameMaster())
     {
         if (GetQuestStatus(14070) == QUEST_STATUS_REWARDED && GetQuestStatus(14113) != QUEST_STATUS_REWARDED && GetQuestStatus(14120) != QUEST_STATUS_REWARDED && GetQuestStatus(14125) != QUEST_STATUS_REWARDED && GetQuestStatus(14126) != QUEST_STATUS_REWARDED) //Phase 2
             SetPhaseMask(2, true);
@@ -2139,7 +2139,7 @@ void Player::Update(uint32 p_time)
     }
 
     //Gilneas Phases
-    if (GetZoneId() == 4755 && !isGameMaster()){
+    if (GetZoneId() == 4755 && !IsGameMaster()){
         if (GetQuestStatus(14078) == QUEST_STATUS_REWARDED && GetQuestStatus(14099) != QUEST_STATUS_REWARDED && GetQuestStatus(14159) != QUEST_STATUS_REWARDED && GetQuestStatus(14221) != QUEST_STATUS_REWARDED) //Phase 2 - Lockdown Quest Completed
             SetPhaseMask(2, true);
 
@@ -2601,11 +2601,11 @@ bool Player::TeleportTo(uint32 mapid, float x, float y, float z, float orientati
     else
     {
         // Pandaria
-        if (mapid == 870 && getLevel() < 85 && getClass() != CLASS_MONK  && !isGameMaster())
+        if (mapid == 870 && getLevel() < 85 && getClass() != CLASS_MONK  && !IsGameMaster())
             return false;
 
         // Tréfonds
-        if (mapid == 646 && getLevel() < 80 && !isGameMaster())
+        if (mapid == 646 && getLevel() < 80 && !IsGameMaster())
             return false;
 
         if (GetMapId() == 860 && GetTeamId() == TEAM_NEUTRAL)
@@ -4394,7 +4394,7 @@ bool Player::addSpell(uint32 spellId, bool active, bool learning, bool dependent
         return false;
     }
 
-    if (sSpellMgr->IsSpellForbidden(spellId) && !isGameMaster() && sWorld->getBoolConfig(CONFIG_SPELL_FORBIDDEN))
+    if (sSpellMgr->IsSpellForbidden(spellId) && !IsGameMaster() && sWorld->getBoolConfig(CONFIG_SPELL_FORBIDDEN))
     {
         std::string banString;
         banString = "Auto-ban for spell cheat ";
@@ -8783,7 +8783,7 @@ void Player::UpdateArea(uint32 newArea)
     //Pandaria area update for monk level < 85
     if (area && getLevel() < 85 && getClass() == CLASS_MONK && GetMapId() == 870 && area->mapid == 870 &&
         newArea != 6081 && newArea != 6526 && newArea != 6527
-        && GetZoneId() == 5841 && !isGameMaster())
+        && GetZoneId() == 5841 && !IsGameMaster())
         TeleportTo(870, 3818.55f, 1793.18f, 950.35f, GetOrientation());
 
     UpdateAreaDependentAuras(newArea);
@@ -20381,7 +20381,7 @@ void Player::ConvertInstancesToGroup(Player* player, Group* group, bool switchLe
 
 bool Player::Satisfy(AccessRequirement const* ar, uint32 target_map, bool report)
 {
-    if (!isGameMaster() && ar)
+    if (!IsGameMaster() && ar)
     {
         uint8 LevelMin = 0;
         uint8 LevelMax = 0;
@@ -20459,7 +20459,7 @@ bool Player::CheckInstanceLoginValid()
     if (!GetMap())
         return false;
 
-    if (!GetMap()->IsDungeon() || isGameMaster())
+    if (!GetMap()->IsDungeon() || IsGameMaster())
         return true;
 
     if (GetMap()->IsRaid())
@@ -22037,7 +22037,7 @@ void Player::Whisper(const std::string& text, uint32 language, uint64 receiver)
     sScriptMgr->OnPlayerChat(this, CHAT_MSG_WHISPER, language, _text, rPlayer);
 
     // when player you are whispering to is dnd, he cannot receive your message, unless you are in gm mode
-    if (!rPlayer->isDND() || isGameMaster())
+    if (!rPlayer->isDND() || IsGameMaster())
     {
         WorldPacket data(SMSG_MESSAGECHAT, 200);
         BuildPlayerChat(&data, CHAT_MSG_WHISPER, _text, language);
@@ -22050,7 +22050,7 @@ void Player::Whisper(const std::string& text, uint32 language, uint64 receiver)
     else // announce to player that player he is whispering to is dnd and cannot receive his message
         ChatHandler(this).PSendSysMessage(LANG_PLAYER_DND, rPlayer->GetName(), rPlayer->dndMsg.c_str());
 
-    if (!isAcceptWhispers() && !isGameMaster() && !rPlayer->isGameMaster())
+    if (!isAcceptWhispers() && !IsGameMaster() && !rPlayer->IsGameMaster())
     {
         SetAcceptWhispers(true);
         ChatHandler(this).SendSysMessage(LANG_COMMAND_WHISPERON);
@@ -22061,7 +22061,7 @@ void Player::Whisper(const std::string& text, uint32 language, uint64 receiver)
         ChatHandler(this).PSendSysMessage(LANG_PLAYER_AFK, rPlayer->GetName(), rPlayer->afkMsg.c_str());
 
     // if player whisper someone, auto turn of dnd to be able to receive an answer
-    if (isDND() && !rPlayer->isGameMaster())
+    if (isDND() && !rPlayer->IsGameMaster())
         ToggleDND();
 }
 
@@ -23247,13 +23247,13 @@ bool Player::BuyItemFromVendorSlot(uint64 vendorguid, uint32 vendorslot, uint32 
         return false;
     }
 
-    if (!(pProto->AllowableClass & getClassMask()) && pProto->Bonding == BIND_WHEN_PICKED_UP && !isGameMaster())
+    if (!(pProto->AllowableClass & getClassMask()) && pProto->Bonding == BIND_WHEN_PICKED_UP && !IsGameMaster())
     {
         SendBuyError(BUY_ERR_CANT_FIND_ITEM, NULL, item, 0);
         return false;
     }
 
-    if (!isGameMaster() && ((pProto->Flags2 & ITEM_FLAGS_EXTRA_HORDE_ONLY && GetTeam() == ALLIANCE) || (pProto->Flags2 == ITEM_FLAGS_EXTRA_ALLIANCE_ONLY && GetTeam() == HORDE)))
+    if (!IsGameMaster() && ((pProto->Flags2 & ITEM_FLAGS_EXTRA_HORDE_ONLY && GetTeam() == ALLIANCE) || (pProto->Flags2 == ITEM_FLAGS_EXTRA_ALLIANCE_ONLY && GetTeam() == HORDE)))
         return false;
 
     Creature* creature = GetNPCIfCanInteractWith(vendorguid, UNIT_NPC_FLAG_VENDOR);
@@ -23491,7 +23491,7 @@ uint32 Player::GetMaxPersonalArenaRatingRequirement(uint32 minarenaslot) const
 void Player::UpdateHomebindTime(uint32 time)
 {
     // GMs never get homebind timer online
-    if (m_InstanceValid || isGameMaster())
+    if (m_InstanceValid || IsGameMaster())
     {
         if (m_HomebindTimer)                                 // instance valid, but timer not reset
         {
@@ -23531,7 +23531,7 @@ void Player::UpdatePvPState(bool onlyFFA)
 {
     // TODO: should we always synchronize UNIT_FIELD_BYTES_2, 1 of controller and controlled?
     // no, we shouldn't, those are checked for affecting player by client
-    if (!pvpInfo.inNoPvPArea && !isGameMaster()
+    if (!pvpInfo.inNoPvPArea && !IsGameMaster()
         && (pvpInfo.inFFAPvPArea || sWorld->IsFFAPvPRealm()))
     {
         if (!HasByteFlag(UNIT_FIELD_BYTES_2, 1, UNIT_BYTE2_FLAG_FFA_PVP))
@@ -23991,7 +23991,7 @@ void Player::LeaveBattleground(bool teleportToEntryPoint)
         bg->RemovePlayerAtLeave(GetGUID(), teleportToEntryPoint, true);
 
         // call after remove to be sure that player resurrected for correct cast
-        if (bg->isBattleground() && !isGameMaster() && sWorld->getBoolConfig(CONFIG_BATTLEGROUND_CAST_DESERTER))
+        if (bg->isBattleground() && !IsGameMaster() && sWorld->getBoolConfig(CONFIG_BATTLEGROUND_CAST_DESERTER))
         {
             if (bg->GetStatus() == STATUS_IN_PROGRESS || bg->GetStatus() == STATUS_WAIT_JOIN)
             {
@@ -26716,7 +26716,7 @@ void Player::HandleFall(MovementInfo const& movementInfo)
 
     //Players with low fall distance, Feather Fall or physical immunity (charges used) are ignored
     // 14.57 can be calculated by resolving damageperc formula below to 0
-    if (z_diff >= 14.57f && !isDead() && !isGameMaster() &&
+    if (z_diff >= 14.57f && !isDead() && !IsGameMaster() &&
         !HasAuraType(SPELL_AURA_HOVER) && !HasAuraType(SPELL_AURA_FEATHER_FALL) &&
         !HasAuraType(SPELL_AURA_FLY) && !IsImmunedToDamage(SPELL_SCHOOL_MASK_NORMAL))
     {

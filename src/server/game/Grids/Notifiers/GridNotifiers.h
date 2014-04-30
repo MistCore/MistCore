@@ -1321,7 +1321,7 @@ namespace MistCore
 
             bool operator()(Player* u)
             {
-                if (!u->isGameMaster() && u->isAlive() && i_obj->IsWithinDistInMap(u, i_range))
+                if (!u->IsGameMaster() && u->isAlive() && i_obj->IsWithinDistInMap(u, i_range))
                 {
                     i_range = i_obj->GetDistance(u);
                     return true;
@@ -1393,7 +1393,7 @@ namespace MistCore
         bool operator() (Player* player)
         {
             //No threat list check, must be done explicit if expected to be in combat with creature
-            if (!player->isGameMaster() && player->isAlive() && !unit->IsWithinDist(player, fRange, false))
+            if (!player->IsGameMaster() && player->isAlive() && !unit->IsWithinDist(player, fRange, false))
                 return true;
 
             return false;

@@ -1588,7 +1588,7 @@ class instance_icecrown_citadel : public InstanceMapScript
 
             bool CheckRequiredBosses(uint32 bossId, Player const* player = NULL) const
             {
-                if (player && player->isGameMaster())
+                if (player && player->IsGameMaster())
                     return true;
 
                 if((instance->GetPlayersCountExceptGMs()) > instance->ToInstanceMap()->GetMaxPlayers())
