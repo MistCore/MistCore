@@ -669,6 +669,16 @@ void WorldSession::HandleLootMethodOpcode(WorldPacket & recvData)
     /** error handling **/
     if (!group->IsLeader(GetPlayer()->GetGUID()))
         return;
+
+    if (lootMethod > NEED_BEFORE_GREED)
+        return;
+
+    if (lootThreshold < ITEM_QUALITY_UNCOMMON || lootThreshold > ITEM_QUALITY_ARTIFACT)
+        return;
+
+    if (lootMethod == MASTER_LOOT && !group->IsMember(lootMaster))
+        return;
+
     /********************/
 
     // everything's fine, do it
