@@ -3003,24 +3003,24 @@ void Player::Regenerate(Powers power)
         // Regenerate Mana
     case POWER_MANA:
     {
-           float ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA);
+        float ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA);
 
-            if (isInCombat()) // Trinity Updates Mana in intervals of 2s, which is correct
-                addvalue += GetFloatValue(UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER) *  ManaIncreaseRate * ((0.001f * m_regenTimer) + CalculatePct(0.001f, spellHaste));
-            else
-                addvalue += GetFloatValue(UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER) *  ManaIncreaseRate * ((0.001f * m_regenTimer) + CalculatePct(0.001f, spellHaste));
-			break;
+        if (isInCombat()) // Trinity Updates Mana in intervals of 2s, which is correct
+            addvalue += GetFloatValue(UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER) *  ManaIncreaseRate * ((0.001f * m_regenTimer) + CalculatePct(0.001f, spellHaste));
+        else
+            addvalue += GetFloatValue(UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER) *  ManaIncreaseRate * ((0.001f * m_regenTimer) + CalculatePct(0.001f, spellHaste));
+		break;
     }
         // Regenerate Rage
     case POWER_RAGE:
     {
-                       if (!isInCombat() && !HasAuraType(SPELL_AURA_INTERRUPT_REGEN))
-                       {
-                           float RageDecreaseRate = sWorld->getRate(RATE_POWER_RAGE_LOSS);
-                           addvalue += -25 * RageDecreaseRate / meleeHaste;                // 2.5 rage by tick (= 2 seconds => 1.25 rage/sec)
-                       }
+        if (!isInCombat() && !HasAuraType(SPELL_AURA_INTERRUPT_REGEN))
+        {
+            float RageDecreaseRate = sWorld->getRate(RATE_POWER_RAGE_LOSS);
+            addvalue += -25 * RageDecreaseRate / meleeHaste;                // 2.5 rage by tick (= 2 seconds => 1.25 rage/sec)
+        }
 
-                       break;
+        break;
     }
         // Regenerate Focus
     case POWER_FOCUS:
@@ -3033,13 +3033,13 @@ void Player::Regenerate(Powers power)
         // Regenerate Runic Power
     case POWER_RUNIC_POWER:
     {
-                              if (!isInCombat() && !HasAuraType(SPELL_AURA_INTERRUPT_REGEN))
-                              {
-                                  float RunicPowerDecreaseRate = sWorld->getRate(RATE_POWER_RUNICPOWER_LOSS);
-                                  addvalue += -30 * RunicPowerDecreaseRate;         // 3 RunicPower by tick
-                              }
+        if (!isInCombat() && !HasAuraType(SPELL_AURA_INTERRUPT_REGEN))
+        {
+            float RunicPowerDecreaseRate = sWorld->getRate(RATE_POWER_RUNICPOWER_LOSS);
+            addvalue += -30 * RunicPowerDecreaseRate;         // 3 RunicPower by tick
+        }
 
-                              break;
+        break;
     }
         // Regenerate Holy Power
     case POWER_HOLY_POWER:
@@ -3057,95 +3057,94 @@ void Player::Regenerate(Powers power)
         // Regenerate Demonic Fury
     case POWER_DEMONIC_FURY:
     {
-                               if (!isInCombat() && GetPower(POWER_DEMONIC_FURY) >= 300 && GetShapeshiftForm() != FORM_METAMORPHOSIS)
-                                   addvalue += -1.0f;    // remove 1 each 100ms
-                               else if (!isInCombat() && GetPower(POWER_DEMONIC_FURY) < 200 && GetShapeshiftForm() != FORM_METAMORPHOSIS)
-                                   addvalue += 1.0f;     // give 1 each 100ms while player has less than 200 demonic fury
+        if (!isInCombat() && GetPower(POWER_DEMONIC_FURY) >= 300 && GetShapeshiftForm() != FORM_METAMORPHOSIS)
+            addvalue += -1.0f;    // remove 1 each 100ms
+        else if (!isInCombat() && GetPower(POWER_DEMONIC_FURY) < 200 && GetShapeshiftForm() != FORM_METAMORPHOSIS)
+            addvalue += 1.0f;     // give 1 each 100ms while player has less than 200 demonic fury
 
-                               if (GetPower(POWER_DEMONIC_FURY) <= 40)
-                               {
-                                   if (HasAura(103958))
-                                       RemoveAura(103958);
+        if (GetPower(POWER_DEMONIC_FURY) <= 40)
+        {
+            if (HasAura(103958))
+                RemoveAura(103958);
 
-                                   if (HasAura(54879))
-                                       RemoveAura(54879);
-                               }
+            if (HasAura(54879))
+                RemoveAura(54879);
+        }
 
-                               // Demonic Fury visuals
-                               if (GetPower(POWER_DEMONIC_FURY) == 1000)
-                                   CastSpell(this, 131755, true);
-                               else if (GetPower(POWER_DEMONIC_FURY) >= 500)
-                               {
-                                   CastSpell(this, 122738, true);
+        // Demonic Fury visuals
+        if (GetPower(POWER_DEMONIC_FURY) == 1000)
+            CastSpell(this, 131755, true);
+        else if (GetPower(POWER_DEMONIC_FURY) >= 500)
+        {
+            CastSpell(this, 122738, true);
 
-                                   if (HasAura(131755))
-                                       RemoveAura(131755);
-                               }
-                               else
-                               {
-                                   if (HasAura(122738))
-                                       RemoveAura(122738);
-                                   if (HasAura(131755))
-                                       RemoveAura(131755);
-                               }
+            if (HasAura(131755))
+                RemoveAura(131755);
+        }
+        else
+        {
+            if (HasAura(122738))
+                RemoveAura(122738);
+            if (HasAura(131755))
+                RemoveAura(131755);
+        }
 
-                               break;
+        break;
     }
         // Regenerate Burning Embers
     case POWER_BURNING_EMBERS:
     {
-                                 // After 15s return to one embers if no one
-                                 // or return to one if more than one
-                                 if (!isInCombat() && GetPower(POWER_BURNING_EMBERS) < 10)
-                                     SetPower(POWER_BURNING_EMBERS, GetPower(POWER_BURNING_EMBERS) + 1);
-                                 else if (!isInCombat() && GetPower(POWER_BURNING_EMBERS) > 10)
-                                     SetPower(POWER_BURNING_EMBERS, GetPower(POWER_BURNING_EMBERS) - 1);
+        // After 15s return to one embers if no one
+        // or return to one if more than one
+        if (!isInCombat() && GetPower(POWER_BURNING_EMBERS) < 10)
+            SetPower(POWER_BURNING_EMBERS, GetPower(POWER_BURNING_EMBERS) + 1);
+        else if (!isInCombat() && GetPower(POWER_BURNING_EMBERS) > 10)
+            SetPower(POWER_BURNING_EMBERS, GetPower(POWER_BURNING_EMBERS) - 1);
 
-                                 if (HasAura(56241))
-                                 {
-                                     if (GetPower(POWER_BURNING_EMBERS) < 20)
-                                     {
-                                         RemoveAura(123730); // 2
-                                         RemoveAura(123728); // 1
-                                         RemoveAura(123731); // 3
-                                     }
-                                     else if (GetPower(POWER_BURNING_EMBERS) < 30)
-                                     {
-                                         RemoveAura(123730); // 2 shards visual
-                                         CastSpell(this, 123728, true); // 1 shard visual
-                                     }
-                                     else if (GetPower(POWER_BURNING_EMBERS) < 40)
-                                     {
-                                         CastSpell(this, 123728, true); // 1 shard visual
-                                         CastSpell(this, 123730, true); // 2 shards visual
-                                         RemoveAura(123731); // 3 shards visual
-                                     }
-                                     else if (GetPower(POWER_BURNING_EMBERS) < 50)
-                                     {
-                                         CastSpell(this, 123728, true); // 1 shard visual
-                                         CastSpell(this, 123730, true); // 2 shards visual
-                                         CastSpell(this, 123731, true); // 3 shards visual
-                                     }
-                                 }
-                                 else
-                                 {
-                                     if (GetPower(POWER_BURNING_EMBERS) < 20)
-                                     {
-                                         RemoveAura(116855); // First visual
-                                         RemoveAura(116920); // Second visual
-                                     }
-                                     if (GetPower(POWER_BURNING_EMBERS) < 30)
-                                     {
-                                         CastSpell(this, 116855, true);  // First visual
-                                         RemoveAura(116920);             // Second visual
-                                     }
-                                     else
-                                         CastSpell(this, 116920, true);  // Second visual
-                                 }
-
-                                 break;
+        if (HasAura(56241))
+        {
+            if (GetPower(POWER_BURNING_EMBERS) < 20)
+            {
+                RemoveAura(123730); // 2
+                RemoveAura(123728); // 1
+                RemoveAura(123731); // 3
+            }
+            else if (GetPower(POWER_BURNING_EMBERS) < 30)
+            {
+                RemoveAura(123730); // 2 shards visual
+                CastSpell(this, 123728, true); // 1 shard visual
+            }
+            else if (GetPower(POWER_BURNING_EMBERS) < 40)
+            {
+                CastSpell(this, 123728, true); // 1 shard visual
+                CastSpell(this, 123730, true); // 2 shards visual
+                RemoveAura(123731); // 3 shards visual
+            }
+            else if (GetPower(POWER_BURNING_EMBERS) < 50)
+            {
+                CastSpell(this, 123728, true); // 1 shard visual
+                CastSpell(this, 123730, true); // 2 shards visual
+                CastSpell(this, 123731, true); // 3 shards visual
+            }
+        }
+        else
+        {
+            if (GetPower(POWER_BURNING_EMBERS) < 20)
+            {
+                RemoveAura(116855); // First visual
+                RemoveAura(116920); // Second visual
+            }
+            if (GetPower(POWER_BURNING_EMBERS) < 30)
+            {
+                CastSpell(this, 116855, true);  // First visual
+                RemoveAura(116920);             // Second visual
+            }
+            else
+                CastSpell(this, 116920, true);  // Second visual
+        }
+        break;
     }
-        // Regenerate Soul Shards
+    // Regenerate Soul Shards
     case POWER_SOUL_SHARDS:
         // If isn't in combat, gain 1 shard every 20s
         if (!isInCombat())
@@ -3704,8 +3703,8 @@ void Player::GiveLevel(uint8 level)
     data << uint32(int32(basehp) - int32(GetCreateHealth()));    
     data << uint32(int32(basemana) - int32(GetCreateMana()));
 
-	for (int i = 0; i < MAX_POWERS_PER_CLASS; ++i)          // Powers loop (0-10)
-		data << uint32(0);
+    for (int i = 0; i < MAX_POWERS_PER_CLASS; ++i)          // Powers loop (0-10)
+        data << uint32(0);
 
     // end for
     for (uint8 i = STAT_STRENGTH; i < MAX_STATS; ++i)       // Stats loop (0-4)

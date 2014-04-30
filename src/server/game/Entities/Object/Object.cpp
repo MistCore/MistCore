@@ -2462,11 +2462,11 @@ void WorldObject::BuildMonsterChat(WorldPacket* data, uint8 msgtype, char const*
     *data << text;
     *data << (uint16)0;                                      // ChatTag
 
-	if (msgtype == CHAT_MSG_RAID_BOSS_EMOTE || msgtype == CHAT_MSG_RAID_BOSS_WHISPER)
+    if (msgtype == CHAT_MSG_RAID_BOSS_EMOTE || msgtype == CHAT_MSG_RAID_BOSS_WHISPER)
     {
-		*data << (float)0.0f;                                   // added in 4.2.0, unk
-		*data << (uint8)0;                                      // added in 4.2.0, unk
-	}
+        *data << (float)0.0f;                                   // added in 4.2.0, unk
+        *data << (uint8)0;                                      // added in 4.2.0, unk
+    }
 }
 
 void Unit::BuildHeartBeatMsg(WorldPacket* data) const
