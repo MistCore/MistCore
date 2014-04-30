@@ -2051,7 +2051,7 @@ void Group::SendUpdateToPlayer(uint64 playerGUID, MemberSlot* slot)
             continue;
 
         Player* member = ObjectAccessor::FindPlayer(citr->guid);
-        uint8 onlineState = (member) ? MEMBER_STATUS_ONLINE : MEMBER_STATUS_OFFLINE;
+        uint8 onlineState = (member && !member->GetSession()->PlayerLogout()) ? MEMBER_STATUS_ONLINE : MEMBER_STATUS_OFFLINE;
         onlineState = onlineState | ((isBGGroup() || isBFGroup()) ? MEMBER_STATUS_PVP : 0);
         ObjectGuid memguid = citr->guid;
 
