@@ -803,7 +803,7 @@ void WorldSession::HandleRaidTargetUpdateOpcode(WorldPacket& recvData)
         group->SendTargetIconList(this);
     else                                                    // target icon update
     {
-        if (!group->IsLeader(GetPlayer()->GetGUID()) && !group->IsAssistant(GetPlayer()->GetGUID()) && !(group->GetGroupType() & GROUPTYPE_EVERYONE_IS_ASSISTANT))
+        if (group->isRaidGroup() && !group->IsLeader(GetPlayer()->GetGUID()) && !group->IsAssistant(GetPlayer()->GetGUID()) && !(group->GetGroupType() & GROUPTYPE_EVERYONE_IS_ASSISTANT))
             return;
 
         ObjectGuid guid;
@@ -813,6 +813,14 @@ void WorldSession::HandleRaidTargetUpdateOpcode(WorldPacket& recvData)
 
         uint8 byteOrder[8] = {3, 1, 6, 4, 7, 0, 2, 5};
         recvData.ReadBytesSeq(guid, byteOrder);
+
+        if (IS_PLAYER_GUID(guid))
+        {
+            Player* target = ObjectAccessor::FindPlayer(guid);
+
+            if (!target || target->IsHostileTo(GetPlayer()))
+                return;
+        }
 
         group->SetTargetIcon(x, _player->GetGUID(), guid);
     }
