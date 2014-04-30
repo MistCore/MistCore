@@ -3468,7 +3468,7 @@ void Spell::cast(bool skipCheck)
         if (this->GetSpellInfo()->DmgClass != SPELL_DAMAGE_CLASS_NONE)
             if (Pet* playerPet = playerCaster->GetPet())
                 if (playerPet->isAlive() && playerPet->isControlled() && (m_targets.GetTargetMask() & TARGET_FLAG_UNIT))
-                    playerPet->AI()->OwnerAttacked(m_targets.GetObjectTarget()->ToUnit());
+                    playerPet->AI()->OwnerAttacked(m_targets.GetUnitTarget());
     }
     SetExecutedCurrently(true);
 
