@@ -3003,15 +3003,12 @@ void Player::Regenerate(Powers power)
         // Regenerate Mana
     case POWER_MANA:
     {
-            float ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA);
+           float ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA);
 
-            if (getLevel() < 15)
-                ManaIncreaseRate = sWorld->getRate(RATE_POWER_MANA) * (2.066f - (getLevel() * 0.066f));
-
-            uint16 index = isInCombat() ? UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER+POWER_MANA : UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER+POWER_MANA;
-            float time = 0.001f * m_regenTimer;
-
-            addvalue += GetFloatValue(index) *  ManaIncreaseRate * time;
+            if (isInCombat()) // Trinity Updates Mana in intervals of 2s, which is correct
+                addvalue += GetFloatValue(UNIT_FIELD_POWER_REGEN_INTERRUPTED_FLAT_MODIFIER) *  ManaIncreaseRate * ((0.001f * m_regenTimer) + CalculatePct(0.001f, spellHaste));
+            else
+                addvalue += GetFloatValue(UNIT_FIELD_POWER_REGEN_FLAT_MODIFIER) *  ManaIncreaseRate * ((0.001f * m_regenTimer) + CalculatePct(0.001f, spellHaste));
 			break;
     }
         // Regenerate Rage

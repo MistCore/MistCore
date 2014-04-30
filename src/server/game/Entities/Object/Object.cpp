@@ -2451,16 +2451,22 @@ void WorldObject::BuildMonsterChat(WorldPacket* data, uint8 msgtype, char const*
     *data << (uint32)(strlen(name)+1);
     *data << name;
     *data << (uint64)targetGuid;                            // Unit Target
+
     if (targetGuid && !IS_PLAYER_GUID(targetGuid))
     {
         *data << (uint32)1;                                 // target name length
         *data << (uint8)0;                                  // target name
     }
+
     *data << (uint32)(strlen(text)+1);
     *data << text;
     *data << (uint16)0;                                      // ChatTag
-    *data << (float)0.0f;                                   // added in 4.2.0, unk
-    *data << (uint8)0;                                      // added in 4.2.0, unk
+
+	if (msgtype == CHAT_MSG_RAID_BOSS_EMOTE || msgtype == CHAT_MSG_RAID_BOSS_WHISPER)
+    {
+		*data << (float)0.0f;                                   // added in 4.2.0, unk
+		*data << (uint8)0;                                      // added in 4.2.0, unk
+	}
 }
 
 void Unit::BuildHeartBeatMsg(WorldPacket* data) const
