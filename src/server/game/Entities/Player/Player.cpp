@@ -3691,7 +3691,6 @@ void Player::GiveGatheringXP()
 // Current player experience not update (must be update by caller)
 void Player::GiveLevel(uint8 level)
 {
-
     uint8 oldLevel = getLevel();
     if (level == oldLevel)
         return;
@@ -3705,15 +3704,11 @@ void Player::GiveLevel(uint8 level)
     // send levelup info to client
     WorldPacket data(SMSG_LEVELUP_INFO, (4 + 4 + MAX_POWERS_PER_CLASS * 4 + MAX_STATS * 4));
     data << uint32(level);
-    data << uint32(int32(basehp) - int32(GetCreateHealth()));
-    // for (int i = 0; i < MAX_POWERS_PER_CLASS; ++i)          // Powers loop (0-10)
+    data << uint32(int32(basehp) - int32(GetCreateHealth()));    
     data << uint32(int32(basemana) - int32(GetCreateMana()));
-    data << uint32(0);
-    data << uint32(0);
-    data << uint32(0);
-    data << uint32(0);
-    data << uint32(0);
-    data << uint32(0);
+
+	for (int i = 0; i < MAX_POWERS_PER_CLASS; ++i)          // Powers loop (0-10)
+		data << uint32(0);
 
     // end for
     for (uint8 i = STAT_STRENGTH; i < MAX_STATS; ++i)       // Stats loop (0-4)
@@ -3739,7 +3734,7 @@ void Player::GiveLevel(uint8 level)
 
     InitTalentForLevel();
     InitSpellForLevel();
-    //    InitTaxiNodesForLevel();
+    InitTaxiNodesForLevel();
     InitGlyphsForLevel();
 
     UpdateAllStats();
