@@ -389,7 +389,7 @@ public:
             if (map->IsBattlegroundOrArena())
             {
                 // only allow if gm mode is on
-                if (!_player->isGameMaster())
+                if (!_player->IsGameMaster())
                 {
                     handler->PSendSysMessage(LANG_CANNOT_GO_TO_BG_GM, chrNameLink.c_str());
                     handler->SetSentErrorMessage(true);
@@ -424,7 +424,7 @@ public:
                 else
                 {
                     // we are not in group, let's verify our GM mode
-                    if (!_player->isGameMaster())
+                    if (!_player->IsGameMaster())
                     {
                         handler->PSendSysMessage(LANG_CANNOT_GO_TO_INST_GM, chrNameLink.c_str());
                         handler->SetSentErrorMessage(true);
@@ -538,7 +538,7 @@ public:
             if (map->IsBattlegroundOrArena())
             {
                 // only allow if gm mode is on
-                if (!_player->isGameMaster())
+                if (!_player->IsGameMaster())
                 {
                     handler->PSendSysMessage(LANG_CANNOT_GO_TO_BG_GM, nameLink.c_str());
                     handler->SetSentErrorMessage(true);

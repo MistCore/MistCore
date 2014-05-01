@@ -495,7 +495,7 @@ class boss_elegon : public CreatureScript
                         {
                             if (Player* player = itr->getSource())
                             {
-                                if (player->isGameMaster())
+                                if (player->IsGameMaster())
                                     continue;
 
                                 if (player->isAlive())
@@ -527,7 +527,7 @@ class boss_elegon : public CreatureScript
                 {
                     if (Player* player = who->ToPlayer())
                     {
-                        if (player->isGameMaster())
+                        if (player->IsGameMaster())
                             return;
 
                         if (player->isAlive())

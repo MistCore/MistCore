@@ -127,14 +127,14 @@ void WorldSession::HandleGroupInviteOpcode(WorldPacket & recvData)
     }
 
     // restrict invite to GMs
-    if (!sWorld->getBoolConfig(CONFIG_ALLOW_GM_GROUP) && !GetPlayer()->isGameMaster() && player->isGameMaster())
+    if (!sWorld->getBoolConfig(CONFIG_ALLOW_GM_GROUP) && !GetPlayer()->IsGameMaster() && player->IsGameMaster())
     {
         SendPartyResult(PARTY_OP_INVITE, memberName, ERR_BAD_PLAYER_NAME_S);
         return;
     }
 
     // can't group with
-    if (!GetPlayer()->isGameMaster() && !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GROUP) && GetPlayer()->GetTeam() != player->GetTeam())
+    if (!GetPlayer()->IsGameMaster() && !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GROUP) && GetPlayer()->GetTeam() != player->GetTeam())
     {
         SendPartyResult(PARTY_OP_INVITE, memberName, ERR_PLAYER_WRONG_FACTION);
         return;
@@ -669,6 +669,16 @@ void WorldSession::HandleLootMethodOpcode(WorldPacket & recvData)
     /** error handling **/
     if (!group->IsLeader(GetPlayer()->GetGUID()))
         return;
+
+    if (lootMethod > NEED_BEFORE_GREED)
+        return;
+
+    if (lootThreshold < ITEM_QUALITY_UNCOMMON || lootThreshold > ITEM_QUALITY_ARTIFACT)
+        return;
+
+    if (lootMethod == MASTER_LOOT && !group->IsMember(lootMaster))
+        return;
+
     /********************/
 
     // everything's fine, do it
@@ -803,7 +813,7 @@ void WorldSession::HandleRaidTargetUpdateOpcode(WorldPacket& recvData)
         group->SendTargetIconList(this);
     else                                                    // target icon update
     {
-        if (!group->IsLeader(GetPlayer()->GetGUID()) && !group->IsAssistant(GetPlayer()->GetGUID()) && !(group->GetGroupType() & GROUPTYPE_EVERYONE_IS_ASSISTANT))
+        if (group->isRaidGroup() && !group->IsLeader(GetPlayer()->GetGUID()) && !group->IsAssistant(GetPlayer()->GetGUID()) && !(group->GetGroupType() & GROUPTYPE_EVERYONE_IS_ASSISTANT))
             return;
 
         ObjectGuid guid;
@@ -813,6 +823,14 @@ void WorldSession::HandleRaidTargetUpdateOpcode(WorldPacket& recvData)
 
         uint8 byteOrder[8] = {3, 1, 6, 4, 7, 0, 2, 5};
         recvData.ReadBytesSeq(guid, byteOrder);
+
+        if (IS_PLAYER_GUID(guid))
+        {
+            Player* target = ObjectAccessor::FindPlayer(guid);
+
+            if (!target || target->IsHostileTo(GetPlayer()))
+                return;
+        }
 
         group->SetTargetIcon(x, _player->GetGUID(), guid);
     }

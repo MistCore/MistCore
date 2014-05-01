@@ -543,9 +543,9 @@ void Object::_BuildMovementUpdate(ByteBuffer* data, uint16 flags) const
             *data << float(self->GetOrientation());
         data->WriteByteSeq(guid[4]);
         *data << self->GetSpeed(MOVE_SWIM);
-        *data << self->GetSpeed(MOVE_SWIM_BACK);
-        *data << self->GetSpeed(MOVE_TURN_RATE);
         *data << self->GetSpeed(MOVE_RUN_BACK);
+        *data << self->GetSpeed(MOVE_TURN_RATE);
+        *data << self->GetSpeed(MOVE_SWIM_BACK);
         data->WriteByteSeq(guid[0]);
     }
 
@@ -633,7 +633,7 @@ void Object::_BuildValuesUpdate(uint8 updatetype, ByteBuffer* data, UpdateMask* 
     {
         if (isType(TYPEMASK_GAMEOBJECT) && !((GameObject*)this)->IsDynTransport())
         {
-            if (((GameObject*)this)->ActivateToQuest(target) || target->isGameMaster())
+            if (((GameObject*)this)->ActivateToQuest(target) || target->IsGameMaster())
                 IsActivateToQuest = true;
 
             if (((GameObject*)this)->GetGoArtKit())
@@ -649,7 +649,7 @@ void Object::_BuildValuesUpdate(uint8 updatetype, ByteBuffer* data, UpdateMask* 
     {
         if (isType(TYPEMASK_GAMEOBJECT) && !((GameObject*)this)->IsTransport())
         {
-            if (((GameObject*)this)->ActivateToQuest(target) || target->isGameMaster())
+            if (((GameObject*)this)->ActivateToQuest(target) || target->IsGameMaster())
                 IsActivateToQuest = true;
 
             updateMask->SetBit(GAMEOBJECT_BYTES_1);
@@ -722,7 +722,7 @@ void Object::_BuildValuesUpdate(uint8 updatetype, ByteBuffer* data, UpdateMask* 
                 // Gamemasters should be always able to select units - remove not selectable flag
                 else if (index == UNIT_FIELD_FLAGS)
                 {
-                    if (target->isGameMaster())
+                    if (target->IsGameMaster())
                         *data << (m_uint32Values[index] & ~UNIT_FLAG_NOT_SELECTABLE);
                     else
                         *data << m_uint32Values[index];
@@ -746,7 +746,7 @@ void Object::_BuildValuesUpdate(uint8 updatetype, ByteBuffer* data, UpdateMask* 
 
                         if (cinfo->flags_extra & CREATURE_FLAG_EXTRA_TRIGGER)
                         {
-                            if (target->isGameMaster())
+                            if (target->IsGameMaster())
                             {
                                 if (cinfo->Modelid1)
                                     *data << cinfo->Modelid1;//Modelid1 is a visible model for gms
@@ -853,19 +853,19 @@ void Object::_BuildValuesUpdate(uint8 updatetype, ByteBuffer* data, UpdateMask* 
                         switch (ToGameObject()->GetGoType())
                         {
                             case GAMEOBJECT_TYPE_CHEST:
-                                if (target->isGameMaster())
+                                if (target->IsGameMaster())
                                     *data << uint16(GO_DYNFLAG_LO_ACTIVATE);
                                 else
                                     *data << uint16(GO_DYNFLAG_LO_ACTIVATE | GO_DYNFLAG_LO_SPARKLE);
                                 break;
                             case GAMEOBJECT_TYPE_GENERIC:
-                                if (target->isGameMaster())
+                                if (target->IsGameMaster())
                                     *data << uint16(0);
                                 else
                                     *data << uint16(GO_DYNFLAG_LO_SPARKLE);
                                 break;
                             case GAMEOBJECT_TYPE_GOOBER:
-                                if (target->isGameMaster())
+                                if (target->IsGameMaster())
                                     *data << uint16(GO_DYNFLAG_LO_ACTIVATE);
                                 else
                                     *data << uint16(GO_DYNFLAG_LO_ACTIVATE | GO_DYNFLAG_LO_SPARKLE);
@@ -2451,16 +2451,22 @@ void WorldObject::BuildMonsterChat(WorldPacket* data, uint8 msgtype, char const*
     *data << (uint32)(strlen(name)+1);
     *data << name;
     *data << (uint64)targetGuid;                            // Unit Target
+
     if (targetGuid && !IS_PLAYER_GUID(targetGuid))
     {
         *data << (uint32)1;                                 // target name length
         *data << (uint8)0;                                  // target name
     }
+
     *data << (uint32)(strlen(text)+1);
     *data << text;
     *data << (uint16)0;                                      // ChatTag
-    *data << (float)0.0f;                                   // added in 4.2.0, unk
-    *data << (uint8)0;                                      // added in 4.2.0, unk
+
+    if (msgtype == CHAT_MSG_RAID_BOSS_EMOTE || msgtype == CHAT_MSG_RAID_BOSS_WHISPER)
+    {
+        *data << (float)0.0f;                                   // added in 4.2.0, unk
+        *data << (uint8)0;                                      // added in 4.2.0, unk
+    }
 }
 
 void Unit::BuildHeartBeatMsg(WorldPacket* data) const
