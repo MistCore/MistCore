@@ -1,5 +1,7 @@
 [Last]
-https://github.com/TrinityCore/TrinityCore/commit/cc86f567abc8c831aec5206cd398ab32f4eab387
+https://github.com/TrinityCore/TrinityCore/commits/4.3.4?page=146
+Core/Defines: Updated SpellCustomErrors and HolidayIds to 4.3.4 
+
 
 
 [Start]
