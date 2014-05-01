@@ -1,5 +1,5 @@
 /* -*- C++ -*- */
-// $Id: config-macosx-leopard.h 91688 2010-09-09 11:21:50Z johnnyw $
+// $Id: config-macosx-leopard.h 96085 2012-08-21 02:48:37Z mesnier_p $
 
 // This configuration file is designed to work with the MacOS X operating system.
 
@@ -176,7 +176,6 @@
 # define ACE_HAS_THREADS
 // And they're even POSIX pthreads
 # define ACE_HAS_PTHREADS
-# define ACE_HAS_PTHREADS_STD
 # define ACE_HAS_PTHREAD_SCHEDPARAM
 # define ACE_HAS_THREAD_SPECIFIC_STORAGE
 #endif  /* ACE_MT_SAFE == 1 */
@@ -205,6 +204,7 @@
 #define ACE_HAS_VOID_UNSETENV
 #endif
 
+#define ACE_LACKS_CONDATTR_SETCLOCK
 
 // dlcompat package (not part of base Darwin) is needed for dlopen().
 // You may download directly from sourceforge and install or use fink
@@ -222,5 +222,9 @@
 
 // gperf seems to need this
 //#define ACE_HAS_NONSTATIC_OBJECT_MANAGER
+
+#if defined(__APPLE_CC__) && (__APPLE_CC__ < 1173)
+#error "Compiler must be upgraded, see http://developer.apple.com"
+#endif /* __APPLE_CC__ */
 
 #endif /* ACE_CONFIG_MACOSX_LEOPARD_H */
