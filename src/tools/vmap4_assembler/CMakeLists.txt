@@ -34,7 +34,6 @@ target_link_libraries(vmap4assembler
   shared
   ${ACE_LIBRARY}
   ${ZLIB_LIBRARIES}
-  pthread
 )
 
 if( UNIX )
