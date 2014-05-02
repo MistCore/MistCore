@@ -218,13 +218,13 @@ void BattlegroundKT::UpdateTeamScore(Team team)
         UpdateWorldState(BG_KT_ORB_POINTS_H, GetTeamScore(team));
 }
 
-void BattlegroundKT::HandleAreaTrigger(Player* source, uint32 trigger)
+void BattlegroundKT::HandleAreaTrigger(Player* player, uint32 trigger)
 {
     // this is wrong way to implement these things. On official it done by gameobject spell cast.
     if (GetStatus() != STATUS_IN_PROGRESS)
         return;
 
-    uint64 sourceGuid = source->GetGUID();
+    uint64 sourceGuid = player->GetGUID();
     switch(trigger)
     {
         case 7734: // Out-In trigger
@@ -250,8 +250,7 @@ void BattlegroundKT::HandleAreaTrigger(Player* source, uint32 trigger)
             break;
         }
         default:
-            sLog->outError(LOG_FILTER_BATTLEGROUND, "WARNING: Unhandled AreaTrigger in Battleground: %u", trigger);
-            //source->GetSession()->SendAreaTriggerMessage("Warning: Unhandled AreaTrigger in Battleground: %u", trigger);
+            Battleground::HandleAreaTrigger(player, trigger);
             break;
     }
 }
