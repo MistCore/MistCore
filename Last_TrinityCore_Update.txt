@@ -1,0 +1,13 @@
+[Last]
+https://github.com/TrinityCore/TrinityCore/commits/4.3.4?page=146
+Core/Defines: Updated SpellCustomErrors and HolidayIds to 4.3.4 
+
+
+
+[Start]
+4.3.4
+Sep 17, 2012
+Cosmetic: PLAYER__FIELD_KNOWN_TITLES --> PLAYER_FIELD_KNOWN_TITLES - 74aea5e055d1b116c4093be4b32a8bf9a76666c4
+https://github.com/TrinityCore/TrinityCore/commit/74aea5e055d1b116c4093be4b32a8bf9a76666c4
+
+https://github.com/TrinityCore/TrinityCore/commits/4.3.4?page=146

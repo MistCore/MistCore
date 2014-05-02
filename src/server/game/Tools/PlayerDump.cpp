@@ -39,39 +39,33 @@ struct DumpTable
 
 static DumpTable dumpTables[DUMP_TABLE_COUNT] =
 {
-    { "characters",                       DTT_CHARACTER  },
-    //{ "character_account_data",           DTT_CHAR_TABLE }, problème de `
-    { "character_achievement",            DTT_CHAR_TABLE },
-    { "character_achievement_progress",   DTT_CHAR_TABLE },
-    { "character_action",                 DTT_CHAR_TABLE },
-    { "character_aura",                   DTT_CHAR_TABLE },
-    { "character_aura_effect",            DTT_CHAR_TABLE },
-    { "character_currency",               DTT_CHAR_TABLE },
-    //{ "character_cuf_profiles",           DTT_CHAR_TABLE },
-    { "character_declinedname",           DTT_CHAR_TABLE },
-    { "character_equipmentsets",          DTT_EQSET_TABLE},
-    //{ "character_gifts",                  DTT_ITEM_GIFT  },
-    { "character_glyphs",                 DTT_CHAR_TABLE },
-    { "character_homebind",               DTT_CHAR_TABLE },
-    { "character_inventory",              DTT_INVENTORY  },
-    { "character_pet",                    DTT_PET        },
-    { "character_pet_declinedname",       DTT_PET        },
-    { "character_queststatus",            DTT_CHAR_TABLE },
-    { "character_queststatus_rewarded",   DTT_CHAR_TABLE },
-    { "character_rates",                  DTT_CHAR_TABLE },
-    { "character_reputation",             DTT_CHAR_TABLE },
-    { "character_skills",                 DTT_CHAR_TABLE },
-    { "character_spell",                  DTT_CHAR_TABLE },
-    { "character_spell_cooldown",         DTT_CHAR_TABLE },
-    { "character_talent",                 DTT_CHAR_TABLE },
-    { "character_void_storage",           DTT_VS_TABLE   },
-    { "item_instance",                    DTT_ITEM       },
-    { "mail",                             DTT_MAIL       },
-    { "mail_items",                       DTT_MAIL_ITEM  },
-    { "pet_aura",                         DTT_PET_TABLE  },
-    { "pet_aura_effect",                  DTT_PET_TABLE  },
-    { "pet_spell",                        DTT_PET_TABLE  },
-    { "pet_spell_cooldown",               DTT_PET_TABLE  },
+    { "characters", DTT_CHARACTER },
+    { "character_account_data", DTT_CHAR_TABLE },
+    { "character_achievement", DTT_CHAR_TABLE },
+    { "character_achievement_progress", DTT_CHAR_TABLE },
+    { "character_action", DTT_CHAR_TABLE },
+    { "character_aura", DTT_CHAR_TABLE },
+    { "character_declinedname", DTT_CHAR_TABLE },
+    { "character_equipmentsets", DTT_EQSET_TABLE },
+    { "character_glyphs", DTT_CHAR_TABLE },
+    { "character_homebind", DTT_CHAR_TABLE },
+    { "character_inventory", DTT_INVENTORY },
+    { "character_pet", DTT_PET },
+    { "character_pet_declinedname", DTT_PET },
+    { "character_queststatus", DTT_CHAR_TABLE },
+    { "character_queststatus_rewarded", DTT_CHAR_TABLE },
+    { "character_reputation", DTT_CHAR_TABLE },
+    { "character_skills", DTT_CHAR_TABLE },
+    { "character_spell", DTT_CHAR_TABLE },
+    { "character_spell_cooldown", DTT_CHAR_TABLE },
+    { "character_talent", DTT_CHAR_TABLE },
+    { "mail", DTT_MAIL },
+    { "mail_items", DTT_MAIL_ITEM }, // must be after mail
+    { "pet_aura", DTT_PET_TABLE }, // must be after character_pet
+    { "pet_spell", DTT_PET_TABLE }, // must be after character_pet
+    { "pet_spell_cooldown", DTT_PET_TABLE }, // must be after character_pet
+    { "item_instance", DTT_ITEM }, // must be after character_inventory and mail_items
+    { "character_gifts", DTT_ITEM_GIFT }, // must be after item_instance
 };
 
 // Low level functions

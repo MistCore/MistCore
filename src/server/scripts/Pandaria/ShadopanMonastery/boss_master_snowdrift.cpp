@@ -200,7 +200,7 @@ class boss_master_snowdrift : public CreatureScript
             {
                 if (who->ToPlayer())
                 {
-                    if (who->ToPlayer()->isGameMaster())
+                    if (who->ToPlayer()->IsGameMaster())
                         return;
 
                     if (me->GetDistance(who) < 45.0f && !introStarted)
