@@ -5681,19 +5681,26 @@ TrainerSpellState Player::GetTrainerSpellState(TrainerSpell const* trainer_spell
  */
 void Player::DeleteFromDB(uint64 playerguid, uint32 accountId, bool updateRealmChars, bool deleteFinally)
 {
-    // for not existed account avoid update realm
+    // Avoid realm-update for non-existing account
     if (accountId == 0)
         updateRealmChars = false;
 
-    uint32 charDelete_method = sWorld->getIntConfig(CONFIG_CHARDELETE_METHOD);
-    uint32 charDelete_minLvl = sWorld->getIntConfig(CONFIG_CHARDELETE_MIN_LEVEL);
-
-    // if we want to finally delete the character or the character does not meet the level requirement,
-    // we set it to mode CHAR_DELETE_REMOVE
-    if (deleteFinally || Player::GetLevelFromDB(playerguid) < charDelete_minLvl)
-        charDelete_method = CHAR_DELETE_REMOVE;
-
+    // Convert guid to low GUID for CharacterNameData, but also other methods on success
     uint32 guid = GUID_LOPART(playerguid);
+    uint32 charDelete_method = sWorld->getIntConfig(CONFIG_CHARDELETE_METHOD);
+
+    if (deleteFinally)
+        charDelete_method = CHAR_DELETE_REMOVE;
+    else if (CharacterNameData const* nameData = sWorld->GetCharacterNameData(guid))    // To avoid a query, we select loaded data. If it doesn't exist, return.
+    {
+        // Define the required variables
+        uint32 charDelete_minLvl = sWorld->getIntConfig(CONFIG_CHARDELETE_MIN_LEVEL);
+
+        // if we want to finalize the character removal or the character does not meet the level requirement,
+        // we set it to mode CHAR_DELETE_REMOVE
+        if (deleteFinally || Player::GetLevelFromDB(playerguid) < charDelete_minLvl)
+            charDelete_method = CHAR_DELETE_REMOVE;
+    }
 
     // convert corpse to bones if exist (to prevent exiting Corpse in World without DB entry)
     // bones will be deleted by corpse/bones deleting thread shortly
@@ -5721,286 +5728,289 @@ void Player::DeleteFromDB(uint64 playerguid, uint32 accountId, bool updateRealmC
     switch (charDelete_method)
     {
         // Completely remove from the database
-    case CHAR_DELETE_REMOVE:
-    {
-                               SQLTransaction trans = CharacterDatabase.BeginTransaction();
+        case CHAR_DELETE_REMOVE:
+        {
+            SQLTransaction trans = CharacterDatabase.BeginTransaction();
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHAR_COD_ITEM_MAIL);
-                               stmt->setUInt32(0, guid);
-                               PreparedQueryResult resultMail = CharacterDatabase.Query(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHAR_COD_ITEM_MAIL);
+            stmt->setUInt32(0, guid);
+            PreparedQueryResult resultMail = CharacterDatabase.Query(stmt);
 
-                               if (resultMail)
-                               {
-                                   do
-                                   {
-                                       Field* mailFields = resultMail->Fetch();
+            if (resultMail)
+            {
+                do
+                {
+                    Field* mailFields = resultMail->Fetch();
 
-                                       uint32 mail_id = mailFields[0].GetUInt32();
-                                       uint8 mailType = mailFields[1].GetUInt8();
-                                       uint16 mailTemplateId = mailFields[2].GetUInt16();
-                                       uint32 sender = mailFields[3].GetUInt32();
-                                       std::string subject = mailFields[4].GetString();
-                                       std::string body = mailFields[5].GetString();
-                                       uint64 money = mailFields[6].GetUInt64();
-                                       bool has_items = mailFields[7].GetBool();
+                    uint32 mail_id       = mailFields[0].GetUInt32();
+                    uint8 mailType       = mailFields[1].GetUInt8();
+                    uint16 mailTemplateId= mailFields[2].GetUInt16();
+                    uint32 sender        = mailFields[3].GetUInt32();
+                    std::string subject  = mailFields[4].GetString();
+                    std::string body     = mailFields[5].GetString();
+                    uint64 money         = mailFields[6].GetUInt64();
+                    bool has_items       = mailFields[7].GetBool();
 
-                                       // We can return mail now
-                                       // So firstly delete the old one
-                                       PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL_BY_ID);
-                                       stmt->setUInt32(0, mail_id);
-                                       trans->Append(stmt);
+                    // We can return mail now
+                    // So firstly delete the old one
+                    PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL_BY_ID);
+                    stmt->setUInt32(0, mail_id);
+                    trans->Append(stmt);
 
-                                       // Mail is not from player
-                                       if (mailType != MAIL_NORMAL)
-                                       {
-                                           if (has_items)
-                                           {
-                                               PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL_ITEM_BY_ID);
-                                               stmt->setUInt32(0, mail_id);
-                                               trans->Append(stmt);
-                                           }
-                                           continue;
-                                       }
+                    // Mail is not from player
+                    if (mailType != MAIL_NORMAL)
+                    {
+                        if (has_items)
+                        {
+                            PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL_ITEM_BY_ID);
+                            stmt->setUInt32(0, mail_id);
+                            trans->Append(stmt);
+                        }
+                        continue;
+                    }
 
-                                       MailDraft draft(subject, body);
-                                       if (mailTemplateId)
-                                           draft = MailDraft(mailTemplateId, false);    // items are already included
+                    MailDraft draft(subject, body);
+                    if (mailTemplateId)
+                        draft = MailDraft(mailTemplateId, false);    // items are already included
 
-                                       if (has_items)
-                                       {
-                                           // Data needs to be at first place for Item::LoadFromDB
-                                           PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_MAILITEMS);
-                                           stmt->setUInt32(0, mail_id);
-                                           PreparedQueryResult resultItems = CharacterDatabase.Query(stmt);
-                                           if (resultItems)
-                                           {
-                                               do
-                                               {
-                                                   Field* itemFields = resultItems->Fetch();
-                                                   uint32 item_guidlow = itemFields[13].GetUInt32();
-                                                   uint32 item_template = itemFields[14].GetUInt32();
+                    if (has_items)
+                    {
+                        // Data needs to be at first place for Item::LoadFromDB
+                        PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_MAILITEMS);
+                        stmt->setUInt32(0, mail_id);
+                        PreparedQueryResult resultItems = CharacterDatabase.Query(stmt);
+                        if (resultItems)
+                        {
+                            do
+                            {
+                                Field* itemFields = resultItems->Fetch();
+                                uint32 item_guidlow = itemFields[13].GetUInt32();
+                                uint32 item_template = itemFields[14].GetUInt32();
 
-                                                   ItemTemplate const* itemProto = sObjectMgr->GetItemTemplate(item_template);
-                                                   if (!itemProto)
-                                                   {
-                                                       stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_ITEM_INSTANCE);
-                                                       stmt->setUInt32(0, item_guidlow);
-                                                       trans->Append(stmt);
-                                                       continue;
-                                                   }
+                                ItemTemplate const* itemProto = sObjectMgr->GetItemTemplate(item_template);
+                                if (!itemProto)
+                                {
+                                    stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_ITEM_INSTANCE);
+                                    stmt->setUInt32(0, item_guidlow);
+                                    trans->Append(stmt);
+                                    continue;
+                                }
 
-                                                   Item* pItem = NewItemOrBag(itemProto);
-                                                   if (!pItem->LoadFromDB(item_guidlow, MAKE_NEW_GUID(guid, 0, HIGHGUID_PLAYER), itemFields, item_template))
-                                                   {
-                                                       pItem->FSetState(ITEM_REMOVED);
-                                                       pItem->SaveToDB(trans);              // it also deletes item object!
-                                                       continue;
-                                                   }
+                                Item* pItem = NewItemOrBag(itemProto);
+                                if (!pItem->LoadFromDB(item_guidlow, MAKE_NEW_GUID(guid, 0, HIGHGUID_PLAYER), itemFields, item_template))
+                                {
+                                    pItem->FSetState(ITEM_REMOVED);
+                                    pItem->SaveToDB(trans);              // it also deletes item object!
+                                    continue;
+                                }
 
-                                                   draft.AddItem(pItem);
-                                               } while (resultItems->NextRow());
-                                           }
-                                       }
+                                draft.AddItem(pItem);
+                            }
+                            while (resultItems->NextRow());
+                        }
+                    }
 
-                                       stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL_ITEM_BY_ID);
-                                       stmt->setUInt32(0, mail_id);
-                                       trans->Append(stmt);
+                    stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL_ITEM_BY_ID);
+                    stmt->setUInt32(0, mail_id);
+                    trans->Append(stmt);
 
-                                       uint32 pl_account = sObjectMgr->GetPlayerAccountIdByGUID(MAKE_NEW_GUID(guid, 0, HIGHGUID_PLAYER));
+                    uint32 pl_account = sObjectMgr->GetPlayerAccountIdByGUID(MAKE_NEW_GUID(guid, 0, HIGHGUID_PLAYER));
 
-                                       draft.AddMoney(money).SendReturnToSender(pl_account, guid, sender, trans);
-                                   } while (resultMail->NextRow());
-                               }
+                    draft.AddMoney(money).SendReturnToSender(pl_account, guid, sender, trans);
+                }
+                while (resultMail->NextRow());
+            }
 
-                               // Unsummon and delete for pets in world is not required: player deleted from CLI or character list with not loaded pet.
-                               // NOW we can finally clear other DB data related to character
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHAR_PETS);
-                               stmt->setUInt32(0, guid);
-                               PreparedQueryResult resultPets = CharacterDatabase.Query(stmt);
+            // Unsummon and delete for pets in world is not required: player deleted from CLI or character list with not loaded pet.
+            // NOW we can finally clear other DB data related to character
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHAR_PETS);
+            stmt->setUInt32(0, guid);
+            PreparedQueryResult resultPets = CharacterDatabase.Query(stmt);
 
-                               if (resultPets)
-                               {
-                                   do
-                                   {
-                                       uint32 petguidlow = (*resultPets)[0].GetUInt32();
-                                       Pet::DeleteFromDB(petguidlow);
-                                   } while
-                                       (resultPets->NextRow());
-                               }
+            if (resultPets)
+            {
+                do
+                {
+                    uint32 petguidlow = (*resultPets)[0].GetUInt32();
+                    Pet::DeleteFromDB(petguidlow);
+                } while (resultPets->NextRow());
+            }
 
-                               // Delete char from social list of online chars
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHAR_SOCIAL);
-                               stmt->setUInt32(0, guid);
-                               PreparedQueryResult resultFriends = CharacterDatabase.Query(stmt);
+            // Delete char from social list of online chars
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHAR_SOCIAL);
+            stmt->setUInt32(0, guid);
+            PreparedQueryResult resultFriends = CharacterDatabase.Query(stmt);
 
-                               if (resultFriends)
-                               {
-                                   do
-                                   {
-                                       if (Player* pFriend = ObjectAccessor::FindPlayer(MAKE_NEW_GUID((*resultFriends)[0].GetUInt32(), 0, HIGHGUID_PLAYER)))
-                                       {
-                                           if (pFriend->IsInWorld())
-                                           {
-                                               pFriend->GetSocial()->RemoveFromSocialList(guid, false);
-                                               sSocialMgr->SendFriendStatus(pFriend, FRIEND_REMOVED, guid, false);
-                                           }
-                                       }
-                                   } while
-                                       (resultFriends->NextRow());
-                               }
+            if (resultFriends)
+            {
+                do
+                {
+                    if (Player* pFriend = ObjectAccessor::FindPlayer(MAKE_NEW_GUID((*resultFriends)[0].GetUInt32(), 0, HIGHGUID_PLAYER)))
+                    {
+                        if (pFriend->IsInWorld())
+                        {
+                            pFriend->GetSocial()->RemoveFromSocialList(guid, false);
+                            sSocialMgr->SendFriendStatus(pFriend, FRIEND_REMOVED, guid, false);
+                        }
+                    }
+                } while (resultFriends->NextRow());
+            }
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHARACTER);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHARACTER);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_PLAYER_ACCOUNT_DATA);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_PLAYER_ACCOUNT_DATA);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_DECLINED_NAME);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_DECLINED_NAME);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_ACTION);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_ACTION);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_AURA);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_AURA);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_AURA_EFFECT);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_AURA_EFFECT);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_GIFT);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_GIFT);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_PLAYER_HOMEBIND);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_PLAYER_HOMEBIND);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_INSTANCE);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_INSTANCE);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_INVENTORY);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_INVENTORY);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_QUESTSTATUS);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_QUESTSTATUS);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_QUESTSTATUS_REWARDED);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_QUESTSTATUS_REWARDED);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_REPUTATION);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_REPUTATION);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SPELL);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SPELL);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SPELL_COOLDOWN);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SPELL_COOLDOWN);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_PLAYER_GM_TICKETS);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_PLAYER_GM_TICKETS);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_ITEM_INSTANCE);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+           stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_ITEM_INSTANCE);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SOCIAL_BY_FRIEND);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SOCIAL_BY_FRIEND);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SOCIAL_BY_GUID);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SOCIAL_BY_GUID);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL_ITEMS);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_MAIL_ITEMS);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_PET_BY_OWNER);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_PET_BY_OWNER);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_PET_DECLINEDNAME_BY_OWNER);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_PET_DECLINEDNAME_BY_OWNER);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_ACHIEVEMENTS);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_ACHIEVEMENTS);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_ACHIEVEMENTS);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+           stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_ACHIEVEMENTS);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_EQUIPMENTSETS);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_EQUIPMENTSETS);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_GUILD_EVENTLOG_BY_PLAYER);
-                               stmt->setUInt32(0, guid);
-                               stmt->setUInt32(1, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_GUILD_EVENTLOG_BY_PLAYER);
+            stmt->setUInt32(0, guid);
+            stmt->setUInt32(1, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_GUILD_BANK_EVENTLOG_BY_PLAYER);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_GUILD_BANK_EVENTLOG_BY_PLAYER);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_PLAYER_BGDATA);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_PLAYER_BGDATA);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_GLYPHS);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_GLYPHS);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_QUESTSTATUS_DAILY);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_QUESTSTATUS_DAILY);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_TALENT);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_TALENT);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SKILLS);
-                               stmt->setUInt32(0, guid);
-                               trans->Append(stmt);
+            stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHAR_SKILLS);
+            stmt->setUInt32(0, guid);
+            trans->Append(stmt);
 
-                               CharacterDatabase.CommitTransaction(trans);
-                               break;
-    }
+            CharacterDatabase.CommitTransaction(trans);
+            break;
+        }
         // The character gets unlinked from the account, the name gets freed up and appears as deleted ingame
-    case CHAR_DELETE_UNLINK:
-    {
-                               PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_DELETE_INFO);
+        case CHAR_DELETE_UNLINK:
+        {
+            PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_UPD_DELETE_INFO);
 
-                               stmt->setUInt32(0, guid);
+            stmt->setUInt32(0, guid);
 
-                               CharacterDatabase.Execute(stmt);
-                               break;
-    }
-    default:
-        sLog->outError(LOG_FILTER_PLAYER, "Player::DeleteFromDB: Unsupported delete method: %u.", charDelete_method);
+            CharacterDatabase.Execute(stmt);
+            break;
+        }
+        default:
+            sLog->outError(LOG_FILTER_PLAYER, "Player::DeleteFromDB: Unsupported delete method: %u.", charDelete_method);
+            return;
     }
 
     if (updateRealmChars)
         sWorld->UpdateRealmCharCount(accountId);
+
+    sWorld->DeleteCharacterNameData(guid);
 }
 
 /**
