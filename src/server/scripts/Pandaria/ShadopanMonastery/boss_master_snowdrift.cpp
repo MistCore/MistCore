@@ -16,6 +16,8 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*TODO: Intro is not working*/
+
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
 #include "shadopan_monastery.h"
@@ -150,20 +152,23 @@ class boss_master_snowdrift : public CreatureScript
 
             void Reset()
             {
-                _Reset();
+                //_Reset();
 
                 introStarted = false;
-                phase = PHASE_FIRST_EVENT;
+				phase = PHASE_FIGHT_1;
                 eventPhase = 0;
 
-                Position pos;
-                SnowdriftPos[POINT_BEGIN_EVENT - 1].GetPosition(&pos);
-                me->GetMotionMaster()->Clear();
-                me->GetMotionMaster()->MovePoint(POINT_BEGIN_EVENT, pos);
+				me->setFaction(14);
+				me->SetReactState(REACT_AGGRESSIVE);
 
-                me->setFaction(35);
-                me->SetReactState(REACT_PASSIVE);
-                SetCanSeeEvenInPassiveMode(true);
+                //Position pos;
+                //SnowdriftPos[POINT_BEGIN_EVENT - 1].GetPosition(&pos);
+                //me->GetMotionMaster()->Clear();
+                //me->GetMotionMaster()->MovePoint(POINT_BEGIN_EVENT, pos);
+
+                //me->setFaction(35);
+                //me->SetReactState(REACT_PASSIVE);
+                //SetCanSeeEvenInPassiveMode(true);
             }
 
             void EnterCombat(Unit* /*who*/)
