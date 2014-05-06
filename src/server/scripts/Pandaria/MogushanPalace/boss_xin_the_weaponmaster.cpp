@@ -220,7 +220,7 @@ class mob_animated_staff : public CreatureScript
                             if (!PlayerList.isEmpty())
                                 for (Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)
                                     if (Player* plr = i->getSource())
-                                        if (plr->isAlive() && !plr->isGameMaster())
+                                        if (plr->isAlive() && !plr->IsGameMaster())
                                             units.push_back(plr);
 
                             if (units.empty())

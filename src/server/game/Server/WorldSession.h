@@ -457,7 +457,7 @@ class WorldSession
         void HandleCharFactionOrRaceChange(WorldPacket& recvData);
         void HandleRandomizeCharNameOpcode(WorldPacket& recvData);
         void HandleReorderCharacters(WorldPacket& recvData);
-
+        void HandleOpeningCinematic(WorldPacket& recvData);
 
         // played time
         void HandlePlayedTime(WorldPacket& recvPacket);
