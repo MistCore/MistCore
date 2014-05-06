@@ -31,7 +31,7 @@ enum DumpTableType
                                                             // character_action, character_aura, character_homebind,
                                                             // character_queststatus, character_queststatus_rewarded, character_reputation,
                                                             // character_spell, character_spell_cooldown, character_ticket, character_talent.
-                                                            // character_cuf_profiles, character_currency
+                                                            // character_currency
 
     DTT_EQSET_TABLE,    // <- guid                          // character_equipmentsets
 
@@ -66,13 +66,13 @@ enum DumpReturn
 class PlayerDump
 {
     protected:
-        PlayerDump() {}
+        PlayerDump() { }
 };
 
 class PlayerDumpWriter : public PlayerDump
 {
     public:
-        PlayerDumpWriter() {}
+        PlayerDumpWriter() { }
 
         bool GetDump(uint32 guid, std::string& dump);
         DumpReturn WriteDump(const std::string& file, uint32 guid);
@@ -91,7 +91,7 @@ class PlayerDumpWriter : public PlayerDump
 class PlayerDumpReader : public PlayerDump
 {
     public:
-        PlayerDumpReader() {}
+        PlayerDumpReader() { }
 
         DumpReturn LoadDump(const std::string& file, uint32 account, std::string name, uint32 guid, bool onlyBoundedItems = false);
 };
