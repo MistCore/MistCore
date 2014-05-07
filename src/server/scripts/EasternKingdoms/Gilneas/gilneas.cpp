@@ -2930,9 +2930,8 @@ public:
     bool OnQuestAccept(Player* player, Creature* creature, Quest const* quest)
     {
         if (quest->GetQuestId() == 14212)
-        {
-         player->TeleportTo(638, -1535.24, 1584.37, 26.53, 0.78, 0); //teleport to zone
-        }
+            player->TeleportTo(638, -1535.24f, 1584.37f, 26.53f, 0.78f, 0.0f); //teleport to zone
+
         return true;
     }
 };

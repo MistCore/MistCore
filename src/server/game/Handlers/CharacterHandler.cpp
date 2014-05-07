@@ -820,7 +820,6 @@ void WorldSession::HandleCharDeleteOpcode(WorldPacket & recvData)
     std::string IP_str = GetRemoteAddress();
     sLog->outInfo(LOG_FILTER_CHARACTER, "Account: %d (IP: %s) Delete Character:[%s] (GUID: %u)", GetAccountId(), IP_str.c_str(), name.c_str(), GUID_LOPART(guid));
     sScriptMgr->OnPlayerDelete(guid);
-    sWorld->DeleteCharacterNameData(GUID_LOPART(guid));
 
     if (sLog->ShouldLog(LOG_FILTER_PLAYER_DUMP, LOG_LEVEL_INFO)) // optimize GetPlayerDump call
     {
@@ -832,7 +831,6 @@ void WorldSession::HandleCharDeleteOpcode(WorldPacket & recvData)
 
     sGuildFinderMgr->RemoveAllMembershipRequestsFromPlayer(guid);
     Player::DeleteFromDB(guid, GetAccountId());
-    sWorld->DeleteCharName(name);
 
     WorldPacket data(SMSG_CHAR_DELETE, 1);
     data << uint8(CHAR_DELETE_SUCCESS);
