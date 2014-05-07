@@ -1,6 +1,6 @@
 # MistCore
 
-MistCore is (for the moment) the JadeCore leaked sourcecode that was made public or sold by a couple of people.
+MistCore is (for the moment) the MistCore leaked sourcecode that was made public or sold by a couple of people.
 Since this is a 'Mists of Pandaria' Core, we would like to continue this project.
 We will try to fix what is broken, remove what is not needed, add new functions, and try to get it up to date with the current TrinityCore.
 There is still a lot to be fixed in this source, and we need all the help we can get.
@@ -63,9 +63,6 @@ Read file [COPYING](COPYING)
 
 ## Authors &amp; Contributors
 
-TinityCore [THANKS](THANKS)
-
-Pandashan
 
 MistCore [THANKS](THANKS_MIST)
 
@@ -77,14 +74,4 @@ MistCore
 
 [MistCore Forums](http://www.mistcore.org/)
 
-
-
-TrinityCore:
-
-[TrinityCore Site](http://www.trinitycore.org)
-
-[TrinityCore Wiki](http://trinitycore.info)
-
-[TrinityCore Documentation](http://www.trinitycore.net) (powered by Doxygen)
-
-[TrinityCore Forums](http://www.trinitycore.org/f/)
+///////////// THE END /////////////////////* MISTCORE */////////// 
