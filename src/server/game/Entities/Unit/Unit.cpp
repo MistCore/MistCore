@@ -8204,30 +8204,27 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffectPtr trigge
             if (!isInCombat())
                 return false;
 
-            int32 aviableBasepoints = 0;
-            int32 max_amount = 0;
+            if (dummySpell->Id == 84840 && !HasAura(5487))
+                return false;
 
-            triggered_spell_id = 76691;
+            triggered_spell_id = 132365;
 
-            if (AuraPtr vengeance = GetAura(triggered_spell_id, GetGUID()))
+            int32 basepoints0 = damage * 0.02f; // 20% of damage
+            int32 apcap = GetCreateHealth() * 0.1f; // 10% base HP is the cap
+            if (basepoints0 > 0)
             {
-                aviableBasepoints += vengeance->GetEffect(EFFECT_0)->GetAmount();
-                max_amount += vengeance->GetEffect(EFFECT_2)->GetAmount();
+                if (AuraPtr veng = victim->GetAura(132365))
+                {
+                    basepoints0 += veng->GetEffect(EFFECT_0)->GetAmount();
+                    veng->GetEffect(EFFECT_0)->ChangeAmount(apcap > basepoints0 ? basepoints0 : apcap);
+                    veng->SetNeedClientUpdateForTargets(); // ap doesnt update on aura bar
+                }
+                else
+                {
+                    if (AuraPtr veng = victim->AddAura(132365, victim))
+                        veng->GetEffect(EFFECT_0)->ChangeAmount(basepoints0);
+                }
             }
-
-            // The first melee attack taken by the tank generates Vengeance equal to 33% of the damage taken by that attack.
-           if (!aviableBasepoints && (procFlag & (PROC_FLAG_TAKEN_MELEE_AUTO_ATTACK)))
-                triggerAmount = 33;
-
-            int32 cap = (GetCreateHealth() + GetStat(STAT_STAMINA) * 14) / 10;
-            basepoints0 = int32(damage * triggerAmount / 100);
-            basepoints0 += aviableBasepoints;
-            basepoints0 = std::min(cap, basepoints0);
-
-            // calculate max amount player's had durind the fight
-            int32 basepoints1 = std::max(basepoints0, max_amount);
-
-            CastCustomSpell(this, triggered_spell_id, &basepoints0, &basepoints0, &basepoints1, true, castItem, triggeredByAura, originalCaster);
             return true;
         }
         default:
