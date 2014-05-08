@@ -901,7 +901,7 @@ void Group::SendLootStartRoll(uint32 countDown, uint32 mapid, const Roll& r)
     data << uint32(0);                     // randomSuffix
     data.WriteByteSeq(guid[3]);
     data.WriteByteSeq(guid[4]);
-    if(r.itemSlot)
+    if (r.itemSlot)
         data << uint8(r.itemSlot);
     data.WriteByteSeq(guid[6]);
     data << uint32(r.itemRandomPropId);                              // the countdown time to choose "need" or "greed"
@@ -962,7 +962,7 @@ void Group::SendLootStartRollToPlayer(uint32 countDown, uint32 mapId, Player* p,
     data << uint32(0);
     data.WriteByteSeq(guid[3]);
     data.WriteByteSeq(guid[4]);
-    if(r.itemSlot)
+    if (r.itemSlot)
         data << uint8(r.itemSlot);
     data.WriteByteSeq(guid[6]);
     data << uint32(r.itemRandomPropId);

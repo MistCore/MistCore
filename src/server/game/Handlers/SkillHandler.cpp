@@ -32,7 +32,7 @@ void WorldSession::HandleSetSpecialization(WorldPacket& recvData)
     uint8 classId = _player->getClass();
 
     // Avoid cheat - hack
-    if(_player->GetSpecializationId(_player->GetActiveSpec()))
+    if (_player->GetSpecializationId(_player->GetActiveSpec()))
         return;
 
     uint32 specializationId = 0;
@@ -95,7 +95,7 @@ void WorldSession::HandleTalentWipeConfirmOpcode(WorldPacket& recvData)
     if (GetPlayer()->HasUnitState(UNIT_STATE_DIED))
         GetPlayer()->RemoveAurasByType(SPELL_AURA_FEIGN_DEATH);
 
-    if(!specializationReset)
+    if (!specializationReset)
     {
         if (!_player->ResetTalents())
         {
@@ -114,7 +114,7 @@ void WorldSession::HandleTalentWipeConfirmOpcode(WorldPacket& recvData)
 
     _player->SendTalentsInfoData(false);
 
-    if(Unit* unit = _player->GetSelectedUnit())
+    if (Unit* unit = _player->GetSelectedUnit())
         unit->CastSpell(_player, 14867, true);                  //spell: "Untalent Visual Effect"
 }
 

@@ -1104,7 +1104,7 @@ bool LFGMgr::CheckCompatibility(LfgGuidList check, LfgProposal*& pProposal, LfgT
         if (itQueue == m_QueueInfoMap.end() || GetState(guid) != LFG_STATE_QUEUED)
         {
             sLog->outError(LOG_FILTER_LFG, "LFGMgr::CheckCompatibility: [" UI64FMTD "] is not queued but listed as queued!", (*it));
-            if(Player* plr = ObjectAccessor::FindPlayer(guid))
+            if (Player* plr = ObjectAccessor::FindPlayer(guid))
                 if (itQueue != m_QueueInfoMap.end())
                     SendUpdateStatus(plr, GetComment(guid), itQueue->second->dungeons, false, true);
             RemoveFromQueue(guid);
@@ -2192,7 +2192,7 @@ void LFGMgr::SendUpdateStatus(Player* player, const std::string& comment, const 
     ObjectGuid guid = player->GetGUID();
 
     LfgQueueInfoMap::iterator itr = m_QueueInfoMap.find(guid);
-    if(itr == m_QueueInfoMap.end() && player->GetGroup())
+    if (itr == m_QueueInfoMap.end() && player->GetGroup())
         itr = m_QueueInfoMap.find(player->GetGroup()->GetGUID());
 
     info = itr != m_QueueInfoMap.end() ? itr->second : NULL;

@@ -82,29 +82,29 @@ void WorldSession::SendBfInvitePlayerToQueue(uint64 guid)
 
     data.WriteByteSeq(guidBytes[6]);
 
-    //if(-(bit != 0) +7 dword)
+    //if (-(bit != 0) +7 dword)
     //    data << uint32(0);
 
-    //if(!+11)
+    //if (!+11)
     //    data << uint32(0);
 
     data.WriteByteSeq(guidBytes[5]);
 
-    //if(!+6)
+    //if (!+6)
     //    data << uint32(0);
 
-    //if(!+9)
+    //if (!+9)
     //    data << uint32(0);
 
     data.WriteByteSeq(guidBytes[7]);
     data.WriteByteSeq(guidBytes[1]);
 
-    if(warmup)
+    if (warmup)
         data << uint8(1);
 
     data.WriteByteSeq(guidBytes[2]);
 
-    //if(+!8)
+    //if (+!8)
     //  data << uint32(0);
 
     data.WriteByteSeq(guidBytes[3]);
@@ -147,14 +147,14 @@ void WorldSession::SendBfQueueInviteResponse(uint64 guid,uint32 ZoneId, bool Can
     data.WriteBit(bgGuid[7]);
     data.FlushBits();
 
-    //if(guid2[1])
-    //if(guid2[7])
-    //if(guid2[4])
-    //if(guid2[3])
-    //if(guid2[6])
-    //if(guid2[0])
-    //if(guid2[2])
-    //if(guid2[5])
+    //if (guid2[1])
+    //if (guid2[7])
+    //if (guid2[4])
+    //if (guid2[3])
+    //if (guid2[6])
+    //if (guid2[0])
+    //if (guid2[2])
+    //if (guid2[5])
 
     data.WriteByteSeq(bgGuid[6]);
     data.WriteByteSeq(bgGuid[5]);
@@ -248,7 +248,7 @@ void WorldSession::HandleBfQueueInviteResponse(WorldPacket & recvData)
 
     sLog->outError(LOG_FILTER_GENERAL, "HandleQueueInviteResponse: GUID:" UI64FMTD " Accepted:%u", (uint64)guid, accepted);
 
-    if(!accepted)
+    if (!accepted)
         return;
 
     Battlefield* bf = sBattlefieldMgr->GetBattlefieldByGUID(guid);
@@ -342,7 +342,7 @@ void WorldSession::HandleBfExitRequest(WorldPacket& recv_data)
 {
     sLog->outError(LOG_FILTER_GENERAL, "HandleBfExitRequest");
     Battlefield* bf = sBattlefieldMgr->GetBattlefieldToZoneId(_player->GetZoneId());
-    if(bf)
+    if (bf)
          bf->KickPlayerFromBattlefield(_player->GetGUID());
 }
 

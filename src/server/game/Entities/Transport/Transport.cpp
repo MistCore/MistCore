@@ -686,7 +686,7 @@ Creature * Transport::AddNPCPassengerCreature(uint32 tguid, uint32 entry, float 
 
     pCreature->SetHomePosition(pCreature->GetPositionX(), pCreature->GetPositionY(), pCreature->GetPositionZ(), pCreature->GetOrientation());
 
-    if(!pCreature->IsPositionValid())
+    if (!pCreature->IsPositionValid())
     {
         sLog->outError(LOG_FILTER_TRANSPORTS, "Creature (guidlow %d, entry %d) not created. Suggested coordinates isn't valid (X: %f Y: %f)", pCreature->GetGUIDLow(), pCreature->GetEntry(), pCreature->GetPositionX(), pCreature->GetPositionY());
         delete pCreature;

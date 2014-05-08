@@ -859,7 +859,7 @@ void WorldSession::HandleGroupRaidConvertOpcode(WorldPacket& recvData)
     bool unk;
     recvData >> unk;
 
-    if(group->isRaidGroup())
+    if (group->isRaidGroup())
         group->ConvertToGroup();
     else
         group->ConvertToRaid();
@@ -1162,7 +1162,7 @@ void WorldSession::HandleRaidConfirmReadyCheck(WorldPacket& recvData)
     group->BroadcastPacket(&data, true);
 
     // Send SMSG_RAID_READY_CHECK_COMPLETED
-    if(group->GetReadyCheckCount() >= group->GetMembersCount())
+    if (group->GetReadyCheckCount() >= group->GetMembersCount())
     {
         ObjectGuid grpGUID = group->GetGUID();
 

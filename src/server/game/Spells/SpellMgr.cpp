@@ -1249,7 +1249,7 @@ void SpellMgr::LoadSpellRanks()
     {
         for(int difficulty = 0; difficulty < MAX_DIFFICULTY; difficulty++)
         {
-            if(mSpellInfoMap[difficulty][itr->first])
+            if (mSpellInfoMap[difficulty][itr->first])
                 mSpellInfoMap[difficulty][itr->first]->ChainEntry = NULL;
         }
     }
@@ -1342,7 +1342,7 @@ void SpellMgr::LoadSpellRanks()
             mSpellChains[addedSpell].rank = itr->second;
             mSpellChains[addedSpell].prev = GetSpellInfo(prevRank);
             for(int difficulty = 0; difficulty < MAX_DIFFICULTY; difficulty++)
-                if(mSpellInfoMap[difficulty][addedSpell])
+                if (mSpellInfoMap[difficulty][addedSpell])
                     mSpellInfoMap[difficulty][addedSpell]->ChainEntry = &mSpellChains[addedSpell];
             prevRank = addedSpell;
             ++itr;
@@ -2721,7 +2721,7 @@ void SpellMgr::LoadSpellClassInfo()
     for (int ClassID = 0; ClassID < MAX_CLASSES; ClassID++)
     {
         ChrClassesEntry const* classEntry = sChrClassesStore.LookupEntry(ClassID);
-        if(!classEntry)
+        if (!classEntry)
             continue;
 
         // Player damage reduction (40% base resilience)
@@ -2880,7 +2880,7 @@ void SpellMgr::LoadSpellInfoStore()
     std::map<uint32, std::set<uint32> > spellDifficultyList;
 
     for (uint32 i = 0; i < sSpellEffectStore.GetNumRows(); ++i)
-        if(SpellEffectEntry const* spellEffect = sSpellEffectStore.LookupEntry(i))
+        if (SpellEffectEntry const* spellEffect = sSpellEffectStore.LookupEntry(i))
             spellDifficultyList[spellEffect->EffectSpellId].insert(spellEffect->EffectDifficulty);
 
 
@@ -2905,7 +2905,7 @@ void SpellMgr::LoadSpellInfoStore()
         if (!spellPower)
             continue;
 
-        if(alreadySet.find(spellPower->SpellId) != alreadySet.end())
+        if (alreadySet.find(spellPower->SpellId) != alreadySet.end())
             continue;
 
         for (int difficulty = 0; difficulty < MAX_DIFFICULTY; difficulty++)
@@ -2935,7 +2935,7 @@ void SpellMgr::LoadSpellInfoStore()
             continue;
 
         SpellInfo * spellEntry = mSpellInfoMap[NONE_DIFFICULTY][talentInfo->spellId];
-        if(spellEntry)
+        if (spellEntry)
             spellEntry->talentId = talentInfo->Id;
     }
 
@@ -5056,9 +5056,9 @@ void SpellMgr::LoadDbcDataCorrections()
 
 const SpellInfo* SpellMgr::GetSpellInfo(uint32 spellId, Difficulty difficulty) const
 {
-    if(spellId < GetSpellInfoStoreSize())
+    if (spellId < GetSpellInfoStoreSize())
     {
-        if(mSpellInfoMap[difficulty][spellId])
+        if (mSpellInfoMap[difficulty][spellId])
             return mSpellInfoMap[difficulty][spellId];
 
         return mSpellInfoMap[NONE_DIFFICULTY][spellId];

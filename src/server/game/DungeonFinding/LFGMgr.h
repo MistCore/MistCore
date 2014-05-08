@@ -328,7 +328,7 @@ class LFGMgr
         LfgQueueInfo* GetLfgQueueInfo(uint64 guid) const
         {
             LfgQueueInfoMap::const_iterator itr = m_QueueInfoMap.find(guid);
-            if(itr != m_QueueInfoMap.end())
+            if (itr != m_QueueInfoMap.end())
                 return itr->second;
 
             return NULL;

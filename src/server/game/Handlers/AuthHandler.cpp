@@ -33,7 +33,7 @@ void WorldSession::SendAuthResponse(uint8 code, bool queued, uint32 queuePos)
     packet.WriteBits(realmRaceCount, 25);                 // Read realmClassResult.count // 15 (race ?)
 
     packet.WriteBit(queued);
-    if(queued)
+    if (queued)
     {
         packet.WriteBit(0);
         packet << uint32(queuePos);

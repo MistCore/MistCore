@@ -424,10 +424,10 @@ void WorldSession::SendBroadcastTextDb2Reply(uint32 entry)
     buff << uint32(entry);
     buff << uint32(0); // unk
     buff << uint16(size1);
-    if(size1)
+    if (size1)
         buff << std::string( pGossip ? pGossip->Options[0].Text_0 : text);
     buff << uint16(size2);
-    if(size2)
+    if (size2)
         buff << std::string(pGossip ? pGossip->Options[0].Text_1 : text);
     buff << uint32(0);
     buff << uint32(0);

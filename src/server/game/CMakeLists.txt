@@ -8,7 +8,7 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-if( USE_COREPCH )
+if ( USE_COREPCH )
   include_directories(${CMAKE_CURRENT_BINARY_DIR})
 endif()
 
@@ -58,7 +58,7 @@ file(GLOB_RECURSE sources_shared_ptrs SharedPtrs/*.h)
 
 # Create game-libary
 
-if( USE_COREPCH AND MSVC )
+if ( USE_COREPCH AND MSVC )
   set(game_STAT_SRCS
     PrecompiledHeaders/gamePCH.cpp
     PrecompiledHeaders/gamePCH.h
@@ -219,8 +219,8 @@ add_library(game STATIC ${game_STAT_SRCS})
 add_dependencies(game revision.h)
 
 # Generate precompiled header
-if( USE_COREPCH )
-  if(CMAKE_COMPILER_IS_GNUCXX)
+if ( USE_COREPCH )
+  if (CMAKE_COMPILER_IS_GNUCXX)
     add_precompiled_header(game ${CMAKE_CURRENT_SOURCE_DIR}/PrecompiledHeaders/gamePCH.h)
   elseif(MSVC)
     add_native_precompiled_header(game ${CMAKE_CURRENT_SOURCE_DIR}/PrecompiledHeaders/gamePCH)

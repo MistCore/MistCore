@@ -249,7 +249,7 @@ void WorldSession::HandleQuestgiverAcceptQuestOpcode(WorldPacket& recvData)
             if (quest->GetSrcSpell() > 0)
                 _player->CastSpell(_player, quest->GetSrcSpell(), true);
 
-            if(quest->IsAutoComplete())
+            if (quest->IsAutoComplete())
             {
                 // Add quest items for quests that require items
                 for (uint8 x = 0; x < QUEST_ITEM_OBJECTIVES_COUNT; ++x)
@@ -279,7 +279,7 @@ void WorldSession::HandleQuestgiverAcceptQuestOpcode(WorldPacket& recvData)
                     if (uint32 spell_id = quest->RequiredSpellCast[i])
                     {
                         for (uint16 z = 0; z < creaturecount; ++z)
-                            if(creature > 0)
+                            if (creature > 0)
                                 _player->CastedCreatureOrGOForQuest(creature, true, spell_id);
                             else
                                 _player->CastedCreatureOrGOForQuest(creature, false, spell_id);
@@ -303,7 +303,7 @@ void WorldSession::HandleQuestgiverAcceptQuestOpcode(WorldPacket& recvData)
                     uint32 currency = quest->RequiredCurrencyId[y];
                     uint32 currencyCount = quest->RequiredCurrencyCount[y];
 
-                    if(!currency || !currencyCount)
+                    if (!currency || !currencyCount)
                         continue;
 
                     _player->ModifyCurrency(currency, currencyCount);

@@ -153,11 +153,11 @@ void PlayerMenu::SendGossipMenu(uint32 titleTextId, uint64 objectGUID) const
 
         uint32 questStat = plr ? plr->GetQuestStatus(questID) : 0;
 
-        if(questStat == QUEST_STATUS_COMPLETE)
+        if (questStat == QUEST_STATUS_COMPLETE)
             questStat = 3;
-        else if(questStat == QUEST_STATUS_NONE)
+        else if (questStat == QUEST_STATUS_NONE)
             questStat = 1;
-        else if(questStat == QUEST_STATUS_INCOMPLETE)
+        else if (questStat == QUEST_STATUS_INCOMPLETE)
             questStat = 2;
         
         data << uint32(questID);
@@ -284,11 +284,11 @@ void PlayerMenu::SendQuestGiverQuestList(QEmote eEmote, const std::string& Title
 
             uint32 questStat = plr ? plr->GetQuestStatus(questID) : 0;
 
-            if(questStat == QUEST_STATUS_COMPLETE)
+            if (questStat == QUEST_STATUS_COMPLETE)
                 questStat = 3;
-            else if(questStat == QUEST_STATUS_NONE)
+            else if (questStat == QUEST_STATUS_NONE)
                 questStat = 1;
-            else if(questStat == QUEST_STATUS_INCOMPLETE)
+            else if (questStat == QUEST_STATUS_INCOMPLETE)
                 questStat = 2;
 
             data << uint32(questID);
@@ -544,7 +544,7 @@ void PlayerMenu::SendQuestQueryResponse(Quest const* quest) const
     }
     for (uint32 i = 0; i < QUEST_OBJECTIVES_COUNT; ++i)
     {
-        if(quest->RequiredItemId[i] != 0)
+        if (quest->RequiredItemId[i] != 0)
         {
             dataBuff << uint32(0); //unk
             dataBuff << uint8(1);
@@ -559,7 +559,7 @@ void PlayerMenu::SendQuestQueryResponse(Quest const* quest) const
     }
     for (uint32 i = 0; i < QUEST_OBJECTIVES_COUNT; ++i)
     {
-        if(quest->RequiredCurrencyId[i] != 0)
+        if (quest->RequiredCurrencyId[i] != 0)
         {
             dataBuff << uint32(0); //unk
             dataBuff << uint8(4);
@@ -572,7 +572,7 @@ void PlayerMenu::SendQuestQueryResponse(Quest const* quest) const
             ++count;
         }
     }
-    if(quest->GetRepObjectiveFaction() != 0)
+    if (quest->GetRepObjectiveFaction() != 0)
     {
         dataBuff << uint32(0); //unk
         dataBuff << uint8(6);
@@ -584,7 +584,7 @@ void PlayerMenu::SendQuestQueryResponse(Quest const* quest) const
         dataBuff << uint8(0);
         ++count;
     }
-    if(quest->GetRepObjectiveFaction2() != 0)
+    if (quest->GetRepObjectiveFaction2() != 0)
     {
         dataBuff << uint32(0); //unk
         dataBuff << uint8(6);

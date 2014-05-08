@@ -439,7 +439,7 @@ bool Loot::FillLoot(uint32 lootId, LootStore const& store, Player* lootOwner, bo
     else
         FillNotNormalLootFor(lootOwner, true);
 
-    if((lootId == 90406 || lootId == 90399 || lootId == 90397 || lootId == 90400 ||  lootId == 90398 || lootId == 90395 || lootId == 90401) && lootMode == LOOT_MODE_DEFAULT)
+    if ((lootId == 90406 || lootId == 90399 || lootId == 90397 || lootId == 90400 ||  lootId == 90398 || lootId == 90395 || lootId == 90401) && lootMode == LOOT_MODE_DEFAULT)
     {
         for (auto itemCurrent: items)
             for (auto spellId: sSpellMgr->mSpellCreateItemList)
@@ -846,7 +846,7 @@ ByteBuffer& operator<<(ByteBuffer& b, LootView const& lv)
                     dataBuffer << uint32(l.items[i].count);
                     if (slot_type)
                         dataBuffer << uint8(slot_type);
-                    if(i)
+                    if (i)
                         dataBuffer << uint8(i);
                     dataBuffer << uint32(l.items[i].randomSuffix);
                     dataBuffer << uint32(l.items[i].itemid);
@@ -870,7 +870,7 @@ ByteBuffer& operator<<(ByteBuffer& b, LootView const& lv)
                     bits.push_back(!i);
                     bits.push_back(!LOOT_SLOT_TYPE_ALLOW_LOOT);
                     dataBuffer << uint32(l.items[i].count);
-                    if(i)
+                    if (i)
                         dataBuffer << uint8(i);
                     dataBuffer << uint32(l.items[i].randomSuffix);
                     dataBuffer << uint32(l.items[i].itemid);
@@ -907,7 +907,7 @@ ByteBuffer& operator<<(ByteBuffer& b, LootView const& lv)
                     dataBuffer << uint32(l.items[i].count);
                     if (slot_type)
                         dataBuffer << uint8(slot_type);
-                    if(i)
+                    if (i)
                         dataBuffer << uint8(i);
                     dataBuffer << uint32(l.items[i].randomSuffix);
                     dataBuffer << uint32(l.items[i].itemid);
@@ -961,7 +961,7 @@ ByteBuffer& operator<<(ByteBuffer& b, LootView const& lv)
                 dataBuffer << uint32(item.count);
                 if (slottype)
                     dataBuffer << uint8(slottype);
-                if(l.items.size() + (qi - q_list->begin()))
+                if (l.items.size() + (qi - q_list->begin()))
                     dataBuffer << uint8(l.items.size() + (qi - q_list->begin()));
                 dataBuffer << uint32(item.randomSuffix);
                 dataBuffer << uint32(item.itemid);
@@ -987,7 +987,7 @@ ByteBuffer& operator<<(ByteBuffer& b, LootView const& lv)
                 dataBuffer << uint32(item.count);
                 if (slotType)
                     dataBuffer << uint8(slotType);
-                if(fi->index)
+                if (fi->index)
                     dataBuffer << uint8(fi->index);
                 dataBuffer << uint32(item.randomSuffix);
                 dataBuffer << uint32(item.itemid);
@@ -1036,7 +1036,7 @@ ByteBuffer& operator<<(ByteBuffer& b, LootView const& lv)
                 dataBuffer << uint32(item.count);
                 if (slottype)
                     dataBuffer << uint8(slottype);
-                if(ci->index)
+                if (ci->index)
                     dataBuffer << uint8(ci->index);
                 dataBuffer << uint32(item.randomSuffix);
                 dataBuffer << uint32(item.itemid);
@@ -1092,14 +1092,14 @@ ByteBuffer& operator<<(ByteBuffer& b, LootView const& lv)
         packet.ReadInt32("Count", i); // unconfirmed
     }*/
 
-    if(hasUnk3)
+    if (hasUnk3)
         b << uint8(2); // 2
     b.WriteByteSeq(lv._guid[7]);
-    if(hasUnk2)
+    if (hasUnk2)
         b << uint8(2);// unk 5
     b.WriteByteSeq(lv._guid[1]);
     b.WriteByteSeq(lv._guid[6]);
-    if(hasUnk1)
+    if (hasUnk1)
         b << uint8(0);
     b.WriteByteSeq(lv._guid[2]);
 

@@ -892,7 +892,7 @@ void WorldSession::HandleLearnPetSpecialization(WorldPacket & recvData)
     // GUID : useless =P
     recvData.rfinish();
 
-    if(_player->isInCombat())
+    if (_player->isInCombat())
         return;
 
     uint32 specializationId = 0;
@@ -912,14 +912,14 @@ void WorldSession::HandleLearnPetSpecialization(WorldPacket & recvData)
             break;
     }
 
-    if(!specializationId)
+    if (!specializationId)
         return;
 
     Pet* pet = _player->GetPet();
     if (!pet)
         return;
 
-    if(pet->GetSpecializationId())
+    if (pet->GetSpecializationId())
         pet->UnlearnSpecializationSpell();
 
     pet->SetSpecializationId(specializationId);

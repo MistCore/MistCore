@@ -810,7 +810,7 @@ void WorldSession::ReadMovementInfo(WorldPacket& data, MovementInfo* mi)
                 hasAlive32 = !data.ReadBit();
                 break;
             case MSEAlive32:
-                if(hasAlive32)
+                if (hasAlive32)
                     data >> mi->Alive32;
                 break;
             default:
@@ -826,7 +826,7 @@ void WorldSession::ReadMovementInfo(WorldPacket& data, MovementInfo* mi)
        if (GetPlayer()->GetTransport())
            GetPlayer()->GetTransport()->UpdatePosition(mi);
 
-    //! Anti-cheat checks. Please keep them in seperate if() blocks to maintain a clear overview.
+    //! Anti-cheat checks. Please keep them in seperate if () blocks to maintain a clear overview.
     //! Might be subject to latency, so just remove improper flags.
     #ifdef TRINITY_DEBUG
     #define REMOVE_VIOLATING_FLAGS(check, maskToRemove) \
@@ -1100,7 +1100,7 @@ void WorldSession::WriteMovementInfo(WorldPacket &data, MovementInfo* mi)
                 data.WriteBit(!mi->Alive32);
                 break;
             case MSEAlive32:
-                if(mi->Alive32)
+                if (mi->Alive32)
                     data << mi->Alive32;
                 break;
             default:

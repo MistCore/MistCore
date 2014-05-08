@@ -1110,7 +1110,7 @@ void GameObject::Use(Unit* user)
     if (GetEntry() == 192819)
     {
         if (Creature *c = user->FindNearestCreature(23472, 50.00f))
-            if(Player* plr = user->ToPlayer())
+            if (Player* plr = user->ToPlayer())
                 plr->TeleportTo(user->GetMapId(), c->GetPositionX(), c->GetPositionY(), c->GetPositionZ(), 3.14f);
         return;
     }

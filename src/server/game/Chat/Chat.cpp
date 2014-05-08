@@ -353,7 +353,7 @@ bool ChatHandler::ExecuteCommandInTable(ChatCommand* table, const char* text, co
                     std::string sel_name = "ERROR";
                     uint32 sel_acc_guid = 0;
 
-                    if(selected)
+                    if (selected)
                     {
                         sel_guid = selected->GetGUIDLow();
                         sel_name = selected->GetName();
