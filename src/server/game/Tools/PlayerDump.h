@@ -31,8 +31,7 @@ enum DumpTableType
                                                             // character_action, character_aura, character_homebind,
                                                             // character_queststatus, character_queststatus_rewarded, character_reputation,
                                                             // character_spell, character_spell_cooldown, character_ticket, character_talent.
-                                                            // character_cuf_profiles, character_currency
-    DTT_VS_TABLE,       // Void Storage Table <- playerGuid
+                                                            // character_currency
 
     DTT_EQSET_TABLE,    // <- guid                          // character_equipmentsets
 
@@ -50,7 +49,7 @@ enum DumpTableType
     DTT_ITEM_GIFT,      // <- item guids                    // character_gifts
 
     DTT_PET,            //    -> pet guids collection       // character_pet
-    DTT_PET_TABLE,      // <- pet guids                     // pet_aura, pet_spell, pet_spell_cooldown
+    DTT_PET_TABLE       // <- pet guids                     // pet_aura, pet_spell, pet_spell_cooldown
 };
 
 enum DumpReturn
@@ -67,13 +66,13 @@ enum DumpReturn
 class PlayerDump
 {
     protected:
-        PlayerDump() {}
+        PlayerDump() { }
 };
 
 class PlayerDumpWriter : public PlayerDump
 {
     public:
-        PlayerDumpWriter() {}
+        PlayerDumpWriter() { }
 
         bool GetDump(uint32 guid, std::string& dump);
         DumpReturn WriteDump(const std::string& file, uint32 guid);
@@ -92,7 +91,7 @@ class PlayerDumpWriter : public PlayerDump
 class PlayerDumpReader : public PlayerDump
 {
     public:
-        PlayerDumpReader() {}
+        PlayerDumpReader() { }
 
         DumpReturn LoadDump(const std::string& file, uint32 account, std::string name, uint32 guid, bool onlyBoundedItems = false);
 };
@@ -101,4 +100,3 @@ class PlayerDumpReader : public PlayerDump
 #define sInterRealmTransfertWriter ACE_Singleton<PlayerDumpWriter, ACE_Thread_Mutex>::instance()
 
 #endif
-

@@ -1,1 +1,1 @@
-UPDATE creature_template SET Health_mod='268' WHERE entry='60143';
+UPDATE creature_template SET Health_mod ='268' WHERE entry ='60143';

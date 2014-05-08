@@ -803,7 +803,7 @@ public:
         {
             if (Creature* tempSummon = creature->SummonCreature(54856, creature->GetPositionX(), creature->GetPositionY(), creature->GetPositionZ(), creature->GetOrientation(), TEMPSUMMON_MANUAL_DESPAWN, 0, player->GetGUID()))
             {
-                tempSummon->SetPhaseMask(1024, true);
+                tempSummon->SetPhaseMask(2056, true);
                 tempSummon->AI()->AttackStart(player);
                 tempSummon->AI()->SetGUID(player->GetGUID());
             }
@@ -843,7 +843,7 @@ public:
         void Reset()
         {
             // This particular entry is also spawned on an other event
-            if (me->GetAreaId() != 5849) // Cavern areaid
+            if (me->GetAreaId() != 5736) // Cavern areaid
                 return;
 
             playerGuid = 0;
