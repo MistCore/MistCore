@@ -1589,7 +1589,7 @@ void Pet::_LoadAuras(PreparedQueryResult auraResult, PreparedQueryResult auraEff
     }
 
     std::list<auraEffectData> auraEffectList;
-    if(resultEffect)
+    if (resultEffect)
     {
         do
         {
@@ -1651,7 +1651,7 @@ void Pet::_LoadAuras(PreparedQueryResult auraResult, PreparedQueryResult auraEff
 
             for(std::list<auraEffectData>::iterator itr = auraEffectList.begin(); itr != auraEffectList.end(); ++itr)
             {
-                if(itr->_slot == slot)
+                if (itr->_slot == slot)
                 {
                     damage[itr->_effect] = itr->_amount;
                     baseDamage[itr->_effect] = itr->_baseamount;
@@ -1694,7 +1694,7 @@ void Pet::_SaveAuras(SQLTransaction& trans)
         AuraPtr aura = itr->second;
         AuraApplication * foundAura = GetAuraApplication(aura->GetId(), aura->GetCasterGUID(), aura->GetCastItemGUID());
 
-        if(!foundAura)
+        if (!foundAura)
             continue;
 
         int32 damage[MAX_SPELL_EFFECTS];

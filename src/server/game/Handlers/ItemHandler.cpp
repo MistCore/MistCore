@@ -490,7 +490,7 @@ void WorldSession::HandleSellItemOpcode(WorldPacket & recvData)
 {
     sLog->outDebug(LOG_FILTER_NETWORKIO, "WORLD: Received CMSG_SELL_ITEM");
 
-    if(sWorld->getBoolConfig(CONFIG_ANTISPAM_VENDOR_ENABLE))
+    if (sWorld->getBoolConfig(CONFIG_ANTISPAM_VENDOR_ENABLE))
     {
         time_t now = time(NULL);
         if (now - timeLastSellItemOpcode < sWorld->getIntConfig(CONFIG_ANTISPAM_VENDOR_DELAY))
@@ -841,7 +841,7 @@ void WorldSession::SendListInventory(uint64 vendorGuid)
                     if (reward.AchievementId)
                         if (!guild->GetAchievementMgr().HasAchieved(reward.AchievementId))
                         {
-                            if(!(reward.AchievementId == 5492 && guild->GetAchievementMgr().HasAchieved(4912)) && !(reward.AchievementId == 4912 && guild->GetAchievementMgr().HasAchieved(5492)))
+                            if (!(reward.AchievementId == 5492 && guild->GetAchievementMgr().HasAchieved(4912)) && !(reward.AchievementId == 4912 && guild->GetAchievementMgr().HasAchieved(5492)))
                             { 
                                 guildRewardCheckPassed = false;
                                 break;

@@ -970,13 +970,13 @@ SpellInfo::SpellInfo(SpellEntry const* spellEntry, uint32 difficulty)
     for (uint32 i = 0; i < sSpecializationSpellStore.GetNumRows(); i++)
     {
         specializationInfo = sSpecializationSpellStore.LookupEntry(i);
-        if(!specializationInfo)
+        if (!specializationInfo)
             continue;
 
         if (specializationInfo->LearnSpell == Id)
             SpecializationIdList.push_back(specializationInfo->SpecializationEntry);
 
-        if(specializationInfo->OverrideSpell == Id)
+        if (specializationInfo->OverrideSpell == Id)
             OverrideSpellList.push_back(specializationInfo->LearnSpell);
     }
 

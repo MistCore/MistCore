@@ -1640,7 +1640,7 @@ void WorldSession::HandleRealmQueryNameOpcode(WorldPacket& recvData)
 
     uint32 realmId = recvData.read<uint32>();
 
-    if(realmId != realmID)
+    if (realmId != realmID)
         return; // Cheater ?
 
     WorldPacket data(SMSG_REALM_QUERY_RESPONSE);
@@ -2019,7 +2019,7 @@ void WorldSession::HandleHearthAndResurrect(WorldPacket& /*recvData*/)
     if (_player->isInFlight())
         return;
 
-    if(/*Battlefield* bf =*/ sBattlefieldMgr->GetBattlefieldToZoneId(_player->GetZoneId()))
+    if (/*Battlefield* bf =*/ sBattlefieldMgr->GetBattlefieldToZoneId(_player->GetZoneId()))
     {
         // bf->PlayerAskToLeave(_player); FIXME
         return;
@@ -2168,7 +2168,7 @@ void WorldSession::HandleObjectUpdateFailedOpcode(WorldPacket& recvPacket)
     recvPacket.ReadBytesSeq(guid, byteOrder);
 
     WorldObject* obj = ObjectAccessor::GetWorldObject(*GetPlayer(), guid);
-    if(obj)
+    if (obj)
         obj->SendUpdateToPlayer(GetPlayer());
 
     sLog->outError(LOG_FILTER_NETWORKIO, "Object update failed for object " UI64FMTD " (%s) for player %s (%u)", uint64(guid), obj ? obj->GetName() : "object-not-found", GetPlayerName().c_str(), GetGuidLow());

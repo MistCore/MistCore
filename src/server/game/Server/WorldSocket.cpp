@@ -65,7 +65,7 @@ struct ServerPktHeader
         header[2] = cmd & 0xFF;
         header[3] = cmd >> 8;
 
-        if(encrypt)
+        if (encrypt)
         {
             uint32 totalLenght = size-2;
             totalLenght <<=12;
@@ -497,7 +497,7 @@ int WorldSocket::handle_input_header (void)
     uint16 cmd = 0;
     uint16 size = 0;
 
-    if(m_Crypt.IsInitialized())
+    if (m_Crypt.IsInitialized())
     {
         ClientCryptPktHeader& header = *((ClientCryptPktHeader*)m_Header.rd_ptr());
         size = (uint16)(header.header >> 12);
@@ -524,7 +524,7 @@ int WorldSocket::handle_input_header (void)
     }
 
 
-    if(!m_Crypt.IsInitialized())
+    if (!m_Crypt.IsInitialized())
         size -= 2;
 
     ACE_NEW_RETURN(m_RecvWPct, WorldPacket (PacketFilter::DropHighBytes(Opcodes(cmd)), size), -1);
@@ -839,7 +839,7 @@ void WorldSocket::SendAuthResponse(uint8 code, bool queued, uint32 queuePos)
     packet.WriteBits(realmRaceCount, 25);                 // Read realmClassResult.count // 15 (race ?)
 
     packet.WriteBit(queued);
-    if(queued)
+    if (queued)
     {
         packet.WriteBit(0);
         packet << uint32(queuePos);

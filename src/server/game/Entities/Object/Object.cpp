@@ -932,7 +932,7 @@ void Object::_BuildValuesUpdate(uint8 updatetype, ByteBuffer* data, UpdateMask* 
     {
         for(int index = 0; index < 32; index++)
         {
-            if(m_dynamicChange[i][index])
+            if (m_dynamicChange[i][index])
             {
                 dynamicTabMask |= 1 << i;
                 dynamicFieldsMask[i] |= 1 << index;
@@ -941,20 +941,20 @@ void Object::_BuildValuesUpdate(uint8 updatetype, ByteBuffer* data, UpdateMask* 
     }
 
     *data << uint8(bool(dynamicTabMask));
-    if(dynamicTabMask)
+    if (dynamicTabMask)
     {
         *data << uint32(dynamicTabMask);
 
         for(size_t i = 0; i < m_dynamicTab.size(); i++)
         {
-            if(dynamicTabMask & (1 << i))
+            if (dynamicTabMask & (1 << i))
             {
                 *data << uint8(1);
                 *data << uint32(dynamicFieldsMask[i]);
 
                 for(int index = 0; index < 32; index++)
                 {
-                    if(dynamicFieldsMask[i] & (1 << index))
+                    if (dynamicFieldsMask[i] & (1 << index))
                         *data << uint32(m_dynamicTab[i][index]);
                 }
             }

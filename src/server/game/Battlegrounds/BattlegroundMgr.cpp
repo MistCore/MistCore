@@ -675,7 +675,7 @@ void BattlegroundMgr::BuildPvpLogDataPacket(WorldPacket* data, Battleground* bg)
         //buff << uint32(40);
         // if (unk 2) << uint32() unk
         // if (unk 4) << uint32() unk
-        if(isArena)
+        if (isArena)
             buff << int32(bg->GetArenaTeamRatingChangeByIndex(bg->GetPlayerTeam(guid) == HORDE));
         buff.WriteByteSeq(guid[4]);
         buff << int32(player->GetPrimaryTalentTree(player->GetActiveSpec()));
@@ -715,7 +715,7 @@ void BattlegroundMgr::BuildPvpLogDataPacket(WorldPacket* data, Battleground* bg)
             uint32 pointsGained = rating_change > 0 ? rating_change : 0;
             uint32 MatchmakerRating = bg->GetArenaMatchmakerRatingByIndex(i);
 
-            if(i == 1)
+            if (i == 1)
             {
                 *data << uint32(pointsLost);                    // Rating Lost
                 *data << uint32(MatchmakerRating);              // Matchmaking Value

@@ -1935,7 +1935,7 @@ void World::SetInitialWorldSettings()
 
     m_realmName = "Mist of Pandaria servers";
     QueryResult realmResult = LoginDatabase.PQuery("SELECT name FROM realmlist WHERE id = %u", realmID);
-    if(realmResult)
+    if (realmResult)
         m_realmName = (*realmResult)[0].GetString();
 
     sLog->outInfo(LOG_FILTER_GENERAL, "Loading area skip update...");
@@ -2530,18 +2530,18 @@ BanReturn World::BanAccount(BanMode mode, std::string nameOrIP, std::string dura
         {
             // Check account already banned
 
-            if(duration != "-1")
+            if (duration != "-1")
             {
                 // temp banned
                 stmtt = LoginDatabase.GetPreparedStatement(LOGIN_SEL_ACCOUNT_ALWAYS_BANNED);
                 stmtt->setUInt32(0, account);
                 PreparedQueryResult resultCheck = LoginDatabase.Query(stmtt);
 
-                if(resultCheck)
+                if (resultCheck)
                 {
                     Field* fieldsCheck = resultCheck->Fetch();
                     uint32 timeRemaining = fieldsCheck[0].GetUInt32();
-                    if(timeRemaining > duration_secs)
+                    if (timeRemaining > duration_secs)
                     {
                          return BAN_TOO_SMALL; 
                     }
@@ -2553,7 +2553,7 @@ BanReturn World::BanAccount(BanMode mode, std::string nameOrIP, std::string dura
                 stmtt->setUInt32(0, account);
                 PreparedQueryResult resultCheckBan = LoginDatabase.Query(stmtt);
 
-                if(resultCheckBan)
+                if (resultCheckBan)
                 {
                     return BAN_ALREADY_PERMANENT;
                 }

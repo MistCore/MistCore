@@ -273,32 +273,32 @@ bool Creature::InitEntry(uint32 Entry, uint32 /*team*/, const CreatureData* data
     // Si l'entry heroic du mode de joueur est introuvable, on utilise l'entry du mode normal correpondant au nombre de joueurs du mode
     CreatureTemplate const* cinfo = normalInfo;
     uint8 diff = uint8(GetMap()->GetSpawnMode());
-    if(diff)
+    if (diff)
     {
         if (normalInfo->DifficultyEntry[diff - 1])
         {
             cinfo = sObjectMgr->GetCreatureTemplate(normalInfo->DifficultyEntry[diff - 1]);
 
             // check and reported at startup, so just ignore (restore normalInfo)
-            if(!cinfo)
+            if (!cinfo)
                 cinfo = normalInfo;
         }
 
-        if(cinfo == normalInfo && (diff == MAN25_HEROIC_DIFFICULTY || diff == RAID_TOOL_DIFFICULTY) && normalInfo->DifficultyEntry[MAN25_DIFFICULTY - 1])
+        if (cinfo == normalInfo && (diff == MAN25_HEROIC_DIFFICULTY || diff == RAID_TOOL_DIFFICULTY) && normalInfo->DifficultyEntry[MAN25_DIFFICULTY - 1])
         {
             cinfo = sObjectMgr->GetCreatureTemplate(normalInfo->DifficultyEntry[MAN25_DIFFICULTY - 1]);
 
             // check and reported at startup, so just ignore (restore normalInfo)
-            if(!cinfo)
+            if (!cinfo)
                 cinfo = normalInfo;
         }
 
-        if(cinfo == normalInfo &&  diff == MAN10_HEROIC_DIFFICULTY && normalInfo->DifficultyEntry[MAN10_DIFFICULTY - 1])
+        if (cinfo == normalInfo &&  diff == MAN10_HEROIC_DIFFICULTY && normalInfo->DifficultyEntry[MAN10_DIFFICULTY - 1])
         {
             cinfo = sObjectMgr->GetCreatureTemplate(normalInfo->DifficultyEntry[MAN10_DIFFICULTY - 1]);
 
             // check and reported at startup, so just ignore (restore normalInfo)
-            if(!cinfo)
+            if (!cinfo)
                 cinfo = normalInfo;
         }
     }

@@ -119,7 +119,7 @@ namespace Movement
         // Unknow 5.0.5 MoP
         uint16 unkCount = 0;
         data << uint16(unkCount); // unk 5.0.5 count
-        if(unkCount)
+        if (unkCount)
         {
             data << float(0);
             data << uint16(0);
@@ -144,7 +144,7 @@ namespace Movement
         // Unknow 5.0.5 MoP
         uint16 unkCount = 0;
         data << uint16(unkCount); // unk 5.0.5 count
-        if(unkCount)
+        if (unkCount)
         {
             data << float(0);
             data << uint16(0);
@@ -170,7 +170,7 @@ namespace Movement
         // Unknow 5.0.5 MoP
         uint16 unkCount = 0;
         data << uint16(unkCount); // unk 5.0.5 count
-        if(unkCount)
+        if (unkCount)
         {
             data << float(0);
             data << uint16(0);

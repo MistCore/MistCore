@@ -101,7 +101,7 @@ void BattlegroundEY::PostUpdateImpl(uint32 diff)
     if (GetStatus() == STATUS_WAIT_JOIN)
     {
         m_CheatersCheckTimer -= diff;
-        if(m_CheatersCheckTimer <= 0)
+        if (m_CheatersCheckTimer <= 0)
         {
             for(BattlegroundPlayerMap::const_iterator itr = GetPlayers().begin(); itr != GetPlayers().end(); ++itr)
             {

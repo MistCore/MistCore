@@ -15383,7 +15383,7 @@ void Unit::SetPower(Powers power, int32 val)
     if (maxPower < val)
         val = maxPower;
 
-	if(val == GetInt32Value(UNIT_FIELD_POWER1 + powerIndex))
+	if (val == GetInt32Value(UNIT_FIELD_POWER1 + powerIndex))
         return;
 
     SetInt32Value(UNIT_FIELD_POWER1 + powerIndex, val);
@@ -16239,7 +16239,7 @@ void Unit::ProcDamageAndSpellFor(bool isVictim, Unit* target, uint32 procFlag, u
 
         for (auto itr : shadowylist)
         {
-            if(UnitAI* ai =  itr->GetAI())
+            if (UnitAI* ai =  itr->GetAI())
                 ai->SetGUID(target->GetGUID());
             itr->GetMotionMaster()->MovePoint(1, target->GetPositionX(), target->GetPositionY(), target->GetPositionZ());
         }
