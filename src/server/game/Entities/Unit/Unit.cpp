@@ -8213,7 +8213,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffectPtr trigge
             int32 apcap = GetCreateHealth() * 0.1f; // 10% base HP is the cap
             if (basepoints0 > 0)
             {
-                if (AuraPtr veng = victim->GetAura(132365))
+                if (AuraPtr veng = victim->GetAura(triggered_spell_id))
                 {
                     basepoints0 += veng->GetEffect(EFFECT_0)->GetAmount();
                     veng->GetEffect(EFFECT_0)->ChangeAmount(apcap > basepoints0 ? basepoints0 : apcap);
@@ -8221,7 +8221,7 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffectPtr trigge
                 }
                 else
                 {
-                    if (AuraPtr veng = victim->AddAura(132365, victim))
+                    if (AuraPtr veng = victim->AddAura(triggered_spell_id, victim))
                         veng->GetEffect(EFFECT_0)->ChangeAmount(basepoints0);
                 }
             }
