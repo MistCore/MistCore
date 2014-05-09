@@ -869,7 +869,7 @@ uint32 Unit::DealDamage(Unit* victim, uint32 damage, CleanDamage const* cleanDam
             }
             case OFF_ATTACK:
             {
-                weaponSpeedHitFactor = uint32(GetAttackTime(cleanDamage->attackType) / 1000.0f * 3.25f);
+                weaponSpeedHitFactor = uint32(GetAttackTime(cleanDamage->attackType) / 1000.0f * (CanTitanGrip() ? 6.5f : 3.25f));
                 RewardRage(weaponSpeedHitFactor, true);
                 break;
             }
@@ -9452,9 +9452,7 @@ bool Unit::HandleProcTriggerSpell(Unit* victim, uint32 damage, AuraEffectPtr tri
         // Blazing Speed
         case 113857:
         {
-            uint32 health = CountPctFromMaxHealth(2);
-
-            if (damage < 0 && damage < health && !(procFlags & PROC_FLAG_KILL))
+            if (damage < CountPctFromMaxHealth(2) && !(procFlags & PROC_FLAG_KILL))
                 return false;
 
             break;
