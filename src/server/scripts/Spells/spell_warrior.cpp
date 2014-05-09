@@ -1113,16 +1113,12 @@ class spell_warr_deep_wounds : public SpellScriptLoader
             {
                 if (Player* _player = GetCaster()->ToPlayer())
                 {
-                    if (Unit* target = GetHitUnit())
-                    {
-                        if (_player->getLevel() >= 32)
-                        {
-                            if (GetSpellInfo()->Id == WARRIOR_SPELL_THUNDER_CLAP && _player->HasAura(WARRIOR_SPELL_BLOOD_AND_THUNDER))
-                                _player->CastSpell(target, WARRIOR_SPELL_DEEP_WOUNDS, true);
-                            else
-                                _player->CastSpell(target, WARRIOR_SPELL_DEEP_WOUNDS, true);
-                        }
-                    }
+                    if (GetSpellInfo()->Id == WARRIOR_SPELL_THUNDER_CLAP && !_player->HasAura(WARRIOR_SPELL_BLOOD_AND_THUNDER))
+                        return;
+
+                    if (_player->getLevel() >= 32)
+                        if (Unit* target = GetHitUnit())
+                            _player->CastSpell(target, WARRIOR_SPELL_DEEP_WOUNDS, true);
                 }
             }
 

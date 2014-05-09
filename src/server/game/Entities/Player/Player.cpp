@@ -11257,7 +11257,6 @@ uint8 Player::FindEquipSlot(ItemTemplate const* proto, uint32 slot, bool swap) c
         break;
     case INVTYPE_THROWN:
         slots[0] = EQUIPMENT_SLOT_MAINHAND;
-        slots[0] = EQUIPMENT_SLOT_MAINHAND;
         if (Item* mhWeapon = GetItemByPos(INVENTORY_SLOT_BAG_0, EQUIPMENT_SLOT_MAINHAND))
         {
             if (ItemTemplate const* mhWeaponProto = mhWeapon->GetTemplate())
@@ -12652,7 +12651,7 @@ InventoryResult Player::CanEquipItem(uint8 slot, uint16 &dest, Item* pItem, bool
                         return EQUIP_ERR_NOT_DURING_ARENA_MATCH;
                 }
 
-                if (ITEM_CLASS_WEAPON && HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISARMED))
+                if (pProto->Class == ITEM_CLASS_WEAPON && HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISARMED))
                     return EQUIP_ERR_CLIENT_LOCKED_OUT;
 
                 if (isInCombat() && (pProto->Class == ITEM_CLASS_WEAPON || pProto->InventoryType == INVTYPE_RELIC) && m_weaponChangeTimer != 0)
@@ -12781,7 +12780,7 @@ InventoryResult Player::CanUnequipItem(uint16 pos, bool swap) const
             return EQUIP_ERR_NOT_DURING_ARENA_MATCH;
     }
 
-    if (ITEM_CLASS_WEAPON && HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISARMED))
+    if (pProto->Class == ITEM_CLASS_WEAPON && HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_DISARMED))
         return EQUIP_ERR_CLIENT_LOCKED_OUT;
 
     if (!swap && pItem->IsNotEmptyBag())
