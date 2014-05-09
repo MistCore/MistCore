@@ -1,0 +1,2 @@
+-- fix gossip for http://www.wowhead.com/npc=2859
+UPDATE gossip_menu_option SET option_id=4,npc_option_npcflag=8192 WHERE menu_id=4306 AND id=0;
