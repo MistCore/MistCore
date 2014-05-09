@@ -869,7 +869,7 @@ uint32 Unit::DealDamage(Unit* victim, uint32 damage, CleanDamage const* cleanDam
             }
             case OFF_ATTACK:
             {
-                weaponSpeedHitFactor = uint32(GetAttackTime(cleanDamage->attackType) / 1000.0f * (CanTitanGrip() ? 6.5f : 3.25f));
+                weaponSpeedHitFactor = uint32(GetAttackTime(cleanDamage->attackType) / 1000.0f * (GetTypeId() == TYPEID_PLAYER && ToPlayer()->CanTitanGrip() ? 6.5f : 3.25f));
                 RewardRage(weaponSpeedHitFactor, true);
                 break;
             }
