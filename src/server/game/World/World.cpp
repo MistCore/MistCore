@@ -2766,11 +2766,6 @@ void World::ShutdownMsg(bool show, Player* player)
 
     if (m_ShutdownTimer == 5)
         sWorld->KickAll(); // save and kick all players
-    else if (m_ShutdownTimer == 2)
-    {
-        sLog->outError(LOG_FILTER_SERVER_LOADING, "Automatic scheduled server restart!");
-        ASSERT(false);
-    }
 }
 
 /// Cancel a planned server shutdown
