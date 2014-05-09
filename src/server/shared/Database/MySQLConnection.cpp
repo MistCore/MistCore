@@ -320,7 +320,7 @@ bool MySQLConnection::_Query(const char *sql, MYSQL_RES **pResult, MYSQL_FIELD *
             sLog->outError(LOG_FILTER_SQL, "[%u] %s", lErrno, mysql_error(m_Mysql));
 
             if (lErrno == ER_BAD_FIELD_ERROR || lErrno == ER_NO_SUCH_TABLE || lErrno == ER_PARSE_ERROR)
-            	sLog->outError(LOG_FILTER_SQL, "PANDASHAN TRANSFERT ERROR %u : query : %s", lErrno, sql);
+            	sLog->outError(LOG_FILTER_SQL, "SQL ERROR %u : query : %s", lErrno, sql);
 
             if (_HandleMySQLErrno(lErrno))      // If it returns true, an error was handled successfully (i.e. reconnection)
                 return _Query(sql, pResult, pFields, pRowCount, pFieldCount);    // We try again
