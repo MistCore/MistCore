@@ -15378,7 +15378,7 @@ void Unit::SetPower(Powers power, int32 val)
     if (maxPower < val)
         val = maxPower;
 
-	if (val == GetInt32Value(UNIT_FIELD_POWER1 + powerIndex))
+    if (val == GetInt32Value(UNIT_FIELD_POWER1 + powerIndex))
         return;
 
     SetInt32Value(UNIT_FIELD_POWER1 + powerIndex, val);
