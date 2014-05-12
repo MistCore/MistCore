@@ -5158,14 +5158,12 @@ void Spell::EffectScriptEffect(SpellEffIndex effIndex)
                     if (m_targets.GetUnitTarget()->GetAura(55078))
                     {
                         m_caster->CastSpell(unitTarget, 55078, true);
-                        m_caster->AddAura(63687, unitTarget);                           // Cosmetic - Pestilence State
                         m_targets.GetUnitTarget()->CastSpell(unitTarget, 91939, true);  // Cosmetic - Send Diseases on target
                     }
                     // Frost Fever
                     if (m_targets.GetUnitTarget()->GetAura(55095))
                     {
                         m_caster->CastSpell(unitTarget, 55095, true);
-                        m_caster->AddAura(63687, unitTarget);                           // Cosmetic - Pestilence State
                         m_targets.GetUnitTarget()->CastSpell(unitTarget, 91939, true);  // Cosmetic - Send Diseases on target
                     }
                 }
