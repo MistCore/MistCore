@@ -1389,6 +1389,7 @@ class spell_pri_devouring_plague : public SpellScriptLoader
                         {
                             uint8 powerUsed = _player->GetPower(POWER_SHADOW_ORB) + 1; // Don't forget PowerCost
 
+                            GetCaster()->SetPower(POWER_SHADOW_ORB, 0);
                             // Shadow Orb visual
                             if (_player->HasAura(77487))
                                 _player->RemoveAura(77487);
@@ -1431,8 +1432,7 @@ class spell_pri_devouring_plague : public SpellScriptLoader
                 if (!GetCaster())
                     return;
 
-                powerUsed = GetCaster()->GetPower(POWER_SHADOW_ORB);
-                GetCaster()->SetPower(POWER_SHADOW_ORB, 0);
+                powerUsed = GetCaster()->GetPower(POWER_SHADOW_ORB) + 1;
 
                 amount *= powerUsed;
             }
