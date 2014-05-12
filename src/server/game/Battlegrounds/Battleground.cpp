@@ -2041,7 +2041,6 @@ void Battleground::RewardXPAtKill(Player* killer, Player* victim)
 
 void Battleground::SendFlagsPositions()
 {
-    return;
     uint32 count = 0;
     std::list<Player*> players;
 

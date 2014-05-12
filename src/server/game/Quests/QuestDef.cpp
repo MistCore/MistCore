@@ -35,7 +35,7 @@ Quest::Quest(Field* questRecord)
     SuggestedPlayers        = questRecord[index++].GetUInt8();
     LimitTime               = questRecord[index++].GetUInt32();
     RequiredTeam            = questRecord[index++].GetInt8();
-    RequiredClasses         = questRecord[index++].GetInt16();
+    RequiredClasses         = questRecord[index++].GetInt32();
     RequiredRaces           = questRecord[index++].GetInt32();
     RequiredSkillId         = questRecord[index++].GetUInt16();
     RequiredSkillPoints     = questRecord[index++].GetUInt16();
