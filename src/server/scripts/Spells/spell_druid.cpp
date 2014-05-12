@@ -2096,58 +2096,6 @@ class spell_dru_mark_of_the_wild : public SpellScriptLoader
         }
 };
 
-// Nature's Cure - 88423 and Remove Corruption - 2782
-class spell_dru_natures_cure : public SpellScriptLoader
-{
-    public:
-        spell_dru_natures_cure() : SpellScriptLoader("spell_dru_natures_cure") { }
-
-        class spell_dru_natures_cure_SpellScript : public SpellScript
-        {
-            PrepareSpellScript(spell_dru_natures_cure_SpellScript);
-
-            SpellCastResult CheckCleansing()
-            {
-                if (Unit* caster = GetCaster())
-                {
-                    if (Unit* target = GetExplTargetUnit())
-                    {
-                        // Create dispel mask by dispel type
-                        for (int8 i = 0; i < MAX_SPELL_EFFECTS; i++)
-                        {
-                            uint32 dispel_type = GetSpellInfo()->Effects[i].MiscValue;
-                            uint32 dispelMask  = GetSpellInfo()->GetDispelMask(DispelType(dispel_type));
-
-                            // Nature's Cure can dispell all Magic, Curse and poison
-                            if (GetSpellInfo()->Id == 88423)
-                                dispelMask = ((1<<DISPEL_MAGIC) | (1<<DISPEL_CURSE) | (1<<DISPEL_POISON));
-
-                            DispelChargesList dispelList;
-                            target->GetDispellableAuraList(caster, dispelMask, dispelList);
-
-                            if (dispelList.empty())
-                                return SPELL_FAILED_NOTHING_TO_DISPEL;
-
-                            return SPELL_CAST_OK;
-                        }
-                    }
-                }
-
-                return SPELL_CAST_OK;
-            }
-
-            void Register()
-            {
-                OnCheckCast += SpellCheckCastFn(spell_dru_natures_cure_SpellScript::CheckCleansing);
-            }
-        };
-
-        SpellScript* GetSpellScript() const
-        {
-            return new spell_dru_natures_cure_SpellScript();
-        }
-};
-
 // Called by Regrowth - 8936
 // Glyph of Regrowth - 116218
 class spell_dru_glyph_of_regrowth : public SpellScriptLoader
@@ -3559,7 +3507,6 @@ void AddSC_druid_spell_scripts()
     new spell_dru_lifebloom_refresh();
     new spell_dru_omen_of_clarity();
     new spell_dru_mark_of_the_wild();
-    new spell_dru_natures_cure();
     new spell_dru_glyph_of_regrowth();
     new spell_dru_cat_form();
     new spell_dru_skull_bash();

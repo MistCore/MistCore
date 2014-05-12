@@ -726,58 +726,6 @@ class spell_pal_hand_of_protection : public SpellScriptLoader
         }
 };
 
-// Cleanse - 4987 and Cleanse - 122288 (Symbiosis)
-class spell_pal_cleanse : public SpellScriptLoader
-{
-    public:
-        spell_pal_cleanse() : SpellScriptLoader("spell_pal_cleanse") { }
-
-        class spell_pal_cleanse_SpellScript : public SpellScript
-        {
-            PrepareSpellScript(spell_pal_cleanse_SpellScript);
-
-            SpellCastResult CheckCleansing()
-            {
-                if (Unit* caster = GetCaster())
-                {
-                    if (Unit* target = GetExplTargetUnit())
-                    {
-                        // Create dispel mask by dispel type
-                        for (int8 i = 0; i < MAX_SPELL_EFFECTS; i++)
-                        {
-                            uint32 dispel_type = GetSpellInfo()->Effects[i].MiscValue;
-                            uint32 dispelMask  = GetSpellInfo()->GetDispelMask(DispelType(dispel_type));
-
-                            // Epuration can dispell Magic with Sacred Cleansing
-                            if (caster->HasAura(PALADIN_SPELL_SACRED_CLEANSING) && GetSpellInfo()->Id == 4987)
-                                dispelMask = DISPEL_ALL_MASK;
-
-                            DispelChargesList dispelList;
-                            target->GetDispellableAuraList(caster, dispelMask, dispelList);
-
-                            if (dispelList.empty())
-                                return SPELL_FAILED_NOTHING_TO_DISPEL;
-
-                            return SPELL_CAST_OK;
-                        }
-                    }
-                }
-
-                return SPELL_CAST_OK;
-            }
-
-            void Register()
-            {
-                OnCheckCast += SpellCheckCastFn(spell_pal_cleanse_SpellScript::CheckCleansing);
-            }
-        };
-
-        SpellScript* GetSpellScript() const
-        {
-            return new spell_pal_cleanse_SpellScript();
-        }
-};
-
 // Divine Shield - 642 and Divine Shield - 110700
 class spell_pal_divine_shield : public SpellScriptLoader
 {
@@ -1652,7 +1600,6 @@ void AddSC_paladin_spell_scripts()
     new spell_pal_seal_of_insight();
     new spell_pal_blinding_light();
     new spell_pal_hand_of_protection();
-    new spell_pal_cleanse();
     new spell_pal_divine_shield();
     new spell_pal_inquisition();
     new spell_pal_execution_sentence();

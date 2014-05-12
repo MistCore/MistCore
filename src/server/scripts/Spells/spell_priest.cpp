@@ -1369,58 +1369,6 @@ class spell_pri_spirit_shell : public SpellScriptLoader
         }
 };
 
-// Purify - 527
-class spell_pri_purify : public SpellScriptLoader
-{
-    public:
-        spell_pri_purify() : SpellScriptLoader("spell_pri_purify") { }
-
-        class spell_pri_purify_SpellScript : public SpellScript
-        {
-            PrepareSpellScript(spell_pri_purify_SpellScript);
-
-            SpellCastResult CheckCleansing()
-            {
-                if (Unit* caster = GetCaster())
-                {
-                    if (Unit* target = GetExplTargetUnit())
-                    {
-                        // Create dispel mask by dispel type
-                        for (int8 i = 0; i < MAX_SPELL_EFFECTS; i++)
-                        {
-                            uint32 dispel_type = GetSpellInfo()->Effects[i].MiscValue;
-                            uint32 dispelMask  = GetSpellInfo()->GetDispelMask(DispelType(dispel_type));
-
-                            // Purity can dispell Magic.
-                            if (GetSpellInfo()->Id == 527)
-                                dispelMask = ((1<<DISPEL_MAGIC));
-
-                            DispelChargesList dispelList;
-                            target->GetDispellableAuraList(caster, dispelMask, dispelList);
-
-                            if (dispelList.empty())
-                                return SPELL_FAILED_NOTHING_TO_DISPEL;
-
-                            return SPELL_CAST_OK;
-                        }
-                    }
-                }
-
-                return SPELL_CAST_OK;
-            }
-
-            void Register()
-            {
-                OnCheckCast += SpellCheckCastFn(spell_pri_purify_SpellScript::CheckCleansing);
-            }
-        };
-
-        SpellScript* GetSpellScript() const
-        {
-            return new spell_pri_purify_SpellScript();
-        }
-};
-
 // Devouring Plague - 2944
 class spell_pri_devouring_plague : public SpellScriptLoader
 {
@@ -2701,7 +2649,6 @@ void AddSC_priest_spell_scripts()
     new spell_pri_rapture();
     new spell_pri_atonement();
     new spell_pri_spirit_shell();
-    new spell_pri_purify();
     new spell_pri_devouring_plague();
     new spell_pri_phantasm();
     new spell_pri_mind_spike();
