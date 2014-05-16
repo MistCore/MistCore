@@ -3549,8 +3549,8 @@ class npc_demonic_gateway : public CreatureScript
 
             bool need_check;
 
-			void IsSummonedBy(Unit * summoner)
-			{
+            void IsSummonedBy(Unit * summoner)
+            {
                 me->SetFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_SPELLCLICK);
                 owner = summoner;
             }
@@ -3606,56 +3606,56 @@ class npc_demonic_gateway : public CreatureScript
                     aura_update -= diff;
             }
 
-			void OnSpellClick(Unit * clicker) 
-			{
-				if (clicker->GetTypeId() != TYPEID_PLAYER)
-					return;
+            void OnSpellClick(Unit * clicker) 
+            {
+                if (clicker->GetTypeId() != TYPEID_PLAYER)
+                    return;
 
-				if (clicker->HasAura(113942))
-					return;
+                if (clicker->HasAura(113942))
+                    return;
 
-				if (!owner)
-					return;
+                if (!owner)
+                    return;
 
-				AuraPtr aura = owner->GetAura(113901);
+                AuraPtr aura = owner->GetAura(113901);
 
-				if (!aura)
-					return;
+                if (!aura)
+                    return;
 
                 uint8 charges = aura->GetCharges();
 
-				if (charges == 0)
-					return;
-				
-				std::list< Creature* > creature_list;
-				Creature * target;
+                if (charges == 0)
+                    return;
+                
+                std::list< Creature* > creature_list;
+                Creature * target;
 
-				me->GetCreatureListWithEntryInGrid(creature_list, (me->GetEntry() == 59262 ? 59271 : 59262), 101);
+                me->GetCreatureListWithEntryInGrid(creature_list, (me->GetEntry() == 59262 ? 59271 : 59262), 101);
 
-				for (auto itr : creature_list)
-				{
-					if (itr->GetOwner() == owner)
-					{
-						target = itr;
-						break;
-					}
-				}
+                for (auto itr : creature_list)
+                {
+                    if (itr->GetOwner() == owner)
+                    {
+                        target = itr;
+                        break;
+                    }
+                }
 
-				if (!target)
-					return;
+                if (!target)
+                    return;
 
-				aura->SetCharges(charges - 1);
+                aura->SetCharges(charges - 1);
 
                 aura->GetEffect(EFFECT_0)->SetAmount(charges - 1);
 
-				clicker->CastSpell(target, (me->GetEntry() == 59271 ? 120729 : 113896 ));
+                clicker->CastSpell(target, (me->GetEntry() == 59271 ? 120729 : 113896 ));
 
                 if (AuraPtr demonicGateway = me->GetAura(( me->GetEntry() == 59271 ? visual_buff_purple[charges - 1] : visual_buff_green[charges -1])))
                     me->RemoveAura(demonicGateway);
 
                 if (AuraPtr demonicGateway = target->GetAura(( target->GetEntry() == 59271 ? visual_buff_purple[charges - 1] : visual_buff_green[charges - 1])))
                     target->RemoveAura(demonicGateway);
-			}
+            }
         };
 
         CreatureAI* GetAI(Creature* creature) const
