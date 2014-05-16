@@ -2034,35 +2034,6 @@ class spell_warl_drain_soul : public SpellScriptLoader
         }
 };
 
-// Demonic Gateway (periodic add charge) - 113901
-class spell_warl_demonic_gateway_charges : public SpellScriptLoader
-{
-    public:
-        spell_warl_demonic_gateway_charges() : SpellScriptLoader("spell_warl_demonic_gateway_charges") { }
-
-        class spell_warl_demonic_gateway_charges_AuraScript : public AuraScript
-        {
-            PrepareAuraScript(spell_warl_demonic_gateway_charges_AuraScript);
-
-            void OnTick(constAuraEffectPtr aurEff)
-            {
-                if (Unit* target = GetTarget())
-                    if (AuraPtr demonicGateway = target->GetAura(WARLOCK_DEMONIC_GATEWAY_PERIODIC_CHARGE))
-                        demonicGateway->ModCharges(1);
-            }
-
-            void Register()
-            {
-                OnEffectPeriodic += AuraEffectPeriodicFn(spell_warl_demonic_gateway_charges_AuraScript::OnTick, EFFECT_1, SPELL_AURA_PERIODIC_DUMMY);
-            }
-        };
-
-        AuraScript* GetAuraScript() const
-        {
-            return new spell_warl_demonic_gateway_charges_AuraScript();
-        }
-};
-
 // Demonic Gateway - 111771
 class spell_warl_demonic_gateway : public SpellScriptLoader
 {
@@ -3036,7 +3007,6 @@ void AddSC_warlock_spell_scripts()
     new spell_warl_soul_swap();
     new spell_warl_nightfall();
     new spell_warl_drain_soul();
-    new spell_warl_demonic_gateway_charges();
     new spell_warl_demonic_gateway();
     new spell_warl_rain_of_fire();
     new spell_warl_chaos_bolt();
