@@ -1,90 +1,65 @@
-# MistCore
+Core traité et traduit en français. Les corrections seront appliquées selon nos disponibilités. Version actuelle du client : 5.0.5b.
+Développement en cours du core.
+Sera renommé prochainement : CiyaCore
 
-MistCore is (for the moment) the JadeCore leaked sourcecode that was made public or sold by a couple of people.
-Since this is a 'Mists of Pandaria' Core, we would like to continue this project.
-We will try to fix what is broken, remove what is not needed, add new functions, and try to get it up to date with the current TrinityCore.
-There is still a lot to be fixed in this source, and we need all the help we can get.
-
-If you feel interested by this project and you would like to help, we would appriciate it.
-You can report bugs or add fixed or new systems in the 'Issues' list or the 'Pull Requests' list.
-
-## IRC
-Feel free to join us at irc.rizon.net - #mist
-
-#Reminder
-MistCore is an educational project and it's opensource with GNU GPL v2.
+# A savoir
+CiyaCore est la propriété de Garrosh.net. Vous pouvez cependant contribuer à l'amélioration du Core en nous contactant à l'adresse : contact@garrosh.net
 
 ## Database
-https://github.com/MistCore/MC-Database
+Veuillez télécharger la base de données officielle et compatible Ciya-Database :
+
+https://github.com/ciya10000/Ciya-Database
 
 ## Dbc, maps, & vmaps
-You can use extractors to generate dbc, maps & vmaps.
+Vous pourrez utiliser les extracteurs pour générer les dbc, maps & vmaps.
+Les fichiers seront partagés sous forme de fichiers .rar prochainement.
 
-## Requirements
+## Requis
 
-+ Platform: Linux, Windows or Mac
-+ Processor with SSE2 support
-+ ACE = 5.8.3 (included for Windows)
-+ MySQL = 5.1.0 (included for Windows)
++ Platforme: Linux, Windows ou Mac
++ Processeur avec support SSE2
++ ACE = 5.8.3 (inclus pour Windows)
++ MySQL = 5.1.0 (inclus pourr Windows)
 + CMake = 2.8.0
 + OpenSSL = 1.0.0
-+ GCC = 4.7.2 (Linux only)
-+ MS Visual Studio = 12 (2013) (Windows only)
++ GCC = 4.7.2 (Linux seulement)
++ MS Visual Studio = 12 (2013) (Windows seulement)
 
 
-## Install
+## Installation
 
-Detailed installation guides are available in the wiki for
-[Windows](http://collab.kpsn.org/display/tc/How-to_Win),
-[Linux](http://collab.kpsn.org/display/tc/How-to_Linux) and
-[Mac OSX](http://collab.kpsn.org/display/tc/How-to_Mac).
+Les topics d'installation sont disponibles. Remerciement pour la communauté Trinity pour ce partage.
+[Windows](http://collab.kpsn.org/display/tc/Windows),
+[Linux](http://collab.kpsn.org/display/tc/Linux),
+[Mac OSX](http://collab.kpsn.org/display/tc/Mac) et
+[FeeBSD](http://collab.kpsn.org/display/tc/FreeBSD).
 
 
-## Reporting issues
+## Bugs / Tickets
 
-Issues can be reported via the [Github issue tracker](https://github.com/MistCore/MistCore/issues?state=open).
+Les reports peuvent être effectués ici [Tracker](https://github.com/ciya10000/CiyaCore/issues?state=open).
 
-Please take the time to review existing issues before submitting your own to
-prevent duplicates.
-
-In addition, thoroughly read through the [issue tracker guide](http://www.trinitycore.org/f/topic/37-the-trinitycore-issuetracker-and-you/) to ensure
-your report contains the required information. Incorrect or poorly formed
-reports are wasteful and are subject to deletion.
+Veuillez vous assurez que votre signalement n'est pas déjà présent dans nos précédents reports. Ceci nous permettra d'éviter les doublons.
 
 Notes:
-We will use this as reference for now.
+Ce core est utilisé pour l'émulation et le fonctionnement du serveur Garrosh.net. Il est en son unique propriétaire. Garrosh.net se réserve le droit de retirer / fermer ses sources à tous moments et ce, sans préavis de notre part.
 
 ## Copyright
 
-License: GPL 2.0
+Fichier à lire [COPYING](COPYING)
 
-Read file [COPYING](COPYING)
-
-
-## Authors &amp; Contributors
+## Autheurs &amp; Contributeurs
 
 TinityCore [THANKS](THANKS)
 
-Pandashan
+Garrosh
 
-MistCore [THANKS](THANKS_MIST)
-
-
-## Links
-
-MistCore
+CiyaCore [THANKS](THANKS_CIYA)
 
 
-[MistCore Forums](http://www.mistcore.org/)
+## Liens
+
+Garrosh
 
 
-
-TrinityCore:
-
-[TrinityCore Site](http://www.trinitycore.org)
-
-[TrinityCore Wiki](http://trinitycore.info)
-
-[TrinityCore Documentation](http://www.trinitycore.net) (powered by Doxygen)
-
-[TrinityCore Forums](http://www.trinitycore.org/f/)
+[Garrosh : Serveur Mists of Pandaria](http://www.garrosh.net/)
