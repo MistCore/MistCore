@@ -113,11 +113,11 @@ public:
         std::string uptime          = secsToTimeString(sWorld->GetUptime());
         uint32 updateTime           = sWorld->GetUpdateTime();
 
-        handler->PSendSysMessage("BloodCore 5.0.5");
-        handler->PSendSysMessage("Last Update: 08.12.2013 Updatepack: 3");
+        handler->PSendSysMessage("CiyaCore 5.0.5");
+        handler->PSendSysMessage("Compilation le : 14.07.2015 Updatepack: 1");
         handler->PSendSysMessage(LANG_CONNECTED_USERS, activeClientsNum, maxActiveClientsNum, queuedClientsNum, maxQueuedClientsNum);
         handler->PSendSysMessage(LANG_UPTIME, uptime.c_str());
-        handler->PSendSysMessage("Server delay: %u ms", updateTime);
+        handler->PSendSysMessage("réponse du serveur : %u ms", updateTime);
 
         // Bypass player/VIP
         if (handler->GetSession() && handler->GetSession()->GetSecurity() > 1)
