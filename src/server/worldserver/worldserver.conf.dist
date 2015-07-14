@@ -1,5 +1,5 @@
 #################################################
-#   Jade Core World Server configuration file   #
+#  CiyaCore Royaume - Fichier de configuration  #
 #################################################
 [worldserver]
 
@@ -68,7 +68,7 @@ RealmID = 1
 #        Example:     "@prefix@/share/trinitycore"
 #        Default:     "."
 
-DataDir = "."
+DataDir = "./datas/"
 
 #
 #    LogsDir
@@ -77,7 +77,7 @@ DataDir = "."
 #                     Logs directory must exists, or log file creation will be disabled.
 #        Default:     "" - (Log files will be stored in the current path)
 
-LogsDir = ""
+LogsDir = "./Logs/World/"
 
 #
 #    LoginDatabaseInfo
@@ -94,9 +94,9 @@ LogsDir = ""
 #                     "127.0.0.1;3306;trinity;trinity;world"      - (WorldDatabaseInfo)
 #                     "127.0.0.1;3306;trinity;trinity;characters" - (CharacterDatabaseInfo)
 
-LoginDatabaseInfo     = "127.0.0.1;3306;trinity;trinity;auth"
-WorldDatabaseInfo     = "127.0.0.1;3306;trinity;trinity;world"
-CharacterDatabaseInfo = "127.0.0.1;3306;trinity;trinity;characters"
+LoginDatabaseInfo     = "127.0.0.1;3306;root;password123;auth"
+WorldDatabaseInfo     = "127.0.0.1;3306;root;password123;world"
+CharacterDatabaseInfo = "127.0.0.1;3306;root;password123;characters"
 
 #
 #    LoginDatabase.WorkerThreads
@@ -186,7 +186,7 @@ Compression = 1
 #                     1+  - (Enabled)
 #                     0   - (Disabled, No limit)
 
-PlayerLimit = 100
+PlayerLimit = 500
 
 #
 #    SaveRespawnTimeImmediately
@@ -254,9 +254,9 @@ ChangeWeatherInterval = 600000
 #
 #    PlayerSaveInterval
 #        Description: Time (in milliseconds) for player save interval.
-#        Default:     900000 - (15 min)
+#        Default:     300000 - (5 min)
 
-PlayerSaveInterval = 900000
+PlayerSaveInterval = 300000
 
 #
 #    PlayerSave.Stats.MinLevel
@@ -360,8 +360,9 @@ LogDB.Opt.ClearTime = 1209600
 #        Description: Time (in seconds) before the server is forced to crash if it is frozen.
 #        Default:     0   - (Disabled)
 #                     10+ - (Enabled, Recommended 10+)
+#                     120 secondes sera le réglage par défaut et celui conseillé
 
-MaxCoreStuckTime = 0
+MaxCoreStuckTime = 120
 
 #
 #    AddonChannel
@@ -518,7 +519,7 @@ ChatLogs.BattleGround = 0
 #                     16 - (FFA_PVP, Free for all pvp mode like arena PvP in all zones except rest
 #                          activated places and sanctuaries)
 
-GameType = 0
+GameType = 1
 
 #
 #    RealmZone
@@ -553,7 +554,7 @@ GameType = 0
 #                     28 - (QA Server     - any language)
 #                     29 - (CN9           - basic-Latin at create, any at login)
 
-RealmZone = 1
+RealmZone = 10
 
 #
 #    StrictPlayerNames
@@ -798,9 +799,9 @@ StartPlayerMoney = 0
 #    RecruitAFriend.MaxLevel
 #        Description: Highest level up to which a character can benefit from the Recruit-A-Friend
 #                     experience multiplier.
-#        Default:     80
+#        Default:     85
 
-RecruitAFriend.MaxLevel = 80
+RecruitAFriend.MaxLevel = 85
 
 #
 #    RecruitAFriend.MaxDifference
@@ -839,7 +840,7 @@ DisableWaterBreath = 4
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllFlightPaths = 0
+AllFlightPaths = 1
 
 #
 #    InstantFlightPaths
@@ -856,7 +857,7 @@ InstantFlightPaths = 0
 #        Default:     1 - (Enabled)
 #                     0 - (Disabled)
 
-ActivateWeather = 1
+ActivateWeather = 0
 
 #
 #    CastUnstuck
@@ -999,9 +1000,9 @@ MaxRecruitAFriendBonusDistance = 100
 #
 #    MailDeliveryDelay
 #        Description: Time (in seconds) mail delivery is delayed when sending items.
-#        Default:     3600 - (1 hour)
+#        Default:     10 - (10 secondes)
 
-MailDeliveryDelay = 3600
+MailDeliveryDelay = 10
 
 #
 #    SkillChance.Prospecting
@@ -1059,7 +1060,7 @@ BeepAtStart = 1
 #        Example:     "Welcome to John\'s Server@This server runs on Trinity Core."
 #        Default:     "Welcome to a Trinity Core server."
 
-Motd = "Welcome to a Jade Core server."
+Motd = "Bienvenue sur le royaume Garrosh.@Notre serveur est en constante évolution.@Notre site internet est http://www.garrosh.net"
 
 #
 #    Server.LoginInfo
@@ -1203,7 +1204,7 @@ AllowTwoSide.Interaction.Calendar = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Chat = 0
+AllowTwoSide.Interaction.Chat = 1
 
 #
 #    AllowTwoSide.Interaction.Channel
@@ -1211,7 +1212,7 @@ AllowTwoSide.Interaction.Chat = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Channel = 0
+AllowTwoSide.Interaction.Channel = 1
 
 #
 #    AllowTwoSide.Interaction.Group
@@ -1219,7 +1220,7 @@ AllowTwoSide.Interaction.Channel = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Group = 0
+AllowTwoSide.Interaction.Group = 1
 
 #
 #    AllowTwoSide.Interaction.Guild
@@ -1235,7 +1236,7 @@ AllowTwoSide.Interaction.Guild = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Auction = 0
+AllowTwoSide.Interaction.Auction = 1
 
 #
 #    AllowTwoSide.Interaction.Mail
@@ -1243,7 +1244,7 @@ AllowTwoSide.Interaction.Auction = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Interaction.Mail = 0
+AllowTwoSide.Interaction.Mail = 1
 
 #
 #    AllowTwoSide.WhoList
@@ -1251,7 +1252,7 @@ AllowTwoSide.Interaction.Mail = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.WhoList = 0
+AllowTwoSide.WhoList = 1
 
 #
 #    AllowTwoSide.AddFriend
@@ -1267,7 +1268,7 @@ AllowTwoSide.AddFriend = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AllowTwoSide.Trade = 0
+AllowTwoSide.Trade = 1
 
 #
 #    TalentsInspecting
@@ -1537,21 +1538,21 @@ Channel.RestrictedLfg = 1
 #        Default:     0 - (Disabled, Join with announcement)
 #                     1 - (Enabled, Join without announcement)
 
-Channel.SilentlyGMJoin = 0
+Channel.SilentlyGMJoin = 1
 
 #
 #    ChatLevelReq.Channel
 #        Description: Level requirement for characters to be able to write in chat channels.
 #        Default:     1
 
-ChatLevelReq.Channel = 1
+ChatLevelReq.Channel = 15
 
 #
 #    ChatLevelReq.Whisper
 #        Description: Level requirement for characters to be able to whisper other characters.
 #        Default:     1
 
-ChatLevelReq.Whisper = 1
+ChatLevelReq.Whisper = 15
 
 #
 #    ChatLevelReq.Say
@@ -1566,7 +1567,7 @@ ChatLevelReq.Say = 1
 #        Default:     1 - (Enabled)
 #                     0 - (Disabled)
 
-AllowPlayerCommands = 1
+AllowPlayerCommands = 0
 
 #
 #    PreserveCustomChannels
@@ -1822,13 +1823,13 @@ Rate.Skill.Discovery = 1
 
 Rate.Drop.Item.Poor             = 1
 Rate.Drop.Item.Normal           = 1
-Rate.Drop.Item.Uncommon         = 1
-Rate.Drop.Item.Rare             = 1
+Rate.Drop.Item.Uncommon         = 3
+Rate.Drop.Item.Rare             = 2
 Rate.Drop.Item.Epic             = 1
 Rate.Drop.Item.Legendary        = 1
 Rate.Drop.Item.Artifact         = 1
 Rate.Drop.Item.Referenced       = 1
-Rate.Drop.Money                 = 1
+Rate.Drop.Money                 = 3
 
 #
 #    Rate.Drop.Item.ReferencedAmount
@@ -1848,10 +1849,10 @@ Rate.Drop.Item.ReferencedAmount = 1
 #                     1 - (Rate.XP.Explore)
 #                     1 - (Rate.XP.Gathering)
 
-Rate.XP.Kill    = 1
-Rate.XP.Quest   = 1
+Rate.XP.Kill    = 3
+Rate.XP.Quest   = 5
 Rate.XP.Explore = 1
-Rate.XP.Gathering = 1
+Rate.XP.Gathering = 3
 
 #
 #    Rate.RepairCost
@@ -1870,7 +1871,7 @@ Rate.RepairCost = 1
 #                     1 - (Rate.Rest.Offline.InWilderness)
 
 Rate.Rest.InGame                 = 1
-Rate.Rest.Offline.InTavernOrCity = 1
+Rate.Rest.Offline.InTavernOrCity = 2
 Rate.Rest.Offline.InWilderness   = 1
 
 #
@@ -1927,7 +1928,7 @@ Rate.Talent = 1
 #        Description: Reputation gain rate.
 #        Default:     1
 
-Rate.Reputation.Gain = 1
+Rate.Reputation.Gain = 2
 
 #
 #    Rate.Reputation.LowLevel.Kill
@@ -1974,8 +1975,8 @@ Rate.InstanceResetTime = 1
 #        Default:     1 - (SkillGain.Crafting)
 #                     1 - (SkillGain.Gathering)
 
-SkillGain.Crafting  = 1
-SkillGain.Gathering = 1
+SkillGain.Crafting  = 3
+SkillGain.Gathering = 3
 
 #
 #    SkillChance.Orange
@@ -2124,7 +2125,7 @@ Stats.Limits.Crit  = 95.0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AutoBroadcast.On = 0
+AutoBroadcast.On = 1
 
 #
 #    AutoBroadcast.Center
@@ -2138,9 +2139,9 @@ AutoBroadcast.Center = 0
 #
 #    AutoBroadcast.Timer
 #        Description: Timer (in milliseconds) for auto broadcasts.
-#        Default:     60000 - (60 seconds)
+#        Default:     900000 - (15 minutes!)
 
-AutoBroadcast.Timer = 60000
+AutoBroadcast.Timer = 900000
 
 #
 ###################################################################################################
@@ -2205,7 +2206,7 @@ BattleGround.PremadeGroupWaitForMatch = 1800000
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Battleground.GiveXPForKills = 0
+Battleground.GiveXPForKills = 1
 
 #
 #    Battleground.Random.ResetHour
@@ -2306,7 +2307,7 @@ Arena.RatedUpdateTimer = 5000
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Arena.AutoDistributePoints = 0
+Arena.AutoDistributePoints = 1
 
 #
 #    Arena.AutoDistributeInterval
@@ -2453,14 +2454,14 @@ Ra.MinLevel = 3
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-SOAP.Enabled = 0
+SOAP.Enabled = 1
 
 #
 #    SOAP.IP
 #        Description: Bind SOAP service to IP/hostname
 #        Default:     "127.0.0.1" - (Bind to localhost)
 
-SOAP.IP = "127.0.0.1"
+SOAP.IP = "0.0.0.0"
 
 #
 #    SOAP.Port
@@ -2481,7 +2482,7 @@ SOAP.Port = 7878
 #                     1 - (Unlink the character from account and free up the name, Appears as
 #                         deleted ingame)
 
-CharDelete.Method = 0
+CharDelete.Method = 1
 
 #
 #    CharDelete.MinLevel
@@ -2607,7 +2608,7 @@ Guild.AllowMultipleGuildMaster = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-ShowKickInWorld = 0
+ShowKickInWorld = 1
 
 #
 #     RecordUpdateTimeDiffInterval
@@ -2630,7 +2631,7 @@ MinRecordUpdateTimeDiff = 100
 #        Description: String to be displayed at first login of newly created characters.
 #         Default:    "" - (Disabled)
 
-PlayerStart.String = ""
+PlayerStart.String = "Vous pouvez voter et accumuler des points boutique!"
 
 #
 #     LevelReq.Trade
@@ -3009,7 +3010,7 @@ Currency.ConquestPointsArenaReward = 180
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AnnounceBan = 0
+AnnounceBan = 1
 
 #
 #     AnnounceMute
@@ -3017,7 +3018,7 @@ AnnounceBan = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-AnnounceMute = 0
+AnnounceMute = 1
 
 #
 #     Spell Forbidden
@@ -3091,7 +3092,7 @@ Server.Auto.RestartHour = 4
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Anticheat.Enable = 0
+Anticheat.Enable = 1
 
 #     Anticheat.ReportsForIngameWarnings
 #        Description: How many reports the player must have to notify to GameMasters ingame when he generates a new report.
@@ -3131,7 +3132,7 @@ Anticheat.MaxReportsForDailyReport = 70
 #                 1 - Enable 
 # 
 
-DuelReset.Cooldown.OnStart = 0 
+DuelReset.Cooldown.OnStart = 1
 
 #
 #     DuelReset.Cooldown.OnFinish 
@@ -3140,7 +3141,7 @@ DuelReset.Cooldown.OnStart = 0
 #                 1 - Enable 
 # 
 
-DuelReset.Cooldown.OnFinish = 0 
+DuelReset.Cooldown.OnFinish = 1
 
 #
 #     DuelReset.Cooldown.Only.in.Elwynn.and.Durotar 
@@ -3149,7 +3150,7 @@ DuelReset.Cooldown.OnFinish = 0
 #                 1 - Enable 
 # 
 
-DuelReset.Cooldown.Only.in.Elwynn.and.Durotar = 0 
+DuelReset.Cooldown.Only.in.Elwynn.and.Durotar = 0
 
 #
 #     DuelReset.Cooldown.Max.Energy.OnStart 
@@ -3158,7 +3159,7 @@ DuelReset.Cooldown.Only.in.Elwynn.and.Durotar = 0
 #                 1 - Enable 
 # 
 
-DuelReset.Cooldown.Max.Energy.OnStart = 0 
+DuelReset.Cooldown.Max.Energy.OnStart = 0
 
 #
 #     DuelReset.Cooldown.Reset.Energy.OnStart 
@@ -3183,11 +3184,11 @@ DuelReset.Cooldown.Reset.Energy.OnStart = 0
 #        Description: Enables rates modifier to VIPs.
 #        Default: 1
 
-Rate.XP.Kill.Premium               = 1
-Rate.XP.Quest.Premium              = 1
-Rate.XP.Explore.Premium            = 1
-Rate.Honor.Premium                 = 1
-Rate.Reputation.Gain.Premium       = 1
+Rate.XP.Kill.Premium               = 6
+Rate.XP.Quest.Premium              = 10
+Rate.XP.Explore.Premium            = 2
+Rate.Honor.Premium                 = 2
+Rate.Reputation.Gain.Premium       = 4
 
 #
 #    Vip.Debuff.Command            = 1
@@ -3203,7 +3204,7 @@ Rate.Reputation.Gain.Premium       = 1
 #        Default: 1
 
 Vip.Debuff.Command                 = 0
-Vip.Bank.Command                   = 0
+Vip.Bank.Command                   = 1
 Vip.Repair.Command                 = 0
 Vip.Reset.Talents.Command          = 0
 Vip.Taxi.Command                   = 0
