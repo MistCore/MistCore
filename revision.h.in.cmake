@@ -3,8 +3,8 @@
  #define _HASH                      "@rev_hash@"
  #define _DATE                      "@rev_date@"
  #define _BRANCH                    "@rev_branch@"
- #define VER_COMPANYNAME_STR        "MistCore Developers"
- #define VER_LEGALCOPYRIGHT_STR     "(c)2014 MistCore"
+ #define VER_COMPANYNAME_STR        "CiyaCore Developers"
+ #define VER_LEGALCOPYRIGHT_STR     "(c)2015 CiyaCore"
  #define VER_FILEVERSION            0,0,0
  #define VER_FILEVERSION_STR        "@rev_hash@ @rev_date@ (@rev_branch@ branch)"
  #define VER_PRODUCTVERSION         VER_FILEVERSION
