@@ -1,5 +1,5 @@
 ###############################################
-# Trinity Core Auth Server configuration file #
+#  CiyaCore Authentification - Fichier config #
 ###############################################
 [authserver]
 
@@ -36,7 +36,7 @@
 #                     Logs directory must exists, or log file creation will be disabled.
 #        Default:     "" - (Log files will be stored in the current path)
 
-LogsDir = ""
+LogsDir = "./Logs/Auth/"
 
 #
 #    MaxPingTime
@@ -133,7 +133,7 @@ WrongPass.BanType = 0
 #                                                                           Unix/Linux)
 #        Default:     "127.0.0.1;3306;trinity;trinity;auth"
 
-LoginDatabaseInfo = "127.0.0.1;3306;trinity;trinity;auth"
+LoginDatabaseInfo = "127.0.0.1;3306;root;password123;auth"
 
 #
 #    LoginDatabase.WorkerThreads
@@ -205,7 +205,7 @@ LoginDatabase.WorkerThreads = 1
 #                          w - (Overwrite)
 #
 
-Appender.Console=1,2,0
+Appender.Console=1,2,0,13 11 9 5 3 1
 Appender.Auth=2,2,0,Auth.log,w
 
 #                     LogLevel

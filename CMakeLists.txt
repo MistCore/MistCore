@@ -1,5 +1,4 @@
-# Copyright (C) 2014 MistCore <http://www.mistcore.org/>
-# Copyright (C) 2013-2014 Pandashan <http://www.pandashan.com/>
+# Copyright (C) 2015 CiyaCore <http://www.garrosh.net/>
 # Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
 #
 # This file is free software; as a special exception the author gives
@@ -11,7 +10,7 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 # Set projectname (must be done AFTER setting configurationtypes)
-project(MistCore)
+project(CiyaCore)
 
 # CMake policies (can not be handled elsewhere)
 cmake_minimum_required(VERSION 2.6)
